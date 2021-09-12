@@ -1,0 +1,31 @@
+{
+  "name": "@tr/parser",
+  "version": "0.0.1",
+  "description": "Parse test results from JUnit, TestNG, xUnit and many more",
+  "main": "src/index.js",
+  "types": "./src/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/test-results-reporter/parser.git"
+  },
+  "keywords": [
+    "JUnit",
+    "xUnit",
+    "TestNG",
+    "parser",
+    "test",
+    "results"
+  ],
+  "author": "Anudeep <asa.anudeep4@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/test-results-reporter/parser/issues"
+  },
+  "homepage": "https://github.com/test-results-reporter/parser#readme",
+  "dependencies": {
+    "fast-xml-parser": "^3.20.0"
+  }
+}
