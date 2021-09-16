@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "types": "./src/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha tests"
   },
   "repository": {
     "type": "git",
@@ -27,5 +27,8 @@
   "homepage": "https://github.com/test-results-reporter/parser#readme",
   "dependencies": {
     "fast-xml-parser": "^3.20.0"
+  },
+  "devDependencies": {
+    "mocha": "^9.1.1"
   }
 }

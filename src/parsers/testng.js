@@ -30,14 +30,25 @@ function parse(options) {
   if (ignored) {
     result.total = result.total - ignored;
   }
-  const suite = results.suite[0];
-  result.name = suite['@_name'];
-  result.duration = suite['@_duration-ms'];
-  const rawSuites = suite.test;
-  for (let i = 0; i < rawSuites.length; i++) {
-    result.suites.push(getTestSuite(rawSuites[i]));
+
+  const suites = results.suite;
+  const suitesWithTests = suites.filter(suite => suite.test);
+
+  if (suitesWithTests.length > 1) {
+    console.log("Not Supported: Multiple Test Suites. Support will be added soon");
+  } else if (suitesWithTests.length === 1) {
+    const suite = suitesWithTests[0];
+    result.name = suite['@_name'];
+    result.duration = suite['@_duration-ms'];
+    const rawSuites = suite.test;
+    for (let i = 0; i < rawSuites.length; i++) {
+      result.suites.push(getTestSuite(rawSuites[i]));
+    }
+    result.status = result.total === result.passed ? 'PASS' : 'FAIL';
+    
+  } else {
+    console.log("No suites with tests found");
   }
-  result.status = result.total === result.passed ? 'PASS' : 'FAIL';
   return result;
 }
 
