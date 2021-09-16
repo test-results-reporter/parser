@@ -1,5 +1,5 @@
 {
-  "name": "@tr/parser",
+  "name": "@trr/parser",
   "version": "0.0.1",
   "description": "Parse test results from JUnit, TestNG, xUnit and many more",
   "main": "src/index.js",
