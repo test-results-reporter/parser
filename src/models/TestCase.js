@@ -8,7 +8,7 @@ class TestCase {
       this.failed = 0;
       this.errors = 0;
       this.skipped = 0;
-      this.duration = -1;
+      this.duration = 0;
       this.status = 'NA';
       this.failure = '';
       this.steps = [];

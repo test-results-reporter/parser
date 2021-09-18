@@ -1,6 +1,7 @@
 import * as TestSuite from './TestSuite';
 
 declare class TestResult {
+  name: string;
   total: number;
   passed: number;
   failed: number;

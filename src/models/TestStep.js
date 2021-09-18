@@ -3,7 +3,7 @@ class TestStep {
   constructor() {
     this.id = '';
     this.name = '';
-    this.duration = -1;
+    this.duration = 0;
     this.status = 'NA';
     this.failure = '';
   }

@@ -102,4 +102,45 @@ describe('Parser - TestNG', () => {
     })
   });
 
+  it('multiple suites with multiple tests', () => {
+    const result = parse({ type: 'testng', files: ['tests/data/testng/multiple-suites-multiple-tests.xml'] });
+    assert.deepEqual(result, {
+      id: '',
+      name: 'Default suite 1',
+      total: 8,
+      passed: 8,
+      failed: 0,
+      errors: 0,
+      skipped: 0,
+      duration: 4000,
+      status: 'PASS',
+      suites: [
+        {
+          id: '',
+          name: 'Default suite 1',
+          total: 4,
+          passed: 4,
+          failed: 0,
+          errors: 0,
+          skipped: 0,
+          duration: 2000,
+          status: 'NA',
+          cases: []
+        },
+        {
+          id: '',
+          name: 'Default suite',
+          total: 4,
+          passed: 4,
+          failed: 0,
+          errors: 0,
+          skipped: 0,
+          duration: 2000,
+          status: 'NA',
+          cases: []
+        }
+      ]
+    })
+  });
+
 });
