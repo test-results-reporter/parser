@@ -29,7 +29,7 @@ describe('Parser - TestNG', () => {
           cases: []
         }
       ]
-    })
+    });
   });
 
   it('single suite with multiple tests', () => {
@@ -70,7 +70,7 @@ describe('Parser - TestNG', () => {
           cases: []
         }
       ]
-    })
+    });
   });
 
   it('multiple suites with single test', () => {
@@ -99,7 +99,7 @@ describe('Parser - TestNG', () => {
           cases: []
         }
       ]
-    })
+    });
   });
 
   it('multiple suites with multiple tests', () => {
@@ -140,7 +140,7 @@ describe('Parser - TestNG', () => {
           cases: []
         }
       ]
-    })
+    });
   });
 
 });

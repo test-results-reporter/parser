@@ -1,11 +1,14 @@
 const testng = require('./testng');
+const junit = require('./junit');
 
 function parse(options) {
   switch (options.type) {
     case 'testng':
-      return testng.parse(options)
+      return testng.parse(options);
+    case 'junit':
+      return junit.parse(options);
     default:
-      throw `UnKnown Result Type - ${options.type}`
+      throw `UnSupported Result Type - ${options.type}`;
   }
 }
 

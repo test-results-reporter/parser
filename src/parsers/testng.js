@@ -62,7 +62,6 @@ function parse(options) {
         result.name = _suite.name;
       }
     }
-    result.status = result.total === result.passed ? 'PASS' : 'FAIL';
   } else if (suitesWithTests.length === 1) {
     const suite = suitesWithTests[0];
     result.name = suite['@_name'];
@@ -71,11 +70,10 @@ function parse(options) {
     for (let i = 0; i < rawTests.length; i++) {
       result.suites.push(getTestSuiteFromTest(rawTests[i]));
     }
-    result.status = result.total === result.passed ? 'PASS' : 'FAIL';
-    
   } else {
     console.log("No suites with tests found");
   }
+  result.status = result.total === result.passed ? 'PASS' : 'FAIL';
   return result;
 }
 
