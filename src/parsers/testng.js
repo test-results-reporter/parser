@@ -2,6 +2,18 @@ const { getJsonFromXMLFile } = require('../helpers/helper');
 
 const TestResult = require('../models/TestResult');
 const TestSuite = require('../models/TestSuite');
+const TestCase = require('../models/TestCase');
+
+function getTestCase(rawCase) {
+  const test_case = new TestCase();
+  test_case.name = rawCase["@_name"];
+  test_case.duration = rawCase["@_duration-ms"];
+  test_case.status = rawCase["@_status"];
+  if (rawCase.exception) {
+    test_case.failure = rawCase.exception[0].message;
+  }
+  return test_case;
+}
 
 function getTestSuiteFromTest(rawTest) {
   const suite = new TestSuite();
@@ -15,6 +27,10 @@ function getTestSuiteFromTest(rawTest) {
   suite.total = rawTestMethods.length;
   suite.passed = rawTestMethods.filter(test => test['@_status'] === 'PASS').length;
   suite.failed = rawTestMethods.filter(test => test['@_status'] === 'FAIL').length;
+  suite.status = suite.total === suite.passed ? 'PASS' : 'FAIL';
+  for (let i = 0; i < rawTestMethods.length; i++) {
+    suite.cases.push(getTestCase(rawTestMethods[i]));
+  }
   return suite;
 }
 
@@ -34,6 +50,10 @@ function getTestSuite(rawSuite) {
   suite.total = rawTestMethods.length;
   suite.passed = rawTestMethods.filter(test => test['@_status'] === 'PASS').length;
   suite.failed = rawTestMethods.filter(test => test['@_status'] === 'FAIL').length;
+  suite.status = suite.total === suite.passed ? 'PASS' : 'FAIL';
+  for (let i = 0; i < rawTestMethods.length; i++) {
+    suite.cases.push(getTestCase(rawTestMethods[i]));
+  }
   return suite;
 }
 

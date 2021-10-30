@@ -26,7 +26,22 @@ describe('Parser - JUnit', () => {
           skipped: 0,
           duration: 10000,
           status: 'FAIL',
-          cases: []
+          cases: [
+            {
+              duration: 10000,
+              errors: 0,
+              failed: 0,
+              failure: "PROGRAM.cbl:2 Use a program name that matches the source file name",
+              id: "",
+              name: "Use a program name that matches the source file name",
+              passed: 0,
+              skipped: 0,
+              stack_trace: "",
+              status: "FAIL",
+              steps: [],
+              total: 0
+            }
+          ]
         }
       ]
     });
@@ -55,7 +70,22 @@ describe('Parser - JUnit', () => {
           skipped: 0,
           duration: 10000,
           status: 'FAIL',
-          cases: []
+          cases: [
+            {
+              duration: 10000,
+              errors: 0,
+              failed: 0,
+              failure: "",
+              id: "",
+              name: "Use a program name that matches the source file name",
+              passed: 0,
+              skipped: 0,
+              stack_trace: "",
+              status: "PASS",
+              steps: [],
+              total: 0
+            }
+          ]
         }
       ]
     });
@@ -84,7 +114,22 @@ describe('Parser - JUnit', () => {
           skipped: 0,
           duration: 10000,
           status: 'PASS',
-          cases: []
+          cases: [
+            {
+              duration: 10000,
+              errors: 0,
+              failed: 0,
+              failure: "",
+              id: "",
+              name: "Use a program name that matches the source file name",
+              passed: 0,
+              skipped: 0,
+              stack_trace: "",
+              status: "PASS",
+              steps: [],
+              total: 0
+            }
+          ]
         }
       ]
     });
@@ -113,7 +158,22 @@ describe('Parser - JUnit', () => {
           skipped: 0,
           duration: 10000,
           status: 'FAIL',
-          cases: []
+          cases: [
+            {
+              duration: 10000,
+              errors: 0,
+              failed: 0,
+              failure: "PROGRAM.cbl:2 Use a program name that matches the source file name",
+              id: "",
+              name: "Use a program name that matches the source file name",
+              passed: 0,
+              skipped: 0,
+              stack_trace: "",
+              status: "FAIL",
+              steps: [],
+              total: 0
+            }
+          ]
         },
         {
           id: '',
@@ -125,7 +185,22 @@ describe('Parser - JUnit', () => {
           skipped: 0,
           duration: 10000,
           status: 'PASS',
-          cases: []
+          cases: [
+            {
+              duration: 10000,
+              errors: 0,
+              failed: 0,
+              failure: "PROGRAM.cbl:2 Use a program name that matches the source file name",
+              id: "",
+              name: "Use a program name that matches the source file name",
+              passed: 0,
+              skipped: 0,
+              stack_trace: "",
+              status: "FAIL",
+              steps: [],
+              total: 0
+            }
+          ]
         }
       ]
     });

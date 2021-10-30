@@ -11,6 +11,7 @@ class TestCase {
       this.duration = 0;
       this.status = 'NA';
       this.failure = '';
+      this.stack_trace = '';
       this.steps = [];
     }
   

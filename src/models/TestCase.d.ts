@@ -10,6 +10,7 @@ declare class TestCase {
   duration: number;
   status: string;
   failure: string;
+  stack_trace: string;
   steps: TestStep[];
 }
 

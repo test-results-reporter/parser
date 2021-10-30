@@ -3,6 +3,7 @@ declare class TestStep {
   duration: number;
   status: string;
   failure: string;
+  stack_trace: string;
 }
 
 declare namespace TestStep { }

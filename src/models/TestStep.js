@@ -6,6 +6,7 @@ class TestStep {
     this.duration = 0;
     this.status = 'NA';
     this.failure = '';
+    this.stack_trace = '';
   }
 
 }
