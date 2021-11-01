@@ -13,6 +13,7 @@ describe('Parser - TestNG', () => {
       failed: 0,
       errors: 0,
       skipped: 0,
+      retried: 0,
       duration: 2000,
       status: 'PASS',
       suites: [
@@ -99,6 +100,7 @@ describe('Parser - TestNG', () => {
       "failed": 11,
       "errors": 0,
       "skipped": 0,
+      "retried": 0,
       "duration": 1403931,
       "status": "FAIL",
       "suites": [
@@ -188,11 +190,11 @@ describe('Parser - TestNG', () => {
         {
           "id": "",
           "name": "mobile-ios",
-          "total": 5,
+          "total": 4,
           "passed": 2,
           "failed": 2,
           "errors": 0,
-          "skipped": 0,
+          "skipped": 1,
           "duration": 545598,
           "status": "FAIL",
           "cases": [
@@ -282,6 +284,7 @@ describe('Parser - TestNG', () => {
       "failed": 0,
       "errors": 0,
       "skipped": 0,
+      "retried": 0,
       "duration": 2000,
       "status": "PASS",
       "suites": [
@@ -368,6 +371,7 @@ describe('Parser - TestNG', () => {
       "failed": 0,
       "errors": 0,
       "skipped": 0,
+      "retried": 0,
       "duration": 4000,
       "status": "PASS",
       "suites": [
@@ -504,6 +508,162 @@ describe('Parser - TestNG', () => {
               "duration": 0,
               "status": "PASS",
               "failure": "expected [true] but found [false]",
+              "stack_trace": "",
+              "steps": []
+            }
+          ]
+        }
+      ]
+    });
+  });
+
+  it('multiple suites with multiple tests', () => {
+    const result = parse({ type: 'testng', files: ['tests/data/testng/multiple-suites-retries.xml'] });
+    assert.deepEqual(result, {
+      "id": "",
+      "name": "Staging - UI Smoke Test Run",
+      "total": 6,
+      "passed": 4,
+      "failed": 2,
+      "errors": 0,
+      "skipped": 0,
+      "retried": 2,
+      "duration": 1883597,
+      "status": "FAIL",
+      "suites": [
+        {
+          "id": "",
+          "name": "desktop-chrome",
+          "total": 3,
+          "passed": 2,
+          "failed": 1,
+          "errors": 0,
+          "skipped": 1,
+          "duration": 1164451,
+          "status": "FAIL",
+          "cases": [
+            {
+              "id": "",
+              "name": "GU",
+              "total": 0,
+              "passed": 0,
+              "failed": 0,
+              "errors": 0,
+              "skipped": 0,
+              "duration": 243789,
+              "status": "PASS",
+              "failure": "",
+              "stack_trace": "",
+              "steps": []
+            },
+            {
+              "id": "",
+              "name": "PC",
+              "total": 0,
+              "passed": 0,
+              "failed": 0,
+              "errors": 0,
+              "skipped": 0,
+              "duration": 129368,
+              "status": "SKIP",
+              "failure": "failed",
+              "stack_trace": "",
+              "steps": []
+            },
+            {
+              "id": "",
+              "name": "PC",
+              "total": 0,
+              "passed": 0,
+              "failed": 0,
+              "errors": 0,
+              "skipped": 0,
+              "duration": 123183,
+              "status": "FAIL",
+              "failure": "failed",
+              "stack_trace": "",
+              "steps": []
+            },
+            {
+              "id": "",
+              "name": "CB",
+              "total": 0,
+              "passed": 0,
+              "failed": 0,
+              "errors": 0,
+              "skipped": 0,
+              "duration": 194645,
+              "status": "PASS",
+              "failure": "",
+              "stack_trace": "",
+              "steps": []
+            }
+          ]
+        },
+        {
+          "id": "",
+          "name": "mobile-andoid",
+          "total": 3,
+          "passed": 2,
+          "failed": 1,
+          "errors": 0,
+          "skipped": 1,
+          "duration": 714100,
+          "status": "FAIL",
+          "cases": [
+            {
+              "id": "",
+              "name": "GU",
+              "total": 0,
+              "passed": 0,
+              "failed": 0,
+              "errors": 0,
+              "skipped": 0,
+              "duration": 156900,
+              "status": "PASS",
+              "failure": "",
+              "stack_trace": "",
+              "steps": []
+            },
+            {
+              "id": "",
+              "name": "PC",
+              "total": 0,
+              "passed": 0,
+              "failed": 0,
+              "errors": 0,
+              "skipped": 0,
+              "duration": 134774,
+              "status": "SKIP",
+              "failure": "failed",
+              "stack_trace": "",
+              "steps": []
+            },
+            {
+              "id": "",
+              "name": "PC",
+              "total": 0,
+              "passed": 0,
+              "failed": 0,
+              "errors": 0,
+              "skipped": 0,
+              "duration": 126578,
+              "status": "FAIL",
+              "failure": "failed",
+              "stack_trace": "",
+              "steps": []
+            },
+            {
+              "id": "",
+              "name": "CB",
+              "total": 0,
+              "passed": 0,
+              "failed": 0,
+              "errors": 0,
+              "skipped": 0,
+              "duration": 242525,
+              "status": "PASS",
+              "failure": "",
               "stack_trace": "",
               "steps": []
             }

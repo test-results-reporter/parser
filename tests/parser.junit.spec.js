@@ -13,6 +13,7 @@ describe('Parser - JUnit', () => {
       failed: 1,
       errors: 0,
       skipped: 0,
+      retried: 0,
       duration: 10000,
       status: 'FAIL',
       suites: [
@@ -57,6 +58,7 @@ describe('Parser - JUnit', () => {
       failed: 1,
       errors: 0,
       skipped: 0,
+      retried: 0,
       duration: 10000,
       status: 'FAIL',
       suites: [
@@ -101,6 +103,7 @@ describe('Parser - JUnit', () => {
       failed: 0,
       errors: 0,
       skipped: 1,
+      retried: 0,
       duration: 10000,
       status: 'PASS',
       suites: [
@@ -145,6 +148,7 @@ describe('Parser - JUnit', () => {
       failed: 1,
       errors: 0,
       skipped: 0,
+      retried: 0,
       duration: 20000,
       status: 'FAIL',
       suites: [

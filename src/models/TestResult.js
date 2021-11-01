@@ -8,6 +8,7 @@ class TestResult {
     this.failed = 0;
     this.errors = 0;
     this.skipped = 0;
+    this.retried = 0;
     this.duration = 0;
     this.status = 'NA';
     this.suites = [];

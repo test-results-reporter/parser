@@ -7,6 +7,7 @@ declare class TestResult {
   failed: number;
   errors: number;
   skipped: number;
+  retried: number;
   duration: number;
   status: string;
   suites: TestSuite[];
