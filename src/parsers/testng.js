@@ -75,13 +75,15 @@ function parse(options) {
   result.total = results['@_total'];
   if (results['@_retried']) {
     result.retried = results['@_retried'];
+    result.total = result.total - result.retried;
+  }
+  if (results['@_skipped']) {
+    result.skipped = results['@_skipped'];
+    result.total = result.total - result.skipped;
   }
   const ignored = results['@_ignored'];
   if (ignored) {
     result.total = result.total - ignored;
-  }
-  if (result.retried) {
-    result.total = result.total - result.retried;
   }
 
   const suites = results.suite;

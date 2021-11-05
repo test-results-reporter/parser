@@ -95,11 +95,11 @@ describe('Parser - TestNG', () => {
     assert.deepEqual(result, {
       "id": "",
       "name": "Regression Tests",
-      "total": 20,
+      "total": 19,
       "passed": 8,
       "failed": 11,
       "errors": 0,
-      "skipped": 0,
+      "skipped": 1,
       "retried": 0,
       "duration": 1403931,
       "status": "FAIL",
