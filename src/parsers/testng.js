@@ -79,7 +79,7 @@ function parse(options) {
   }
   if (results['@_skipped']) {
     result.skipped = results['@_skipped'];
-    result.total = result.total - result.skipped;
+    // result.total = result.total - result.skipped;
   }
   const ignored = results['@_ignored'];
   if (ignored) {
