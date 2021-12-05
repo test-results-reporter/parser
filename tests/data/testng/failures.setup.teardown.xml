@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="36" total="42" passed="0" failed="0" skipped="6">
+	<reporter-output></reporter-output>
+	<suite started-at="2021-12-02T06:08:37 UTC" name="Staging - UI Smoke Test Run" finished-at="2021-12-02T06:45:20 UTC" duration-ms="2203697">
+		<groups></groups>
+		<test started-at="2021-12-02T06:08:37 UTC" name="mobile-android" finished-at="2021-12-02T06:43:32 UTC" duration-ms="2095182">
+			<class name="C.T.ST">
+				<test-method is-config="true" signature="beforeSuite()[pri:0, instance:C.T.ST@702b8b12]" started-at="2021-12-02T06:08:36 UTC" name="beforeSuite" finished-at="2021-12-02T06:08:37 UTC" duration-ms="1034" status="PASS">
+					<reporter-output></reporter-output>
+				</test-method>
+				<!-- beforeSuite -->
+				<test-method is-config="true" signature="beforeTest(org.testng.ITestContext)[pri:0, instance:C.T.ST@702b8b12]" started-at="2021-12-02T06:08:37 UTC" name="beforeTest" finished-at="2021-12-02T06:08:37 UTC" duration-ms="23" status="PASS">
+					<params>
+						<param index="0">
+							<value>
+								<![CDATA[org.testng.TestRunner@63b1d4fa]]>
+							</value>
+						</param>
+					</params>
+					<reporter-output></reporter-output>
+				</test-method>
+				<!-- beforeTest -->
+				<test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:C.T.ST@702b8b12]" started-at="2021-12-02T06:08:37 UTC" name="beforeMethod" finished-at="2021-12-02T06:22:15 UTC" duration-ms="817728" status="FAIL">
+					<params>
+						<param index="0">
+							<value>
+								<![CDATA[public void C.T.ST.GU(C.M.TD)]]>
+							</value>
+						</param>
+					</params>
+					<exception class="org.openqa.selenium.WebDriverException">
+						<message>
+							
+						</message>
+						<full-stacktrace></full-stacktrace>
+					</exception>
+					<!-- org.openqa.selenium.WebDriverException -->
+					<reporter-output></reporter-output>
+				</test-method>
+				<!-- beforeMethod -->
+				<test-method signature="GU(C.M.TD)[pri:0, instance:C.T.ST@702b8b12]" started-at="2021-12-02T06:22:15 UTC" name="GU" data-provider="json" finished-at="2021-12-02T06:22:15 UTC" duration-ms="0" status="SKIP">
+					<params>
+						<param index="0">
+							<value>
+								<![CDATA[C.M.TD@363c25bc]]>
+							</value>
+						</param>
+					</params>
+					<exception class="org.openqa.selenium.WebDriverException">
+						<message>
+							
+						</message>
+						<full-stacktrace></full-stacktrace>
+					</exception>
+					<!-- org.openqa.selenium.WebDriverException -->
+					<reporter-output></reporter-output>
+				</test-method>
+				<!-- GU -->
+				<test-method is-config="true" signature="afterMethod(org.testng.ITestResult,java.lang.reflect.Method)[pri:0, instance:C.T.ST@702b8b12]" started-at="2021-12-02T06:22:15 UTC" name="afterMethod" finished-at="2021-12-02T06:22:15 UTC" duration-ms="3" status="PASS">
+					<params>
+						<param index="0">
+							<value>
+								<![CDATA[[TestResult name={null} status=CREATED method=ST.GU(C.M.TD)[pri:0, instance:C.T.ST@702b8b12] output={null}]]]>
+							</value>
+						</param>
+						<param index="1">
+							<value>
+								<![CDATA[public void C.T.ST.GU(C.M.TD)]]>
+							</value>
+						</param>
+					</params>
+					<reporter-output></reporter-output>
+				</test-method>
+				<!-- afterMethod -->
+				<test-method is-config="true" signature="afterTest()[pri:0, instance:C.T.ST@702b8b12]" started-at="2021-12-02T06:43:32 UTC" name="afterTest" finished-at="2021-12-02T06:43:32 UTC" duration-ms="11" status="FAIL">
+					<exception class="java.lang.NullPointerException">
+						<full-stacktrace></full-stacktrace>
+					</exception>
+					<!-- java.lang.NullPointerException -->
+					<reporter-output></reporter-output>
+				</test-method>
+				<!-- afterTest -->
+			</class>
+			<!-- C.T.ST -->
+			<class name="C.T.PT">
+				<test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:C.T.PT@22e357dc]" started-at="2021-12-02T06:22:15 UTC" name="beforeMethod" finished-at="2021-12-02T06:35:54 UTC" duration-ms="819303" status="FAIL">
+					<params>
+						<param index="0">
+							<value>
+								<![CDATA[public void C.T.PT.SBPC(C.M.TD)]]>
+							</value>
+						</param>
+					</params>
+					<exception class="org.openqa.selenium.WebDriverException">
+						<message>
+							
+						</message>
+						<full-stacktrace></full-stacktrace>
+					</exception>
+					<!-- org.openqa.selenium.WebDriverException -->
+					<reporter-output></reporter-output>
+				</test-method>
+				<!-- beforeMethod -->
+				<test-method signature="SBPC(C.M.TD)[pri:1, instance:C.T.PT@22e357dc]" started-at="2021-12-02T06:35:54 UTC" name="SBPC" data-provider="json" finished-at="2021-12-02T06:35:54 UTC" duration-ms="0" status="SKIP">
+					<params>
+						<param index="0">
+							<value>
+								<![CDATA[C.M.TD@24634bb5]]>
+							</value>
+						</param>
+					</params>
+					<exception class="org.openqa.selenium.WebDriverException">
+						<message>
+							
+						</message>
+						<full-stacktrace></full-stacktrace>
+					</exception>
+					<!-- org.openqa.selenium.WebDriverException -->
+					<reporter-output></reporter-output>
+				</test-method>
+				<!-- SBPC -->
+				<test-method is-config="true" signature="afterMethod(org.testng.ITestResult,java.lang.reflect.Method)[pri:0, instance:C.T.PT@22e357dc]" started-at="2021-12-02T06:35:54 UTC" name="afterMethod" finished-at="2021-12-02T06:35:54 UTC" duration-ms="1" status="PASS">
+					<params>
+						<param index="0">
+							<value>
+								<![CDATA[[TestResult name={null} status=CREATED method=PT.SBPC(C.M.TD)[pri:1, instance:C.T.PT@22e357dc] output={null}]]]>
+							</value>
+						</param>
+						<param index="1">
+							<value>
+								<![CDATA[public void C.T.PT.SBPC(C.M.TD)]]>
+							</value>
+						</param>
+					</params>
+					<reporter-output></reporter-output>
+				</test-method>
+				<!-- afterMethod -->
+				<test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:C.T.PT@22e357dc]" started-at="2021-12-02T06:35:54 UTC" name="beforeMethod" finished-at="2021-12-02T06:43:32 UTC" duration-ms="457932" status="PASS">
+					<params>
+						<param index="0">
+							<value>
+								<![CDATA[public void C.T.PT.SBPCB(C.M.TD)]]>
+							</value>
+						</param>
+					</params>
+					<reporter-output></reporter-output>
+				</test-method>
+				<!-- beforeMethod -->
+				<test-method signature="SBPCB(C.M.TD)[pri:2, instance:C.T.PT@22e357dc]" started-at="2021-12-02T06:43:32 UTC" name="SBPCB" data-provider="json" finished-at="2021-12-02T06:43:32 UTC" duration-ms="0" status="SKIP">
+					<params>
+						<param index="0">
+							<value>
+								<![CDATA[C.M.TD@68a80955]]>
+							</value>
+						</param>
+					</params>
+					<exception class="org.openqa.selenium.WebDriverException">
+						<message>
+							
+						</message>
+						<full-stacktrace>
+							
+						</full-stacktrace>
+					</exception>
+					<!-- org.openqa.selenium.WebDriverException -->
+					<reporter-output></reporter-output>
+				</test-method>
+				<!-- SBPCB -->
+				<test-method is-config="true" signature="afterMethod(org.testng.ITestResult,java.lang.reflect.Method)[pri:0, instance:C.T.PT@22e357dc]" started-at="2021-12-02T06:43:32 UTC" name="afterMethod" finished-at="2021-12-02T06:43:32 UTC" duration-ms="1" status="PASS">
+					<params>
+						<param index="0">
+							<value>
+								<![CDATA[[TestResult name={null} status=CREATED method=PT.SBPCB(C.M.TD)[pri:2, instance:C.T.PT@22e357dc] output={null}]]]>
+							</value>
+						</param>
+						<param index="1">
+							<value>
+								<![CDATA[public void C.T.PT.SBPCB(C.M.TD)]]>
+							</value>
+						</param>
+					</params>
+					<reporter-output></reporter-output>
+				</test-method>
+				<!-- afterMethod -->
+			</class>
+			<!-- C.T.PT -->
+		</test>
+		<!-- mobile-android -->
+		<test started-at="2021-12-02T06:08:37 UTC" name="desktop-chrome" finished-at="2021-12-02T06:45:20 UTC" duration-ms="2203697">
+			<class name="C.T.ST">
+				<test-method is-config="true" signature="beforeTest(org.testng.ITestContext)[pri:0, instance:C.T.ST@51f116b8]" started-at="2021-12-02T06:08:37 UTC" name="beforeTest" finished-at="2021-12-02T06:08:37 UTC" duration-ms="24" status="PASS">
+					<params>
+						<param index="0">
+							<value>
+								<![CDATA[org.testng.TestRunner@328cf0e1]]>
+							</value>
+						</param>
+					</params>
+					<reporter-output></reporter-output>
+				</test-method>
+				<!-- beforeTest -->
+				<test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:C.T.ST@51f116b8]" started-at="2021-12-02T06:08:37 UTC" name="beforeMethod" finished-at="2021-12-02T06:22:16 UTC" duration-ms="818841" status="FAIL">
+					<params>
+						<param index="0">
+							<value>
+								<![CDATA[public void C.T.ST.GU(C.M.TD)]]>
+							</value>
+						</param>
+					</params>
+					<exception class="org.openqa.selenium.WebDriverException">
+						<message>
+							
+						</message>
+						<full-stacktrace>
+							
+						</full-stacktrace>
+					</exception>
+					<!-- org.openqa.selenium.WebDriverException -->
+					<reporter-output></reporter-output>
+				</test-method>
+				<!-- beforeMethod -->
+				<test-method is-config="true" signature="afterMethod(org.testng.ITestResult,java.lang.reflect.Method)[pri:0, instance:C.T.ST@51f116b8]" started-at="2021-12-02T06:22:16 UTC" name="afterMethod" finished-at="2021-12-02T06:22:16 UTC" duration-ms="1" status="PASS">
+					<params>
+						<param index="0">
+							<value>
+								<![CDATA[[TestResult name={null} status=CREATED method=ST.GU(C.M.TD)[pri:0, instance:C.T.ST@51f116b8] output={null}]]]>
+							</value>
+						</param>
+						<param index="1">
+							<value>
+								<![CDATA[public void C.T.ST.GU(C.M.TD)]]>
+							</value>
+						</param>
+					</params>
+					<reporter-output></reporter-output>
+				</test-method>
+				<!-- afterMethod -->
+				<test-method signature="GU(C.M.TD)[pri:0, instance:C.T.ST@51f116b8]" started-at="2021-12-02T06:22:16 UTC" name="GU" data-provider="json" finished-at="2021-12-02T06:22:16 UTC" duration-ms="0" status="SKIP">
+					<params>
+						<param index="0">
+							<value>
+								<![CDATA[C.M.TD@5f8e3dad]]>
+							</value>
+						</param>
+					</params>
+					<exception class="org.openqa.selenium.WebDriverException">
+						<message>
+							
+						</message>
+						<full-stacktrace>
+							
+						</full-stacktrace>
+					</exception>
+					<!-- org.openqa.selenium.WebDriverException -->
+					<reporter-output></reporter-output>
+				</test-method>
+				<!-- GU -->
+				<test-method is-config="true" signature="afterTest()[pri:0, instance:C.T.ST@51f116b8]" started-at="2021-12-02T06:45:20 UTC" name="afterTest" finished-at="2021-12-02T06:45:20 UTC" duration-ms="1" status="FAIL">
+					<exception class="java.lang.NullPointerException">
+						<full-stacktrace>
+							
+						</full-stacktrace>
+					</exception>
+					<!-- java.lang.NullPointerException -->
+					<reporter-output></reporter-output>
+				</test-method>
+				<!-- afterTest -->
+			</class>
+			<!-- C.T.ST -->
+			<class name="C.T.PT">
+				<test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:C.T.PT@3246fb96]" started-at="2021-12-02T06:22:16 UTC" name="beforeMethod" finished-at="2021-12-02T06:35:55 UTC" duration-ms="819368" status="FAIL">
+					<params>
+						<param index="0">
+							<value>
+								<![CDATA[public void C.T.PT.SBPC(C.M.TD)]]>
+							</value>
+						</param>
+					</params>
+					<exception class="org.openqa.selenium.WebDriverException">
+						<message>
+							
+						</message>
+						<full-stacktrace>
+							
+						</full-stacktrace>
+					</exception>
+					<!-- org.openqa.selenium.WebDriverException -->
+					<reporter-output></reporter-output>
+				</test-method>
+				<!-- beforeMethod -->
+				<test-method is-config="true" signature="afterMethod(org.testng.ITestResult,java.lang.reflect.Method)[pri:0, instance:C.T.PT@3246fb96]" started-at="2021-12-02T06:35:55 UTC" name="afterMethod" finished-at="2021-12-02T06:35:55 UTC" duration-ms="0" status="PASS">
+					<params>
+						<param index="0">
+							<value>
+								<![CDATA[[TestResult name={null} status=CREATED method=PT.SBPC(C.M.TD)[pri:1, instance:C.T.PT@3246fb96] output={null}]]]>
+							</value>
+						</param>
+						<param index="1">
+							<value>
+								<![CDATA[public void C.T.PT.SBPC(C.M.TD)]]>
+							</value>
+						</param>
+					</params>
+					<reporter-output></reporter-output>
+				</test-method>
+				<!-- afterMethod -->
+				<test-method signature="SBPC(C.M.TD)[pri:1, instance:C.T.PT@3246fb96]" started-at="2021-12-02T06:35:55 UTC" name="SBPC" data-provider="json" finished-at="2021-12-02T06:35:55 UTC" duration-ms="0" status="SKIP">
+					<params>
+						<param index="0">
+							<value>
+								<![CDATA[C.M.TD@4a5476f0]]>
+							</value>
+						</param>
+					</params>
+					<exception class="org.openqa.selenium.WebDriverException">
+						<message>
+	
+						</message>
+						<full-stacktrace>
+							
+						</full-stacktrace>
+					</exception>
+					<!-- org.openqa.selenium.WebDriverException -->
+					<reporter-output></reporter-output>
+				</test-method>
+				<!-- SBPC -->
+				<test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:C.T.PT@3246fb96]" started-at="2021-12-02T06:35:55 UTC" name="beforeMethod" finished-at="2021-12-02T06:45:20 UTC" duration-ms="565297" status="PASS">
+					<params>
+						<param index="0">
+							<value>
+								<![CDATA[public void C.T.PT.SBPCB(C.M.TD)]]>
+							</value>
+						</param>
+					</params>
+					<reporter-output></reporter-output>
+				</test-method>
+				<!-- beforeMethod -->
+				<test-method signature="SBPCB(C.M.TD)[pri:2, instance:C.T.PT@3246fb96]" started-at="2021-12-02T06:45:20 UTC" name="SBPCB" data-provider="json" finished-at="2021-12-02T06:45:20 UTC" duration-ms="0" status="SKIP">
+					<params>
+						<param index="0">
+							<value>
+								<![CDATA[C.M.TD@436e8c74]]>
+							</value>
+						</param>
+					</params>
+					<exception class="org.openqa.selenium.WebDriverException">
+						<message>
+					
+						</message>
+						<full-stacktrace>
+						
+						</full-stacktrace>
+					</exception>
+					<!-- org.openqa.selenium.WebDriverException -->
+					<reporter-output></reporter-output>
+				</test-method>
+				<!-- SBPCB -->
+				<test-method is-config="true" signature="afterMethod(org.testng.ITestResult,java.lang.reflect.Method)[pri:0, instance:C.T.PT@3246fb96]" started-at="2021-12-02T06:45:20 UTC" name="afterMethod" finished-at="2021-12-02T06:45:20 UTC" duration-ms="0" status="PASS">
+					<params>
+						<param index="0">
+							<value>
+								<![CDATA[[TestResult name={null} status=CREATED method=PT.SBPCB(C.M.TD)[pri:2, instance:C.T.PT@3246fb96] output={null}]]]>
+							</value>
+						</param>
+						<param index="1">
+							<value>
+								<![CDATA[public void C.T.PT.SBPCB(C.M.TD)]]>
+							</value>
+						</param>
+					</params>
+					<reporter-output></reporter-output>
+				</test-method>
+				<!-- afterMethod -->
+			</class>
+			<!-- C.T.PT -->
+		</test>
+		<!-- desktop-chrome -->
+	</suite>
+	<!-- Staging - UI Smoke Test Run -->
+</testng-results>
