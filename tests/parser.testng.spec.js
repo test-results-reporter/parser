@@ -190,7 +190,7 @@ describe('Parser - TestNG', () => {
         {
           "id": "",
           "name": "mobile-ios",
-          "total": 4,
+          "total": 5,
           "passed": 2,
           "failed": 2,
           "errors": 0,
@@ -517,7 +517,7 @@ describe('Parser - TestNG', () => {
     });
   });
 
-  it('multiple suites with multiple tests', () => {
+  it('multiple suites with retries', () => {
     const result = parse({ type: 'testng', files: ['tests/data/testng/multiple-suites-retries.xml'] });
     assert.deepEqual(result, {
       "id": "",
@@ -534,7 +534,7 @@ describe('Parser - TestNG', () => {
         {
           "id": "",
           "name": "desktop-chrome",
-          "total": 3,
+          "total": 4,
           "passed": 2,
           "failed": 1,
           "errors": 0,
@@ -603,7 +603,7 @@ describe('Parser - TestNG', () => {
         {
           "id": "",
           "name": "mobile-andoid",
-          "total": 3,
+          "total": 4,
           "passed": 2,
           "failed": 1,
           "errors": 0,

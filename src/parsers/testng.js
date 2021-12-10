@@ -29,7 +29,7 @@ function getTestSuiteFromTest(rawTest) {
   suite.failed = rawTestMethods.filter(test => test['@_status'] === 'FAIL').length;
   suite.skipped = rawTestMethods.filter(test => test['@_status'] === 'SKIP').length;
   if (suite.skipped) {
-    suite.total = suite.total - suite.skipped;
+    // suite.total = suite.total - suite.skipped;
   }
   suite.status = suite.total === suite.passed ? 'PASS' : 'FAIL';
   for (let i = 0; i < rawTestMethods.length; i++) {
@@ -56,7 +56,7 @@ function getTestSuite(rawSuite) {
   suite.failed = rawTestMethods.filter(test => test['@_status'] === 'FAIL').length;
   suite.skipped = rawTestMethods.filter(test => test['@_status'] === 'SKIP').length;
   if (suite.skipped) {
-    suite.total = suite.total - suite.skipped;
+    // suite.total = suite.total - suite.skipped;
   }
   suite.status = suite.total === suite.passed ? 'PASS' : 'FAIL';
   for (let i = 0; i < rawTestMethods.length; i++) {
