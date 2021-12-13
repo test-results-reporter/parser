@@ -534,11 +534,11 @@ describe('Parser - TestNG', () => {
         {
           "id": "",
           "name": "desktop-chrome",
-          "total": 4,
+          "total": 3,
           "passed": 2,
           "failed": 1,
           "errors": 0,
-          "skipped": 1,
+          "skipped": 0,
           "duration": 1164451,
           "status": "FAIL",
           "cases": [
@@ -603,11 +603,11 @@ describe('Parser - TestNG', () => {
         {
           "id": "",
           "name": "mobile-andoid",
-          "total": 4,
+          "total": 3,
           "passed": 2,
           "failed": 1,
           "errors": 0,
-          "skipped": 1,
+          "skipped": 0,
           "duration": 714100,
           "status": "FAIL",
           "cases": [

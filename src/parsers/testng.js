@@ -28,8 +28,10 @@ function getTestSuiteFromTest(rawTest) {
   suite.passed = rawTestMethods.filter(test => test['@_status'] === 'PASS').length;
   suite.failed = rawTestMethods.filter(test => test['@_status'] === 'FAIL').length;
   suite.skipped = rawTestMethods.filter(test => test['@_status'] === 'SKIP').length;
-  if (suite.skipped) {
-    // suite.total = suite.total - suite.skipped;
+  const retried = rawTestMethods.filter(test => test['@_retried'] === true).length;
+  if (retried) {
+    suite.total = suite.total - retried;
+    suite.skipped = suite.skipped - retried;
   }
   suite.status = suite.total === suite.passed ? 'PASS' : 'FAIL';
   for (let i = 0; i < rawTestMethods.length; i++) {
@@ -55,8 +57,10 @@ function getTestSuite(rawSuite) {
   suite.passed = rawTestMethods.filter(test => test['@_status'] === 'PASS').length;
   suite.failed = rawTestMethods.filter(test => test['@_status'] === 'FAIL').length;
   suite.skipped = rawTestMethods.filter(test => test['@_status'] === 'SKIP').length;
-  if (suite.skipped) {
-    // suite.total = suite.total - suite.skipped;
+  const retried = rawTestMethods.filter(test => test['@_retried'] === true).length;
+  if (retried) {
+    suite.total = suite.total - retried;
+    suite.skipped = suite.skipped - retried;
   }
   suite.status = suite.total === suite.passed ? 'PASS' : 'FAIL';
   for (let i = 0; i < rawTestMethods.length; i++) {
