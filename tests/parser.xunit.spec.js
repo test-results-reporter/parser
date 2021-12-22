@@ -1,0 +1,248 @@
+const { parse } = require('../src');
+const assert = require('assert');
+
+describe('Parser - XUnit', () => {
+
+  
+  it('single suite with single test', () => {
+    const result = parse({ type: 'xunit', files: ['tests/data/xunit/single-suite.xml'] });
+    assert.deepEqual(result, {
+      id: '',
+      name: 'single suite test',
+      total: 1,
+      passed: 0,
+      failed: 1,
+      errors: 0,
+      skipped: 0,
+      retried: 0,
+      duration: 86006.5,
+      status: 'FAIL',
+      suites: [
+        {
+          id: '',
+          name: 'Example test collection 1',
+          total: 1,
+          passed: 0,
+          failed: 1,
+          errors: 0,
+          skipped: 0,
+          duration: 86006.5,
+          status: 'FAIL',
+          cases: [
+            {
+              duration: 86006.5,
+              errors: 0,
+              failed: 0,
+              failure: "Example of a failure message",
+              id: "",
+              name: "Example test case 1",
+              passed: 0,
+              skipped: 0,
+              stack_trace: "",
+              status: "FAIL",
+              steps: [],
+              total: 0
+            }
+          ]
+        }
+      ]
+    });
+  });
+  it('suite with single skipped test', () => {
+    const result = parse({ type: 'xunit', files: ['tests/data/xunit/skipped-suite.xml'] });
+    assert.deepEqual(result, {
+      id: '',
+      name: 'Skipped test',
+      total: 1,
+      passed: 0,
+      failed: 0,
+      errors: 0,
+      skipped: 1,
+      retried: 0,
+      duration: 1,
+      status: 'PASS',
+      suites: [
+        {
+          id: '',
+          name: 'Test collection skipped',
+          total: 1,
+          passed: 0,
+          failed: 0,
+          errors: 0,
+          skipped: 1,
+          duration: 1,
+          status: 'PASS',
+          cases: [ 
+            {
+            duration: 1,
+            errors: 0,
+            failed: 0,
+            failure: "",
+            id: "",
+            name: "SkippedTest",
+            passed: 0,
+            skipped: 0,
+            stack_trace: "",
+            status: "SKIP",
+            steps: [],
+            total: 0
+          }]
+        }
+      ]
+    });
+  });
+  it('multiple suites', () => {
+    const result = parse({ type: 'xunit', files: ['tests/data/xunit/multiple-suites.xml'] });
+    const expectedObj = {
+      id: '',
+      name: 'Multiple suites',
+      total: 6,
+      passed: 3,
+      failed: 3,
+      errors: 0,
+      skipped: 0,
+      retried: 0,
+      duration: 348807,
+      status: 'FAIL',
+      suites: [
+        {
+          id: '',
+          name: 'Test suite number 1',
+          total: 2,
+          passed: 1,
+          failed: 1,
+          errors: 0,
+          skipped: 0,
+          duration: 92155,
+          status: 'FAIL',
+          cases: [
+            {
+              duration: 84201.1799,
+              errors: 0,
+              failed: 0,
+              failure: "Test message",
+              id: "",
+              name: "ExampleTestCase 1",
+              passed: 0,
+              skipped: 0,
+              stack_trace: "",
+              status: "FAIL",
+              steps: [],
+              total: 0
+            },
+            {
+              duration: 218.6713,
+              errors: 0,
+              failed: 0,
+              failure: "",
+              id: "",
+              name: "ExampleTestCase 2",
+              passed: 0,
+              skipped: 0,
+              stack_trace: "",
+              status: "PASS",
+              steps: [],
+              total: 0
+            }
+          ]
+        },
+        {
+          id: '',
+          name: 'Test suite number 2',
+          total: 2,
+          passed: 1,
+          failed: 1,
+          errors: 0,
+          skipped: 0,
+          duration: 85450,
+          status: 'FAIL',
+          cases: [
+            {
+              duration: 1411.6188,
+              errors: 0,
+              failed: 0,
+              failure: "Test message",
+              id: "",
+              name: "ExampleTestCase 3",
+              passed: 0,
+              skipped: 0,
+              stack_trace: "",
+              status: "FAIL",
+              steps: [],
+              total: 0
+            },   
+            {
+              duration: 1791.1067,
+              errors: 0,
+              failed: 0,
+              failure: "",
+              id: "",
+              name: "ExampleTestCase 4",
+              passed: 0,
+              skipped: 0,
+              stack_trace: "",
+              status: "PASS",
+              steps: [],
+              total: 0
+            }
+          ]
+        },
+        {
+          id: '',
+          name: 'Test suite number 3',
+          total: 1,
+          passed: 1,
+          failed: 0,
+          errors: 0,
+          skipped: 0,
+          duration: 84195,
+          status: 'PASS',
+          cases: [
+            {
+              duration: 84195.474,
+              errors: 0,
+              failed: 0,
+              failure: "",
+              id: "",
+              name: "ExampleTestCase 5",
+              passed: 0,
+              skipped: 0,
+              stack_trace: "",
+              status: "PASS",
+              steps: [],
+              total: 0
+            }
+          ]
+        },
+        {
+          id: '',
+          name: 'Test suite number 4',
+          total: 1,
+          passed: 0,
+          failed: 1,
+          errors: 0,
+          skipped: 0,
+          duration: 86007,
+          status: 'FAIL',
+          cases: [
+            {
+              duration: 86006.7435,
+              errors: 0,
+              failed: 0,
+              failure: "Test message",
+              id: "",
+              name: "ExampleTestCase 6",
+              passed: 0,
+              skipped: 0,
+              stack_trace: "",
+              status: "FAIL",
+              steps: [],
+              total: 0
+            }
+          ]
+        }
+      ]
+    }
+    assert.deepEqual(result, expectedObj );
+  });
+});
