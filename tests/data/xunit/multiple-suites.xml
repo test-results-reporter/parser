@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<assemblies timestamp="12/21/2021 09:15:21">
+  <assembly name="Multiple suites" run-date="2021-12-21" run-time="09:15:21" total="6" passed="3" failed="3" skipped="0" time="348.807" errors="0">
+    <errors />
+    <collection total="2" passed="1" failed="1" skipped="0" name="Test suite number 1" time="92.155">
+      <test name="ExampleTestCase 1" type="ExampleTestType" method="ExampleMethod" time="84.2011799" result="Fail">
+        <output>Test output</output>
+        <failure>
+          <message>Test message</message>
+          <stack-trace>Test output</stack-trace>
+        </failure>
+        <traits>
+          <trait name="TestID" value="RTA-21505" />
+          <trait name="TestLevel" value="Regression" />
+          <trait name="TestProduct" value="ExampleTestProduct" />
+          <trait name="TestSuite" value="ExampleTestSuite" />
+        </traits>
+      </test>      
+      <test name="ExampleTestCase 2" type="ExampleTestType" method="ExampleMethod" time="0.2186713" result="Pass">
+        <output>Test output</output>
+        <traits>
+          <trait name="TestID" value="RTA-21510" />
+          <trait name="TestLevel" value="Regression" />
+          <trait name="TestProduct" value="ExampleTestProduct" />
+          <trait name="TestSuite" value="ExampleTestSuite" />
+        </traits>
+      </test>       
+    </collection>
+    <collection total="2" passed="1" failed="1" skipped="0" name="Test suite number 2" time="85.450">
+      <test name="ExampleTestCase 3" type="ExampleTestType" method="ExampleMethod" time="1.4116188" result="Fail">
+        <output>Test output</output>
+        <failure>
+          <message>Test message</message>
+          <stack-trace>Test output</stack-trace>
+        </failure>
+        <traits>
+          <trait name="TestID" value="RTA-21516" />
+          <trait name="TestLevel" value="Regression" />
+          <trait name="TestProduct" value="ExampleTestProduct" />
+          <trait name="TestSuite" value="ExampleTestSuite" />
+        </traits>
+      </test>
+      <test name="ExampleTestCase 4" type="ExampleTestType" method="ExampleMethod" time="1.7911067" result="Pass">
+        <output>Test output</output>
+        <traits>
+          <trait name="TestID" value="RTA-21513" />
+          <trait name="TestLevel" value="Regression" />
+          <trait name="TestProduct" value="ExampleTestProduct" />
+          <trait name="TestSuite" value="ExampleTestSuite" />
+        </traits>
+      </test>
+    </collection>
+    <collection total="1" passed="1" failed="0" skipped="0" name="Test suite number 3" time="84.195">
+      <test name="ExampleTestCase 5" type="ExampleTestType" method="ExampleMethod" time="84.1954740" result="Pass">
+        <output>Test output</output>
+        <traits>
+          <trait name="TestID" value="RTA-21538" />
+          <trait name="TestLevel" value="ReadOnly" />
+          <trait name="TestLevel" value="Regression" />
+          <trait name="TestProduct" value="ExampleTestProduct" />
+          <trait name="TestSuite" value="ExampleTestSuite" />
+        </traits>
+      </test>
+    </collection>
+    <collection total="1" passed="0" failed="1" skipped="0" name="Test suite number 4" time="86.007">
+      <test name="ExampleTestCase 6" type="ExampleTestType" method="ExampleMethod" time="86.0067435" result="Fail">
+        <output>Test output</output>
+        <failure>
+          <message>Test message</message>
+          <stack-trace>Test output</stack-trace>
+        </failure>
+        <traits>
+          <trait name="TestID" value="RTA-37684" />
+          <trait name="TestLevel" value="Regression" />
+          <trait name="TestProduct" value="ExampleTestProduct" />
+          <trait name="TestSuite" value="ExampleTestSuite" />
+        </traits>
+      </test>
+    </collection>
+  </assembly>
+</assemblies>

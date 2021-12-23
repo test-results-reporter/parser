@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<assemblies timestamp="12/22/2021 12:31:09">
+  <assembly name="Skipped test" run-date="2021-12-22" run-time="12:31:09" total="1" passed="0" failed="0" skipped="1" time="0.001" errors="0">
+    <errors />
+    <collection total="1" passed="0" failed="0" skipped="1" name="Test collection skipped" time="0.001">
+      <test name="SkippedTest" type="EmptySuiteTest" method="SkipThisTestTest" time="0.0010000" result="Skip">
+        <output>specific reason
+</output>
+        <traits>
+          <trait name="UnsupportedEnvirnoment" value="uat" />
+          <trait name="TestID" value="RTA-TESTID" />
+          <trait name="BSIdentifier" value="BS-2650" />
+          <trait name="TestLevel" value="Smoke" />
+          <trait name="TestProduct" value="FakeProduct" />
+          <trait name="TestSuite" value="skippable" />
+        </traits>
+      </test>
+    </collection>
+  </assembly>
+</assemblies>
