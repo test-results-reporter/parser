@@ -8,3 +8,4 @@ Parse test results from JUnit, TestNG, xUnit and many more
 |-------------|---------|
 | TestNG      | ✅       |
 | JUnit       | ✅       |
+| xUnit       | ✅       |

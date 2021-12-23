@@ -1,6 +1,6 @@
 {
   "name": "test-results-parser",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Parse test results from JUnit, TestNG, xUnit and many more",
   "main": "src/index.js",
   "types": "./src/index.d.ts",
