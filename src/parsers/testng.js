@@ -12,6 +12,9 @@ function getTestCase(rawCase) {
   if (rawCase.exception) {
     test_case.failure = rawCase.exception[0].message;
   }
+  if (rawCase['@_retried'] === true) {
+    test_case.status = 'RETRY';
+  }
   return test_case;
 }
 

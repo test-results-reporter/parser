@@ -565,7 +565,7 @@ describe('Parser - TestNG', () => {
               "errors": 0,
               "skipped": 0,
               "duration": 129368,
-              "status": "SKIP",
+              "status": "RETRY",
               "failure": "failed",
               "stack_trace": "",
               "steps": []
@@ -634,7 +634,7 @@ describe('Parser - TestNG', () => {
               "errors": 0,
               "skipped": 0,
               "duration": 134774,
-              "status": "SKIP",
+              "status": "RETRY",
               "failure": "failed",
               "stack_trace": "",
               "steps": []
