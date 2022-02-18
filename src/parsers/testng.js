@@ -110,8 +110,9 @@ function parse(options) {
     result.name = suite['@_name'];
     result.duration = suite['@_duration-ms'];
     const rawTests = suite.test;
-    for (let i = 0; i < rawTests.length; i++) {
-      result.suites.push(getTestSuiteFromTest(rawTests[i]));
+    const rawTestsWithClasses = rawTests.filter(_rawTest => _rawTest.class);
+    for (let i = 0; i < rawTestsWithClasses.length; i++) {
+      result.suites.push(getTestSuiteFromTest(rawTestsWithClasses[i]));
     }
   } else {
     console.log("No suites with tests found");
