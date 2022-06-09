@@ -94,7 +94,7 @@ function parse(options) {
   }
 
   const suites = results.suite;
-  const suitesWithTests = suites.filter(suite => suite.test);
+  const suitesWithTests = suites.filter(suite => suite.test && suite['@_duration-ms'] > 0);
 
   if (suitesWithTests.length > 1) {
     for (let i = 0; i < suitesWithTests.length; i++) {
