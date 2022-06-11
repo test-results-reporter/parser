@@ -32,8 +32,7 @@ function getTestSuite(rawSuite) {
   suite.failed = rawSuite["failures"].length;
   suite.duration = rawSuite["duration"] * 1000;
   suite.skipped = rawSuite["pending"].length;
-  suite.status = suite.total === suite.passed ? 'PASS' : 'FAIL';
-  suite.status = suite.skipped == suite.total ? 'PASS' : suite.status;
+  suite.status = suite.total === (suite.passed + suite.skipped) ? 'PASS' : 'FAIL';
   const raw_test_cases = rawSuite.tests;
   if (raw_test_cases) {
     for (let i = 0; i < raw_test_cases.length; i++) {
@@ -61,10 +60,14 @@ function getTestResult(json) {
   if (skipped) {
     result.skipped = skipped;
   }
-  result.duration = stats["duration"] * 1000;
-  
-  for (let i = 0; i < suites.length; i++) {
-    result.suites.push(getTestSuite(suites[i]));
+  result.duration = (stats["duration"] || 0) * 1000;
+
+  if (suites.length > 0) {
+    for (let i = 0; i < suites.length; i++) {
+      result.suites.push(getTestSuite(suites[i]));
+    }
+  } else {
+    console.log("No suites with tests found");
   }
   result.status = (result.total - result.skipped) === result.passed ? 'PASS' : 'FAIL';
   return result;
@@ -83,10 +86,12 @@ function formatMochaJsonReport(rawjson) {
   const suites = [];
   rawjson.failures.forEach(test => test.state = "failed");
   rawjson.passes.forEach(test => test.state = "passed");
+  rawjson.pending.forEach( test => { 
+    test.state = "pending";
+    test.duration = 0;
+  });
 
-  rawjson.pending.forEach(test => test.state = "pending");
-
-  const rawTests = [...rawjson.pending, ...rawjson.passes, ...rawjson.failures];
+  const rawTests = [...rawjson.passes, ...rawjson.failures, ...rawjson.pending];
   const testSuites = [...new Set(rawTests.map(test => test.fullTitle.split(' ' + test.title)[0]))];
 
   for (const testSuite of testSuites) {
