@@ -1,11 +1,12 @@
 # test-results-parser
 
-Parse test results from JUnit, TestNG, xUnit and many more
+Parse test results from JUnit, TestNG, xUnit, Mocha and many more
 
 ## Support
 
-| Result Type | Support |
-|-------------|---------|
-| TestNG      | ✅       |
-| JUnit       | ✅       |
-| xUnit       | ✅       |
+| Result Type                   | Support |
+|-------------------------------|---------|
+| TestNG                        | ✅      |
+| JUnit                         | ✅      |
+| xUnit                         | ✅      |
+| Mocha (json & mochawesome)    | ✅      |
