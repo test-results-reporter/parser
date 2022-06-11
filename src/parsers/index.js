@@ -1,6 +1,7 @@
 const testng = require('./testng');
 const junit = require('./junit');
 const xunit = require('./xunit');
+const mocha = require('./mocha');
 
 function parse(options) {
   switch (options.type) {
@@ -10,6 +11,8 @@ function parse(options) {
       return junit.parse(options);
     case 'xunit':
       return xunit.parse(options);
+    case 'mocha':
+        return mocha.parse(options);
     default:
       throw `UnSupported Result Type - ${options.type}`;
   }

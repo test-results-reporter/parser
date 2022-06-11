@@ -8,6 +8,13 @@ function getJsonFromXMLFile(filePath) {
   return parser.parse(xml, { arrayMode: true, ignoreAttributes: false, parseAttributeValue: true });
 }
 
+function getJsonFromFile(filePath) {
+  const cwd = process.cwd();
+  const jsonFile = fs.readFileSync(path.join(cwd, filePath));
+  return JSON.parse(jsonFile);
+}
+
 module.exports = {
-  getJsonFromXMLFile
+  getJsonFromXMLFile,
+  getJsonFromFile
 }
