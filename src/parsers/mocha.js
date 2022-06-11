@@ -66,8 +66,6 @@ function getTestResult(json) {
     for (let i = 0; i < suites.length; i++) {
       result.suites.push(getTestSuite(suites[i]));
     }
-  } else {
-    console.log("No suites with tests found");
   }
   result.status = (result.total - result.skipped) === result.passed ? 'PASS' : 'FAIL';
   return result;
