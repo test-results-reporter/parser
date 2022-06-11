@@ -1,0 +1,175 @@
+[
+  {
+    "description": "  Verify calculator functionalities",
+    "elements": [
+      {
+        "description": "",
+        "id": "addition;addition-of-two-numbers",
+        "keyword": "Scenario",
+        "line": 4,
+        "name": "Addition of two numbers",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "I have number 6 in calculator",
+            "match": {
+              "location": "features\\support\\steps.js:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1098599
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 6,
+            "name": "I add number 7",
+            "match": {
+              "location": "features\\support\\steps.js:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 132100
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 7,
+            "name": "I should see result 14",
+            "match": {
+              "location": "features\\support\\steps.js:17"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 1330499,
+              "error_message": "AssertionError [ERR_ASSERTION]: 13 == 14\n    + expected - actual\n\n    -13\n    +14\n\n    at CustomWorld.<anonymous> (D:\\workspace\\nodejs\\cc-tests\\features\\support\\steps.js:18:12)"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "addition;addition-of-two-numbers-v2",
+        "keyword": "Scenario",
+        "line": 9,
+        "name": "Addition of two numbers v2",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 10,
+            "name": "I have number 6 in calculator",
+            "match": {
+              "location": "features\\support\\steps.js:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 110200
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 11,
+            "name": "I add number 7",
+            "match": {
+              "location": "features\\support\\steps.js:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 97300
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 12,
+            "name": "I should see result 13",
+            "match": {
+              "location": "features\\support\\steps.js:17"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 76900
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "addition",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Addition",
+    "tags": [],
+    "uri": "features\\addition.feature"
+  },
+  {
+    "description": "  Verify calculator functionalities",
+    "elements": [
+      {
+        "description": "",
+        "id": "subtraction;subtraction-of-two-numbers",
+        "keyword": "Scenario",
+        "line": 4,
+        "name": "Subtraction of two numbers",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "I have number 10 in calculator",
+            "match": {
+              "location": "features\\support\\steps.js:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 79800
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 6,
+            "name": "I subtract number 7",
+            "match": {
+              "location": "features\\support\\steps.js:13"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 134299
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 7,
+            "name": "I should see result 3",
+            "match": {
+              "location": "features\\support\\steps.js:17"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 309700
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "subtraction",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Subtraction",
+    "tags": [],
+    "uri": "features\\subtract.feature"
+  }
+]

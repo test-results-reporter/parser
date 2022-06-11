@@ -1,6 +1,6 @@
 # test-results-parser
 
-Parse test results from JUnit, TestNG, xUnit, Mocha and many more
+Parse test results from JUnit, TestNG, xUnit, Mocha(json), CucumberJS(json) and many more
 
 ## Support
 
@@ -10,3 +10,4 @@ Parse test results from JUnit, TestNG, xUnit, Mocha and many more
 | JUnit                         | ✅      |
 | xUnit                         | ✅      |
 | Mocha (json & mochawesome)    | ✅      |
+| CucumberJS                    | ✅      |
