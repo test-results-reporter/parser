@@ -1,10 +1,10 @@
 const { parse } = require('../src');
 const assert = require('assert');
 
-describe('Parser - CucumberJS Json', () => {
-  const testDataPath = "tests/data/cucumberjs"
+describe('Parser - Cucumber Json', () => {
+  const testDataPath = "tests/data/cucumber"
   it('single suite with single test', () => {
-    const result = parse({ type: 'cucumberjs', files: [`${testDataPath}/single-suite-single-test.json`] });
+    const result = parse({ type: 'cucumber', files: [`${testDataPath}/single-suite-single-test.json`] });
     assert.deepEqual(result, {
       id: '',
       name: '',
@@ -48,7 +48,7 @@ describe('Parser - CucumberJS Json', () => {
     });
   });
   it('empty suite report', () => {
-    const result = parse({ type: 'cucumberjs', files: [`${testDataPath}/empty-suite.json`] });
+    const result = parse({ type: 'cucumber', files: [`${testDataPath}/empty-suite.json`] });
     assert.deepEqual(result, {
       id: '',
       name: '',
@@ -65,7 +65,7 @@ describe('Parser - CucumberJS Json', () => {
   });
 
   it('multiple suites', () => {
-    const result = parse({ type: 'cucumberjs', files: [`${testDataPath}/multiple-suites-multiple-tests.json`] });
+    const result = parse({ type: 'cucumber', files: [`${testDataPath}/multiple-suites-multiple-tests.json`] });
     assert.deepEqual(result, {
       id: '',
       name: '',
