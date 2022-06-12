@@ -10,7 +10,7 @@ const TestCase = require('../models/TestCase');
 function getTestCase(rawCase) {
   const test_case = new TestCase();
   test_case.name = rawCase["title"];
-  test_case.duration = rawCase["duration"] * 1000;
+  test_case.duration = rawCase["duration"];
   if (rawCase["state"] == "pending") {
     test_case.status = 'SKIP';
   }
@@ -30,7 +30,7 @@ function getTestSuite(rawSuite) {
   suite.total = rawSuite["tests"].length;
   suite.passed = rawSuite["passes"].length;
   suite.failed = rawSuite["failures"].length;
-  suite.duration = rawSuite["duration"] * 1000;
+  suite.duration = rawSuite["duration"];
   suite.skipped = rawSuite["pending"].length;
   suite.status = suite.total === (suite.passed + suite.skipped) ? 'PASS' : 'FAIL';
   const raw_test_cases = rawSuite.tests;
@@ -60,7 +60,7 @@ function getTestResult(json) {
   if (skipped) {
     result.skipped = skipped;
   }
-  result.duration = (stats["duration"] || 0) * 1000;
+  result.duration = stats["duration"] || 0;
 
   if (suites.length > 0) {
     for (let i = 0; i < suites.length; i++) {
