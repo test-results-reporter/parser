@@ -14,7 +14,7 @@ describe('Parser - Mocha Json', () => {
       errors: 0,
       skipped: 0,
       retried: 0,
-      duration: 3000,
+      duration: 3,
       status: 'PASS',
       suites: [
         {
@@ -25,11 +25,11 @@ describe('Parser - Mocha Json', () => {
           failed: 0,
           errors: 0,
           skipped: 0,
-          duration: 1000,
+          duration: 1,
           status: 'PASS',
           cases: [
             {
-              duration: 1000,
+              duration: 1,
               errors: 0,
               failed: 0,
               failure: "",
@@ -74,7 +74,7 @@ describe('Parser - Mocha Json', () => {
       errors: 0,
       skipped: 1,
       retried: 0,
-      duration: 3000,
+      duration: 3,
       status: 'PASS',
       suites: [
         {
@@ -85,11 +85,11 @@ describe('Parser - Mocha Json', () => {
           failed: 0,
           errors: 0,
           skipped: 1,
-          duration: 1000,
+          duration: 1,
           status: 'PASS',
           cases: [
             {
-              duration: 1000,
+              duration: 1,
               errors: 0,
               failed: 0,
               failure: "",
@@ -132,7 +132,7 @@ describe('Parser - Mocha Json', () => {
       errors: 0,
       skipped: 0,
       retried: 0,
-      duration: 7000,
+      duration: 7,
       status: 'FAIL',
       suites: [
         {
@@ -143,11 +143,11 @@ describe('Parser - Mocha Json', () => {
           failed: 0,
           errors: 0,
           skipped: 0,
-          duration: 4000,
+          duration: 4,
           status: 'PASS',
           cases: [
             {
-              duration: 3000,
+              duration: 3,
               errors: 0,
               failed: 0,
               failure: "",
@@ -161,7 +161,7 @@ describe('Parser - Mocha Json', () => {
               total: 0
             },
             {
-              duration: 1000,
+              duration: 1,
               errors: 0,
               failed: 0,
               failure: "",
@@ -184,11 +184,11 @@ describe('Parser - Mocha Json', () => {
           failed: 1,
           errors: 0,
           skipped: 0,
-          duration: 1000,
+          duration: 1,
           status: 'FAIL',
           cases: [
             {
-              duration: 1000,
+              duration: 1,
               errors: 0,
               failed: 0,
               failure: "Dummy reason",
@@ -221,7 +221,7 @@ describe('Parser - Mocha Awesmome Json', () => {
       errors: 0,
       skipped: 0,
       retried: 0,
-      duration: 3000,
+      duration: 3,
       status: 'PASS',
       suites: [
         {
@@ -232,11 +232,11 @@ describe('Parser - Mocha Awesmome Json', () => {
           failed: 0,
           errors: 0,
           skipped: 0,
-          duration: 1000,
+          duration: 1,
           status: 'PASS',
           cases: [
             {
-              duration: 1000,
+              duration: 1,
               errors: 0,
               failed: 0,
               failure: "",
@@ -281,7 +281,7 @@ describe('Parser - Mocha Awesmome Json', () => {
       errors: 0,
       skipped: 1,
       retried: 0,
-      duration: 3000,
+      duration: 3,
       status: 'PASS',
       suites: [
         {
@@ -292,11 +292,11 @@ describe('Parser - Mocha Awesmome Json', () => {
           failed: 0,
           errors: 0,
           skipped: 1,
-          duration: 1000,
+          duration: 1,
           status: 'PASS',
           cases: [
             {
-              duration: 1000,
+              duration: 1,
               errors: 0,
               failed: 0,
               failure: "",
@@ -339,7 +339,7 @@ describe('Parser - Mocha Awesmome Json', () => {
       errors: 0,
       skipped: 0,
       retried: 0,
-      duration: 7000,
+      duration: 7,
       status: 'FAIL',
       suites: [
         {
@@ -350,11 +350,11 @@ describe('Parser - Mocha Awesmome Json', () => {
           failed: 0,
           errors: 0,
           skipped: 0,
-          duration: 4000,
+          duration: 4,
           status: 'PASS',
           cases: [
             {
-              duration: 3000,
+              duration: 3,
               errors: 0,
               failed: 0,
               failure: "",
@@ -368,7 +368,7 @@ describe('Parser - Mocha Awesmome Json', () => {
               total: 0
             },
             {
-              duration: 1000,
+              duration: 1,
               errors: 0,
               failed: 0,
               failure: "",
@@ -391,11 +391,11 @@ describe('Parser - Mocha Awesmome Json', () => {
           failed: 1,
           errors: 0,
           skipped: 0,
-          duration: 1000,
+          duration: 1,
           status: 'FAIL',
           cases: [
             {
-              duration: 1000,
+              duration: 1,
               errors: 0,
               failed: 0,
               failure: "Dummy reason",
