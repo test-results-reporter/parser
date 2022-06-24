@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.1.2 (Python 3.7.4 on win32)" generated="20220623 12:41:35.553" rpa="false">
+  <suite id="s1" name="API TestCases" source="C:\Users\API_TestCases.robot">
+    <test id="s1-t1" name="TW_Search_Invalid">
+      <kw name="API_Get_Token" library="API_Keywords">
+        <arguments>
+          <arg>${Service_URL}</arg>
+          <arg>${DictionaryKeyValue_username}</arg>
+          <arg>${DictionaryKeyValue_password}</arg>
+        </arguments>
+        <assign>
+          <var>${Access_Token}</var>
+        </assign>
+        <kw name="Create Session" library="RequestsLibrary">
+          <doc>Create Session: create a HTTP session to a server</doc>
+          <arguments>
+            <arg>OA2</arg>
+            <arg>${base_url_API}</arg>
+            <arg>verify=${True}</arg>
+          </arguments>
+          <msg timestamp="20220623 12:41:36.340" level="INFO">Creating Session using : alias=OA2, url=https://www.google.com, headers={}, cookies={}, auth=None, timeout=None, proxies=None, verify=True, debug=0</msg>
+          <status status="PASS" starttime="20220623 12:41:36.340" endtime="20220623 12:41:36.340" />
+        </kw>
+      </kw>
+      <kw name="Convert To String" library="BuiltIn">
+        <doc>Converts the given item to a Unicode string.</doc>
+        <arguments>
+          <arg>${TestID}</arg>
+        </arguments>
+        <assign>
+          <var>${TestID}</var>
+        </assign>
+        <msg timestamp="20220623 12:41:49.693" level="INFO">${TestID} = ['None']</msg>
+        <status status="PASS" starttime="20220623 12:41:49.693" endtime="20220623 12:41:49.693" />
+      </kw>
+      <kw name="Should Be Equal" library="BuiltIn">
+        <doc>Fails if the given objects are unequal.</doc>
+        <arguments>
+          <arg>${TestID}</arg>
+          <arg>['None']</arg>
+        </arguments>
+        <status status="PASS" starttime="20220623 12:41:49.693" endtime="20220623 12:41:49.694" />
+      </kw>
+      <status status="PASS" starttime="20220623 12:41:36.339" endtime="20220623 12:41:49.694" critical="yes" />
+    </test>
+    <status status="PASS" starttime="20220623 12:41:35.672" endtime="20220623 12:41:49.696" />
+  </suite>
+  <statistics>
+    <total>
+      <stat pass="1" fail="0">Critical Tests</stat>
+      <stat pass="1" fail="0">All Tests</stat>
+    </total>
+    <tag />
+    <suite>
+      <stat pass="1" fail="0" id="s1" name="API TestCases">API TestCases</stat>
+    </suite>
+  </statistics>
+  <errors>
+    <msg timestamp="20220623 12:41:40.351" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+    <msg timestamp="20220623 12:41:41.731" level="WARN">Keyword 'RequestsLibrary.To Json' is deprecated. Please use ${resp.json()} instead. Have a look at the improved HTML output as pretty printing replacement.</msg>
+  </errors>
+</robot>
