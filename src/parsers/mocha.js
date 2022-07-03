@@ -108,9 +108,9 @@ function formatMochaJsonReport(rawjson) {
   return formattedJson;
 }
 
-function parse(options) {
+function parse(file) {
   const cwd = process.cwd();
-  const json = require(path.join(cwd, options.files[0]));
+  const json = require(path.join(cwd, file));
   return getTestResult(json);
 } 
 

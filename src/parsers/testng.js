@@ -72,9 +72,9 @@ function getTestSuite(rawSuite) {
   return suite;
 }
 
-function parse(options) {
+function parse(file) {
   // TODO - loop through files
-  const json = getJsonFromXMLFile(options.files[0]);
+  const json = getJsonFromXMLFile(file);
   const result = new TestResult();
   const results = json['testng-results'][0];
   result.failed = results['@_failed'];
