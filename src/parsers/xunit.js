@@ -68,8 +68,8 @@ function getTestResult(json) {
   return result;
 }
 
-function parse(options) {
-  const json = getJsonFromXMLFile(options.files[0]);
+function parse(file) {
+  const json = getJsonFromXMLFile(file);
   return getTestResult(json);
 }
 

@@ -673,4 +673,257 @@ describe('Parser - TestNG', () => {
     });
   });
 
+  it('results using glob', () => {
+    const result = parse({ type: 'testng', files: ['tests/data/testng/single-*.xml'] });
+    assert.deepEqual(result, {
+      "id": "",
+      "name": "Regression Tests",
+      "total": 24,
+      "passed": 12,
+      "failed": 11,
+      "errors": 0,
+      "skipped": 1,
+      "retried": 0,
+      "duration": 1405931,
+      "status": "FAIL",
+      "suites": [
+        {
+          "id": "",
+          "name": "desktop-chrome",
+          "total": 5,
+          "passed": 2,
+          "failed": 3,
+          "errors": 0,
+          "skipped": 0,
+          "duration": 202082,
+          "status": "FAIL",
+          "cases": [
+            {
+              "id": "",
+              "name": "GU",
+              "total": 0,
+              "passed": 0,
+              "failed": 0,
+              "errors": 0,
+              "skipped": 0,
+              "duration": 27168,
+              "status": "FAIL",
+              "failure": "expected [A] but found [948474]",
+              "stack_trace": "",
+              "steps": []
+            },
+            {
+              "id": "",
+              "name": "SBP",
+              "total": 0,
+              "passed": 0,
+              "failed": 0,
+              "errors": 0,
+              "skipped": 0,
+              "duration": 28313,
+              "status": "PASS",
+              "failure": "",
+              "stack_trace": "",
+              "steps": []
+            },
+            {
+              "id": "",
+              "name": "SBP",
+              "total": 0,
+              "passed": 0,
+              "failed": 0,
+              "errors": 0,
+              "skipped": 0,
+              "duration": 15381,
+              "status": "PASS",
+              "failure": "",
+              "stack_trace": "",
+              "steps": []
+            },
+            {
+              "id": "",
+              "name": "SBP_WA",
+              "total": 0,
+              "passed": 0,
+              "failed": 0,
+              "errors": 0,
+              "skipped": 0,
+              "duration": 57111,
+              "status": "FAIL",
+              "failure": "Expected condition failed: : 95ddbda01ea4b3dbcb049e681a6...}",
+              "stack_trace": "",
+              "steps": []
+            },
+            {
+              "id": "",
+              "name": "CB",
+              "total": 0,
+              "passed": 0,
+              "failed": 0,
+              "errors": 0,
+              "skipped": 0,
+              "duration": 13221,
+              "status": "FAIL",
+              "failure": "element click intercepted:",
+              "stack_trace": "",
+              "steps": []
+            }
+          ]
+        },
+        {
+          "id": "",
+          "name": "mobile-ios",
+          "total": 5,
+          "passed": 2,
+          "failed": 2,
+          "errors": 0,
+          "skipped": 1,
+          "duration": 545598,
+          "status": "FAIL",
+          "cases": [
+            {
+              "id": "",
+              "name": "GU",
+              "total": 0,
+              "passed": 0,
+              "failed": 0,
+              "errors": 0,
+              "skipped": 0,
+              "duration": 69776,
+              "status": "FAIL",
+              "failure": "expected [A] but found [948474]",
+              "stack_trace": "",
+              "steps": []
+            },
+            {
+              "id": "",
+              "name": "SBP",
+              "total": 0,
+              "passed": 0,
+              "failed": 0,
+              "errors": 0,
+              "skipped": 0,
+              "duration": 103463,
+              "status": "PASS",
+              "failure": "",
+              "stack_trace": "",
+              "steps": []
+            },
+            {
+              "id": "",
+              "name": "SBP",
+              "total": 0,
+              "passed": 0,
+              "failed": 0,
+              "errors": 0,
+              "skipped": 0,
+              "duration": 66833,
+              "status": "PASS",
+              "failure": "",
+              "stack_trace": "",
+              "steps": []
+            },
+            {
+              "id": "",
+              "name": "SBP_WA",
+              "total": 0,
+              "passed": 0,
+              "failed": 0,
+              "errors": 0,
+              "skipped": 0,
+              "duration": 250674,
+              "status": "FAIL",
+              "failure": "Appium error: An unknown sr='Search...']}",
+              "stack_trace": "",
+              "steps": []
+            },
+            {
+              "id": "",
+              "name": "CB",
+              "total": 0,
+              "passed": 0,
+              "failed": 0,
+              "errors": 0,
+              "skipped": 0,
+              "duration": 0,
+              "status": "SKIP",
+              "failure": "A script did not complete ",
+              "stack_trace": "",
+              "steps": []
+            }
+          ]
+        },
+        {
+          "id": "",
+          "name": "Default test",
+          "total": 4,
+          "passed": 4,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0,
+          "duration": 2000,
+          "status": "PASS",
+          "cases": [
+            {
+              "id": "",
+              "name": "c2",
+              "total": 0,
+              "passed": 0,
+              "failed": 0,
+              "errors": 0,
+              "skipped": 0,
+              "duration": 0,
+              "status": "PASS",
+              "failure": "",
+              "stack_trace": "",
+              "steps": []
+            },
+            {
+              "id": "",
+              "name": "c3",
+              "total": 0,
+              "passed": 0,
+              "failed": 0,
+              "errors": 0,
+              "skipped": 0,
+              "duration": 10,
+              "status": "PASS",
+              "failure": "",
+              "stack_trace": "",
+              "steps": []
+            },
+            {
+              "id": "",
+              "name": "c1",
+              "total": 0,
+              "passed": 0,
+              "failed": 0,
+              "errors": 0,
+              "skipped": 0,
+              "duration": 0,
+              "status": "PASS",
+              "failure": "",
+              "stack_trace": "",
+              "steps": []
+            },
+            {
+              "id": "",
+              "name": "c4",
+              "total": 0,
+              "passed": 0,
+              "failed": 0,
+              "errors": 0,
+              "skipped": 0,
+              "duration": 0,
+              "status": "PASS",
+              "failure": "expected [true] but found [false]",
+              "stack_trace": "",
+              "steps": []
+            }
+          ]
+        }
+      ]
+    });
+  });
+
 });

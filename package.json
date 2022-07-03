@@ -1,6 +1,6 @@
 {
   "name": "test-results-parser",
-  "version": "0.0.11",
+  "version": "0.1.0",
   "description": "Parse test results from JUnit, TestNG, xUnit and many more",
   "main": "src/index.js",
   "types": "./src/index.d.ts",
@@ -29,7 +29,9 @@
   },
   "homepage": "https://github.com/test-results-reporter/parser#readme",
   "dependencies": {
-    "fast-xml-parser": "^3.20.0"
+    "fast-xml-parser": "^3.20.0",
+    "globrex": "^0.1.2",
+    "totalist": "^3.0.0"
   },
   "devDependencies": {
     "mocha": "^10.0.0"

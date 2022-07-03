@@ -210,4 +210,76 @@ describe('Parser - JUnit', () => {
     });
   });
 
+  it('multiple single suite files', () => {
+    const result = parse({ type: 'junit', files: ['tests/data/junit/single-suite.xml', 'tests/data/junit/single-suite.xml'] });
+    assert.deepEqual(result, {
+      id: '',
+      name: 'result name',
+      total: 2,
+      passed: 0,
+      failed: 2,
+      errors: 0,
+      skipped: 0,
+      retried: 0,
+      duration: 20000,
+      status: 'FAIL',
+      suites: [
+        {
+          id: '',
+          name: 'suite name',
+          total: 1,
+          passed: 0,
+          failed: 1,
+          errors: 0,
+          skipped: 0,
+          duration: 10000,
+          status: 'FAIL',
+          cases: [
+            {
+              duration: 10000,
+              errors: 0,
+              failed: 0,
+              failure: "PROGRAM.cbl:2 Use a program name that matches the source file name",
+              id: "",
+              name: "Use a program name that matches the source file name",
+              passed: 0,
+              skipped: 0,
+              stack_trace: "",
+              status: "FAIL",
+              steps: [],
+              total: 0
+            }
+          ]
+        },
+        {
+          id: '',
+          name: 'suite name',
+          total: 1,
+          passed: 0,
+          failed: 1,
+          errors: 0,
+          skipped: 0,
+          duration: 10000,
+          status: 'FAIL',
+          cases: [
+            {
+              duration: 10000,
+              errors: 0,
+              failed: 0,
+              failure: "PROGRAM.cbl:2 Use a program name that matches the source file name",
+              id: "",
+              name: "Use a program name that matches the source file name",
+              passed: 0,
+              skipped: 0,
+              stack_trace: "",
+              status: "FAIL",
+              steps: [],
+              total: 0
+            }
+          ]
+        }
+      ]
+    });
+  });
+
 });
