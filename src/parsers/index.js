@@ -29,36 +29,35 @@ function merge(results) {
   return main_result;
 }
 
+function getParser(type) {
+  switch (type) {
+    case 'testng':
+      return testng;
+    case 'junit':
+      return junit;
+    case 'xunit':
+      return xunit;
+    case 'mocha':
+      return mocha;
+    case 'cucumber':
+      return cucumber;
+    default:
+      throw `UnSupported Result Type - ${options.type}`;
+  }
+}
+
 /**
  * @param {import('../index').ParseOptions} options 
  */
 function parse(options) {
+  const parser = getParser(options.type);
   const results = [];
   for (let i = 0; i < options.files.length; i++) {
     const matched_files = getMatchingFilePaths(options.files[i]);
     for (let j = 0; j < matched_files.length; j++) {
       const file = matched_files[j];
-      switch (options.type) {
-        case 'testng':
-          results.push(testng.parse(file));
-          break;
-        case 'junit':
-          results.push(junit.parse(file));
-          break;
-        case 'xunit':
-          results.push(xunit.parse(file));
-          break;
-        case 'mocha':
-          results.push(mocha.parse(file));
-          break;
-        case 'cucumber':
-          results.push(cucumber.parse(file));
-          break;
-        default:
-          throw `UnSupported Result Type - ${options.type}`;
-      }
+      results.push(parser.parse(file));
     }
-    
   }
   return merge(results);
 }
