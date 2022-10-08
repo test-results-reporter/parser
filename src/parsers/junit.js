@@ -34,6 +34,28 @@ function getTestSuite(rawSuite) {
   return suite;
 }
 
+/**
+ * @param {TestResult} result 
+ */
+function setAggregateResults(result) {
+  if (Number.isNaN(result.passed) || Number.isNaN(result.failed)) {
+    let passed = 0;
+    let failed = 0;
+    let errors = 0;
+    let skipped = 0;
+    result.suites.forEach(_suite => {
+      passed = _suite.passed + passed;
+      failed = _suite.failed + failed;
+      errors = _suite.errors + errors;
+      skipped = _suite.skipped + skipped;
+    });
+    result.passed = passed;
+    result.failed = failed;
+    result.errors = errors;
+    result.skipped = skipped;
+  }
+}
+
 function getTestResult(json) {
   const result = new TestResult();
   const rawResult = json["testsuites"][0];
@@ -56,6 +78,7 @@ function getTestResult(json) {
   for (let i = 0; i < filteredSuites.length; i++) {
     result.suites.push(getTestSuite(filteredSuites[i]));
   }
+  setAggregateResults(result);
   result.status = result.total === result.passed ? 'PASS' : 'FAIL';
   return result;
 }

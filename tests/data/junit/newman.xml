@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="MyCollection" tests="1" time="32.937">
+  <testsuite name="1 - Authenticate " id="u68c4966-0877-4766-1e5b-uu96efb7f84" timestamp="2022-09-20T16:49:56.147Z" tests="1" failures="0" errors="0" time="0.807">
+    <testcase name="Teste" time="0.807" classname="TestePostamn"/>
+  </testsuite>
+ </testsuites> 
