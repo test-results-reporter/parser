@@ -282,4 +282,49 @@ describe('Parser - JUnit', () => {
     });
   });
 
+  it('parse newman reporter', () => {
+    const result = parse({ type: 'junit', files: ['tests/data/junit/newman.xml'] });
+    assert.deepEqual(result, {
+      id: '',
+      name: 'MyCollection',
+      total: 1,
+      passed: 1,
+      failed: 0,
+      errors: 0,
+      skipped: 0,
+      retried: 0,
+      duration: 32937,
+      status: 'PASS',
+      suites: [
+        {
+          id: '',
+          name: '1 - Authenticate',
+          total: 1,
+          passed: 1,
+          failed: 0,
+          errors: 0,
+          skipped: 0,
+          duration: 807,
+          status: 'PASS',
+          cases: [
+            {
+              duration: 807,
+              errors: 0,
+              failed: 0,
+              failure: "",
+              id: "",
+              name: "Teste",
+              passed: 0,
+              skipped: 0,
+              stack_trace: "",
+              status: "PASS",
+              steps: [],
+              total: 0
+            }
+          ]
+        }
+      ]
+    });
+  });
+
 });
