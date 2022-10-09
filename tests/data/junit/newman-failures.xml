@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="MainApi" tests="2" time="37.506">
+  <testsuite name="Main / GetSectors" id="156d11f0-2897-4c14-a1c4-a35d9a686391" timestamp="2022-10-08T20:11:16.443Z" tests="2" failures="2" errors="0" time="0.446">
+    <testcase name="Sectors - Verify 'Residential' is in list" time="0.446" classname="MainApi">
+      <failure type="AssertionFailure" message="expected to include 'Residntial'">
+      </failure>
+    </testcase>
+    <testcase name="Sectors EndPoint - returns a JSON response" time="0.446" classname="MainApi"/>
+  </testsuite>
+  <testsuite name="Main / Verifyresponsedata-MarketAsset" id="47f011d3-ca6e-451d-a5c4-d43243b082fe" timestamp="2022-10-08T20:11:16.443Z" tests="1" failures="0" errors="0" time="0.634">
+    <testcase name="Market Asset(id-387) response - data is as expected" time="0.634" classname="MainApi"/>
+  </testsuite>
+</testsuites>
