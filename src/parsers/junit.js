@@ -39,11 +39,13 @@ function getTestSuite(rawSuite) {
  */
 function setAggregateResults(result) {
   if (Number.isNaN(result.passed) || Number.isNaN(result.failed)) {
+    let total = 0;
     let passed = 0;
     let failed = 0;
     let errors = 0;
     let skipped = 0;
     result.suites.forEach(_suite => {
+      total = _suite.total + total;
       passed = _suite.passed + passed;
       failed = _suite.failed + failed;
       errors = _suite.errors + errors;
@@ -53,6 +55,7 @@ function setAggregateResults(result) {
     result.failed = failed;
     result.errors = errors;
     result.skipped = skipped;
+    result.total = total;
   }
 }
 

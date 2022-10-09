@@ -327,4 +327,91 @@ describe('Parser - JUnit', () => {
     });
   });
 
+  it('parse newman with failures', () => {
+    const result = parse({ type: 'junit', files: ['tests/data/junit/newman-failures.xml'] });
+    console.log(JSON.stringify(result, null, 2))
+    assert.deepEqual(result, {
+      "id": "",
+      "name": "MainApi",
+      "total": 3,
+      "passed": 1,
+      "failed": 2,
+      "errors": 0,
+      "skipped": 0,
+      "retried": 0,
+      "duration": 37506,
+      "status": "FAIL",
+      "suites": [
+        {
+          "id": "",
+          "name": "Main / GetSectors",
+          "total": 2,
+          "passed": 0,
+          "failed": 2,
+          "errors": 0,
+          "skipped": 0,
+          "duration": 446,
+          "status": "FAIL",
+          "cases": [
+            {
+              "id": "",
+              "name": "Sectors - Verify 'Residential' is in list",
+              "total": 0,
+              "passed": 0,
+              "failed": 0,
+              "errors": 0,
+              "skipped": 0,
+              "duration": 446,
+              "status": "FAIL",
+              "failure": "expected to include 'Residntial'",
+              "stack_trace": "",
+              "steps": []
+            },
+            {
+              "id": "",
+              "name": "Sectors EndPoint - returns a JSON response",
+              "total": 0,
+              "passed": 0,
+              "failed": 0,
+              "errors": 0,
+              "skipped": 0,
+              "duration": 446,
+              "status": "PASS",
+              "failure": "",
+              "stack_trace": "",
+              "steps": []
+            }
+          ]
+        },
+        {
+          "id": "",
+          "name": "Main / Verifyresponsedata-MarketAsset",
+          "total": 1,
+          "passed": 1,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0,
+          "duration": 634,
+          "status": "PASS",
+          "cases": [
+            {
+              "id": "",
+              "name": "Market Asset(id-387) response - data is as expected",
+              "total": 0,
+              "passed": 0,
+              "failed": 0,
+              "errors": 0,
+              "skipped": 0,
+              "duration": 634,
+              "status": "PASS",
+              "failure": "",
+              "stack_trace": "",
+              "steps": []
+            }
+          ]
+        }
+      ]
+    });
+  });
+
 });
