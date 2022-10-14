@@ -44,18 +44,23 @@ function setAggregateResults(result) {
     let failed = 0;
     let errors = 0;
     let skipped = 0;
+    let duration = 0;
     result.suites.forEach(_suite => {
       total = _suite.total + total;
       passed = _suite.passed + passed;
       failed = _suite.failed + failed;
       errors = _suite.errors + errors;
       skipped = _suite.skipped + skipped;
+      duration = _suite.duration + duration;
     });
     result.passed = passed;
     result.failed = failed;
     result.errors = errors;
     result.skipped = skipped;
     result.total = total;
+    if (Number.isNaN(result.duration)) {
+      result.duration = duration;
+    }
   }
 }
 
