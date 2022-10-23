@@ -22,7 +22,16 @@ function getTestSuite(rawSuite) {
   suite.name = rawSuite["@_name"];
   suite.total = rawSuite["@_tests"];
   suite.failed = rawSuite["@_failures"];
-  suite.passed = suite.total - suite.failed;
+  const errors = rawSuite["@_errors"];
+  if (errors) {
+    suite.errors = errors;
+  }
+  const skipped = rawSuite["@_skipped"];
+  if (skipped) {
+    suite.skipped = skipped;
+  }
+  suite.total = suite.total - suite.skipped;
+  suite.passed = suite.total - suite.failed - suite.errors;
   suite.duration = rawSuite["@_time"] * 1000;
   suite.status = suite.total === suite.passed ? 'PASS' : 'FAIL';
   const raw_test_cases = rawSuite.testcase;
@@ -67,7 +76,7 @@ function setAggregateResults(result) {
 function getTestResult(json) {
   const result = new TestResult();
   const rawResult = json["testsuites"][0];
-  result.name = rawResult["@_name"];
+  result.name = rawResult["@_name"] || '';
   result.total = rawResult["@_tests"];
   result.failed = rawResult["@_failures"];
   const errors = rawResult["@_errors"];
