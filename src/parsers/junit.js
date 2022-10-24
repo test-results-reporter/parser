@@ -76,7 +76,7 @@ function getTestResult(json) {
   result.total = result.total - result.skipped;
   result.passed = result.total - result.failed - result.errors;
   result.duration = rawResult["@_time"] * 1000;
-  if (result.total > 0 && result.skpped == 0) { // Don't filter if there are no tests
+  if (result.total > 0 || result.skipped > 0) { // Don't filter if there are no tests
     const rawSuites = rawResult["testsuite"];
     const filteredSuites = rawSuites.filter(suite => suite.testcase);
     for (let i = 0; i < filteredSuites.length; i++) {
