@@ -414,4 +414,21 @@ describe('Parser - JUnit', () => {
     });
   });
 
+  it('empty suite with no tests', () => {
+    const result = parse({ type: 'junit', files: ['tests/data/junit/no-suites.xml'] });
+    assert.deepEqual(result, {
+      id: '',
+      name: 'no suites',
+      total: 0,
+      passed: 0,
+      failed: 0,
+      errors: 0,
+      skipped: 0,
+      retried: 0,
+      duration: 0,
+      status: 'PASS',
+      suites: []
+    });
+  });
+
 });
