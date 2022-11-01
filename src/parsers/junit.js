@@ -22,7 +22,16 @@ function getTestSuite(rawSuite) {
   suite.name = rawSuite["@_name"];
   suite.total = rawSuite["@_tests"];
   suite.failed = rawSuite["@_failures"];
-  suite.passed = suite.total - suite.failed;
+  const errors = rawSuite["@_errors"];
+  if (errors) {
+    suite.errors = errors;
+  }
+  const skipped = rawSuite["@_skipped"];
+  if (skipped) {
+    suite.skipped = skipped;
+  }
+  suite.total = suite.total - suite.skipped;
+  suite.passed = suite.total - suite.failed - suite.errors;
   suite.duration = rawSuite["@_time"] * 1000;
   suite.status = suite.total === suite.passed ? 'PASS' : 'FAIL';
   const raw_test_cases = rawSuite.testcase;
@@ -44,25 +53,30 @@ function setAggregateResults(result) {
     let failed = 0;
     let errors = 0;
     let skipped = 0;
+    let duration = 0;
     result.suites.forEach(_suite => {
       total = _suite.total + total;
       passed = _suite.passed + passed;
       failed = _suite.failed + failed;
       errors = _suite.errors + errors;
       skipped = _suite.skipped + skipped;
+      duration = _suite.duration + duration;
     });
     result.passed = passed;
     result.failed = failed;
     result.errors = errors;
     result.skipped = skipped;
     result.total = total;
+    if (Number.isNaN(result.duration)) {
+      result.duration = duration;
+    }
   }
 }
 
 function getTestResult(json) {
   const result = new TestResult();
   const rawResult = json["testsuites"][0];
-  result.name = rawResult["@_name"];
+  result.name = rawResult["@_name"] || '';
   result.total = rawResult["@_tests"];
   result.failed = rawResult["@_failures"];
   const errors = rawResult["@_errors"];

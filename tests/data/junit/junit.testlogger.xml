@@ -1,0 +1,44 @@
+<testsuites>
+	<testsuite name="JUnit.Xml.TestLogger.NetCore.Tests.dll" tests="4" skipped="1" failures="1" errors="0" time="0.87068" timestamp="2021-04-04T16:42:06" hostname="REDACTED" id="0" package="JUnit.Xml.TestLogger.NetCore.Tests.dll">
+		<properties />
+		<testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.FailingOneTimeTearDown" name="TestD" time="0.0021950" />
+		<testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.FailingTearDown" name="TestC" time="0.0011090">
+			<failure type="failure" message="TearDown : System.InvalidOperationException : Operation is not valid due to the current state of the object.">--TearDown
+   at JUnit.Xml.TestLogger.NetFull.Tests.FailingTearDown.TearDown() in C:\Users\REDACTED\Documents\GitHub\junit.testlogger\test\assets\JUnit.Xml.TestLogger.NetCore.Tests\UnitTest1.cs:line 182</failure>
+		</testcase>
+		<testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.SuccessAndInconclusiveFixture" name="InconclusiveTest" time="0.0007200" />
+		<testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.UnitTest1" name="Ignored" time="0.0002950">
+			<skipped />
+		</testcase>
+		<system-out>{EEEE1DA6-6296-4486-BDA5-A50A19672F0F}
+{C33FF4B5-75E1-4882-B968-DF9608BFE7C2}
+
+{2010CAE3-7BC0-4841-A5A3-7D5F947BB9FB}
+{998AC9EC-7429-42CD-AD55-72037E7AF3D8}
+
+
+Test Framework Informational Messages:
+NUnit Adapter 3.10.0.21: Test execution started
+Running all tests in C:\Users\REDACTED\Documents\GitHub\junit.testlogger\test\assets\JUnit.Xml.TestLogger.NetCore.Tests\bin\Debug\netcoreapp3.1\JUnit.Xml.TestLogger.NetCore.Tests.dll
+NUnit3TestExecutor converted 52 of 52 NUnit test cases
+NUnit Adapter 3.10.0.21: Test execution complete
+</system-out>
+		<system-err>Warning - SetUp failed for test fixture JUnit.Xml.TestLogger.NetFull.Tests.FailingOneTimeSetUp
+Warning - System.InvalidOperationException : Operation is not valid due to the current state of the object.
+Warning -    at JUnit.Xml.TestLogger.NetFull.Tests.FailingOneTimeSetUp.OneTimeSetUp() in C:\Users\REDACTED\Documents\GitHub\junit.testlogger\test\assets\JUnit.Xml.TestLogger.NetCore.Tests\UnitTest1.cs:line 152
+Warning - TearDown failed for test fixture JUnit.Xml.TestLogger.NetFull.Tests.FailingOneTimeTearDown
+Warning - TearDown : System.InvalidOperationException : Operation is not valid due to the current state of the object.
+Warning - --TearDown
+   at JUnit.Xml.TestLogger.NetFull.Tests.FailingOneTimeTearDown.OneTimeTearDown() in C:\Users\REDACTED\Documents\GitHub\junit.testlogger\test\assets\JUnit.Xml.TestLogger.NetCore.Tests\UnitTest1.cs:line 197
+Warning - {D46DFA10-EEDD-49E5-804D-FE43051331A7}
+Warning - {33F5FD22-6F40-499D-98E4-481D87FAEAA1}
+Warning - SetUp failed for test fixture JUnit.Xml.TestLogger.Tests2.FailingOneTimeSetUp
+Warning - System.InvalidOperationException : Operation is not valid due to the current state of the object.
+Warning -    at JUnit.Xml.TestLogger.Tests2.FailingOneTimeSetUp.OneTimeSetUp() in C:\Users\REDACTED\Documents\GitHub\junit.testlogger\test\assets\JUnit.Xml.TestLogger.NetCore.Tests\UnitTest2.cs:line 107
+Warning - TearDown failed for test fixture JUnit.Xml.TestLogger.Tests2.FailingOneTimeTearDown
+Warning - TearDown : System.InvalidOperationException : Operation is not valid due to the current state of the object.
+Warning - --TearDown
+   at JUnit.Xml.TestLogger.Tests2.FailingOneTimeTearDown.OneTimeTearDown() in C:\Users\REDACTED\Documents\GitHub\junit.testlogger\test\assets\JUnit.Xml.TestLogger.NetCore.Tests\UnitTest2.cs:line 152
+</system-err>
+	</testsuite>
+</testsuites>

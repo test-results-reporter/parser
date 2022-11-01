@@ -329,7 +329,6 @@ describe('Parser - JUnit', () => {
 
   it('parse newman with failures', () => {
     const result = parse({ type: 'junit', files: ['tests/data/junit/newman-failures.xml'] });
-    console.log(JSON.stringify(result, null, 2))
     assert.deepEqual(result, {
       "id": "",
       "name": "MainApi",
@@ -403,6 +402,93 @@ describe('Parser - JUnit', () => {
               "errors": 0,
               "skipped": 0,
               "duration": 634,
+              "status": "PASS",
+              "failure": "",
+              "stack_trace": "",
+              "steps": []
+            }
+          ]
+        }
+      ]
+    });
+  });
+
+  it('parse spekt/junit.testlogger', () => {
+    const result = parse({ type: 'junit', files: ['tests/data/junit/junit.testlogger.xml'] });
+    assert.deepEqual(result, {
+      "id": "",
+      "name": "",
+      "total": 3,
+      "passed": 2,
+      "failed": 1,
+      "errors": 0,
+      "skipped": 1,
+      "retried": 0,
+      "duration": 870.6800000000001,
+      "status": "FAIL",
+      "suites": [
+        {
+          "id": "",
+          "name": "JUnit.Xml.TestLogger.NetCore.Tests.dll",
+          "total": 3,
+          "passed": 2,
+          "failed": 1,
+          "errors": 0,
+          "skipped": 1,
+          "duration": 870.6800000000001,
+          "status": "FAIL",
+          "cases": [
+            {
+              "id": "",
+              "name": "TestD",
+              "total": 0,
+              "passed": 0,
+              "failed": 0,
+              "errors": 0,
+              "skipped": 0,
+              "duration": 2.195,
+              "status": "PASS",
+              "failure": "",
+              "stack_trace": "",
+              "steps": []
+            },
+            {
+              "id": "",
+              "name": "TestC",
+              "total": 0,
+              "passed": 0,
+              "failed": 0,
+              "errors": 0,
+              "skipped": 0,
+              "duration": 1.109,
+              "status": "FAIL",
+              "failure": "TearDown : System.InvalidOperationException : Operation is not valid due to the current state of the object.",
+              "stack_trace": "",
+              "steps": []
+            },
+            {
+              "id": "",
+              "name": "InconclusiveTest",
+              "total": 0,
+              "passed": 0,
+              "failed": 0,
+              "errors": 0,
+              "skipped": 0,
+              "duration": 0.7200000000000001,
+              "status": "PASS",
+              "failure": "",
+              "stack_trace": "",
+              "steps": []
+            },
+            {
+              "id": "",
+              "name": "Ignored",
+              "total": 0,
+              "passed": 0,
+              "failed": 0,
+              "errors": 0,
+              "skipped": 0,
+              "duration": 0.29500000000000004,
               "status": "PASS",
               "failure": "",
               "stack_trace": "",
