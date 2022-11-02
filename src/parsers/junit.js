@@ -91,7 +91,7 @@ function getTestResult(json) {
   result.passed = result.total - result.failed - result.errors;
   result.duration = rawResult["@_time"] * 1000;
   const rawSuites = rawResult["testsuite"];
-    if (!(typeof rawSuites === "undefined")) { // Don't filter if there are no testsuite objects
+  if (!(typeof rawSuites === "undefined")) { // Don't filter if there are no testsuite objects
     const filteredSuites = rawSuites.filter(suite => suite.testcase);
     for (let i = 0; i < filteredSuites.length; i++) {
       result.suites.push(getTestSuite(filteredSuites[i]));
