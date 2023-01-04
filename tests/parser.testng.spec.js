@@ -926,4 +926,21 @@ describe('Parser - TestNG', () => {
     });
   });
 
+  it('single suite with no test', () => {
+    const result = parse({ type: 'testng', files: ['tests/data/testng/empty-suite.xml'] });
+    assert.deepEqual(result, {
+      id: '',
+      name: 'Empty Suite',
+      total: 0,
+      passed: 0,
+      failed: 0,
+      errors: 0,
+      skipped: 0,
+      retried: 0,
+      duration: 0,
+      status: 'PASS',
+      suites: []
+    });
+  });
+
 });

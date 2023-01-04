@@ -114,7 +114,10 @@ function parse(file) {
     for (let i = 0; i < rawTestsWithClasses.length; i++) {
       result.suites.push(getTestSuiteFromTest(rawTestsWithClasses[i]));
     }
-  } else {
+  } else if (suitesWithTests.length === 0){
+    const suite = suites[0];
+    result.name = suite['@_name'];
+    result.duration = suite['@_duration-ms'];
     console.log("No suites with tests found");
   }
   result.status = result.total === result.passed ? 'PASS' : 'FAIL';
