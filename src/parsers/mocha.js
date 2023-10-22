@@ -25,6 +25,7 @@ function getTestCase(rawCase) {
 }
 
 function getTestSuite(rawSuite) {
+  flattenTestSuite(rawSuite);
   const suite = new TestSuite();
   suite.name = rawSuite["title"];
   suite.total = rawSuite["tests"].length;
@@ -42,9 +43,15 @@ function getTestSuite(rawSuite) {
   return suite;
 }
 
-function getTestResult(json) {
+/**
+ * Function to format the mocha raw json report
+ * @param {import("./mocha.result").MochaJsonData} raw_json 
+ */
+function getTestResult(raw_json) {
   const result = new TestResult();
-  const { stats, results } = formatMochaJsonReport(json);
+  const { stats, results } = formatMochaJsonReport(raw_json);
+  
+  /** @type {import('./mocha.result').MochaResult} */
   const formattedResult = results[0] || {};
   const suites = formattedResult["suites"] || [];
 
@@ -73,23 +80,23 @@ function getTestResult(json) {
 
 /**
  * Function to format the mocha raw json report
- * @param {*} rawjson 
+ * @param {import("./mocha.result").MochaJsonData} raw_json 
  * @returns formatted json object
  */
-function formatMochaJsonReport(rawjson) {
-  if (rawjson.hasOwnProperty('meta')) {
-    return rawjson
+function formatMochaJsonReport(raw_json) {
+  if (raw_json.hasOwnProperty('meta')) {
+    return raw_json
   }
-  const formattedJson = { stats: rawjson.stats, results: [] };
+  const formattedJson = { stats: raw_json.stats, results: [] };
   const suites = [];
-  rawjson.failures.forEach(test => test.state = "failed");
-  rawjson.passes.forEach(test => test.state = "passed");
-  rawjson.pending.forEach( test => { 
+  raw_json.failures.forEach(test => test.state = "failed");
+  raw_json.passes.forEach(test => test.state = "passed");
+  raw_json.pending.forEach( test => { 
     test.state = "pending";
     test.duration = 0;
   });
 
-  const rawTests = [...rawjson.passes, ...rawjson.failures, ...rawjson.pending];
+  const rawTests = [...raw_json.passes, ...raw_json.failures, ...raw_json.pending];
   const testSuites = [...new Set(rawTests.map(test => test.fullTitle.split(' ' + test.title)[0]))];
 
   for (const testSuite of testSuites) {
@@ -108,11 +115,31 @@ function formatMochaJsonReport(rawjson) {
   return formattedJson;
 }
 
+/**
+ * 
+ * @param {import("./mocha.result").MochaSuite} suite 
+ */
+function flattenTestSuite(suite) {
+  if (!suite.suites) {
+    return; 
+  }
+  for (const child_suite of suite.suites) {
+    flattenTestSuite(child_suite);
+    suite.tests = suite.tests.concat(child_suite.tests);
+    suite.passes = suite.passes.concat(child_suite.passes);
+    suite.failures = suite.failures.concat(child_suite.failures);
+    suite.pending = suite.pending.concat(child_suite.pending);
+    suite.skipped = suite.skipped.concat(child_suite.skipped);
+    suite.duration += child_suite.duration;
+  }
+}
+
+
 function parse(file) {
   const cwd = process.cwd();
   const json = require(path.join(cwd, file));
   return getTestResult(json);
-} 
+}
 
 module.exports = {
   parse
