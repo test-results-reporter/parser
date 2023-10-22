@@ -3,11 +3,47 @@ const path = require('path');
 const parser = require('fast-xml-parser');
 const { totalist } = require('totalist/sync');
 const globrex = require('globrex');
+const { XMLParser } = require("fast-xml-parser");
+
+
+/**
+ * fast xml parser v4's default behavior is to return an object if there is only one element
+ * in the array. This is not desirable for our use case. We sometimes want to force an array
+ * these are the keys to which that is required.
+ * @type {string[]}
+ */
+const FORCED_ARRAY_KEYS = [
+  "testsuites",
+  "testsuites.testsuite",
+  "testsuites.testsuite.testcase",
+  "testsuites.testsuite.testcase.failure",
+  "assemblies",
+  "assemblies.assembly",
+  "assemblies.assembly.collection",
+  "assemblies.assembly.collection.test",
+  "assemblies.assembly.collection.test.failure",
+  "testng-results",
+  "testng-results.suite",
+  "testng-results.suite.test",
+  "testng-results.suite.test.class",
+  "testng-results.suite.test.class.test-method",
+  "testng-results.suite.test.class.test-method.exception",
+];
+
+const configured_parser = new XMLParser({
+  isArray: (name, jpath, isLeafNode, isAttribute) => {
+    if( FORCED_ARRAY_KEYS.indexOf(jpath) !== -1) {
+      return true;
+    }
+  },
+  ignoreAttributes: false,
+  parseAttributeValue: true,
+});
 
 function getJsonFromXMLFile(filePath) {
   const cwd = process.cwd();
   const xml = fs.readFileSync(path.join(cwd, filePath)).toString();
-  return parser.parse(xml, { arrayMode: true, ignoreAttributes: false, parseAttributeValue: true });
+  return configured_parser.parse(xml);
 }
 
 /**

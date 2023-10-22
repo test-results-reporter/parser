@@ -31,7 +31,7 @@
   },
   "homepage": "https://github.com/test-results-reporter/parser#readme",
   "dependencies": {
-    "fast-xml-parser": "^3.20.0",
+    "fast-xml-parser": "^4.3.2",
     "globrex": "^0.1.2",
     "totalist": "^3.0.0"
   },
