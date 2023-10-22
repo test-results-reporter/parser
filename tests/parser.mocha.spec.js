@@ -413,4 +413,89 @@ describe('Parser - Mocha Awesmome Json', () => {
       ]
     });
   });
+  it('nested suites', () => {
+    const result = parse({ type: 'mocha', files: [`${testDataPath}/nested-suites.json`] });
+    assert.deepEqual(result, {
+      id: '',
+      name: '',
+      total: 3,
+      passed: 2,
+      failed: 1,
+      errors: 0,
+      skipped: 0,
+      retried: 0,
+      duration: 7,
+      status: 'FAIL',
+      suites: [
+        {
+          id: '',
+          name: 'Example Suite 1',
+          total: 2,
+          passed: 2,
+          failed: 0,
+          errors: 0,
+          skipped: 0,
+          duration: 4,
+          status: 'PASS',
+          cases: [
+            {
+              duration: 3,
+              errors: 0,
+              failed: 0,
+              failure: "",
+              id: "",
+              name: "sample test case",
+              passed: 0,
+              skipped: 0,
+              stack_trace: "",
+              status: "PASS",
+              steps: [],
+              total: 0
+            },
+            {
+              duration: 1,
+              errors: 0,
+              failed: 0,
+              failure: "",
+              id: "",
+              name: "sample test case 2",
+              passed: 0,
+              skipped: 0,
+              stack_trace: "",
+              status: "PASS",
+              steps: [],
+              total: 0
+            }
+          ]
+        },
+        {
+          id: '',
+          name: 'Example Suite 2',
+          total: 1,
+          passed: 0,
+          failed: 1,
+          errors: 0,
+          skipped: 0,
+          duration: 1,
+          status: 'FAIL',
+          cases: [
+            {
+              duration: 1,
+              errors: 0,
+              failed: 0,
+              failure: "Dummy reason",
+              id: "",
+              name: "sample test case",
+              passed: 0,
+              skipped: 0,
+              stack_trace: "",
+              status: "FAIL",
+              steps: [],
+              total: 0
+            }
+          ]
+        }
+      ]
+    });
+  });
 });
