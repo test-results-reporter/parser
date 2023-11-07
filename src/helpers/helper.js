@@ -17,6 +17,7 @@ const FORCED_ARRAY_KEYS = [
   "testsuites.testsuite",
   "testsuites.testsuite.testcase",
   "testsuites.testsuite.testcase.failure",
+  "testsuites.testsuite.testcase.properties.property",
   "assemblies",
   "assemblies.assembly",
   "assemblies.assembly.collection",
