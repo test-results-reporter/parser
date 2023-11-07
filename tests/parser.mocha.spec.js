@@ -40,6 +40,7 @@ describe('Parser - Mocha Json', () => {
               skipped: 0,
               stack_trace: "",
               status: "PASS",
+              meta_data: new Map(),
               steps: [],
               total: 0
             }
@@ -100,6 +101,7 @@ describe('Parser - Mocha Json', () => {
               skipped: 0,
               stack_trace: "",
               status: "PASS",
+              meta_data: new Map(),
               steps: [],
               total: 0
             },
@@ -114,6 +116,7 @@ describe('Parser - Mocha Json', () => {
               skipped: 0,
               stack_trace: "",
               status: "SKIP",
+              meta_data: new Map(),
               steps: [],
               total: 0
             }
@@ -158,6 +161,7 @@ describe('Parser - Mocha Json', () => {
               skipped: 0,
               stack_trace: "",
               status: "PASS",
+              meta_data: new Map(),
               steps: [],
               total: 0
             },
@@ -172,6 +176,7 @@ describe('Parser - Mocha Json', () => {
               skipped: 0,
               stack_trace: "",
               status: "PASS",
+              meta_data: new Map(),
               steps: [],
               total: 0
             }
@@ -199,6 +204,7 @@ describe('Parser - Mocha Json', () => {
               skipped: 0,
               stack_trace: "",
               status: "FAIL",
+              meta_data: new Map(),
               steps: [],
               total: 0
             }
@@ -255,6 +261,7 @@ describe('Parser - Mocha Awesmome Json', () => {
               skipped: 0,
               stack_trace: "",
               status: "PASS",
+              meta_data: new Map(),
               steps: [],
               total: 0
             }
@@ -315,6 +322,7 @@ describe('Parser - Mocha Awesmome Json', () => {
               skipped: 0,
               stack_trace: "",
               status: "PASS",
+              meta_data: new Map(),
               steps: [],
               total: 0
             },
@@ -329,6 +337,7 @@ describe('Parser - Mocha Awesmome Json', () => {
               skipped: 0,
               stack_trace: "",
               status: "SKIP",
+              meta_data: new Map(),
               steps: [],
               total: 0
             }
@@ -373,6 +382,7 @@ describe('Parser - Mocha Awesmome Json', () => {
               skipped: 0,
               stack_trace: "",
               status: "PASS",
+              meta_data: new Map(),
               steps: [],
               total: 0
             },
@@ -387,6 +397,7 @@ describe('Parser - Mocha Awesmome Json', () => {
               skipped: 0,
               stack_trace: "",
               status: "PASS",
+              meta_data: new Map(),
               steps: [],
               total: 0
             }
@@ -414,6 +425,7 @@ describe('Parser - Mocha Awesmome Json', () => {
               skipped: 0,
               stack_trace: "",
               status: "FAIL",
+              meta_data: new Map(),
               steps: [],
               total: 0
             }
@@ -458,6 +470,7 @@ describe('Parser - Mocha Awesmome Json', () => {
               skipped: 0,
               stack_trace: "",
               status: "PASS",
+              meta_data: new Map(),
               steps: [],
               total: 0
             },
@@ -472,6 +485,7 @@ describe('Parser - Mocha Awesmome Json', () => {
               skipped: 0,
               stack_trace: "",
               status: "PASS",
+              meta_data: new Map(),
               steps: [],
               total: 0
             }
@@ -499,6 +513,7 @@ describe('Parser - Mocha Awesmome Json', () => {
               skipped: 0,
               stack_trace: "",
               status: "FAIL",
+              meta_data: new Map(),
               steps: [],
               total: 0
             }

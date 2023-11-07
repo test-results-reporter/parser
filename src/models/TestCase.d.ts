@@ -12,6 +12,7 @@ declare class TestCase {
   failure: string;
   stack_trace: string;
   steps: TestStep[];
+  meta_data: Map<string,string>;
 }
 
 declare namespace TestCase { }
