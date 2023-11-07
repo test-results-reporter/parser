@@ -22,6 +22,7 @@ const FORCED_ARRAY_KEYS = [
   "assemblies.assembly.collection",
   "assemblies.assembly.collection.test",
   "assemblies.assembly.collection.test.failure",
+  "assemblies.assembly.collection.test.traits.trait",
   "testng-results",
   "testng-results.suite",
   "testng-results.suite.test",

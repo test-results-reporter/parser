@@ -19,6 +19,13 @@ function getTestCase(rawCase) {
   else {
     test_case.status = 'PASS';
   }
+  if(rawCase.traits && rawCase.traits.trait && rawCase.traits.trait.length > 0) {
+    const traits = rawCase.traits.trait;
+    for(let i = 0; i < traits.length; i++) {
+      test_case.meta_data.set( traits[i]["@_name"], traits[i]["@_value"]);
+    }
+  }
+
   return test_case;
 }
 
