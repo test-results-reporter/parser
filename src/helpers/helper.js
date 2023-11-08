@@ -26,6 +26,8 @@ const FORCED_ARRAY_KEYS = [
   "assemblies.assembly.collection.test.traits.trait",
   "testng-results",
   "testng-results.suite",
+  "testng-results.suite.groups.group",
+  "testng-results.suite.groups.group.method",
   "testng-results.suite.test",
   "testng-results.suite.test.class",
   "testng-results.suite.test.class.test-method",

@@ -4,11 +4,46 @@ const TestResult = require('../models/TestResult');
 const TestSuite = require('../models/TestSuite');
 const TestCase = require('../models/TestCase');
 
-function getTestCase(rawCase) {
+// assemble a fully qualified test name (class.name)
+function getFullTestName(raw) {
+  return "".concat(raw["@_class"], ".", raw["@_name"]);
+}
+
+// create a mapping between fully qualified test name and and group
+function getSuiteGroups(rawSuite) {
+  let testCaseToGroupMap = new Map();
+
+  if (rawSuite.groups && rawSuite.groups.group.length > 0) {
+    let raw_groups = rawSuite.groups.group;
+    for (let i = 0; i < raw_groups.length; i++) {
+      let group_methods = raw_groups[i].method;
+      let groupName = raw_groups[i]["@_name"];
+      for (let j = 0; j < group_methods.length; j++) {
+        let method = group_methods[j];
+        let key = getFullTestName(method);
+        if (!testCaseToGroupMap.has(key)) {
+          testCaseToGroupMap.set(key, []);
+        }
+        testCaseToGroupMap.get(key).push(groupName);
+      }
+    }
+  }
+  return testCaseToGroupMap;
+}
+
+function getTestCase(rawCase, testCaseToGroupMap) {
   const test_case = new TestCase();
   test_case.name = rawCase["@_name"];
   test_case.duration = rawCase["@_duration-ms"];
   test_case.status = rawCase["@_status"];
+  const key = getFullTestName(rawCase);
+  if (testCaseToGroupMap.has(key)) {
+    let groups = testCaseToGroupMap.get(key);
+    test_case.meta_data.set("groups", groups.join(","));
+    groups.forEach(group => {
+      test_case.meta_data.set(group, "");
+    })
+  }
   if (rawCase.exception) {
     test_case.failure = rawCase.exception[0].message;
   }
@@ -18,14 +53,18 @@ function getTestCase(rawCase) {
   return test_case;
 }
 
-function getTestSuiteFromTest(rawTest) {
+function getTestSuiteFromTest(rawTest, testCaseToGroupMap) {
   const suite = new TestSuite();
   suite.name = rawTest['@_name'];
   suite.duration = rawTest['@_duration-ms'];
   const rawTestMethods = [];
   const rawClasses = rawTest.class;
   for (let i = 0; i < rawClasses.length; i++) {
-    rawTestMethods.push(...rawClasses[i]['test-method'].filter(raw => !raw['@_is-config']));
+    let testMethods = rawClasses[i]['test-method'].filter(raw => !raw['@_is-config']);
+    testMethods.forEach(testMethod => {
+      testMethod["@_class"] = rawClasses[i]["@_name"]; // push className onto test-method
+    });
+    rawTestMethods.push(...testMethods);
   }
   suite.total = rawTestMethods.length;
   suite.passed = rawTestMethods.filter(test => test['@_status'] === 'PASS').length;
@@ -38,7 +77,7 @@ function getTestSuiteFromTest(rawTest) {
   }
   suite.status = suite.total === suite.passed ? 'PASS' : 'FAIL';
   for (let i = 0; i < rawTestMethods.length; i++) {
-    suite.cases.push(getTestCase(rawTestMethods[i]));
+    suite.cases.push(getTestCase(rawTestMethods[i], testCaseToGroupMap));
   }
   return suite;
 }
@@ -49,11 +88,16 @@ function getTestSuite(rawSuite) {
   suite.duration = rawSuite['@_duration-ms'];
   const rawTests = rawSuite.test;
   const rawTestMethods = [];
+  const testCaseToGroupMap = getSuiteGroups(rawSuite);
   for (let i = 0; i < rawTests.length; i++) {
     const rawTest = rawTests[i];
     const rawClasses = rawTest.class;
     for (let j = 0; j < rawClasses.length; j++) {
-      rawTestMethods.push(...rawClasses[j]['test-method'].filter(raw => !raw['@_is-config']));
+      let testMethods = rawClasses[i]['test-method'].filter(raw => !raw['@_is-config']);
+      testMethods.forEach(testMethod => {
+        testMethod["@_class"] = rawClasses[i]["@_name"]; // push className onto test-method
+      });
+      rawTestMethods.push(...testMethods);
     }
   }
   suite.total = rawTestMethods.length;
@@ -67,7 +111,7 @@ function getTestSuite(rawSuite) {
   }
   suite.status = suite.total === suite.passed ? 'PASS' : 'FAIL';
   for (let i = 0; i < rawTestMethods.length; i++) {
-    suite.cases.push(getTestCase(rawTestMethods[i]));
+    suite.cases.push(getTestCase(rawTestMethods[i], testCaseToGroupMap));
   }
   return suite;
 }
@@ -107,12 +151,13 @@ function parse(file) {
     }
   } else if (suitesWithTests.length === 1) {
     const suite = suitesWithTests[0];
+    const testCaseToGroupMap = getSuiteGroups(suite);
     result.name = suite['@_name'];
     result.duration = suite['@_duration-ms'];
     const rawTests = suite.test;
     const rawTestsWithClasses = rawTests.filter(_rawTest => _rawTest.class);
     for (let i = 0; i < rawTestsWithClasses.length; i++) {
-      result.suites.push(getTestSuiteFromTest(rawTestsWithClasses[i]));
+      result.suites.push(getTestSuiteFromTest(rawTestsWithClasses[i], testCaseToGroupMap));
     }
   } else if (suitesWithTests.length === 0){
     const suite = suites[0];

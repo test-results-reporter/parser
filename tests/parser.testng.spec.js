@@ -1001,4 +1001,13 @@ describe('Parser - TestNG', () => {
     assert.notEqual(null, result2);
   });
 
+  it('assign groups to testcases in single suite', () => {
+    const result = parse({ type: 'testng', files: ['tests/data/testng/groups.xml'] });
+    assert.equal(result.suites[0].cases[0].meta_data.get("groups"), "group1");
+    assert.equal(result.suites[0].cases[0].meta_data.has("group1"), true);
+    // 2nd testcase has multiple groups
+    assert.equal(result.suites[0].cases[1].meta_data.get("groups"), "group1,group2");
+    assert.equal(result.suites[0].cases[1].meta_data.has("group1"), true);
+    assert.equal(result.suites[0].cases[1].meta_data.has("group2"), true);
+  });
 });
