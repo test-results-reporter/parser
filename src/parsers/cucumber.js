@@ -1,7 +1,7 @@
 /*
 *  Parser for both Mocha Json report and Mochawesome json
 */
-const path = require('path');
+const { resolveFilePath } = require('../helpers/helper');
 
 const TestResult = require('../models/TestResult');
 const TestSuite = require('../models/TestSuite');
@@ -93,8 +93,7 @@ function preprocess(rawjson) {
 }
 
 function parse(file) {
-  const cwd = process.cwd();
-  const json = require(path.join(cwd, file));
+  const json = require(resolveFilePath(file));
   return getTestResult(json);
 } 
 

@@ -1,11 +1,13 @@
 const { parse } = require('../src');
 const assert = require('assert');
+const path = require('path');
 
 describe('Parser - XUnit', () => {
 
+  const testDataPath = "tests/data/xunit";
   
   it('single suite with single test', () => {
-    const result = parse({ type: 'xunit', files: ['tests/data/xunit/single-suite.xml'] });
+    const result = parse({ type: 'xunit', files: [`${testDataPath}/single-suite.xml`] });
     assert.deepEqual(result, {
       id: '',
       name: 'single suite test',
@@ -49,7 +51,7 @@ describe('Parser - XUnit', () => {
     });
   });
   it('suite with single skipped test', () => {
-    const result = parse({ type: 'xunit', files: ['tests/data/xunit/skipped-suite.xml'] });
+    const result = parse({ type: 'xunit', files: [`${testDataPath}/skipped-suite.xml`] });
     assert.deepEqual(result, {
       id: '',
       name: 'Skipped test',
@@ -92,7 +94,7 @@ describe('Parser - XUnit', () => {
     });
   });
   it('multiple suites', () => {
-    const result = parse({ type: 'xunit', files: ['tests/data/xunit/multiple-suites.xml'] });
+    const result = parse({ type: 'xunit', files: [`${testDataPath}/multiple-suites.xml`] });
     const expectedObj = {
       id: '',
       name: 'Multiple suites',
@@ -244,5 +246,14 @@ describe('Parser - XUnit', () => {
       ]
     }
     assert.deepEqual(result, expectedObj );
+  });
+
+  it('can support absolute and relative file paths', () => {
+    let relativePath = `${testDataPath}/single-suite.xml`;
+    let absolutePath = path.resolve(relativePath);
+    const result1 = parse({ type: 'xunit', files: [absolutePath] });
+    assert.notEqual(null, result1);
+    const result2 = parse({ type: 'xunit', files: [relativePath]});
+    assert.notEqual(null, result2);
   });
 });

@@ -1,10 +1,11 @@
 const { parse } = require('../src');
 const assert = require('assert');
+const path = require('path');
 
 describe('Parser - JUnit', () => {
-
+  const testDataPath = "tests/data/junit"
   it('single suite with single test', () => {
-    const result = parse({ type: 'junit', files: ['tests/data/junit/single-suite.xml'] });
+    const result = parse({ type: 'junit', files: [`${testDataPath}/single-suite.xml`] });
     assert.deepEqual(result, {
       id: '',
       name: 'result name',
@@ -49,7 +50,7 @@ describe('Parser - JUnit', () => {
   });
 
   it('empty suite with single test', () => {
-    const result = parse({ type: 'junit', files: ['tests/data/junit/empty-suite.xml'] });
+    const result = parse({ type: 'junit', files: [`${testDataPath}/empty-suite.xml`] });
     assert.deepEqual(result, {
       id: '',
       name: 'result name',
@@ -94,7 +95,7 @@ describe('Parser - JUnit', () => {
   });
 
   it('suite with skipped tests', () => {
-    const result = parse({ type: 'junit', files: ['tests/data/junit/skipped-tests.xml'] });
+    const result = parse({ type: 'junit', files: [`${testDataPath}/skipped-tests.xml`] });
     assert.deepEqual(result, {
       id: '',
       name: 'result name',
@@ -139,7 +140,7 @@ describe('Parser - JUnit', () => {
   });
 
   it('multiple suites', () => {
-    const result = parse({ type: 'junit', files: ['tests/data/junit/multiple-suites.xml'] });
+    const result = parse({ type: 'junit', files: [`${testDataPath}/multiple-suites.xml`] });
     assert.deepEqual(result, {
       id: '',
       name: 'result name',
@@ -211,7 +212,7 @@ describe('Parser - JUnit', () => {
   });
 
   it('multiple single suite files', () => {
-    const result = parse({ type: 'junit', files: ['tests/data/junit/single-suite.xml', 'tests/data/junit/single-suite.xml'] });
+    const result = parse({ type: 'junit', files: [`${testDataPath}/single-suite.xml`, `${testDataPath}/single-suite.xml`] });
     assert.deepEqual(result, {
       id: '',
       name: 'result name',
@@ -283,7 +284,7 @@ describe('Parser - JUnit', () => {
   });
 
   it('parse newman reporter', () => {
-    const result = parse({ type: 'junit', files: ['tests/data/junit/newman.xml'] });
+    const result = parse({ type: 'junit', files: [`${testDataPath}/newman.xml`] });
     assert.deepEqual(result, {
       id: '',
       name: 'MyCollection',
@@ -328,7 +329,7 @@ describe('Parser - JUnit', () => {
   });
 
   it('parse newman with failures', () => {
-    const result = parse({ type: 'junit', files: ['tests/data/junit/newman-failures.xml'] });
+    const result = parse({ type: 'junit', files: [`${testDataPath}/newman-failures.xml`] });
     assert.deepEqual(result, {
       "id": "",
       "name": "MainApi",
@@ -414,7 +415,7 @@ describe('Parser - JUnit', () => {
   });
 
   it('parse spekt/junit.testlogger', () => {
-    const result = parse({ type: 'junit', files: ['tests/data/junit/junit.testlogger.xml'] });
+    const result = parse({ type: 'junit', files: [`${testDataPath}/junit.testlogger.xml`] });
     assert.deepEqual(result, {
       "id": "",
       "name": "",
@@ -501,7 +502,7 @@ describe('Parser - JUnit', () => {
   });
 
   it('empty suite with no tests', () => {
-    const result = parse({ type: 'junit', files: ['tests/data/junit/no-suites.xml'] });
+    const result = parse({ type: 'junit', files: [`${testDataPath}/no-suites.xml`] });
     assert.deepEqual(result, {
       id: '',
       name: 'no suites',
@@ -517,4 +518,12 @@ describe('Parser - JUnit', () => {
     });
   });
 
+  it('can support absolute and relative file paths', () => {
+    let relativePath = `${testDataPath}/single-suite.xml`;
+    let absolutePath = path.resolve(relativePath);
+    const result1 = parse({ type: 'junit', files: [absolutePath] });
+    assert.notEqual(null, result1);
+    const result2 = parse({ type: 'junit', files: [relativePath]});
+    assert.notEqual(null, result2);
+  });
 });

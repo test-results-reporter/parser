@@ -1,5 +1,6 @@
 const { parse } = require('../src');
 const assert = require('assert');
+const path = require('path');
 
 describe('Parser - Mocha Json', () => {
   const testDataPath = "tests/data/mocha/json"
@@ -205,6 +206,14 @@ describe('Parser - Mocha Json', () => {
         }
       ]
     });
+  });
+  it('can support absolute and relative file paths', () => {
+    let relativePath = `${testDataPath}/single-suite-single-test.json`;
+    let absolutePath = path.resolve(relativePath);
+    const result1 = parse({ type: 'mocha', files: [absolutePath] });
+    assert.notEqual(null, result1);
+    const result2 = parse({ type: 'mocha', files: [relativePath]});
+    assert.notEqual(null, result2);
   });
 });
 
@@ -497,5 +506,14 @@ describe('Parser - Mocha Awesmome Json', () => {
         }
       ]
     });
+  });
+
+  it('can support absolute and relative file paths', () => {
+    let relativePath = `${testDataPath}/single-suite-single-test.json`;
+    let absolutePath = path.resolve(relativePath);
+    const result1 = parse({ type: 'mocha', files: [absolutePath] });
+    assert.notEqual(null, result1);
+    const result2 = parse({ type: 'mocha', files: [relativePath]});
+    assert.notEqual(null, result2);
   });
 });
