@@ -40,7 +40,7 @@ describe('Parser - Cucumber Json', () => {
               skipped: 0,
               stack_trace: "",
               status: "PASS",
-              meta_data: new Map(),
+              meta_data: newMap({tags:"@green,@fast", "@green":4, "@fast":4}),
               steps: [],
               total: 0
             }
@@ -164,5 +164,13 @@ describe('Parser - Cucumber Json', () => {
     const result2 = parse({ type: 'cucumber', files: [ relativePath]});
     assert.notEqual(null, result2);
   });
+  
+  function newMap( obj ) {
+    let map = new Map();
+    for (const property in obj) {
+      map.set( property, obj[property]);
+    }
+    return map;
+  }
 });
 

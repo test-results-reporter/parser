@@ -53,6 +53,10 @@
           {
             "name": "@green",
             "line": 4
+          },
+          {
+            "name": "@fast",
+            "line": 4
           }
         ],
         "type": "scenario"
