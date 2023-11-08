@@ -213,6 +213,7 @@ describe('Parser - Mocha Json', () => {
       ]
     });
   });
+
   it('can support absolute and relative file paths', () => {
     let relativePath = `${testDataPath}/single-suite-single-test.json`;
     let absolutePath = path.resolve(relativePath);
@@ -220,6 +221,29 @@ describe('Parser - Mocha Json', () => {
     assert.notEqual(null, result1);
     const result2 = parse({ type: 'mocha', files: [relativePath]});
     assert.notEqual(null, result2);
+  });
+
+  it('has multiple tags', () => {
+    const result = parse({ type: 'mocha', files: [`${testDataPath}/multiple-suites-multiple-tests-tags.json`] });
+    let testcase = result.suites[0].cases[0];
+    assert.equal(testcase.meta_data.has("tags"), true);
+    assert.equal(testcase.meta_data.get("tags"), "@fast,#1255")
+    assert.equal(testcase.meta_data.has("@fast"), true);
+    assert.equal(testcase.meta_data.has("#1255"), true);
+  });
+
+  it('has single tag', () => {
+    const result = parse({ type: 'mocha', files: [`${testDataPath}/multiple-suites-multiple-tests-tags.json`] });
+    let testcase = result.suites[1].cases[0];
+    assert.equal(testcase.meta_data.has("tags"), true);
+    assert.equal(testcase.meta_data.get("tags"), "#1234")
+    assert.equal(testcase.meta_data.has("#1234"), true);
+  });
+
+  it('does not include tags meta if no tags are present', () =>{
+    const result = parse({ type: 'mocha', files: [`${testDataPath}/multiple-suites-multiple-tests-tags.json`] });
+    let testcase = result.suites[0].cases[1];
+    assert.equal(testcase.meta_data.has("tags"), false);
   });
 });
 

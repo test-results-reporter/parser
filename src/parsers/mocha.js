@@ -11,6 +11,17 @@ function getTestCase(rawCase) {
   const test_case = new TestCase();
   test_case.name = rawCase["title"];
   test_case.duration = rawCase["duration"];
+  const regexp = /([\@\#][^\s]*)/gm; // match @tag or #tag
+  let matches = [...test_case.name.matchAll(regexp)];
+  if (matches.length > 0) {
+    let tags = []
+    for (let match of matches) {
+      let tagName = match[0];
+      test_case.meta_data.set(tagName, "");
+      tags.push(tagName);
+    }
+    test_case.meta_data.set("tags", tags.join(","));
+  }
   if (rawCase["state"] == "pending") {
     test_case.status = 'SKIP';
   }
