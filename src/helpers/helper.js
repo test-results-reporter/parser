@@ -40,9 +40,13 @@ const configured_parser = new XMLParser({
   parseAttributeValue: true,
 });
 
-function getJsonFromXMLFile(filePath) {
+function resolveFilePath(filePath) {
   const cwd = process.cwd();
-  const xml = fs.readFileSync(path.join(cwd, filePath)).toString();
+  return path.isAbsolute(filePath) ? filePath : path.join(cwd, filePath);
+}
+
+function getJsonFromXMLFile(filePath) {
+  const xml = fs.readFileSync(resolveFilePath(filePath)).toString();
   return configured_parser.parse(xml);
 }
 
@@ -67,5 +71,6 @@ function getMatchingFilePaths(file_path) {
 
 module.exports = {
   getJsonFromXMLFile,
-  getMatchingFilePaths
+  getMatchingFilePaths,
+  resolveFilePath
 }

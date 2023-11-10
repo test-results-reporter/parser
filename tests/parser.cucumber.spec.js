@@ -1,5 +1,6 @@
 const { parse } = require('../src');
 const assert = require('assert');
+const path = require('path');
 
 describe('Parser - Cucumber Json', () => {
   const testDataPath = "tests/data/cucumber"
@@ -47,6 +48,7 @@ describe('Parser - Cucumber Json', () => {
       ]
     });
   });
+  
   it('empty suite report', () => {
     const result = parse({ type: 'cucumber', files: [`${testDataPath}/empty-suite.json`] });
     assert.deepEqual(result, {
@@ -149,4 +151,14 @@ describe('Parser - Cucumber Json', () => {
       ]
     });
   });
+
+  it('can support absolute and relative file paths', () => {
+    let relativePath = `${testDataPath}/multiple-suites-multiple-tests.json`;
+    let absolutePath = path.resolve(relativePath);
+    const result1 = parse({ type: 'cucumber', files: [absolutePath] });
+    assert.notEqual(null, result1);
+    const result2 = parse({ type: 'cucumber', files: [ relativePath]});
+    assert.notEqual(null, result2);
+  });
 });
+

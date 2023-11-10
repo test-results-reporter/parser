@@ -1,10 +1,11 @@
 const { parse } = require('../src');
 const assert = require('assert');
+const path = require('path');
 
 describe('Parser - TestNG', () => {
-
+  const testDataPath = "tests/data/testng"
   it('single suite with single test', () => {
-    const result = parse({ type: 'testng', files: ['tests/data/testng/single-suite.xml'] });
+    const result = parse({ type: 'testng', files: [`${testDataPath}/single-suite.xml`] });
     assert.deepEqual(result, {
       id: '',
       name: 'Default suite',
@@ -91,7 +92,7 @@ describe('Parser - TestNG', () => {
   });
 
   it('single suite with multiple tests', () => {
-    const result = parse({ type: 'testng', files: ['tests/data/testng/single-suite-multiple-tests.xml'] });
+    const result = parse({ type: 'testng', files: [`${testDataPath}/single-suite-multiple-tests.xml`] });
     assert.deepEqual(result, {
       "id": "",
       "name": "Regression Tests",
@@ -275,7 +276,7 @@ describe('Parser - TestNG', () => {
   });
 
   it('multiple suites with single test', () => {
-    const result = parse({ type: 'testng', files: ['tests/data/testng/multiple-suites-single-test.xml'] });
+    const result = parse({ type: 'testng', files: [`${testDataPath}/multiple-suites-single-test.xml`] });
     assert.deepEqual(result, {
       "id": "",
       "name": "Default suite",
@@ -362,7 +363,7 @@ describe('Parser - TestNG', () => {
   });
 
   it('multiple suites with multiple tests', () => {
-    const result = parse({ type: 'testng', files: ['tests/data/testng/multiple-suites-multiple-tests.xml'] });
+    const result = parse({ type: 'testng', files: [`${testDataPath}/multiple-suites-multiple-tests.xml`] });
     assert.deepEqual(result, {
       "id": "",
       "name": "Default suite 1",
@@ -518,7 +519,7 @@ describe('Parser - TestNG', () => {
   });
 
   it('multiple suites with retries', () => {
-    const result = parse({ type: 'testng', files: ['tests/data/testng/multiple-suites-retries.xml'] });
+    const result = parse({ type: 'testng', files: [`${testDataPath}/multiple-suites-retries.xml`] });
     assert.deepEqual(result, {
       "id": "",
       "name": "Staging - UI Smoke Test Run",
@@ -674,7 +675,7 @@ describe('Parser - TestNG', () => {
   });
 
   it('results using glob', () => {
-    const result = parse({ type: 'testng', files: ['tests/data/testng/single-*.xml'] });
+    const result = parse({ type: 'testng', files: [`${testDataPath}/single-*.xml`] });
     assert.deepEqual(result, {
       "id": "",
       "name": "Regression Tests",
@@ -927,7 +928,7 @@ describe('Parser - TestNG', () => {
   });
 
   it('single suite with no test', () => {
-    const result = parse({ type: 'testng', files: ['tests/data/testng/empty-suite.xml'] });
+    const result = parse({ type: 'testng', files: [`${testDataPath}/empty-suite.xml`] });
     assert.deepEqual(result, {
       id: '',
       name: 'Empty Suite',
@@ -941,6 +942,15 @@ describe('Parser - TestNG', () => {
       status: 'PASS',
       suites: []
     });
+  });
+
+  it('can support absolute and relative file paths', () => {
+    let relativePath = `${testDataPath}/single-suite.xml`;
+    let absolutePath = path.resolve(relativePath);
+    const result1 = parse({ type: 'testng', files: [absolutePath] });
+    assert.notEqual(null, result1);
+    const result2 = parse({ type: 'testng', files: [relativePath]});
+    assert.notEqual(null, result2);
   });
 
 });
