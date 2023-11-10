@@ -40,7 +40,7 @@ describe('Parser - Cucumber Json', () => {
               skipped: 0,
               stack_trace: "",
               status: "PASS",
-              meta_data: newMap({tags:"@green,@fast", "@green":4, "@fast":4}),
+              meta_data: newMap({tags:"green,fast,testCase", green: "", fast: "", testCase: "1234", tagsRaw:"@green,@fast,@testCase=1234"}),
               steps: [],
               total: 0
             }
