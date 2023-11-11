@@ -1,6 +1,3 @@
-/*
-*  Parser for both Mocha Json report and Mochawesome json
-*/
 const { resolveFilePath } = require('../helpers/helper');
 
 const TestResult = require('../models/TestResult');
@@ -28,7 +25,7 @@ function getTestCase(rawCase) {
   }
   if (rawCase.state && rawCase.state === "failed") {
     test_case.status = 'FAIL';
-    test_case.failure = rawCase.errorStack;
+    test_case.setFailure(rawCase.errorStack);
   }
   else {
     test_case.status = 'PASS';

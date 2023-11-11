@@ -13,7 +13,10 @@ declare class TestCase {
   stack_trace: string;
   steps: TestStep[];
   meta_data: Map<string,string>;
+  
+  setFailure: SetFailureFunction
 }
+export type SetFailureFunction = (value: string) => string;
 
 declare namespace TestCase { }
 

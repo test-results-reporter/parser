@@ -19,7 +19,7 @@ function getTestCase(rawCase, suiteProperties) {
   }
   if (rawCase.failure && rawCase.failure.length > 0) {
     test_case.status = 'FAIL';
-    test_case.failure = rawCase.failure[0]["@_message"];
+    test_case.setFailure(rawCase.failure[0]["@_message"]);
   } else {
     test_case.status = 'PASS';
   }

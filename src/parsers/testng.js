@@ -45,7 +45,7 @@ function getTestCase(rawCase, testCaseToGroupMap) {
     })
   }
   if (rawCase.exception) {
-    test_case.failure = rawCase.exception[0].message;
+    test_case.setFailure(rawCase.exception[0].message);
   }
   if (rawCase['@_retried'] === true) {
     test_case.status = 'RETRY';

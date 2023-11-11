@@ -33,6 +33,7 @@
   "dependencies": {
     "fast-xml-parser": "^4.3.2",
     "globrex": "^0.1.2",
+    "html-escaper": "^3.0.3",
     "totalist": "^3.0.0"
   },
   "devDependencies": {

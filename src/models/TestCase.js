@@ -1,3 +1,5 @@
+const { unescape } = require('html-escaper');
+
 class TestCase {
 
     constructor() {
@@ -14,6 +16,10 @@ class TestCase {
       this.stack_trace = '';
       this.steps = [];
       this.meta_data = new Map();
+    }
+
+    setFailure(value) {
+      this.failure = value ? unescape(value) : value;
     }
   
   }
