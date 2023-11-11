@@ -32,7 +32,7 @@ function getTestCase(rawCase) {
   }
   else if (rawCase.state && rawCase.state === "failed") {
     test_case.status = 'FAIL';
-    test_case.failure = rawCase.err["message"];
+    test_case.setFailure(rawCase.err["message"]);
   }
   else {
     test_case.status = 'PASS';

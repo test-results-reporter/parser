@@ -175,7 +175,7 @@ describe('Parser - TestNG', () => {
               "skipped": 0,
               "duration": 57111,
               "status": "FAIL",
-              "failure": "Expected condition failed: : 95ddbda01ea4b3dbcb049e681a6...}",
+              "failure": "Expected condition failed: : <95ddbda01ea4b3dbcb049e681a6>",
               "stack_trace": "",
               "meta_data": new Map(),
               "steps": []
@@ -788,7 +788,7 @@ describe('Parser - TestNG', () => {
               "skipped": 0,
               "duration": 57111,
               "status": "FAIL",
-              "failure": "Expected condition failed: : 95ddbda01ea4b3dbcb049e681a6...}",
+              "failure": "Expected condition failed: : <95ddbda01ea4b3dbcb049e681a6>",
               "stack_trace": "",
               "meta_data": new Map(),
               "steps": []

@@ -131,7 +131,7 @@
 					</params>
 					<exception class="org.openqa.selenium.TimeoutException">
 						<message>
-							<![CDATA[Expected condition failed: : 95ddbda01ea4b3dbcb049e681a6...}]]>
+							<![CDATA[Expected condition failed: : &lt;95ddbda01ea4b3dbcb049e681a6&gt;]]>
 						</message>
 						<full-stacktrace>
 							<![CDATA[org.openqa.seleniumn(RemoteTestNGStarter.java:109)]]>
