@@ -31,13 +31,26 @@ const FORCED_ARRAY_KEYS = [
   "testng-results.suite.test",
   "testng-results.suite.test.class",
   "testng-results.suite.test.class.test-method",
-  "testng-results.suite.test.class.test-method.exception",
+  "testng-results.suite.test.class.test-method.exception"
 ];
 
 const configured_parser = new XMLParser({
   isArray: (name, jpath, isLeafNode, isAttribute) => {
     if( FORCED_ARRAY_KEYS.indexOf(jpath) !== -1) {
       return true;
+    } 
+    // handle nunit deep hierarchy
+    else if (jpath.startsWith("test-results")) {
+      let parts = jpath.split(".");
+      switch(parts[parts.length - 1]) {
+        case "category":
+        case "property":
+        case "test-suite":
+        case "test-case":
+          return true;
+        default:
+          return false;
+      }
     }
   },
   ignoreAttributes: false,
