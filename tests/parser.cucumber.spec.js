@@ -40,6 +40,7 @@ describe('Parser - Cucumber Json', () => {
               skipped: 0,
               stack_trace: "",
               status: "PASS",
+              meta_data: newMap({tags:"green,fast,testCase", green: "", fast: "", testCase: "1234", tagsRaw:"@green,@fast,@testCase=1234"}),
               steps: [],
               total: 0
             }
@@ -102,6 +103,7 @@ describe('Parser - Cucumber Json', () => {
               skipped: 0,
               stack_trace: "",
               status: "FAIL",
+              meta_data: new Map(),
               steps: [],
               total: 0
             },
@@ -116,6 +118,7 @@ describe('Parser - Cucumber Json', () => {
               skipped: 0,
               stack_trace: "",
               status: "PASS",
+              meta_data: new Map(),
               steps: [],
               total: 0
             }
@@ -143,6 +146,7 @@ describe('Parser - Cucumber Json', () => {
               skipped: 0,
               stack_trace: "",
               status: "PASS",
+              meta_data: new Map(),
               steps: [],
               total: 0
             }
@@ -160,5 +164,13 @@ describe('Parser - Cucumber Json', () => {
     const result2 = parse({ type: 'cucumber', files: [ relativePath]});
     assert.notEqual(null, result2);
   });
+  
+  function newMap( obj ) {
+    let map = new Map();
+    for (const property in obj) {
+      map.set( property, obj[property]);
+    }
+    return map;
+  }
 });
 

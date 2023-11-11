@@ -55,7 +55,6 @@
         <output>Test output</output>
         <traits>
           <trait name="TestID" value="RTA-21538" />
-          <trait name="TestLevel" value="ReadOnly" />
           <trait name="TestLevel" value="Regression" />
           <trait name="TestProduct" value="ExampleTestProduct" />
           <trait name="TestSuite" value="ExampleTestSuite" />

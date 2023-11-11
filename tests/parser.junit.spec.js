@@ -40,6 +40,7 @@ describe('Parser - JUnit', () => {
               skipped: 0,
               stack_trace: "",
               status: "FAIL",
+              meta_data: new Map(),
               steps: [],
               total: 0
             }
@@ -85,6 +86,7 @@ describe('Parser - JUnit', () => {
               skipped: 0,
               stack_trace: "",
               status: "PASS",
+              meta_data: new Map(),
               steps: [],
               total: 0
             }
@@ -130,6 +132,7 @@ describe('Parser - JUnit', () => {
               skipped: 0,
               stack_trace: "",
               status: "PASS",
+              meta_data: new Map(),
               steps: [],
               total: 0
             }
@@ -175,6 +178,7 @@ describe('Parser - JUnit', () => {
               skipped: 0,
               stack_trace: "",
               status: "FAIL",
+              meta_data: new Map(),
               steps: [],
               total: 0
             }
@@ -202,6 +206,7 @@ describe('Parser - JUnit', () => {
               skipped: 0,
               stack_trace: "",
               status: "FAIL",
+              meta_data: new Map(),
               steps: [],
               total: 0
             }
@@ -247,6 +252,7 @@ describe('Parser - JUnit', () => {
               skipped: 0,
               stack_trace: "",
               status: "FAIL",
+              meta_data: new Map(),
               steps: [],
               total: 0
             }
@@ -274,6 +280,7 @@ describe('Parser - JUnit', () => {
               skipped: 0,
               stack_trace: "",
               status: "FAIL",
+              meta_data: new Map(),
               steps: [],
               total: 0
             }
@@ -319,6 +326,7 @@ describe('Parser - JUnit', () => {
               skipped: 0,
               stack_trace: "",
               status: "PASS",
+              meta_data: new Map(),
               steps: [],
               total: 0
             }
@@ -365,6 +373,7 @@ describe('Parser - JUnit', () => {
               "status": "FAIL",
               "failure": "expected to include 'Residntial'",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             },
             {
@@ -379,6 +388,7 @@ describe('Parser - JUnit', () => {
               "status": "PASS",
               "failure": "",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             }
           ]
@@ -406,6 +416,7 @@ describe('Parser - JUnit', () => {
               "status": "PASS",
               "failure": "",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             }
           ]
@@ -451,6 +462,7 @@ describe('Parser - JUnit', () => {
               "status": "PASS",
               "failure": "",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             },
             {
@@ -465,6 +477,7 @@ describe('Parser - JUnit', () => {
               "status": "FAIL",
               "failure": "TearDown : System.InvalidOperationException : Operation is not valid due to the current state of the object.",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             },
             {
@@ -479,6 +492,7 @@ describe('Parser - JUnit', () => {
               "status": "PASS",
               "failure": "",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             },
             {
@@ -493,6 +507,7 @@ describe('Parser - JUnit', () => {
               "status": "PASS",
               "failure": "",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             }
           ]
@@ -526,4 +541,11 @@ describe('Parser - JUnit', () => {
     const result2 = parse({ type: 'junit', files: [relativePath]});
     assert.notEqual(null, result2);
   });
+  
+  it('meta-data from suite copied to testcase', () => {
+    const result = parse({ type: 'junit', files: ['tests/data/junit/multiple-suites-properties.xml'] });
+    assert.equal(result.suites[0].cases[0].meta_data.size, 2);
+    assert.equal(result.suites[0].cases[0].meta_data.get("key1"), "override-value1");
+  });
+
 });

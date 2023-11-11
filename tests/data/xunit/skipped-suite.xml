@@ -8,11 +8,6 @@
 </output>
         <traits>
           <trait name="UnsupportedEnvirnoment" value="uat" />
-          <trait name="TestID" value="RTA-TESTID" />
-          <trait name="BSIdentifier" value="BS-2650" />
-          <trait name="TestLevel" value="Smoke" />
-          <trait name="TestProduct" value="FakeProduct" />
-          <trait name="TestSuite" value="skippable" />
         </traits>
       </test>
     </collection>

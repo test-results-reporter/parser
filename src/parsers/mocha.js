@@ -11,6 +11,22 @@ function getTestCase(rawCase) {
   const test_case = new TestCase();
   test_case.name = rawCase["title"];
   test_case.duration = rawCase["duration"];
+  const regexp = /([\@\#][^\s]*)/gm; // match @tag or #tag
+  let matches = [...test_case.name.matchAll(regexp)];
+  if (matches.length > 0) {
+    let tags = [];
+    let rawTags = [];
+    for (let match of matches) {
+      let rawTag = match[0];
+      let tag  = rawTag.substring(1).split("=");
+      let tagName = tag[0];
+      test_case.meta_data.set(tagName, tag[1] ?? "");
+      tags.push(tagName);
+      rawTags.push(rawTag);
+    }
+    test_case.meta_data.set("tags", tags.join(","));
+    test_case.meta_data.set("tagsRaw", rawTags.join(","));
+  }
   if (rawCase["state"] == "pending") {
     test_case.status = 'SKIP';
   }

@@ -11,6 +11,21 @@ function getTestCase(rawCase) {
   const test_case = new TestCase();
   test_case.name = rawCase["name"];
   test_case.duration = rawCase["duration"];
+  if (rawCase.tags && rawCase.tags.length > 0) {
+    const tagsArray = rawCase.tags;
+    let tags = [];
+    let rawTags = [];
+    for (let i = 0; i < tagsArray.length; i++) {
+      let rawTagName = tagsArray[i]["name"];
+      let tag = rawTagName.substring(1).split("=");
+      let tagName = tag[0];
+      test_case.meta_data.set(tagName, tag[1] ?? "")
+      tags.push(tagName);
+      rawTags.push(rawTagName);
+    }
+    test_case.meta_data.set("tags", tags.join(","));
+    test_case.meta_data.set("tagsRaw", rawTags.join(","));
+  }
   if (rawCase.state && rawCase.state === "failed") {
     test_case.status = 'FAIL';
     test_case.failure = rawCase.errorStack;

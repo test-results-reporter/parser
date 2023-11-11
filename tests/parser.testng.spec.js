@@ -41,6 +41,7 @@ describe('Parser - TestNG', () => {
               status: 'PASS',
               failure: '',
               stack_trace: '',
+              meta_data: new Map(),
               steps: []
             },
             {
@@ -55,6 +56,7 @@ describe('Parser - TestNG', () => {
               status: 'PASS',
               failure: '',
               stack_trace: '',
+              meta_data: new Map(),
               steps: []
             },
             {
@@ -69,6 +71,7 @@ describe('Parser - TestNG', () => {
               status: 'PASS',
               failure: '',
               stack_trace: '',
+              meta_data: new Map(),
               steps: []
             },
             {
@@ -83,6 +86,7 @@ describe('Parser - TestNG', () => {
               status: 'PASS',
               failure: 'expected [true] but found [false]',
               stack_trace: '',
+              meta_data: new Map(),
               steps: []
             }
           ]
@@ -128,6 +132,7 @@ describe('Parser - TestNG', () => {
               "status": "FAIL",
               "failure": "expected [A] but found [948474]",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             },
             {
@@ -142,6 +147,7 @@ describe('Parser - TestNG', () => {
               "status": "PASS",
               "failure": "",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             },
             {
@@ -156,6 +162,7 @@ describe('Parser - TestNG', () => {
               "status": "PASS",
               "failure": "",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             },
             {
@@ -170,6 +177,7 @@ describe('Parser - TestNG', () => {
               "status": "FAIL",
               "failure": "Expected condition failed: : 95ddbda01ea4b3dbcb049e681a6...}",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             },
             {
@@ -184,6 +192,7 @@ describe('Parser - TestNG', () => {
               "status": "FAIL",
               "failure": "element click intercepted:",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             }
           ]
@@ -211,6 +220,7 @@ describe('Parser - TestNG', () => {
               "status": "FAIL",
               "failure": "expected [A] but found [948474]",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             },
             {
@@ -225,6 +235,7 @@ describe('Parser - TestNG', () => {
               "status": "PASS",
               "failure": "",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             },
             {
@@ -239,6 +250,7 @@ describe('Parser - TestNG', () => {
               "status": "PASS",
               "failure": "",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             },
             {
@@ -253,6 +265,7 @@ describe('Parser - TestNG', () => {
               "status": "FAIL",
               "failure": "Appium error: An unknown sr='Search...']}",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             },
             {
@@ -267,6 +280,7 @@ describe('Parser - TestNG', () => {
               "status": "SKIP",
               "failure": "A script did not complete ",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             }
           ]
@@ -312,6 +326,7 @@ describe('Parser - TestNG', () => {
               "status": "PASS",
               "failure": "",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             },
             {
@@ -326,6 +341,7 @@ describe('Parser - TestNG', () => {
               "status": "PASS",
               "failure": "",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             },
             {
@@ -340,6 +356,7 @@ describe('Parser - TestNG', () => {
               "status": "PASS",
               "failure": "",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             },
             {
@@ -354,6 +371,7 @@ describe('Parser - TestNG', () => {
               "status": "PASS",
               "failure": "expected [true] but found [false]",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             }
           ]
@@ -399,6 +417,7 @@ describe('Parser - TestNG', () => {
               "status": "PASS",
               "failure": "",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             },
             {
@@ -413,6 +432,7 @@ describe('Parser - TestNG', () => {
               "status": "PASS",
               "failure": "",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             },
             {
@@ -427,6 +447,7 @@ describe('Parser - TestNG', () => {
               "status": "PASS",
               "failure": "",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             },
             {
@@ -441,6 +462,7 @@ describe('Parser - TestNG', () => {
               "status": "PASS",
               "failure": "expected [true] but found [false]",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             }
           ]
@@ -468,6 +490,7 @@ describe('Parser - TestNG', () => {
               "status": "PASS",
               "failure": "",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             },
             {
@@ -482,6 +505,7 @@ describe('Parser - TestNG', () => {
               "status": "PASS",
               "failure": "",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             },
             {
@@ -496,6 +520,7 @@ describe('Parser - TestNG', () => {
               "status": "PASS",
               "failure": "",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             },
             {
@@ -510,6 +535,7 @@ describe('Parser - TestNG', () => {
               "status": "PASS",
               "failure": "expected [true] but found [false]",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             }
           ]
@@ -555,6 +581,7 @@ describe('Parser - TestNG', () => {
               "status": "PASS",
               "failure": "",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             },
             {
@@ -569,6 +596,7 @@ describe('Parser - TestNG', () => {
               "status": "RETRY",
               "failure": "failed",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             },
             {
@@ -583,6 +611,7 @@ describe('Parser - TestNG', () => {
               "status": "FAIL",
               "failure": "failed",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             },
             {
@@ -597,6 +626,7 @@ describe('Parser - TestNG', () => {
               "status": "PASS",
               "failure": "",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             }
           ]
@@ -624,6 +654,7 @@ describe('Parser - TestNG', () => {
               "status": "PASS",
               "failure": "",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             },
             {
@@ -638,6 +669,7 @@ describe('Parser - TestNG', () => {
               "status": "RETRY",
               "failure": "failed",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             },
             {
@@ -652,6 +684,7 @@ describe('Parser - TestNG', () => {
               "status": "FAIL",
               "failure": "failed",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             },
             {
@@ -666,6 +699,7 @@ describe('Parser - TestNG', () => {
               "status": "PASS",
               "failure": "",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             }
           ]
@@ -711,6 +745,7 @@ describe('Parser - TestNG', () => {
               "status": "FAIL",
               "failure": "expected [A] but found [948474]",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             },
             {
@@ -725,6 +760,7 @@ describe('Parser - TestNG', () => {
               "status": "PASS",
               "failure": "",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             },
             {
@@ -739,6 +775,7 @@ describe('Parser - TestNG', () => {
               "status": "PASS",
               "failure": "",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             },
             {
@@ -753,6 +790,7 @@ describe('Parser - TestNG', () => {
               "status": "FAIL",
               "failure": "Expected condition failed: : 95ddbda01ea4b3dbcb049e681a6...}",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             },
             {
@@ -767,6 +805,7 @@ describe('Parser - TestNG', () => {
               "status": "FAIL",
               "failure": "element click intercepted:",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             }
           ]
@@ -794,6 +833,7 @@ describe('Parser - TestNG', () => {
               "status": "FAIL",
               "failure": "expected [A] but found [948474]",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             },
             {
@@ -808,6 +848,7 @@ describe('Parser - TestNG', () => {
               "status": "PASS",
               "failure": "",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             },
             {
@@ -822,6 +863,7 @@ describe('Parser - TestNG', () => {
               "status": "PASS",
               "failure": "",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             },
             {
@@ -836,6 +878,7 @@ describe('Parser - TestNG', () => {
               "status": "FAIL",
               "failure": "Appium error: An unknown sr='Search...']}",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             },
             {
@@ -850,6 +893,7 @@ describe('Parser - TestNG', () => {
               "status": "SKIP",
               "failure": "A script did not complete ",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             }
           ]
@@ -877,6 +921,7 @@ describe('Parser - TestNG', () => {
               "status": "PASS",
               "failure": "",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             },
             {
@@ -891,6 +936,7 @@ describe('Parser - TestNG', () => {
               "status": "PASS",
               "failure": "",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             },
             {
@@ -905,6 +951,7 @@ describe('Parser - TestNG', () => {
               "status": "PASS",
               "failure": "",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             },
             {
@@ -919,6 +966,7 @@ describe('Parser - TestNG', () => {
               "status": "PASS",
               "failure": "expected [true] but found [false]",
               "stack_trace": "",
+              "meta_data": new Map(),
               "steps": []
             }
           ]
@@ -953,4 +1001,13 @@ describe('Parser - TestNG', () => {
     assert.notEqual(null, result2);
   });
 
+  it('assign groups to testcases in single suite', () => {
+    const result = parse({ type: 'testng', files: ['tests/data/testng/groups.xml'] });
+    assert.equal(result.suites[0].cases[0].meta_data.get("groups"), "group1");
+    assert.equal(result.suites[0].cases[0].meta_data.has("group1"), true);
+    // 2nd testcase has multiple groups
+    assert.equal(result.suites[0].cases[1].meta_data.get("groups"), "group1,group2");
+    assert.equal(result.suites[0].cases[1].meta_data.has("group1"), true);
+    assert.equal(result.suites[0].cases[1].meta_data.has("group2"), true);
+  });
 });

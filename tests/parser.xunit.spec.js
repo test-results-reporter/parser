@@ -43,6 +43,7 @@ describe('Parser - XUnit', () => {
               stack_trace: "",
               status: "FAIL",
               steps: [],
+              meta_data: newMap({ TestID: "ID", TestLevel: "Regression", TestProduct: "TestProductExample", TestSuite: "TestSuiteExample"}),
               total: 0
             }
           ]
@@ -87,6 +88,7 @@ describe('Parser - XUnit', () => {
             stack_trace: "",
             status: "SKIP",
             steps: [],
+            meta_data: newMap({ UnsupportedEnvirnoment: "uat"}),
             total: 0
           }]
         }
@@ -130,6 +132,7 @@ describe('Parser - XUnit', () => {
               stack_trace: "",
               status: "FAIL",
               steps: [],
+              meta_data: newMap({ TestID: "RTA-21505", TestLevel: "Regression", TestProduct: "ExampleTestProduct", TestSuite: "ExampleTestSuite"}),
               total: 0
             },
             {
@@ -144,6 +147,7 @@ describe('Parser - XUnit', () => {
               stack_trace: "",
               status: "PASS",
               steps: [],
+              meta_data: newMap({ TestID: "RTA-21510", TestLevel: "Regression", TestProduct: "ExampleTestProduct", TestSuite: "ExampleTestSuite"}),
               total: 0
             }
           ]
@@ -171,6 +175,7 @@ describe('Parser - XUnit', () => {
               stack_trace: "",
               status: "FAIL",
               steps: [],
+              meta_data: newMap({ TestID: "RTA-21516", TestLevel: "Regression", TestProduct: "ExampleTestProduct", TestSuite: "ExampleTestSuite"}),
               total: 0
             },   
             {
@@ -185,6 +190,7 @@ describe('Parser - XUnit', () => {
               stack_trace: "",
               status: "PASS",
               steps: [],
+              meta_data: newMap({ TestID: "RTA-21513", TestLevel: "Regression", TestProduct: "ExampleTestProduct", TestSuite: "ExampleTestSuite"}),
               total: 0
             }
           ]
@@ -212,6 +218,7 @@ describe('Parser - XUnit', () => {
               stack_trace: "",
               status: "PASS",
               steps: [],
+              meta_data: newMap({ TestID: "RTA-21538", TestLevel: "Regression", TestProduct: "ExampleTestProduct", TestSuite: "ExampleTestSuite"}),
               total: 0
             }
           ]
@@ -239,6 +246,7 @@ describe('Parser - XUnit', () => {
               stack_trace: "",
               status: "FAIL",
               steps: [],
+              meta_data: newMap({ TestID: "RTA-37684", TestLevel: "Regression", TestProduct: "ExampleTestProduct", TestSuite: "ExampleTestSuite"}),
               total: 0
             }
           ]
@@ -256,4 +264,22 @@ describe('Parser - XUnit', () => {
     const result2 = parse({ type: 'xunit', files: [relativePath]});
     assert.notEqual(null, result2);
   });
+
+  it('meta-data from traits', () => {
+    const result = parse({ type: 'xunit', files: ['tests/data/xunit/single-suite.xml'] });
+    assert.equal(result.suites[0].cases[0].meta_data.size, 4);
+  });
+  
+  it('no meta-data from empty traits', () => {
+    const result = parse({ type: 'xunit', files: ['tests/data/xunit/no-traits-suite.xml'] });
+    assert.equal(result.suites[0].cases[0].meta_data.size, 0);
+  })
+
+  function newMap( obj ) {
+    let map = new Map();
+    for (const property in obj) {
+      map.set( property, obj[property]);
+    }
+    return map;
+  }
 });

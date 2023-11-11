@@ -53,6 +53,14 @@
           {
             "name": "@green",
             "line": 4
+          },
+          {
+            "name": "@fast",
+            "line": 4
+          },
+          {
+            "name": "@testCase=1234",
+            "line": 4
           }
         ],
         "type": "scenario"
