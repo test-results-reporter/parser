@@ -7,19 +7,32 @@ const TestCase = require('../models/TestCase');
 const SUITE_TYPES_WITH_TESTCASES = [
     "TestFixture",
     "ParameterizedTest",
-    "GenericFixture"
+    "GenericFixture",
+    "ParameterizedMethod" // v3
 ]
 
 const RESULTMAP = {
-    Success: "PASS",
-    Failure: "FAIL",
-    Ignored: "SKIP",
-    NotRunnable: "SKIP",
-    Error: "ERROR",
-    Inconclusive: "FAIL"
+    Success:      "PASS",    // v2
+    Failure:      "FAIL",    // v2
+    Ignored:      "SKIP",    // v2
+    NotRunnable:  "SKIP",    // v2
+    Error:        "ERROR",   // v2
+    Inconclusive: "FAIL",    // v2
+
+    Passed:       "PASS",    // v3
+    Failed:       "FAIL",    // v3
+    Skipped:      "SKIP",    // v3
+}
+
+function mergeMeta(map1, map2) {
+    for(let kvp of map1) {
+        map2.set(kvp[0], kvp[1]);
+    }
 }
 
 function populateMetaData(raw, map) {
+
+    // v2 supports categories
     if (raw.categories) {
         let categories = raw.categories.category;
         for (let i = 0; i < categories.length; i++) {
@@ -34,11 +47,56 @@ function populateMetaData(raw, map) {
             }
         }
     }
+
+    // v2/v3 support properties
     if (raw.properties) {
         let properties = raw.properties.property;
         for (let i = 0; i < properties.length; i++) {
             let property = properties[i];
-            map.set(property["@_name"], property["@_value"]);
+            let propName = property["@_name"];
+            let propValue = property["@_value"];
+
+            // v3 treats 'Categories' as property "Category"
+            if (propName == "Category") {
+
+                if (map.has("Categories")) {
+                    map.set("Categories", map.get("Categories").concat(",", propValue));
+                } else {
+                    map.set("Categories", propValue);
+                }
+                map.set(propValue, "");
+
+            } else {
+                map.set(propName, propValue);
+            }
+        }
+    }
+}
+
+function getNestedTestCases(rawSuite) {
+    if (rawSuite.results) {
+        return rawSuite.results["test-case"];
+    } else {
+        return rawSuite["test-case"];
+    }
+}
+
+function hasNestedSuite(rawSuite) {
+    return getNestedSuite(rawSuite) !== null;
+}
+
+function getNestedSuite(rawSuite) {
+    // nunit v2 nests test-suite inside 'results'
+    if (rawSuite.results && rawSuite.results["test-suite"]) {
+        return rawSuite.results["test-suite"];
+    } else {
+        // nunit v3 nests test-suites as immediate children
+        if (rawSuite["test-suite"]) {
+            return rawSuite["test-suite"];
+        }
+        else {
+            // not nested
+            return null;
         }
     }
 }
@@ -46,17 +104,24 @@ function populateMetaData(raw, map) {
 function getTestCases(rawSuite, parent_meta) {
     var cases = [];
 
-    let rawTestCases = rawSuite.results["test-case"];
+    let rawTestCases = getNestedTestCases(rawSuite);
     if (rawTestCases) {
         for (let i = 0; i < rawTestCases.length; i++) {
             let rawCase = rawTestCases[i];
             let testCase = new TestCase();
             let result = rawCase["@_result"]
-            testCase.name = rawCase["@_name"];
+            testCase.id = rawCase["@_id"] ?? "";
+            testCase.name = rawCase["@_fullname"] ?? rawCase["@_name"];
             testCase.duration = rawCase["@_time"] * 1000; // in milliseconds
             testCase.status = RESULTMAP[result];
+
+            // v2 : non-executed should be tests should be Ignored
             if (rawCase["@_executed"] == "False") {
                 testCase.status = "SKIP"; // exclude failures that weren't executed.
+            }
+            // v3 : failed tests with error label should be Error
+            if (rawCase["@_label"] == "Error") {
+                testCase.status = "ERROR";
             }
             let errorDetails = rawCase.reason ?? rawCase.failure;
             if (errorDetails !== undefined) {
@@ -66,9 +131,7 @@ function getTestCases(rawSuite, parent_meta) {
                 }
             }
             // copy parent_meta data to test case
-            for( let kvp of parent_meta.entries()) {
-                testCase.meta_data.set(kvp[0], kvp[1]);
-            }
+            mergeMeta(parent_meta, testCase.meta_data);
             populateMetaData(rawCase, testCase.meta_data);
 
             cases.push( testCase );
@@ -78,22 +141,30 @@ function getTestCases(rawSuite, parent_meta) {
     return cases;
 }
 
-function getTestSuites(rawSuites) {
+function getTestSuites(rawSuites, assembly_meta) {
     var suites = [];
     
     for(let i = 0; i < rawSuites.length; i++) {
         let rawSuite = rawSuites[i];
+
+        if (rawSuite["@_type"] == "Assembly") {
+            assembly_meta = new Map();
+            populateMetaData(rawSuite, assembly_meta);
+        }
     
-        if (rawSuite.results["test-suite"]) {
+        if (hasNestedSuite(rawSuite)) {
             // handle nested test-suites
-            suites.push(...getTestSuites(rawSuite.results["test-suite"]));
+            suites.push(...getTestSuites(getNestedSuite(rawSuite), assembly_meta));
         } else if (SUITE_TYPES_WITH_TESTCASES.indexOf(rawSuite["@_type"]) !== -1) {
         
             let suite = new TestSuite();
+            suite.id = rawSuite["@_id"] ?? '';
+            suite.name = rawSuite["@_fullname"] ?? rawSuite["@_name"];
             suite.duration = rawSuite["@_time"] * 1000; // in milliseconds
             suite.status = RESULTMAP[rawSuite["@_result"]];
             
             var meta_data = new Map();
+            mergeMeta(assembly_meta, meta_data);
             populateMetaData(rawSuite, meta_data);
             suite.cases.push(...getTestCases(rawSuite, meta_data));
             
@@ -113,29 +184,27 @@ function getTestSuites(rawSuites) {
 
 
 function getTestResult(json) {
-    const rawResult = json["test-results"];
-    const rawSuite = rawResult["test-suite"][0];
-    
+    const nunitVersion = (json["test-results"] !== undefined) ? "v2" : 
+                         (json["test-run"] !== undefined) ? "v3" : null;
+
+    if (nunitVersion == null) {
+        throw new Error("Unrecognized xml format");
+    }
+
     const result = new TestResult();
-    result.name    = rawResult["@_name"];
+    const rawResult = json["test-results"] ?? json["test-run"];
+    const rawSuite = rawResult["test-suite"][0];
+
+    result.name    = rawResult["@_fullname"] ?? rawResult["@_name"];
     result.duration = rawSuite["@_time"] * 1000; // in milliseconds
-    // test-results attributes related to totals
-    //      total    = executed=True
-    //      errors   = result="Error"
-    //      failures = result="Failure"
-    //      not-run  = executed=False
-    //      inconclusive = result="Inconclusive"
-    //      ignored  = result="Ignored"
-    //      skipped  = sample has zero?
-    //      invalid  = result="NotRunable"
-    result.total   = rawResult["@_total"] + rawResult["@_not-run"]; // total executed and not executed
-    result.errors  = rawResult["@_errors"];
-    result.failed  = rawResult["@_failures"];
-    result.skipped = rawResult["@_not-run"]; // Ignored, NotRunnable
-    // assume inconclusive is neither a pass or failure to prevent religious wars, total's won't match as a result.
-    result.passed  = rawResult["@_total"] - (result.errors + result.failed + rawResult["@_inconclusive"]);    
-    
-    result.suites.push(getTestSuites( [ rawSuite ]) );
+        
+    result.suites.push(...getTestSuites( [ rawSuite ], null));
+
+    result.total   = result.suites.reduce( (total, suite) => { return total + suite.cases.length}, 0);
+    result.passed  = result.suites.reduce( (total, suite) => { return total + suite.passed}, 0);
+    result.failed  = result.suites.reduce( (total, suite) => { return total + suite.failed}, 0);
+    result.skipped = result.suites.reduce( (total, suite) => { return total + suite.skipped}, 0);
+    result.errors  = result.suites.reduce( (total, suite) => { return total + suite.errors}, 0);
     
     return result;
 }

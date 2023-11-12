@@ -40,7 +40,7 @@ const configured_parser = new XMLParser({
       return true;
     } 
     // handle nunit deep hierarchy
-    else if (jpath.startsWith("test-results")) {
+    else if (jpath.startsWith("test-results") || jpath.startsWith("test-run")) {
       let parts = jpath.split(".");
       switch(parts[parts.length - 1]) {
         case "category":
