@@ -1,5 +1,6 @@
 const testng = require('./testng');
 const junit = require('./junit');
+const nunit = require('./nunit');
 const xunit = require('./xunit');
 const mocha = require('./mocha');
 const cucumber = require('./cucumber');
@@ -37,6 +38,8 @@ function getParser(type) {
       return junit;
     case 'xunit':
       return xunit;
+    case 'nunit':
+      return nunit;
     case 'mocha':
       return mocha;
     case 'cucumber':
