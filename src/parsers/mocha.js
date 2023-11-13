@@ -11,22 +11,7 @@ function getTestCase(rawCase) {
   const test_case = new TestCase();
   test_case.name = rawCase["title"];
   test_case.duration = rawCase["duration"];
-  const regexp = /([\@\#][^\s]*)/gm; // match @tag or #tag
-  let matches = [...test_case.name.matchAll(regexp)];
-  if (matches.length > 0) {
-    let tags = [];
-    let rawTags = [];
-    for (let match of matches) {
-      let rawTag = match[0];
-      let tag  = rawTag.substring(1).split("=");
-      let tagName = tag[0];
-      test_case.meta_data.set(tagName, tag[1] ?? "");
-      tags.push(tagName);
-      rawTags.push(rawTag);
-    }
-    test_case.meta_data.set("tags", tags.join(","));
-    test_case.meta_data.set("tagsRaw", rawTags.join(","));
-  }
+  setMetaData(test_case);
   if (rawCase["state"] == "pending") {
     test_case.status = 'SKIP';
   }
@@ -50,6 +35,7 @@ function getTestSuite(rawSuite) {
   suite.duration = rawSuite["duration"];
   suite.skipped = rawSuite["pending"].length;
   suite.status = suite.total === (suite.passed + suite.skipped) ? 'PASS' : 'FAIL';
+  setMetaData(suite);
   const raw_test_cases = rawSuite.tests;
   if (raw_test_cases) {
     for (let i = 0; i < raw_test_cases.length; i++) {
@@ -66,7 +52,7 @@ function getTestSuite(rawSuite) {
 function getTestResult(raw_json) {
   const result = new TestResult();
   const { stats, results } = formatMochaJsonReport(raw_json);
-  
+
   /** @type {import('./mocha.result').MochaResult} */
   const formattedResult = results[0] || {};
   const suites = formattedResult["suites"] || [];
@@ -107,7 +93,7 @@ function formatMochaJsonReport(raw_json) {
   const suites = [];
   raw_json.failures.forEach(test => test.state = "failed");
   raw_json.passes.forEach(test => test.state = "passed");
-  raw_json.pending.forEach( test => { 
+  raw_json.pending.forEach(test => {
     test.state = "pending";
     test.duration = 0;
   });
@@ -137,7 +123,7 @@ function formatMochaJsonReport(raw_json) {
  */
 function flattenTestSuite(suite) {
   if (!suite.suites) {
-    return; 
+    return;
   }
   for (const child_suite of suite.suites) {
     flattenTestSuite(child_suite);
@@ -147,6 +133,31 @@ function flattenTestSuite(suite) {
     suite.pending = suite.pending.concat(child_suite.pending);
     suite.skipped = suite.skipped.concat(child_suite.skipped);
     suite.duration += child_suite.duration;
+  }
+}
+
+/**
+ * 
+ * @param {TestCase | TestSuite} test_element 
+ */
+function setMetaData(test_element) {
+  const regexp = /([\@\#][^\s]*)/gm; // match @tag or #tag
+  const matches = [...test_element.name.matchAll(regexp)];
+  if (matches.length > 0) {
+    const meta_tags = [];
+    const meta_raw_tags = [];
+    for (const match of matches) {
+      const rawTag = match[0];
+      const [name, value] = rawTag.substring(1).split("=");
+      if (value) {
+        test_element.meta_data.set(name, value);
+      } else {
+        meta_tags.push(name);
+        meta_raw_tags.push(rawTag);
+      }
+    }
+    test_element.meta_data.set("tags", meta_tags.join(","));
+    test_element.meta_data.set("tagsRaw", meta_raw_tags.join(","));
   }
 }
 

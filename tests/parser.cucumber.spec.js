@@ -3,7 +3,9 @@ const assert = require('assert');
 const path = require('path');
 
 describe('Parser - Cucumber Json', () => {
+  
   const testDataPath = "tests/data/cucumber"
+  
   it('single suite with single test', () => {
     const result = parse({ type: 'cucumber', files: [`${testDataPath}/single-suite-single-test.json`] });
     assert.deepEqual(result, {
@@ -28,6 +30,7 @@ describe('Parser - Cucumber Json', () => {
           skipped: 0,
           duration: 1.59,
           status: 'PASS',
+          meta_data: newMap({ tags: "blue,slow", suite: "1234", tagsRaw: "@blue,@slow" }),
           cases: [
             {
               duration: 1.59,
@@ -40,7 +43,7 @@ describe('Parser - Cucumber Json', () => {
               skipped: 0,
               stack_trace: "",
               status: "PASS",
-              meta_data: newMap({tags:"green,fast,testCase", green: "", fast: "", testCase: "1234", tagsRaw:"@green,@fast,@testCase=1234"}),
+              meta_data: newMap({ tags: "green,fast", testCase: "1234", tagsRaw: "@green,@fast" }),
               steps: [],
               total: 0
             }
@@ -49,7 +52,7 @@ describe('Parser - Cucumber Json', () => {
       ]
     });
   });
-  
+
   it('empty suite report', () => {
     const result = parse({ type: 'cucumber', files: [`${testDataPath}/empty-suite.json`] });
     assert.deepEqual(result, {
@@ -91,6 +94,7 @@ describe('Parser - Cucumber Json', () => {
           skipped: 0,
           duration: 2.84,
           status: 'FAIL',
+          meta_data: new Map(),
           cases: [
             {
               duration: 2.56,
@@ -134,6 +138,7 @@ describe('Parser - Cucumber Json', () => {
           skipped: 0,
           duration: 0.52,
           status: 'PASS',
+          meta_data: new Map(),
           cases: [
             {
               duration: 0.52,
@@ -161,14 +166,14 @@ describe('Parser - Cucumber Json', () => {
     let absolutePath = path.resolve(relativePath);
     const result1 = parse({ type: 'cucumber', files: [absolutePath] });
     assert.notEqual(null, result1);
-    const result2 = parse({ type: 'cucumber', files: [ relativePath]});
+    const result2 = parse({ type: 'cucumber', files: [relativePath] });
     assert.notEqual(null, result2);
   });
-  
-  function newMap( obj ) {
+
+  function newMap(obj) {
     let map = new Map();
     for (const property in obj) {
-      map.set( property, obj[property]);
+      map.set(property, obj[property]);
     }
     return map;
   }

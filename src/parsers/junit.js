@@ -4,19 +4,11 @@ const TestResult = require('../models/TestResult');
 const TestSuite = require('../models/TestSuite');
 const TestCase = require('../models/TestCase');
 
-function getTestCase(rawCase, suiteProperties) {
+function getTestCase(rawCase) {
   const test_case = new TestCase();
   test_case.name = rawCase["@_name"];
   test_case.duration = rawCase["@_time"] * 1000;
-  for (let [key,value] of suiteProperties) {
-    test_case.meta_data.set(key, value);
-  }
-  if (rawCase.properties && rawCase.properties.property.length > 0) {
-    const raw_properties = rawCase.properties.property;
-    for (let i = 0; i < raw_properties.length; i++) {
-      test_case.meta_data.set(raw_properties[i]["@_name"], raw_properties[i]["@_value"]);
-    }
-  }
+  setMetaData(rawCase.properties, test_case);
   if (rawCase.failure && rawCase.failure.length > 0) {
     test_case.status = 'FAIL';
     test_case.setFailure(rawCase.failure[0]["@_message"]);
@@ -43,20 +35,28 @@ function getTestSuite(rawSuite) {
   suite.passed = suite.total - suite.failed - suite.errors;
   suite.duration = rawSuite["@_time"] * 1000;
   suite.status = suite.total === suite.passed ? 'PASS' : 'FAIL';
-  const properties = new Map();
-  if (rawSuite.properties && rawSuite.properties.property.length > 0) {
-    const raw_properties = rawSuite.properties.property;
-    for (let i = 0; i < raw_properties.length; i++) {
-      properties.set(raw_properties[i]["@_name"], raw_properties[i]["@_value"])
-    }
-  }
+  setMetaData(rawSuite.properties, suite);
   const raw_test_cases = rawSuite.testcase;
   if (raw_test_cases) {
     for (let i = 0; i < raw_test_cases.length; i++) {
-      suite.cases.push(getTestCase(raw_test_cases[i], properties));
+      suite.cases.push(getTestCase(raw_test_cases[i]));
     }
   }
   return suite;
+}
+
+/**
+ * 
+ * @param {import('./junit.result').JUnitProperties} properties 
+ * @param {TestCase | TestSuite} test_element 
+ */
+function setMetaData(properties, test_element) {
+  if (properties && properties.property.length > 0) {
+    const raw_properties = properties.property;
+    for  (const raw_property of raw_properties) {
+      test_element.meta_data.set(raw_property["@_name"], raw_property["@_value"]);
+    }
+  }
 }
 
 /**
@@ -89,6 +89,11 @@ function setAggregateResults(result) {
   }
 }
 
+/**
+ * 
+ * @param {import('./junit.result').JUnitResultJson} json 
+ * @returns 
+ */
 function getTestResult(json) {
   const result = new TestResult();
   const rawResult = json["testsuites"][0];
