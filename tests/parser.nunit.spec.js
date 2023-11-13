@@ -1,6 +1,5 @@
 const { parse } = require('../src');
 const assert = require('assert');
-const path = require('path');
 
 describe('Parser - NUnit', () => {
 
@@ -238,10 +237,6 @@ describe('Parser - NUnit', () => {
 
   function sumCases(result, predicate) {
     return flattenTestCases(result).reduce( (total, testcase) => { return total + predicate(testcase)}, 0);
-  }
-
-  function findTestCaseById(result, id) {
-    return findTestCases(result, testcase => { return testcase.id == id})[0];
   }
 
   function findTestCases(result, predicate) {

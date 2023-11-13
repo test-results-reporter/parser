@@ -9,6 +9,7 @@ Parse test results from JUnit, TestNG, xUnit, Mocha(json), Cucumber(json) and ma
 | TestNG                        | ✅      |
 | JUnit                         | ✅      |
 | NUnit (v2 & v3)               | ✅      |
+| MSTest                        | ✅      |
 | xUnit                         | ✅      |
 | Mocha (json & mochawesome)    | ✅      |
 | Cucumber                      | ✅      |
