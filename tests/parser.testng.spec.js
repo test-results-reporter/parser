@@ -28,6 +28,7 @@ describe('Parser - TestNG', () => {
           skipped: 0,
           duration: 2000,
           status: 'PASS',
+          meta_data: new Map(),
           cases: [
             {
               id: '',
@@ -119,6 +120,7 @@ describe('Parser - TestNG', () => {
           "skipped": 0,
           "duration": 202082,
           "status": "FAIL",
+          meta_data: new Map(),
           "cases": [
             {
               "id": "",
@@ -207,6 +209,7 @@ describe('Parser - TestNG', () => {
           "skipped": 1,
           "duration": 545598,
           "status": "FAIL",
+          meta_data: new Map(),
           "cases": [
             {
               "id": "",
@@ -313,6 +316,7 @@ describe('Parser - TestNG', () => {
           "skipped": 0,
           "duration": 2000,
           "status": "PASS",
+          meta_data: new Map(),
           "cases": [
             {
               "id": "",
@@ -404,6 +408,7 @@ describe('Parser - TestNG', () => {
           "skipped": 0,
           "duration": 2000,
           "status": "PASS",
+          meta_data: new Map(),
           "cases": [
             {
               "id": "",
@@ -477,6 +482,7 @@ describe('Parser - TestNG', () => {
           "skipped": 0,
           "duration": 2000,
           "status": "PASS",
+          meta_data: new Map(),
           "cases": [
             {
               "id": "",
@@ -568,6 +574,7 @@ describe('Parser - TestNG', () => {
           "skipped": 0,
           "duration": 1164451,
           "status": "FAIL",
+          meta_data: new Map(),
           "cases": [
             {
               "id": "",
@@ -641,6 +648,7 @@ describe('Parser - TestNG', () => {
           "skipped": 0,
           "duration": 714100,
           "status": "FAIL",
+          meta_data: new Map(),
           "cases": [
             {
               "id": "",
@@ -732,6 +740,7 @@ describe('Parser - TestNG', () => {
           "skipped": 0,
           "duration": 202082,
           "status": "FAIL",
+          meta_data: new Map(),
           "cases": [
             {
               "id": "",
@@ -820,6 +829,7 @@ describe('Parser - TestNG', () => {
           "skipped": 1,
           "duration": 545598,
           "status": "FAIL",
+          meta_data: new Map(),
           "cases": [
             {
               "id": "",
@@ -908,6 +918,7 @@ describe('Parser - TestNG', () => {
           "skipped": 0,
           "duration": 2000,
           "status": "PASS",
+          meta_data: new Map(),
           "cases": [
             {
               "id": "",

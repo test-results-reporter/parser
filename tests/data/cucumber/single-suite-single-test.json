@@ -70,7 +70,20 @@
     "line": 1,
     "keyword": "Feature",
     "name": "Addition",
-    "tags": [],
+    "tags": [
+      {
+        "name": "@blue",
+        "line": 4
+      },
+      {
+        "name": "@slow",
+        "line": 4
+      },
+      {
+        "name": "@suite=1234",
+        "line": 4
+      }
+    ],
     "uri": "features\\sample.feature"
   }
 ]

@@ -3,7 +3,9 @@ const assert = require('assert');
 const path = require('path');
 
 describe('Parser - Mocha Json', () => {
+  
   const testDataPath = "tests/data/mocha/json"
+  
   it('single suite with single test', () => {
     const result = parse({ type: 'mocha', files: [`${testDataPath}/single-suite-single-test.json`] });
     assert.deepEqual(result, {
@@ -28,6 +30,7 @@ describe('Parser - Mocha Json', () => {
           skipped: 0,
           duration: 1,
           status: 'PASS',
+          meta_data: new Map(),
           cases: [
             {
               duration: 1,
@@ -49,6 +52,7 @@ describe('Parser - Mocha Json', () => {
       ]
     });
   });
+  
   it('empty suite report', () => {
     const result = parse({ type: 'mocha', files: [`${testDataPath}/empty-suite.json`] });
     assert.deepEqual(result, {
@@ -65,6 +69,7 @@ describe('Parser - Mocha Json', () => {
       suites: []
     });
   });
+
   it('suite with skipped tests', () => {
     const result = parse({ type: 'mocha', files: [`${testDataPath}/skipped-tests.json`] });
     assert.deepEqual(result, {
@@ -89,6 +94,7 @@ describe('Parser - Mocha Json', () => {
           skipped: 1,
           duration: 1,
           status: 'PASS',
+          meta_data: new Map(),
           cases: [
             {
               duration: 1,
@@ -149,6 +155,7 @@ describe('Parser - Mocha Json', () => {
           skipped: 0,
           duration: 4,
           status: 'PASS',
+          meta_data: new Map(),
           cases: [
             {
               duration: 3,
@@ -192,6 +199,7 @@ describe('Parser - Mocha Json', () => {
           skipped: 0,
           duration: 1,
           status: 'FAIL',
+          meta_data: new Map(),
           cases: [
             {
               duration: 1,
@@ -225,21 +233,23 @@ describe('Parser - Mocha Json', () => {
 
   it('has multiple tags', () => {
     const result = parse({ type: 'mocha', files: [`${testDataPath}/multiple-suites-multiple-tests-tags.json`] });
-    let testcase = result.suites[0].cases[0];
-    assert.equal(testcase.meta_data.has("tags"), true);
-    assert.equal(testcase.meta_data.get("tags"), "fast,1255")
-    assert.equal(testcase.meta_data.get("tagsRaw"), "@fast,#1255")
-    assert.equal(testcase.meta_data.has("fast"), true);
-    assert.equal(testcase.meta_data.has("1255"), true);
+    let test_suite = result.suites[0];
+    let test_case = result.suites[0].cases[0];
+    assert.equal(test_suite.meta_data.has("tags"), true);
+    assert.equal(test_suite.meta_data.get("tags"), "");
+    assert.equal(test_suite.meta_data.get("tagsRaw"), "");
+    assert.equal(test_suite.meta_data.get("type"), "api");
+    assert.equal(test_case.meta_data.has("tags"), true);
+    assert.equal(test_case.meta_data.get("tags"), "fast,1255");
+    assert.equal(test_case.meta_data.get("tagsRaw"), "@fast,#1255");
   });
 
   it('has single tag', () => {
     const result = parse({ type: 'mocha', files: [`${testDataPath}/multiple-suites-multiple-tests-tags.json`] });
-    let testcase = result.suites[1].cases[0];
-    assert.equal(testcase.meta_data.has("tags"), true);
-    assert.equal(testcase.meta_data.get("tags"), "1234")
-    assert.equal(testcase.meta_data.get("tagsRaw"), "#1234")
-    assert.equal(testcase.meta_data.has("1234"), true);
+    let test_case = result.suites[1].cases[0];
+    assert.equal(test_case.meta_data.has("tags"), true);
+    assert.equal(test_case.meta_data.get("tags"), "1234");
+    assert.equal(test_case.meta_data.get("tagsRaw"), "#1234");
   });
 
   it('does not include tags meta if no tags are present', () =>{
@@ -250,7 +260,8 @@ describe('Parser - Mocha Json', () => {
 });
 
 describe('Parser - Mocha Awesmome Json', () => {
-  const testDataPath = "tests/data/mocha/awesome"
+  const testDataPath = "tests/data/mocha/awesome";
+
   it('single suite with single test', () => {
     const result = parse({ type: 'mocha', files: [`${testDataPath}/single-suite-single-test.json`] });
     assert.deepEqual(result, {
@@ -275,6 +286,7 @@ describe('Parser - Mocha Awesmome Json', () => {
           skipped: 0,
           duration: 1,
           status: 'PASS',
+          meta_data: new Map(),
           cases: [
             {
               duration: 1,
@@ -296,6 +308,7 @@ describe('Parser - Mocha Awesmome Json', () => {
       ]
     });
   });
+
   it('empty suite report', () => {
     const result = parse({ type: 'mocha', files: [`${testDataPath}/empty-suite.json`] });
     assert.deepEqual(result, {
@@ -312,6 +325,7 @@ describe('Parser - Mocha Awesmome Json', () => {
       suites: []
     });
   });
+  
   it('suite with skipped tests', () => {
     const result = parse({ type: 'mocha', files: [`${testDataPath}/skipped-tests.json`] });
     assert.deepEqual(result, {
@@ -336,6 +350,7 @@ describe('Parser - Mocha Awesmome Json', () => {
           skipped: 1,
           duration: 1,
           status: 'PASS',
+          meta_data: new Map(),
           cases: [
             {
               duration: 1,
@@ -372,6 +387,7 @@ describe('Parser - Mocha Awesmome Json', () => {
       ]
     });
   });
+
   it('multiple suites', () => {
     const result = parse({ type: 'mocha', files: [`${testDataPath}/multiple-suites-multiple-tests.json`] });
     assert.deepEqual(result, {
@@ -396,6 +412,7 @@ describe('Parser - Mocha Awesmome Json', () => {
           skipped: 0,
           duration: 4,
           status: 'PASS',
+          meta_data: new Map(),
           cases: [
             {
               duration: 3,
@@ -439,6 +456,7 @@ describe('Parser - Mocha Awesmome Json', () => {
           skipped: 0,
           duration: 1,
           status: 'FAIL',
+          meta_data: new Map(),
           cases: [
             {
               duration: 1,
@@ -460,6 +478,7 @@ describe('Parser - Mocha Awesmome Json', () => {
       ]
     });
   });
+
   it('nested suites', () => {
     const result = parse({ type: 'mocha', files: [`${testDataPath}/nested-suites.json`] });
     assert.deepEqual(result, {
@@ -484,6 +503,7 @@ describe('Parser - Mocha Awesmome Json', () => {
           skipped: 0,
           duration: 4,
           status: 'PASS',
+          meta_data: new Map(),
           cases: [
             {
               duration: 3,
@@ -527,6 +547,7 @@ describe('Parser - Mocha Awesmome Json', () => {
           skipped: 0,
           duration: 1,
           status: 'FAIL',
+          meta_data: new Map(),
           cases: [
             {
               duration: 1,
@@ -557,4 +578,5 @@ describe('Parser - Mocha Awesmome Json', () => {
     const result2 = parse({ type: 'mocha', files: [relativePath]});
     assert.notEqual(null, result2);
   });
+
 });

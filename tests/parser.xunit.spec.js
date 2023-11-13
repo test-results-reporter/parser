@@ -30,6 +30,7 @@ describe('Parser - XUnit', () => {
           skipped: 0,
           duration: 86006.5,
           status: 'FAIL',
+          meta_data: new Map(),
           cases: [
             {
               duration: 86006.5,
@@ -75,6 +76,7 @@ describe('Parser - XUnit', () => {
           skipped: 1,
           duration: 1,
           status: 'PASS',
+          meta_data: new Map(),
           cases: [ 
             {
             duration: 1,
@@ -119,6 +121,7 @@ describe('Parser - XUnit', () => {
           skipped: 0,
           duration: 92155,
           status: 'FAIL',
+          meta_data: new Map(),
           cases: [
             {
               duration: 84201.1799,
@@ -162,6 +165,7 @@ describe('Parser - XUnit', () => {
           skipped: 0,
           duration: 85450,
           status: 'FAIL',
+          meta_data: new Map(),
           cases: [
             {
               duration: 1411.6188,
@@ -205,6 +209,7 @@ describe('Parser - XUnit', () => {
           skipped: 0,
           duration: 84195,
           status: 'PASS',
+          meta_data: new Map(),
           cases: [
             {
               duration: 84195.474,
@@ -233,6 +238,7 @@ describe('Parser - XUnit', () => {
           skipped: 0,
           duration: 86007,
           status: 'FAIL',
+          meta_data: new Map(),
           cases: [
             {
               duration: 86006.7435,

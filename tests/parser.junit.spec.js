@@ -3,7 +3,9 @@ const assert = require('assert');
 const path = require('path');
 
 describe('Parser - JUnit', () => {
+  
   const testDataPath = "tests/data/junit"
+  
   it('single suite with single test', () => {
     const result = parse({ type: 'junit', files: [`${testDataPath}/single-suite.xml`] });
     assert.deepEqual(result, {
@@ -28,6 +30,7 @@ describe('Parser - JUnit', () => {
           skipped: 0,
           duration: 10000,
           status: 'FAIL',
+          meta_data: new Map(),
           cases: [
             {
               duration: 10000,
@@ -74,6 +77,7 @@ describe('Parser - JUnit', () => {
           skipped: 0,
           duration: 10000,
           status: 'FAIL',
+          meta_data: new Map(),
           cases: [
             {
               duration: 10000,
@@ -120,6 +124,7 @@ describe('Parser - JUnit', () => {
           skipped: 0,
           duration: 10000,
           status: 'PASS',
+          meta_data: new Map(),
           cases: [
             {
               duration: 10000,
@@ -166,6 +171,7 @@ describe('Parser - JUnit', () => {
           skipped: 0,
           duration: 10000,
           status: 'FAIL',
+          meta_data: new Map(),
           cases: [
             {
               duration: 10000,
@@ -194,6 +200,7 @@ describe('Parser - JUnit', () => {
           skipped: 0,
           duration: 10000,
           status: 'PASS',
+          meta_data: new Map(),
           cases: [
             {
               duration: 10000,
@@ -240,6 +247,7 @@ describe('Parser - JUnit', () => {
           skipped: 0,
           duration: 10000,
           status: 'FAIL',
+          meta_data: new Map(),
           cases: [
             {
               duration: 10000,
@@ -268,6 +276,7 @@ describe('Parser - JUnit', () => {
           skipped: 0,
           duration: 10000,
           status: 'FAIL',
+          meta_data: new Map(),
           cases: [
             {
               duration: 10000,
@@ -314,6 +323,7 @@ describe('Parser - JUnit', () => {
           skipped: 0,
           duration: 807,
           status: 'PASS',
+          meta_data: new Map(),
           cases: [
             {
               duration: 807,
@@ -360,6 +370,7 @@ describe('Parser - JUnit', () => {
           "skipped": 0,
           "duration": 446,
           "status": "FAIL",
+          meta_data: new Map(),
           "cases": [
             {
               "id": "",
@@ -403,6 +414,7 @@ describe('Parser - JUnit', () => {
           "skipped": 0,
           "duration": 634,
           "status": "PASS",
+          meta_data: new Map(),
           "cases": [
             {
               "id": "",
@@ -449,6 +461,7 @@ describe('Parser - JUnit', () => {
           "skipped": 1,
           "duration": 870.6800000000001,
           "status": "FAIL",
+          meta_data: new Map(),
           "cases": [
             {
               "id": "",
@@ -544,7 +557,10 @@ describe('Parser - JUnit', () => {
   
   it('meta-data from suite copied to testcase', () => {
     const result = parse({ type: 'junit', files: ['tests/data/junit/multiple-suites-properties.xml'] });
-    assert.equal(result.suites[0].cases[0].meta_data.size, 2);
+    assert.equal(result.suites[0].meta_data.size, 2);
+    assert.equal(result.suites[0].meta_data.get("key1"), "value1");
+    assert.equal(result.suites[0].meta_data.get("key2"), "value2");
+    assert.equal(result.suites[0].cases[0].meta_data.size, 1);
     assert.equal(result.suites[0].cases[0].meta_data.get("key1"), "override-value1");
   });
 
