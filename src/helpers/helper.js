@@ -31,7 +31,11 @@ const FORCED_ARRAY_KEYS = [
   "testng-results.suite.test",
   "testng-results.suite.test.class",
   "testng-results.suite.test.class.test-method",
-  "testng-results.suite.test.class.test-method.exception"
+  "testng-results.suite.test.class.test-method.exception",
+  "TestRun.Results.UnitTestResult",
+  "TestRun.TestDefinitions.UnitTest",
+  "TestRun.TestDefinitions.UnitTest.TestCategory.TestCategoryItem",
+  "TestRun.TestDefinitions.UnitTest.Properties.Property"
 ];
 
 const configured_parser = new XMLParser({
