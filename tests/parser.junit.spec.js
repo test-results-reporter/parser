@@ -529,7 +529,7 @@ describe('Parser - JUnit', () => {
     });
   });
 
-  it('parse testcafe with testSuite root node', () => {
+  it('parse testcafe with testsuite root node', () => {
     const result = parse({ type: 'junit', files: [`${testDataPath}/testCafe.xml`] });
 
     assert.equal(result.suites.length, 1);

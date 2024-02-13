@@ -96,7 +96,7 @@ function setAggregateResults(result) {
  */
 function getTestResult(json) {
   const result = new TestResult();
-  const rawResult = json["testsuites"][0];
+  const rawResult = json["testsuites"] ? json["testsuites"][0] : json["testsuite"];
   result.name = rawResult["@_name"] || '';
   result.total = rawResult["@_tests"];
   result.failed = rawResult["@_failures"];
@@ -111,13 +111,18 @@ function getTestResult(json) {
   result.total = result.total - result.skipped;
   result.passed = result.total - result.failed - result.errors;
   result.duration = rawResult["@_time"] * 1000;
-  const rawSuites = rawResult["testsuite"];
-  if (!(typeof rawSuites === "undefined")) { // Don't filter if there are no testsuite objects
-    const filteredSuites = rawSuites.filter(suite => suite.testcase);
-    for (let i = 0; i < filteredSuites.length; i++) {
-      result.suites.push(getTestSuite(filteredSuites[i]));
+  if (json["testsuites"]) { // top-level element is testsuites
+    const rawSuites = rawResult["testsuite"];
+    if (!(typeof rawSuites === "undefined")) { // Don't filter if there are no testsuite objects
+      const filteredSuites = rawSuites.filter(suite => suite.testcase);
+      for (let i = 0; i < filteredSuites.length; i++) {
+        result.suites.push(getTestSuite(filteredSuites[i]));
+      }
     }
+  } else { // top level element is testsuite
+    result.suites.push(getTestSuite(rawResult));
   }
+  
   setAggregateResults(result);
   result.status = result.total === result.passed ? 'PASS' : 'FAIL';
   return result;
