@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite name="TestCafe Tests" tests="2" failures="0" skipped="0" errors="0" time="211.682" timestamp="Tue, 13 Feb 2024 10:28:58 GMT" >
+  <testcase classname="Tests" file="/home/vsts/work/1/s/testcafe/tests/test1.js" name="Test1" time="15.513">
+  </testcase>
+  <testcase classname="Tests" file="/home/vsts/work/1/s/testcafe/tests/test1.js" name="Test2" time="193.695">
+  </testcase>
+</testsuite>
