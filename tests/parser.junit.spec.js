@@ -529,6 +529,13 @@ describe('Parser - JUnit', () => {
     });
   });
 
+  it('parse testcafe with testsuite root node', () => {
+    const result = parse({ type: 'junit', files: [`${testDataPath}/testCafe.xml`] });
+
+    assert.equal(result.suites.length, 1);
+    assert.equal(result.suites[0].cases.length, 2);
+  });
+
   it('empty suite with no tests', () => {
     const result = parse({ type: 'junit', files: [`${testDataPath}/no-suites.xml`] });
     assert.deepEqual(result, {
