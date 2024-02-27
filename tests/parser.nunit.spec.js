@@ -230,8 +230,11 @@ describe('Parser - NUnit', () => {
       assert.equal(testCaseWithMultipleCategories.get("Categories"), "FixtureCategory,MockCategory");
       assert.equal(testCaseWithMultipleCategories.has("FixtureCategory"), true);
       assert.equal(testCaseWithMultipleCategories.has("MockCategory"), true);      
-    })
+    });
 
+    it('Should include attachments associated to test-case', () => {
+      assert.fail();
+    });
 
   });
 

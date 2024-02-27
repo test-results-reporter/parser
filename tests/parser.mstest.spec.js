@@ -62,4 +62,8 @@ describe('Parser - MSTest', () => {
         assert.equal(testCaseWithCategories.meta_data.get("Categories"), "FixtureCategory,MockCategory");
     });
 
+    it('Should include ResultFiles as test case attachments', () => {
+        assert.fail();
+    });
+
 });

@@ -571,4 +571,8 @@ describe('Parser - JUnit', () => {
     assert.equal(result.suites[0].cases[0].meta_data.get("key1"), "override-value1");
   });
 
+  it('parse system.out to locate attachments', () => {
+    assert.fail();
+  });
+
 });
