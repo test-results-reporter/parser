@@ -33,6 +33,7 @@ describe('Parser - Mocha Json', () => {
           meta_data: new Map(),
           cases: [
             {
+              attachments: [],
               duration: 1,
               errors: 0,
               failed: 0,
@@ -97,6 +98,7 @@ describe('Parser - Mocha Json', () => {
           meta_data: new Map(),
           cases: [
             {
+              attachments: [],
               duration: 1,
               errors: 0,
               failed: 0,
@@ -112,6 +114,7 @@ describe('Parser - Mocha Json', () => {
               total: 0
             },
             {
+              attachments: [],
               duration: 0,
               errors: 0,
               failed: 0,
@@ -158,6 +161,7 @@ describe('Parser - Mocha Json', () => {
           meta_data: new Map(),
           cases: [
             {
+              attachments: [],
               duration: 3,
               errors: 0,
               failed: 0,
@@ -173,6 +177,7 @@ describe('Parser - Mocha Json', () => {
               total: 0
             },
             {
+              attachments: [],
               duration: 1,
               errors: 0,
               failed: 0,
@@ -202,6 +207,7 @@ describe('Parser - Mocha Json', () => {
           meta_data: new Map(),
           cases: [
             {
+              attachments: [],
               duration: 1,
               errors: 0,
               failed: 0,
@@ -259,7 +265,7 @@ describe('Parser - Mocha Json', () => {
   });
 });
 
-describe('Parser - Mocha Awesmome Json', () => {
+describe('Parser - Mocha Awesome Json', () => {
   const testDataPath = "tests/data/mocha/awesome";
 
   it('single suite with single test', () => {
@@ -289,6 +295,7 @@ describe('Parser - Mocha Awesmome Json', () => {
           meta_data: new Map(),
           cases: [
             {
+              attachments: [],
               duration: 1,
               errors: 0,
               failed: 0,
@@ -353,6 +360,7 @@ describe('Parser - Mocha Awesmome Json', () => {
           meta_data: new Map(),
           cases: [
             {
+              attachments: [],
               duration: 1,
               errors: 0,
               failed: 0,
@@ -368,6 +376,7 @@ describe('Parser - Mocha Awesmome Json', () => {
               total: 0
             },
             {
+              attachments: [],
               duration: 0,
               errors: 0,
               failed: 0,
@@ -415,6 +424,7 @@ describe('Parser - Mocha Awesmome Json', () => {
           meta_data: new Map(),
           cases: [
             {
+              attachments: [],
               duration: 3,
               errors: 0,
               failed: 0,
@@ -430,6 +440,7 @@ describe('Parser - Mocha Awesmome Json', () => {
               total: 0
             },
             {
+              attachments: [],
               duration: 1,
               errors: 0,
               failed: 0,
@@ -459,6 +470,7 @@ describe('Parser - Mocha Awesmome Json', () => {
           meta_data: new Map(),
           cases: [
             {
+              attachments: [],
               duration: 1,
               errors: 0,
               failed: 0,
@@ -506,6 +518,7 @@ describe('Parser - Mocha Awesmome Json', () => {
           meta_data: new Map(),
           cases: [
             {
+              attachments: [],
               duration: 3,
               errors: 0,
               failed: 0,
@@ -521,6 +534,7 @@ describe('Parser - Mocha Awesmome Json', () => {
               total: 0
             },
             {
+              attachments: [],
               duration: 1,
               errors: 0,
               failed: 0,
@@ -550,6 +564,7 @@ describe('Parser - Mocha Awesmome Json', () => {
           meta_data: new Map(),
           cases: [
             {
+              attachments: [],
               duration: 1,
               errors: 0,
               failed: 0,
