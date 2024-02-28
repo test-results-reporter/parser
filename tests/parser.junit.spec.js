@@ -587,7 +587,22 @@ describe('Parser - JUnit', () => {
   });
 
   it('parse system.out to locate attachments', () => {
-    assert.fail();
+    const result = parse({ type: 'junit', files: ['tests/data/junit/test-case-attachments.xml'] });
+
+    // test case with 1 attachment
+    assert.equal(result.suites[0].cases[0].attachments.length, 1);
+    assert.equal(result.suites[0].cases[0].attachments[0].path, '/path/to/attachment.png');
+
+    // test case with multiple attachments
+    assert.equal(result.suites[0].cases[1].attachments.length, 2);
+    assert.equal(result.suites[0].cases[1].attachments[0].path, '/path/to/attachment1.png');
+    assert.equal(result.suites[0].cases[1].attachments[1].path, '/path/to/attachment2.png');
+
+    // test case with no attachments
+    assert.equal(result.suites[0].cases[2].attachments.length, 0);
+
+    // test case with empty or malformed attachment output
+    assert.equal(result.suites[0].cases[3].attachments.length, 0);
   });
 
 });

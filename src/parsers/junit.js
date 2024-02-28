@@ -3,12 +3,15 @@ const { getJsonFromXMLFile } = require('../helpers/helper');
 const TestResult = require('../models/TestResult');
 const TestSuite = require('../models/TestSuite');
 const TestCase = require('../models/TestCase');
+const TestAttachment = require('../models/TestAttachment');
+const { Test } = require('mocha');
 
 function getTestCase(rawCase) {
   const test_case = new TestCase();
   test_case.name = rawCase["@_name"];
   test_case.duration = rawCase["@_time"] * 1000;
-  setMetaData(rawCase.properties, test_case);
+  setAttachments(rawCase, test_case);
+  setMetaData(rawCase.properties, test_case);  
   if (rawCase.failure && rawCase.failure.length > 0) {
     test_case.status = 'FAIL';
     test_case.setFailure(rawCase.failure[0]["@_message"]);
@@ -55,6 +58,34 @@ function setMetaData(properties, test_element) {
     const raw_properties = properties.property;
     for  (const raw_property of raw_properties) {
       test_element.meta_data.set(raw_property["@_name"], raw_property["@_value"]);
+    }
+  }
+}
+
+/**
+ * @param {import('./junit.result').JUnitTestCase} rawCase
+ * @param {TestCase} test_element
+ */
+function setAttachments(rawCase, test_element) {
+  if (rawCase['system.out']) {
+    const systemOut = rawCase['system.out'];
+
+    // junit attachments plug syntax is [[ATTACHMENT|/absolute/path/to/file.png]]
+    const regex = new RegExp('\\[\\[ATTACHMENT\\|([^\\]]+)\\]\\]', 'g');
+
+    while ((m = regex.exec(systemOut)) !== null) {
+      // avoid infinite loops with zero-width matches
+      if (m.index === regex.lastIndex) {
+        regex.lastIndex++;
+      }
+
+      let filePath = m[1].trim();
+
+      if (filePath.length > 0) {
+        const attachment = new TestAttachment();
+        attachment.path = filePath;        
+        test_element.attachments.push(attachment);
+      }
     }
   }
 }
