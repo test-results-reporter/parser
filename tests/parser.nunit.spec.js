@@ -110,8 +110,8 @@ describe('Parser - NUnit', () => {
 
     it('Should calculate totals', () => {
       // totals on the testresult
-      assert.equal(result.total, 18);
-      assert.equal(result.passed, 12);
+      assert.equal(result.total, 19);
+      assert.equal(result.passed, 13);
       assert.equal(result.failed, 2);
       assert.equal(result.errors, 1); 
 
@@ -138,7 +138,7 @@ describe('Parser - NUnit', () => {
     });
 
     it('Should map results correctly', () => {
-      assert.equal(result.suites.length, 8);
+      assert.equal(result.suites.length, 9);
 
       // assemblies.mocktestfixture
       assert.equal(result.suites[0].status, "FAIL");
@@ -233,7 +233,10 @@ describe('Parser - NUnit', () => {
     });
 
     it('Should include attachments associated to test-case', () => {
-      assert.fail();
+      const testCaseWithAttachments = result.suites[8].cases[0];
+      assert.equal(testCaseWithAttachments.attachments.length, 1);
+      assert.equal(testCaseWithAttachments.attachments[0].path, "c:\\absolute\\filepath\\dummy.txt")
+      assert.equal(testCaseWithAttachments.attachments[0].name, "my description")
     });
 
   });

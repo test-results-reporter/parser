@@ -52,6 +52,7 @@ const configured_parser = new XMLParser({
         case "property":
         case "test-suite":
         case "test-case":
+        case "attachment":
           return true;
         default:
           return false;
