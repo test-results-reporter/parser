@@ -1,8 +1,10 @@
 const { getJsonFromXMLFile } = require('../helpers/helper');
+const path = require('path');
 
 const TestResult = require('../models/TestResult');
 const TestSuite = require('../models/TestSuite');
 const TestCase = require('../models/TestCase');
+const TestAttachment = require('../models/TestAttachment');
 
 const RESULT_MAP = {
   Passed: "PASS",
@@ -39,6 +41,27 @@ function populateMetaData(rawElement, map) {
   }
 }
 
+function populateAttachments(rawResultElement, attachments, testRunName) {
+
+  // attachments are in /TestRun/Results/UnitTestResult/ResultFiles/ResultFile[@path]
+  if (rawResultElement.ResultFiles && rawResultElement.ResultFiles.ResultFile) {
+    let executionId = rawResultElement["@_executionId"];
+    let rawAttachments = rawResultElement.ResultFiles.ResultFile;
+    for (let i = 0; i < rawAttachments.length; i++) {
+      let filePath = rawAttachments[i]["@_path"];
+      if (filePath) {
+
+        // file path is relative to testresults.trx
+        // stored in ./<testrunname>/in/<executionId>/path
+
+        let attachment = new TestAttachment();
+        attachment.path = path.join(testRunName, "In", executionId, ...(filePath.split(/[\\/]/g)));
+        attachments.push(attachment);
+      }
+    }
+  }
+}
+
 function getTestResultDuration(rawTestResult) {
   // durations are represented in a timeformat with 7 digit microsecond precision
   // TODO: introduce d3-time-format after https://github.com/test-results-reporter/parser/issues/42 is fixed.
@@ -68,7 +91,16 @@ function getTestSuiteName(testCase) {
   return testCase.name.substring(0, index);
 }
 
-function getTestCase(rawTestResult, definitionMap) {
+function getTestRunName(rawTestRun) {
+  // testrun.name contains '@', spaces and ':'
+  let name = rawTestRun["@_name"];
+  if (name) {
+    return name.replace(/[ @:]/g, '_');
+  }
+  return '';
+}
+
+function getTestCase(rawTestResult, definitionMap, testRunName) {
   let id = rawTestResult["@_testId"];
 
   if (definitionMap.has(id)) {
@@ -85,6 +117,8 @@ function getTestCase(rawTestResult, definitionMap) {
       testCase.setFailure(rawTestResult.Output.ErrorInfo.Message);
       testCase.stack_trace = rawTestResult.Output.ErrorInfo.StackTrace ?? '';
     }
+    // populate attachments
+    populateAttachments(rawTestResult, testCase.attachments, testRunName);
     // populate meta
     populateMetaData(rawDefinition, testCase.meta_data);
 
@@ -126,6 +160,9 @@ function getTestResults(rawTestResults) {
 }
 
 function getTestSuites(rawTestRun) {
+
+  // test attachments are stored in a testrun specific folder <name>/in/<executionid>/<computername>
+  const testRunName = getTestRunName(rawTestRun);
   // outcomes + durations are stored in /TestRun/TestResults/*
   const testResults = getTestResults(rawTestRun.Results);
   // test names and details are stored in /TestRun/TestDefinitions/*
@@ -137,7 +174,7 @@ function getTestSuites(rawTestRun) {
 
   for (let i = 0; i < testResults.length; i++) {
     let rawTestResult = testResults[i];
-    let testCase = getTestCase(rawTestResult, testDefinitions);
+    let testCase = getTestCase(rawTestResult, testDefinitions, testRunName);
     let suiteName = getTestSuiteName(testCase);
 
     if (!suiteMap.has(suiteName)) {
