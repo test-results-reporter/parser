@@ -31,6 +31,7 @@ describe('Parser - TestNG', () => {
           meta_data: new Map(),
           cases: [
             {
+              attachments: [],
               id: '',
               name: 'c2',
               total: 0,
@@ -46,6 +47,7 @@ describe('Parser - TestNG', () => {
               steps: []
             },
             {
+              attachments: [],
               id: '',
               name: 'c3',
               total: 0,
@@ -61,6 +63,7 @@ describe('Parser - TestNG', () => {
               steps: []
             },
             {
+              attachments: [],
               id: '',
               name: 'c1',
               total: 0,
@@ -76,6 +79,7 @@ describe('Parser - TestNG', () => {
               steps: []
             },
             {
+              attachments: [],
               id: '',
               name: 'c4',
               total: 0,
@@ -120,9 +124,10 @@ describe('Parser - TestNG', () => {
           "skipped": 0,
           "duration": 202082,
           "status": "FAIL",
-          meta_data: new Map(),
+          "meta_data": new Map(),
           "cases": [
             {
+              "attachments": [],
               "id": "",
               "name": "GU",
               "total": 0,
@@ -138,6 +143,7 @@ describe('Parser - TestNG', () => {
               "steps": []
             },
             {
+              "attachments": [],
               "id": "",
               "name": "SBP",
               "total": 0,
@@ -153,6 +159,7 @@ describe('Parser - TestNG', () => {
               "steps": []
             },
             {
+              "attachments": [],
               "id": "",
               "name": "SBP",
               "total": 0,
@@ -168,6 +175,7 @@ describe('Parser - TestNG', () => {
               "steps": []
             },
             {
+              "attachments": [],
               "id": "",
               "name": "SBP_WA",
               "total": 0,
@@ -183,6 +191,7 @@ describe('Parser - TestNG', () => {
               "steps": []
             },
             {
+              "attachments": [],
               "id": "",
               "name": "CB",
               "total": 0,
@@ -209,9 +218,10 @@ describe('Parser - TestNG', () => {
           "skipped": 1,
           "duration": 545598,
           "status": "FAIL",
-          meta_data: new Map(),
+          "meta_data": new Map(),
           "cases": [
             {
+              "attachments": [],
               "id": "",
               "name": "GU",
               "total": 0,
@@ -227,6 +237,7 @@ describe('Parser - TestNG', () => {
               "steps": []
             },
             {
+              "attachments": [],
               "id": "",
               "name": "SBP",
               "total": 0,
@@ -242,6 +253,7 @@ describe('Parser - TestNG', () => {
               "steps": []
             },
             {
+              "attachments": [],
               "id": "",
               "name": "SBP",
               "total": 0,
@@ -257,6 +269,7 @@ describe('Parser - TestNG', () => {
               "steps": []
             },
             {
+              "attachments": [],
               "id": "",
               "name": "SBP_WA",
               "total": 0,
@@ -272,6 +285,7 @@ describe('Parser - TestNG', () => {
               "steps": []
             },
             {
+              "attachments": [],
               "id": "",
               "name": "CB",
               "total": 0,
@@ -316,9 +330,10 @@ describe('Parser - TestNG', () => {
           "skipped": 0,
           "duration": 2000,
           "status": "PASS",
-          meta_data: new Map(),
+          "meta_data": new Map(),
           "cases": [
             {
+              "attachments": [],
               "id": "",
               "name": "c2",
               "total": 0,
@@ -334,6 +349,7 @@ describe('Parser - TestNG', () => {
               "steps": []
             },
             {
+              "attachments": [],
               "id": "",
               "name": "c3",
               "total": 0,
@@ -349,6 +365,7 @@ describe('Parser - TestNG', () => {
               "steps": []
             },
             {
+              "attachments": [],
               "id": "",
               "name": "c1",
               "total": 0,
@@ -364,6 +381,7 @@ describe('Parser - TestNG', () => {
               "steps": []
             },
             {
+              "attachments": [],
               "id": "",
               "name": "c4",
               "total": 0,
@@ -408,9 +426,10 @@ describe('Parser - TestNG', () => {
           "skipped": 0,
           "duration": 2000,
           "status": "PASS",
-          meta_data: new Map(),
+          "meta_data": new Map(),
           "cases": [
             {
+              "attachments": [],
               "id": "",
               "name": "c2",
               "total": 0,
@@ -426,6 +445,7 @@ describe('Parser - TestNG', () => {
               "steps": []
             },
             {
+              "attachments": [],
               "id": "",
               "name": "c3",
               "total": 0,
@@ -441,6 +461,7 @@ describe('Parser - TestNG', () => {
               "steps": []
             },
             {
+              "attachments": [],
               "id": "",
               "name": "c1",
               "total": 0,
@@ -456,6 +477,7 @@ describe('Parser - TestNG', () => {
               "steps": []
             },
             {
+              "attachments": [],
               "id": "",
               "name": "c4",
               "total": 0,
@@ -482,9 +504,10 @@ describe('Parser - TestNG', () => {
           "skipped": 0,
           "duration": 2000,
           "status": "PASS",
-          meta_data: new Map(),
+          "meta_data": new Map(),
           "cases": [
             {
+              "attachments": [],
               "id": "",
               "name": "c2",
               "total": 0,
@@ -500,6 +523,7 @@ describe('Parser - TestNG', () => {
               "steps": []
             },
             {
+              "attachments": [],
               "id": "",
               "name": "c3",
               "total": 0,
@@ -515,6 +539,7 @@ describe('Parser - TestNG', () => {
               "steps": []
             },
             {
+              "attachments": [],
               "id": "",
               "name": "c1",
               "total": 0,
@@ -530,6 +555,7 @@ describe('Parser - TestNG', () => {
               "steps": []
             },
             {
+              "attachments": [],
               "id": "",
               "name": "c4",
               "total": 0,
@@ -574,9 +600,10 @@ describe('Parser - TestNG', () => {
           "skipped": 0,
           "duration": 1164451,
           "status": "FAIL",
-          meta_data: new Map(),
+          "meta_data": new Map(),
           "cases": [
             {
+              "attachments": [],
               "id": "",
               "name": "GU",
               "total": 0,
@@ -592,6 +619,7 @@ describe('Parser - TestNG', () => {
               "steps": []
             },
             {
+              "attachments": [],
               "id": "",
               "name": "PC",
               "total": 0,
@@ -607,6 +635,7 @@ describe('Parser - TestNG', () => {
               "steps": []
             },
             {
+              "attachments": [],
               "id": "",
               "name": "PC",
               "total": 0,
@@ -622,6 +651,7 @@ describe('Parser - TestNG', () => {
               "steps": []
             },
             {
+              "attachments": [],
               "id": "",
               "name": "CB",
               "total": 0,
@@ -648,9 +678,10 @@ describe('Parser - TestNG', () => {
           "skipped": 0,
           "duration": 714100,
           "status": "FAIL",
-          meta_data: new Map(),
+          "meta_data": new Map(),
           "cases": [
             {
+              "attachments": [],
               "id": "",
               "name": "GU",
               "total": 0,
@@ -666,6 +697,7 @@ describe('Parser - TestNG', () => {
               "steps": []
             },
             {
+              "attachments": [],
               "id": "",
               "name": "PC",
               "total": 0,
@@ -681,6 +713,7 @@ describe('Parser - TestNG', () => {
               "steps": []
             },
             {
+              "attachments": [],
               "id": "",
               "name": "PC",
               "total": 0,
@@ -696,6 +729,7 @@ describe('Parser - TestNG', () => {
               "steps": []
             },
             {
+              "attachments": [],
               "id": "",
               "name": "CB",
               "total": 0,
@@ -740,9 +774,10 @@ describe('Parser - TestNG', () => {
           "skipped": 0,
           "duration": 202082,
           "status": "FAIL",
-          meta_data: new Map(),
+          "meta_data": new Map(),
           "cases": [
             {
+              "attachments": [],
               "id": "",
               "name": "GU",
               "total": 0,
@@ -758,6 +793,7 @@ describe('Parser - TestNG', () => {
               "steps": []
             },
             {
+              "attachments": [],
               "id": "",
               "name": "SBP",
               "total": 0,
@@ -773,6 +809,7 @@ describe('Parser - TestNG', () => {
               "steps": []
             },
             {
+              "attachments": [],
               "id": "",
               "name": "SBP",
               "total": 0,
@@ -788,6 +825,7 @@ describe('Parser - TestNG', () => {
               "steps": []
             },
             {
+              "attachments": [],
               "id": "",
               "name": "SBP_WA",
               "total": 0,
@@ -803,6 +841,7 @@ describe('Parser - TestNG', () => {
               "steps": []
             },
             {
+              "attachments": [],
               "id": "",
               "name": "CB",
               "total": 0,
@@ -829,9 +868,10 @@ describe('Parser - TestNG', () => {
           "skipped": 1,
           "duration": 545598,
           "status": "FAIL",
-          meta_data: new Map(),
+          "meta_data": new Map(),
           "cases": [
             {
+              "attachments": [],
               "id": "",
               "name": "GU",
               "total": 0,
@@ -847,6 +887,7 @@ describe('Parser - TestNG', () => {
               "steps": []
             },
             {
+              "attachments": [],
               "id": "",
               "name": "SBP",
               "total": 0,
@@ -862,6 +903,7 @@ describe('Parser - TestNG', () => {
               "steps": []
             },
             {
+              "attachments": [],
               "id": "",
               "name": "SBP",
               "total": 0,
@@ -877,6 +919,7 @@ describe('Parser - TestNG', () => {
               "steps": []
             },
             {
+              "attachments": [],
               "id": "",
               "name": "SBP_WA",
               "total": 0,
@@ -892,6 +935,7 @@ describe('Parser - TestNG', () => {
               "steps": []
             },
             {
+              "attachments": [],
               "id": "",
               "name": "CB",
               "total": 0,
@@ -918,9 +962,10 @@ describe('Parser - TestNG', () => {
           "skipped": 0,
           "duration": 2000,
           "status": "PASS",
-          meta_data: new Map(),
+          "meta_data": new Map(),
           "cases": [
             {
+              "attachments": [],
               "id": "",
               "name": "c2",
               "total": 0,
@@ -936,6 +981,7 @@ describe('Parser - TestNG', () => {
               "steps": []
             },
             {
+              "attachments": [],
               "id": "",
               "name": "c3",
               "total": 0,
@@ -951,6 +997,7 @@ describe('Parser - TestNG', () => {
               "steps": []
             },
             {
+              "attachments": [],
               "id": "",
               "name": "c1",
               "total": 0,
@@ -966,6 +1013,7 @@ describe('Parser - TestNG', () => {
               "steps": []
             },
             {
+              "attachments": [],
               "id": "",
               "name": "c4",
               "total": 0,

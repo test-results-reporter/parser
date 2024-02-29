@@ -33,6 +33,7 @@ describe('Parser - JUnit', () => {
           meta_data: new Map(),
           cases: [
             {
+              attachments: [],
               duration: 10000,
               errors: 0,
               failed: 0,
@@ -80,6 +81,7 @@ describe('Parser - JUnit', () => {
           meta_data: new Map(),
           cases: [
             {
+              attachments: [],
               duration: 10000,
               errors: 0,
               failed: 0,
@@ -127,6 +129,7 @@ describe('Parser - JUnit', () => {
           meta_data: new Map(),
           cases: [
             {
+              attachments: [],
               duration: 10000,
               errors: 0,
               failed: 0,
@@ -174,6 +177,7 @@ describe('Parser - JUnit', () => {
           meta_data: new Map(),
           cases: [
             {
+              attachments: [],
               duration: 10000,
               errors: 0,
               failed: 0,
@@ -203,6 +207,7 @@ describe('Parser - JUnit', () => {
           meta_data: new Map(),
           cases: [
             {
+              attachments: [],
               duration: 10000,
               errors: 0,
               failed: 0,
@@ -250,6 +255,7 @@ describe('Parser - JUnit', () => {
           meta_data: new Map(),
           cases: [
             {
+              attachments: [],
               duration: 10000,
               errors: 0,
               failed: 0,
@@ -279,6 +285,7 @@ describe('Parser - JUnit', () => {
           meta_data: new Map(),
           cases: [
             {
+              attachments: [],
               duration: 10000,
               errors: 0,
               failed: 0,
@@ -326,6 +333,7 @@ describe('Parser - JUnit', () => {
           meta_data: new Map(),
           cases: [
             {
+              attachments: [],
               duration: 807,
               errors: 0,
               failed: 0,
@@ -385,6 +393,7 @@ describe('Parser - JUnit', () => {
               failure: "expected to include 'Residntial'",
               stack_trace: "",
               meta_data: new Map(),
+              attachments: [],
               steps: []
             },
             {
@@ -400,6 +409,7 @@ describe('Parser - JUnit', () => {
               failure: "",
               stack_trace: "",
               meta_data: new Map(),
+              attachments: [],
               steps: []
             }
           ]
@@ -429,6 +439,7 @@ describe('Parser - JUnit', () => {
               failure: "",
               stack_trace: "",
               meta_data: new Map(),
+              attachments: [],
               steps: []
             }
           ]
@@ -477,6 +488,7 @@ describe('Parser - JUnit', () => {
               failure: "",
               stack_trace: "",
               meta_data: inheritedProperties,
+              attachments: [],
               steps: []
             },
             {
@@ -492,6 +504,7 @@ describe('Parser - JUnit', () => {
               failure: "TearDown : System.InvalidOperationException : Operation is not valid due to the current state of the object.",
               stack_trace: "",
               meta_data: inheritedProperties,
+              attachments: [],
               steps: []
             },
             {
@@ -507,6 +520,7 @@ describe('Parser - JUnit', () => {
               failure: "",
               stack_trace: "",
               meta_data: inheritedProperties,
+              attachments: [],
               steps: []
             },
             {
@@ -522,6 +536,7 @@ describe('Parser - JUnit', () => {
               failure: "",
               stack_trace: "",
               meta_data: inheritedProperties,
+              attachments: [],
               steps: []
             }
           ]
@@ -592,6 +607,25 @@ describe('Parser - JUnit', () => {
     assert.equal(result.suites[2].cases[0].meta_data.get("hostname"), "webkit");
     assert.equal(result.suites[2].cases[1].meta_data.get("hostname"), "webkit");
     
+  });
+
+  it('parse system.out to locate attachments', () => {
+    const result = parse({ type: 'junit', files: ['tests/data/junit/test-case-attachments.xml'] });
+
+    // test case with 1 attachment
+    assert.equal(result.suites[0].cases[0].attachments.length, 1);
+    assert.equal(result.suites[0].cases[0].attachments[0].path, '/path/to/attachment.png');
+
+    // test case with multiple attachments
+    assert.equal(result.suites[0].cases[1].attachments.length, 2);
+    assert.equal(result.suites[0].cases[1].attachments[0].path, '/path/to/attachment1.png');
+    assert.equal(result.suites[0].cases[1].attachments[1].path, '/path/to/attachment2.png');
+
+    // test case with no attachments
+    assert.equal(result.suites[0].cases[2].attachments.length, 0);
+
+    // test case with empty or malformed attachment output
+    assert.equal(result.suites[0].cases[3].attachments.length, 0);
   });
 
 });

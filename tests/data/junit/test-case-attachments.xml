@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites id="id" name="result name" tests="1" failures="1" errors="" time="10">
+  <testsuite id="testsuite" name="suite name" tests="1" failures="1" time="10">
+    <!-- single attachment -->
+    <testcase id="testsuite.withattachment" name="include attachments" time="10">
+      <system.out>[[ATTACHMENT|/path/to/attachment.png]]
+      </system.out>
+    </testcase>
+
+    <!-- multiple attachments-->
+    <testcase id="testsuite.withattachmentmultiple" name="include multiple attachments" time="10">
+      <system.out>[[ATTACHMENT|/path/to/attachment1.png]]
+Other output
+[[ATTACHMENT|/path/to/attachment2.png]]
+      </system.out>
+    </testcase>
+
+    <!-- no attachments -->
+    <testcase id="testsuite.testcase" name="with no attachments" time="10">
+    </testcase>
+
+    <!-- zero length attachments -->
+    <testcase id="testsuite.malformedattachment" name="malformed" time="10">
+      <system.out>[[ATTACHMENT| ]]
+      </system.out>
+    </testcase>
+
+  </testsuite>
+</testsuites>

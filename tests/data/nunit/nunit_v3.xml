@@ -121,5 +121,15 @@
     <test-suite type="TestFixture" id="1014" name="MockTestFixture" fullname="NUnit.Tests.TestAssembly.MockTestFixture" testcasecount="1" result="Passed" time="0.001" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
       <test-case id="1015" name="MyTest" fullname="NUnit.Tests.TestAssembly.MockTestFixture.MyTest" result="Passed" time="0.001" asserts="0" />
     </test-suite>
+    <test-suite type="TestFixture" id="1037" name="AttachmentsFixture" fullname="NUnit.Tests.TestAssembly.AttachmentsFixture" testcasecount="1" result="Passed" time="0.001" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <test-case id="1038" name="TestOneAttachment" fullname="NUnit.Tests.TestAssembly.AttachmentsFixture.TestOneAttachment" result="Passed" time="0.001" asserts="0">
+        <attachments>
+          <attachment>
+            <filePath>c:\absolute\filepath\dummy.txt</filePath>
+            <description><![CDATA[my description]]></description>
+          </attachment>
+        </attachments>
+      </test-case>
+    </test-suite>
   </test-suite>
 </test-run>

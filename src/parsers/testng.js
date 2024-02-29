@@ -93,9 +93,9 @@ function getTestSuite(rawSuite) {
     const rawTest = rawTests[i];
     const rawClasses = rawTest.class;
     for (let j = 0; j < rawClasses.length; j++) {
-      let testMethods = rawClasses[i]['test-method'].filter(raw => !raw['@_is-config']);
+      let testMethods = rawClasses[j]['test-method'].filter(raw => !raw['@_is-config']);
       testMethods.forEach(testMethod => {
-        testMethod["@_class"] = rawClasses[i]["@_name"]; // push className onto test-method
+        testMethod["@_class"] = rawClasses[j]["@_name"]; // push className onto test-method
       });
       rawTestMethods.push(...testMethods);
     }

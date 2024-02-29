@@ -33,6 +33,7 @@ describe('Parser - XUnit', () => {
           meta_data: new Map(),
           cases: [
             {
+              attachments: [],
               duration: 86006.5,
               errors: 0,
               failed: 0,
@@ -79,6 +80,7 @@ describe('Parser - XUnit', () => {
           meta_data: new Map(),
           cases: [ 
             {
+            attachments: [],
             duration: 1,
             errors: 0,
             failed: 0,
@@ -124,6 +126,7 @@ describe('Parser - XUnit', () => {
           meta_data: new Map(),
           cases: [
             {
+              attachments: [],
               duration: 84201.1799,
               errors: 0,
               failed: 0,
@@ -139,6 +142,7 @@ describe('Parser - XUnit', () => {
               total: 0
             },
             {
+              attachments: [],
               duration: 218.6713,
               errors: 0,
               failed: 0,
@@ -168,6 +172,7 @@ describe('Parser - XUnit', () => {
           meta_data: new Map(),
           cases: [
             {
+              attachments: [],
               duration: 1411.6188,
               errors: 0,
               failed: 0,
@@ -183,6 +188,7 @@ describe('Parser - XUnit', () => {
               total: 0
             },   
             {
+              attachments: [],
               duration: 1791.1067,
               errors: 0,
               failed: 0,
@@ -212,6 +218,7 @@ describe('Parser - XUnit', () => {
           meta_data: new Map(),
           cases: [
             {
+              attachments: [],
               duration: 84195.474,
               errors: 0,
               failed: 0,
@@ -241,6 +248,7 @@ describe('Parser - XUnit', () => {
           meta_data: new Map(),
           cases: [
             {
+              attachments: [],
               duration: 86006.7435,
               errors: 0,
               failed: 0,
