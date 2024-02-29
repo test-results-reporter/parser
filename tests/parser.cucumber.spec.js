@@ -33,6 +33,7 @@ describe('Parser - Cucumber Json', () => {
           meta_data: newMap({ tags: "blue,slow", suite: "1234", tagsRaw: "@blue,@slow" }),
           cases: [
             {
+              attachments: [],
               duration: 1.59,
               errors: 0,
               failed: 0,
@@ -97,6 +98,7 @@ describe('Parser - Cucumber Json', () => {
           meta_data: new Map(),
           cases: [
             {
+              attachments: [],
               duration: 2.56,
               errors: 0,
               failed: 0,
@@ -112,6 +114,7 @@ describe('Parser - Cucumber Json', () => {
               total: 0
             },
             {
+              attachments: [],
               duration: 0.28,
               errors: 0,
               failed: 0,
@@ -141,6 +144,7 @@ describe('Parser - Cucumber Json', () => {
           meta_data: new Map(),
           cases: [
             {
+              attachments: [],
               duration: 0.52,
               errors: 0,
               failed: 0,

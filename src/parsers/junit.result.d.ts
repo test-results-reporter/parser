@@ -19,9 +19,10 @@ export type JUnitTestCase = {
   '@_id': string;
   '@_name': string;
   '@_time': number;
+  'system.out': string;
 }
 
-export type TestSuite = {
+export type JUnitTestSuite = {
   properties?: JUnitProperties;
   testcase: JUnitTestCase[];
   '@_id': string;

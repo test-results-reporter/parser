@@ -33,6 +33,7 @@ describe('Parser - JUnit', () => {
           meta_data: new Map(),
           cases: [
             {
+              attachments: [],
               duration: 10000,
               errors: 0,
               failed: 0,
@@ -80,6 +81,7 @@ describe('Parser - JUnit', () => {
           meta_data: new Map(),
           cases: [
             {
+              attachments: [],
               duration: 10000,
               errors: 0,
               failed: 0,
@@ -127,6 +129,7 @@ describe('Parser - JUnit', () => {
           meta_data: new Map(),
           cases: [
             {
+              attachments: [],
               duration: 10000,
               errors: 0,
               failed: 0,
@@ -174,6 +177,7 @@ describe('Parser - JUnit', () => {
           meta_data: new Map(),
           cases: [
             {
+              attachments: [],
               duration: 10000,
               errors: 0,
               failed: 0,
@@ -203,6 +207,7 @@ describe('Parser - JUnit', () => {
           meta_data: new Map(),
           cases: [
             {
+              attachments: [],
               duration: 10000,
               errors: 0,
               failed: 0,
@@ -250,6 +255,7 @@ describe('Parser - JUnit', () => {
           meta_data: new Map(),
           cases: [
             {
+              attachments: [],
               duration: 10000,
               errors: 0,
               failed: 0,
@@ -279,6 +285,7 @@ describe('Parser - JUnit', () => {
           meta_data: new Map(),
           cases: [
             {
+              attachments: [],
               duration: 10000,
               errors: 0,
               failed: 0,
@@ -326,6 +333,7 @@ describe('Parser - JUnit', () => {
           meta_data: new Map(),
           cases: [
             {
+              attachments: [],
               duration: 807,
               errors: 0,
               failed: 0,
@@ -370,9 +378,10 @@ describe('Parser - JUnit', () => {
           "skipped": 0,
           "duration": 446,
           "status": "FAIL",
-          meta_data: new Map(),
+          "meta_data": new Map(),
           "cases": [
             {
+              "attachments": [],
               "id": "",
               "name": "Sectors - Verify 'Residential' is in list",
               "total": 0,
@@ -388,6 +397,7 @@ describe('Parser - JUnit', () => {
               "steps": []
             },
             {
+              "attachments": [],
               "id": "",
               "name": "Sectors EndPoint - returns a JSON response",
               "total": 0,
@@ -414,9 +424,10 @@ describe('Parser - JUnit', () => {
           "skipped": 0,
           "duration": 634,
           "status": "PASS",
-          meta_data: new Map(),
+          "meta_data": new Map(),
           "cases": [
             {
+              "attachments": [],
               "id": "",
               "name": "Market Asset(id-387) response - data is as expected",
               "total": 0,
@@ -461,9 +472,10 @@ describe('Parser - JUnit', () => {
           "skipped": 1,
           "duration": 870.6800000000001,
           "status": "FAIL",
-          meta_data: new Map(),
+          "meta_data": new Map(),
           "cases": [
             {
+              "attachments": [],
               "id": "",
               "name": "TestD",
               "total": 0,
@@ -479,6 +491,7 @@ describe('Parser - JUnit', () => {
               "steps": []
             },
             {
+              "attachments": [],
               "id": "",
               "name": "TestC",
               "total": 0,
@@ -494,6 +507,7 @@ describe('Parser - JUnit', () => {
               "steps": []
             },
             {
+              "attachments": [],
               "id": "",
               "name": "InconclusiveTest",
               "total": 0,
@@ -509,6 +523,7 @@ describe('Parser - JUnit', () => {
               "steps": []
             },
             {
+              "attachments": [],
               "id": "",
               "name": "Ignored",
               "total": 0,
@@ -569,6 +584,25 @@ describe('Parser - JUnit', () => {
     assert.equal(result.suites[0].meta_data.get("key2"), "value2");
     assert.equal(result.suites[0].cases[0].meta_data.size, 1);
     assert.equal(result.suites[0].cases[0].meta_data.get("key1"), "override-value1");
+  });
+
+  it('parse system.out to locate attachments', () => {
+    const result = parse({ type: 'junit', files: ['tests/data/junit/test-case-attachments.xml'] });
+
+    // test case with 1 attachment
+    assert.equal(result.suites[0].cases[0].attachments.length, 1);
+    assert.equal(result.suites[0].cases[0].attachments[0].path, '/path/to/attachment.png');
+
+    // test case with multiple attachments
+    assert.equal(result.suites[0].cases[1].attachments.length, 2);
+    assert.equal(result.suites[0].cases[1].attachments[0].path, '/path/to/attachment1.png');
+    assert.equal(result.suites[0].cases[1].attachments[1].path, '/path/to/attachment2.png');
+
+    // test case with no attachments
+    assert.equal(result.suites[0].cases[2].attachments.length, 0);
+
+    // test case with empty or malformed attachment output
+    assert.equal(result.suites[0].cases[3].attachments.length, 0);
   });
 
 });

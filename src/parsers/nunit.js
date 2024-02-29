@@ -3,6 +3,7 @@ const { getJsonFromXMLFile } = require('../helpers/helper');
 const TestResult = require('../models/TestResult');
 const TestSuite = require('../models/TestSuite');
 const TestCase = require('../models/TestCase');
+const TestAttachment = require('../models/TestAttachment');
 
 const SUITE_TYPES_WITH_TEST_CASES = [
   "TestFixture",
@@ -22,6 +23,20 @@ const RESULT_MAP = {
   Passed: "PASS",         // v3
   Failed: "FAIL",         // v3
   Skipped: "SKIP",        // v3
+}
+
+function populateAttachments(rawCase, attachments) {
+  if (rawCase.attachments && rawCase.attachments.attachment) {
+    let rawAttachments = rawCase.attachments.attachment;
+    for (var i = 0; i < rawAttachments.length; i++) {
+      var attachment = new TestAttachment();
+      attachment.path = rawAttachments[i].filePath;
+      if (rawAttachments[i].description) {
+        attachment.name = rawAttachments[i].description;
+      }
+      attachments.push(attachment);
+    }
+  }
 }
 
 function mergeMeta(map1, map2) {
@@ -130,6 +145,8 @@ function getTestCases(rawSuite, parent_meta) {
           testCase.stack_trace = errorDetails["stack-trace"]
         }
       }
+      // populate attachments
+      populateAttachments(rawCase, testCase.attachments);
       // copy parent_meta data to test case
       mergeMeta(parent_meta, testCase.meta_data);
       populateMetaData(rawCase, testCase.meta_data);

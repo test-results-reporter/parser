@@ -33,9 +33,10 @@ const FORCED_ARRAY_KEYS = [
   "testng-results.suite.test.class.test-method",
   "testng-results.suite.test.class.test-method.exception",
   "TestRun.Results.UnitTestResult",
+  "TestRun.Results.UnitTestResult.ResultFiles.ResultFile",
   "TestRun.TestDefinitions.UnitTest",
-  "TestRun.TestDefinitions.UnitTest.TestCategory.TestCategoryItem",
-  "TestRun.TestDefinitions.UnitTest.Properties.Property"
+  "TestRun.TestDefinitions.UnitTest.Properties.Property",
+  "TestRun.TestDefinitions.UnitTest.TestCategory.TestCategoryItem"
 ];
 
 const configured_parser = new XMLParser({
@@ -51,6 +52,7 @@ const configured_parser = new XMLParser({
         case "property":
         case "test-suite":
         case "test-case":
+        case "attachment":
           return true;
         default:
           return false;

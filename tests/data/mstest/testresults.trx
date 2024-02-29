@@ -6,6 +6,8 @@
         <Deployment runDeploymentRoot="bryan.b.cook_MYCOMPUTER_2023-11-12_19_21_51" />
     </TestSettings>
     <Results>
+
+        <!-- MockTestFixture -->
         <UnitTestResult executionId="e01a54d8-305c-4828-9bc0-8c935270dafe" testId="5370a586-74b0-a647-4839-100eef3a4188" testName="FailingTest" computerName="MYCOMPUTER" duration="00:00:00.0259239" startTime="2023-11-12T19:21:51.6583003-05:00" endTime="2023-11-12T19:21:51.6978162-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e01a54d8-305c-4828-9bc0-8c935270dafe">
             <Output>
                 <ErrorInfo>
@@ -50,11 +52,25 @@ System.NotImplementedException: The method or operation is not implemented.</Mes
         </UnitTestResult>
         <UnitTestResult executionId="05c69927-e30b-4b5c-a5b8-2e44e9a88785" testId="c09170d3-a997-9a92-b6d5-9a86a4225591" testName="TestWithManyProperties" computerName="MYCOMPUTER" duration="00:00:00.0000490" startTime="2023-11-12T19:21:51.7069158-05:00" endTime="2023-11-12T19:21:51.7071317-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="05c69927-e30b-4b5c-a5b8-2e44e9a88785" />
         
+        <!-- FixtureWithTestCases -->
         <UnitTestResult executionId="0942eb3b-2633-4c82-aa3a-374236dc6dab" testId="dac0f7bf-eced-b506-706a-66ed33c7be60" testName="TestWithArg (1)" computerName="MYCOMPUTER" duration="00:00:00.0000574" startTime="2023-11-12T19:21:51.7314236-05:00" endTime="2023-11-12T19:21:51.7362844-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0942eb3b-2633-4c82-aa3a-374236dc6dab" />
         
-        
+        <!-- FixtureWithTestCaseAttachments -->
+        <UnitTestResult executionId="238c26aa-9963-4623-aeda-95ef9a6799d0" testId="40ee30b0-1c98-09a4-5020-0b5d9d182630" testName="AddOneAttachment" computerName="MYCOMPUTER" duration="00:00:00.1221116" startTime="2024-02-28T14:30:39.4675415-05:00" endTime="2024-02-28T14:30:39.6333725-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="238c26aa-9963-4623-aeda-95ef9a6799d0">
+            <ResultFiles>
+              <ResultFile path="MYCOMPUTER/dummy1.txt" />
+            </ResultFiles>
+        </UnitTestResult>
+        <UnitTestResult executionId="2b2b0f58-3d88-432c-9955-1040315f96e9" testId="b63c50f5-d54a-4566-894b-c15b37bea962" testName="AddTwoAttachment" computerName="MYCOMPUTER" duration="00:00:00.1221116" startTime="2024-02-28T14:30:39.4675415-05:00" endTime="2024-02-28T14:30:39.6333725-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2b2b0f58-3d88-432c-9955-1040315f96e9">
+            <ResultFiles>
+              <ResultFile path="MYCOMPUTER/dummy2.txt" />
+              <ResultFile path="MYCOMPUTER/dummy3.txt" />
+            </ResultFiles>
+        </UnitTestResult>
     </Results>
     <TestDefinitions>
+
+        <!-- MockTestFixture -->
         <UnitTest name="FailingTest" storage="c:\dev\code\_experiments\nunitsample\mstestsample\bin\debug\net6.0\mstestsample.dll" id="5370a586-74b0-a647-4839-100eef3a4188">
             <TestCategory>
                 <TestCategoryItem TestCategory="FixtureCategory" />
@@ -122,10 +138,23 @@ System.NotImplementedException: The method or operation is not implemented.</Mes
             <Execution id="05c69927-e30b-4b5c-a5b8-2e44e9a88785" />
             <TestMethod codeBase="C:\dev\code\_Experiments\MSTestSample\bin\Debug\net6.0\MSTestSample.dll" adapterTypeName="executor://mstestadapter/v2" className="MSTestSample.MockTestFixture" name="TestWithManyProperties" />
         </UnitTest>
+
+        <!-- FixtureWithTestCases -->
         <UnitTest name="TestWithArg (1)" storage="c:\dev\code\_experiments\nunitsample\mstestsample\bin\debug\net6.0\mstestsample.dll" id="dac0f7bf-eced-b506-706a-66ed33c7be60">
             <Execution id="0942eb3b-2633-4c82-aa3a-374236dc6dab" />
             <TestMethod codeBase="C:\dev\code\_Experiments\MSTestSample\bin\Debug\net6.0\MSTestSample.dll" adapterTypeName="executor://mstestadapter/v2" className="MSTestSample.FixtureWithTestCases" name="TestWithArg" />
         </UnitTest>
+
+        <!-- FixtureWithTestCaseAttachments -->
+        <UnitTest name="AddOneAttachment" storage="c:\dev\code\_experiments\nunitsample\mstestsample\bin\debug\net6.0\mstestsample.dll" id="40ee30b0-1c98-09a4-5020-0b5d9d182630">
+            <Execution id="238c26aa-9963-4623-aeda-95ef9a6799d0" />
+            <TestMethod codeBase="C:\dev\code\_Experiments\NUnitSample\MSTestSample\bin\Debug\net6.0\MSTestSample.dll" adapterTypeName="executor://mstestadapter/v2" className="MSTestSample.FixtureWithTestCaseAttachments" name="AddOneAttachment" />
+        </UnitTest>
+        <UnitTest name="AddTwoAttachment" storage="c:\dev\code\_experiments\nunitsample\mstestsample\bin\debug\net6.0\mstestsample.dll" id="b63c50f5-d54a-4566-894b-c15b37bea962">
+            <Execution id="2b2b0f58-3d88-432c-9955-1040315f96e9" />
+            <TestMethod codeBase="C:\dev\code\_Experiments\NUnitSample\MSTestSample\bin\Debug\net6.0\MSTestSample.dll" adapterTypeName="executor://mstestadapter/v2" className="MSTestSample.FixtureWithTestCaseAttachments" name="AddTwoAttachment" />
+        </UnitTest>
+
     </TestDefinitions>
     <TestEntries>
         <TestEntry testId="c09170d3-a997-9a92-b6d5-9a86a4225591" executionId="05c69927-e30b-4b5c-a5b8-2e44e9a88785" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
@@ -138,6 +167,7 @@ System.NotImplementedException: The method or operation is not implemented.</Mes
         <TestEntry testId="0b5c3ebb-3086-951a-1724-1821d30aef04" executionId="68e29212-0297-4843-8f1e-cad3dfe2dd06" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
         <TestEntry testId="20aced79-1a63-4e66-d444-ee4575c65515" executionId="685aeaf1-023c-4eb1-8727-fc6516eb1b61" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
         <TestEntry testId="6b0e8fc2-5324-dbeb-0c5f-0479cd14f351" executionId="4db5da11-faef-4e70-98d1-39ee00d6ed00" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+        <TestEntry testId="40ee30b0-1c98-09a4-5020-0b5d9d182630" executionId="238c26aa-9963-4623-aeda-95ef9a6799d0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
     </TestEntries>
     <TestLists>
         <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />

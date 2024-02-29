@@ -1,5 +1,6 @@
 const { parse } = require('../src');
 const assert = require('assert');
+const path = require('path');
 
 describe('Parser - MSTest', () => {
 
@@ -11,12 +12,12 @@ describe('Parser - MSTest', () => {
     });
 
     it('Should calculate totals', () => {
-        assert.equal(result.total, 10);
-        assert.equal(result.passed, 5);
+        assert.equal(result.total, 12);
+        assert.equal(result.passed, 7);
         assert.equal(result.failed, 3);
         assert.equal(result.skipped, 2);
 
-        assert.equal(result.suites.length, 2);
+        assert.equal(result.suites.length, 3);
         //assert.equal(result.duration > 0, true); // TODO: Fix
     })
 
@@ -61,5 +62,28 @@ describe('Parser - MSTest', () => {
         assert.equal(testCaseWithCategories.meta_data.has("MockCategory"), true);
         assert.equal(testCaseWithCategories.meta_data.get("Categories"), "FixtureCategory,MockCategory");
     });
+
+    it('Should include ResultFiles as test case attachments', () => {
+        const testSuiteWithAttachments = result.suites[2];
+        let expectedPath1 = resolveExpectedResultFilePath("238c26aa-9963-4623-aeda-95ef9a6799d0", "dummy1.txt");
+        let expectedPath2 = resolveExpectedResultFilePath("2b2b0f58-3d88-432c-9955-1040315f96e9", "dummy2.txt");
+        let expectedPath3 = resolveExpectedResultFilePath("2b2b0f58-3d88-432c-9955-1040315f96e9", "dummy3.txt");
+
+        assert.equal(testSuiteWithAttachments.cases[0].attachments.length, 1);
+        assert.equal(testSuiteWithAttachments.cases[0].attachments[0].path, expectedPath1);
+
+        assert.equal(testSuiteWithAttachments.cases[1].attachments.length, 2);
+        assert.equal(testSuiteWithAttachments.cases[1].attachments[0].path, expectedPath2)
+        assert.equal(testSuiteWithAttachments.cases[1].attachments[1].path, expectedPath3)
+    });
+
+    function resolveExpectedResultFilePath(executionId, filePath) {
+        return path.join(
+            "bryan.b.cook_MYCOMPUTER_2023-11-12_19_21_51", 
+            "In", 
+            executionId, 
+            "MYCOMPUTER",
+            filePath);
+    }
 
 });

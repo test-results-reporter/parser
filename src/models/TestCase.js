@@ -15,6 +15,7 @@ class TestCase {
       this.failure = '';
       this.stack_trace = '';
       this.steps = [];
+      this.attachments = [];
       this.meta_data = new Map();
     }
 
