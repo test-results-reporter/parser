@@ -576,6 +576,22 @@ describe('Parser - JUnit', () => {
     assert.equal(result.suites[0].cases[0].meta_data.get("key1"), "override-value1"); // testcase value
     assert.equal(result.suites[0].cases[0].meta_data.get("key2"), "value2"); // suite value
   });
+
+  it('include hostname in meta-data from suite and testcase', () => {
+    const result = parse({ type: 'junit', files: ['tests/data/junit/playwright.xml'] });
+    
+    assert.equal(result.suites[0].meta_data.get("hostname"), "chromium");
+    assert.equal(result.suites[0].cases[0].meta_data.get("hostname"), "chromium");
+    assert.equal(result.suites[0].cases[1].meta_data.get("hostname"), "chromium");
+
+    assert.equal(result.suites[1].meta_data.get("hostname"), "firefox");
+    assert.equal(result.suites[1].cases[0].meta_data.get("hostname"), "firefox");
+    assert.equal(result.suites[1].cases[1].meta_data.get("hostname"), "firefox");
+
+    assert.equal(result.suites[2].meta_data.get("hostname"), "webkit");
+    assert.equal(result.suites[2].cases[0].meta_data.get("hostname"), "webkit");
+    assert.equal(result.suites[2].cases[1].meta_data.get("hostname"), "webkit");
+    
   });
 
 });

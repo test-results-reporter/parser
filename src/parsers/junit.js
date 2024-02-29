@@ -59,6 +59,12 @@ function setMetaData(rawElement, test_element) {
       test_element.meta_data.set(raw_property["@_name"], raw_property["@_value"]);
     }
   }
+  // handle testsuite specific attributes
+  if (test_element instanceof TestSuite) {
+    if (rawElement["@_hostname"]) {
+      test_element.meta_data.set("hostname", rawElement["@_hostname"]);
+    }
+  }
 }
 
 /**

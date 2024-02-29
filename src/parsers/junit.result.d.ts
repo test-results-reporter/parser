@@ -29,6 +29,7 @@ export type TestSuite = {
   '@_tests': number;
   '@_failures': number;
   '@_time': number;
+  '@_hostname': string;
 }
 
 export type JUnitResult = {
