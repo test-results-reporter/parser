@@ -3,12 +3,14 @@ const { getJsonFromXMLFile } = require('../helpers/helper');
 const TestResult = require('../models/TestResult');
 const TestSuite = require('../models/TestSuite');
 const TestCase = require('../models/TestCase');
+const JUnitTypes = import('./junit.result');
 
-function getTestCase(rawCase) {
+function getTestCase(rawCase, suite_meta) {
   const test_case = new TestCase();
   test_case.name = rawCase["@_name"];
   test_case.duration = rawCase["@_time"] * 1000;
-  setMetaData(rawCase.properties, test_case);
+  test_case.meta_data = new Map(suite_meta);
+  setMetaData(rawCase, test_case);
   if (rawCase.failure && rawCase.failure.length > 0) {
     test_case.status = 'FAIL';
     test_case.setFailure(rawCase.failure[0]["@_message"]);
@@ -35,11 +37,11 @@ function getTestSuite(rawSuite) {
   suite.passed = suite.total - suite.failed - suite.errors;
   suite.duration = rawSuite["@_time"] * 1000;
   suite.status = suite.total === suite.passed ? 'PASS' : 'FAIL';
-  setMetaData(rawSuite.properties, suite);
+  setMetaData(rawSuite, suite);
   const raw_test_cases = rawSuite.testcase;
   if (raw_test_cases) {
     for (let i = 0; i < raw_test_cases.length; i++) {
-      suite.cases.push(getTestCase(raw_test_cases[i]));
+      suite.cases.push(getTestCase(raw_test_cases[i], suite.meta_data));
     }
   }
   return suite;
@@ -47,12 +49,12 @@ function getTestSuite(rawSuite) {
 
 /**
  * 
- * @param {import('./junit.result').JUnitProperties} properties 
+ * @param {JUnitTypes.TestSuite | JUnitTypes.JUnitTestCase} rawElement
  * @param {TestCase | TestSuite} test_element 
  */
-function setMetaData(properties, test_element) {
-  if (properties && properties.property.length > 0) {
-    const raw_properties = properties.property;
+function setMetaData(rawElement, test_element) {
+  if (rawElement.properties && rawElement.properties.property.length > 0) {
+    const raw_properties = rawElement.properties.property;
     for  (const raw_property of raw_properties) {
       test_element.meta_data.set(raw_property["@_name"], raw_property["@_value"]);
     }

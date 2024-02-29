@@ -439,6 +439,7 @@ describe('Parser - JUnit', () => {
 
   it('parse spekt/junit.testlogger', () => {
     const result = parse({ type: 'junit', files: [`${testDataPath}/junit.testlogger.xml`] });
+    var inheritedProperties = new Map([ ["hostname", "REDACTED"] ]);
     assert.deepEqual(result, {
       id: "",
       name: "",
@@ -461,7 +462,7 @@ describe('Parser - JUnit', () => {
           skipped: 1,
           duration: 870.6800000000001,
           status: "FAIL",
-          meta_data: new Map(),
+          meta_data: inheritedProperties,
           cases: [
             {
               id: "",
@@ -475,7 +476,7 @@ describe('Parser - JUnit', () => {
               status: "PASS",
               failure: "",
               stack_trace: "",
-              "meta_data": new Map(),
+              meta_data: inheritedProperties,
               steps: []
             },
             {
@@ -490,7 +491,7 @@ describe('Parser - JUnit', () => {
               status: "FAIL",
               failure: "TearDown : System.InvalidOperationException : Operation is not valid due to the current state of the object.",
               stack_trace: "",
-              "meta_data": new Map(),
+              meta_data: inheritedProperties,
               steps: []
             },
             {
@@ -505,7 +506,7 @@ describe('Parser - JUnit', () => {
               status: "PASS",
               failure: "",
               stack_trace: "",
-              "meta_data": new Map(),
+              meta_data: inheritedProperties,
               steps: []
             },
             {
@@ -520,7 +521,7 @@ describe('Parser - JUnit', () => {
               status: "PASS",
               failure: "",
               stack_trace: "",
-              "meta_data": new Map(),
+              meta_data: inheritedProperties,
               steps: []
             }
           ]
@@ -562,13 +563,19 @@ describe('Parser - JUnit', () => {
     assert.notEqual(null, result2);
   });
   
-  it('meta-data from suite copied to testcase', () => {
+  it('meta-data from suite merged with testcase', () => {
     const result = parse({ type: 'junit', files: ['tests/data/junit/multiple-suites-properties.xml'] });
+
+    // confirm that suite level properties exist and are accurate
     assert.equal(result.suites[0].meta_data.size, 2);
     assert.equal(result.suites[0].meta_data.get("key1"), "value1");
     assert.equal(result.suites[0].meta_data.get("key2"), "value2");
-    assert.equal(result.suites[0].cases[0].meta_data.size, 1);
-    assert.equal(result.suites[0].cases[0].meta_data.get("key1"), "override-value1");
+
+    // confirm that the suite level properties were inherited into the test case and overridden if present
+    assert.equal(result.suites[0].cases[0].meta_data.size, 2);
+    assert.equal(result.suites[0].cases[0].meta_data.get("key1"), "override-value1"); // testcase value
+    assert.equal(result.suites[0].cases[0].meta_data.get("key2"), "value2"); // suite value
+  });
   });
 
 });
