@@ -21,9 +21,15 @@ This collection of resources is intended to support development efforts for the 
 
   - Schema: <https://github.com/windyroad/JUnit-Schema/blob/master/JUnit.xsd> - referenced by [IBM's outline][ibm-ref] for JUnit schema
   - Schema: <https://github.com/junit-team/junit5/blob/main/platform-tests/src/test/resources/jenkins-junit.xsd> - referenced by github issue [junit-team/2625][github-issue-2625]
+  - Overview with examples: <https://github.com/testmoapp/junitxml>
 
 [github-issue-2625]: https://github.com/junit-team/junit5/issues/2625
 [ibm-ref]: https://www.ibm.com/docs/en/developer-for-zos/16.0?topic=formats-junit-xml-format
+
+- **Mocha**:
+
+  - Mocha reporter: <https://mochajs.org/#json>
+  - Mochawesome reporter: <https://github.com/mochajs/mocha/blob/master/lib/reporters/json.js>
 
 - **MSTest**:
 
