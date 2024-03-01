@@ -357,90 +357,90 @@ describe('Parser - JUnit', () => {
   it('parse newman with failures', () => {
     const result = parse({ type: 'junit', files: [`${testDataPath}/newman-failures.xml`] });
     assert.deepEqual(result, {
-      "id": "",
-      "name": "MainApi",
-      "total": 3,
-      "passed": 1,
-      "failed": 2,
-      "errors": 0,
-      "skipped": 0,
-      "retried": 0,
-      "duration": 37506,
-      "status": "FAIL",
-      "suites": [
+      id: "",
+      name: "MainApi",
+      total: 3,
+      passed: 1,
+      failed: 2,
+      errors: 0,
+      skipped: 0,
+      retried: 0,
+      duration: 37506,
+      status: "FAIL",
+      suites: [
         {
-          "id": "",
-          "name": "Main / GetSectors",
-          "total": 2,
-          "passed": 0,
-          "failed": 2,
-          "errors": 0,
-          "skipped": 0,
-          "duration": 446,
-          "status": "FAIL",
-          "meta_data": new Map(),
-          "cases": [
+          id: "",
+          name: "Main / GetSectors",
+          total: 2,
+          passed: 0,
+          failed: 2,
+          errors: 0,
+          skipped: 0,
+          duration: 446,
+          status: "FAIL",
+          meta_data: new Map(),
+          cases: [
             {
-              "attachments": [],
-              "id": "",
-              "name": "Sectors - Verify 'Residential' is in list",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 446,
-              "status": "FAIL",
-              "failure": "expected to include 'Residntial'",
-              "stack_trace": "",
-              "meta_data": new Map(),
-              "steps": []
+              id: "",
+              name: "Sectors - Verify 'Residential' is in list",
+              total: 0,
+              passed: 0,
+              failed: 0,
+              errors: 0,
+              skipped: 0,
+              duration: 446,
+              status: "FAIL",
+              failure: "expected to include 'Residntial'",
+              stack_trace: "",
+              meta_data: new Map(),
+              attachments: [],
+              steps: []
             },
             {
-              "attachments": [],
-              "id": "",
-              "name": "Sectors EndPoint - returns a JSON response",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 446,
-              "status": "PASS",
-              "failure": "",
-              "stack_trace": "",
-              "meta_data": new Map(),
-              "steps": []
+              id: "",
+              name: "Sectors EndPoint - returns a JSON response",
+              total: 0,
+              passed: 0,
+              failed: 0,
+              errors: 0,
+              skipped: 0,
+              duration: 446,
+              status: "PASS",
+              failure: "",
+              stack_trace: "",
+              meta_data: new Map(),
+              attachments: [],
+              steps: []
             }
           ]
         },
         {
-          "id": "",
-          "name": "Main / Verifyresponsedata-MarketAsset",
-          "total": 1,
-          "passed": 1,
-          "failed": 0,
-          "errors": 0,
-          "skipped": 0,
-          "duration": 634,
-          "status": "PASS",
-          "meta_data": new Map(),
-          "cases": [
+          id: "",
+          name: "Main / Verifyresponsedata-MarketAsset",
+          total: 1,
+          passed: 1,
+          failed: 0,
+          errors: 0,
+          skipped: 0,
+          duration: 634,
+          status: "PASS",
+          meta_data: new Map(),
+          cases: [
             {
-              "attachments": [],
-              "id": "",
-              "name": "Market Asset(id-387) response - data is as expected",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 634,
-              "status": "PASS",
-              "failure": "",
-              "stack_trace": "",
-              "meta_data": new Map(),
-              "steps": []
+              id: "",
+              name: "Market Asset(id-387) response - data is as expected",
+              total: 0,
+              passed: 0,
+              failed: 0,
+              errors: 0,
+              skipped: 0,
+              duration: 634,
+              status: "PASS",
+              failure: "",
+              stack_trace: "",
+              meta_data: new Map(),
+              attachments: [],
+              steps: []
             }
           ]
         }
@@ -450,93 +450,94 @@ describe('Parser - JUnit', () => {
 
   it('parse spekt/junit.testlogger', () => {
     const result = parse({ type: 'junit', files: [`${testDataPath}/junit.testlogger.xml`] });
+    var inheritedProperties = new Map([ ["hostname", "REDACTED"] ]);
     assert.deepEqual(result, {
-      "id": "",
-      "name": "",
-      "total": 3,
-      "passed": 2,
-      "failed": 1,
-      "errors": 0,
-      "skipped": 1,
-      "retried": 0,
-      "duration": 870.6800000000001,
-      "status": "FAIL",
-      "suites": [
+      id: "",
+      name: "",
+      total: 3,
+      passed: 2,
+      failed: 1,
+      errors: 0,
+      skipped: 1,
+      retried: 0,
+      duration: 870.6800000000001,
+      status: "FAIL",
+      suites: [
         {
-          "id": "",
-          "name": "JUnit.Xml.TestLogger.NetCore.Tests.dll",
-          "total": 3,
-          "passed": 2,
-          "failed": 1,
-          "errors": 0,
-          "skipped": 1,
-          "duration": 870.6800000000001,
-          "status": "FAIL",
-          "meta_data": new Map(),
-          "cases": [
+          id: "",
+          name: "JUnit.Xml.TestLogger.NetCore.Tests.dll",
+          total: 3,
+          passed: 2,
+          failed: 1,
+          errors: 0,
+          skipped: 1,
+          duration: 870.6800000000001,
+          status: "FAIL",
+          meta_data: inheritedProperties,
+          cases: [
             {
-              "attachments": [],
-              "id": "",
-              "name": "TestD",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 2.195,
-              "status": "PASS",
-              "failure": "",
-              "stack_trace": "",
-              "meta_data": new Map(),
-              "steps": []
+              id: "",
+              name: "TestD",
+              total: 0,
+              passed: 0,
+              failed: 0,
+              errors: 0,
+              skipped: 0,
+              duration: 2.195,
+              status: "PASS",
+              failure: "",
+              stack_trace: "",
+              meta_data: inheritedProperties,
+              attachments: [],
+              steps: []
             },
             {
-              "attachments": [],
-              "id": "",
-              "name": "TestC",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 1.109,
-              "status": "FAIL",
-              "failure": "TearDown : System.InvalidOperationException : Operation is not valid due to the current state of the object.",
-              "stack_trace": "",
-              "meta_data": new Map(),
-              "steps": []
+              id: "",
+              name: "TestC",
+              total: 0,
+              passed: 0,
+              failed: 0,
+              errors: 0,
+              skipped: 0,
+              duration: 1.109,
+              status: "FAIL",
+              failure: "TearDown : System.InvalidOperationException : Operation is not valid due to the current state of the object.",
+              stack_trace: "",
+              meta_data: inheritedProperties,
+              attachments: [],
+              steps: []
             },
             {
-              "attachments": [],
-              "id": "",
-              "name": "InconclusiveTest",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 0.7200000000000001,
-              "status": "PASS",
-              "failure": "",
-              "stack_trace": "",
-              "meta_data": new Map(),
-              "steps": []
+              id: "",
+              name: "InconclusiveTest",
+              total: 0,
+              passed: 0,
+              failed: 0,
+              errors: 0,
+              skipped: 0,
+              duration: 0.7200000000000001,
+              status: "PASS",
+              failure: "",
+              stack_trace: "",
+              meta_data: inheritedProperties,
+              attachments: [],
+              steps: []
             },
             {
-              "attachments": [],
-              "id": "",
-              "name": "Ignored",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 0.29500000000000004,
-              "status": "PASS",
-              "failure": "",
-              "stack_trace": "",
-              "meta_data": new Map(),
-              "steps": []
+              id: "",
+              name: "Ignored",
+              total: 0,
+              passed: 0,
+              failed: 0,
+              errors: 0,
+              skipped: 0,
+              duration: 0.29500000000000004,
+              status: "PASS",
+              failure: "",
+              stack_trace: "",
+              meta_data: inheritedProperties,
+              attachments: [],
+              steps: []
             }
           ]
         }
@@ -577,13 +578,35 @@ describe('Parser - JUnit', () => {
     assert.notEqual(null, result2);
   });
   
-  it('meta-data from suite copied to testcase', () => {
+  it('meta-data from suite merged with testcase', () => {
     const result = parse({ type: 'junit', files: ['tests/data/junit/multiple-suites-properties.xml'] });
+
+    // confirm that suite level properties exist and are accurate
     assert.equal(result.suites[0].meta_data.size, 2);
     assert.equal(result.suites[0].meta_data.get("key1"), "value1");
     assert.equal(result.suites[0].meta_data.get("key2"), "value2");
-    assert.equal(result.suites[0].cases[0].meta_data.size, 1);
-    assert.equal(result.suites[0].cases[0].meta_data.get("key1"), "override-value1");
+
+    // confirm that the suite level properties were inherited into the test case and overridden if present
+    assert.equal(result.suites[0].cases[0].meta_data.size, 2);
+    assert.equal(result.suites[0].cases[0].meta_data.get("key1"), "override-value1"); // testcase value
+    assert.equal(result.suites[0].cases[0].meta_data.get("key2"), "value2"); // suite value
+  });
+
+  it('include hostname in meta-data from suite and testcase', () => {
+    const result = parse({ type: 'junit', files: ['tests/data/junit/playwright.xml'] });
+    
+    assert.equal(result.suites[0].meta_data.get("hostname"), "chromium");
+    assert.equal(result.suites[0].cases[0].meta_data.get("hostname"), "chromium");
+    assert.equal(result.suites[0].cases[1].meta_data.get("hostname"), "chromium");
+
+    assert.equal(result.suites[1].meta_data.get("hostname"), "firefox");
+    assert.equal(result.suites[1].cases[0].meta_data.get("hostname"), "firefox");
+    assert.equal(result.suites[1].cases[1].meta_data.get("hostname"), "firefox");
+
+    assert.equal(result.suites[2].meta_data.get("hostname"), "webkit");
+    assert.equal(result.suites[2].cases[0].meta_data.get("hostname"), "webkit");
+    assert.equal(result.suites[2].cases[1].meta_data.get("hostname"), "webkit");
+    
   });
 
   it('parse system.out to locate attachments', () => {
