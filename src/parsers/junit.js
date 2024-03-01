@@ -4,7 +4,6 @@ const TestResult = require('../models/TestResult');
 const TestSuite = require('../models/TestSuite');
 const TestCase = require('../models/TestCase');
 const TestAttachment = require('../models/TestAttachment');
-const JUnitTypes = import('./junit.result');
 
 function getTestCase(rawCase, suite_meta) {
   const test_case = new TestCase();
@@ -50,8 +49,7 @@ function getTestSuite(rawSuite) {
 }
 
 /**
- * 
- * @param {JUnitTypes.TestSuite | JUnitTypes.JUnitTestCase} rawElement
+ * @param {import('./junit.result').JUnitTestSuite | import('./junit.result').JUnitTestCase} rawElement
  * @param {TestCase | TestSuite} test_element 
  */
 function setMetaData(rawElement, test_element) {
