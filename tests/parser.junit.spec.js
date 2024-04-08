@@ -3,9 +3,9 @@ const assert = require('assert');
 const path = require('path');
 
 describe('Parser - JUnit', () => {
-  
+
   const testDataPath = "tests/data/junit"
-  
+
   it('single suite with single test', () => {
     const result = parse({ type: 'junit', files: [`${testDataPath}/single-suite.xml`] });
     assert.deepEqual(result, {
@@ -450,7 +450,7 @@ describe('Parser - JUnit', () => {
 
   it('parse spekt/junit.testlogger', () => {
     const result = parse({ type: 'junit', files: [`${testDataPath}/junit.testlogger.xml`] });
-    var inheritedProperties = new Map([ ["hostname", "REDACTED"] ]);
+    var inheritedProperties = new Map([["hostname", "REDACTED"]]);
     assert.deepEqual(result, {
       id: "",
       name: "",
@@ -574,10 +574,10 @@ describe('Parser - JUnit', () => {
     let absolutePath = path.resolve(relativePath);
     const result1 = parse({ type: 'junit', files: [absolutePath] });
     assert.notEqual(null, result1);
-    const result2 = parse({ type: 'junit', files: [relativePath]});
+    const result2 = parse({ type: 'junit', files: [relativePath] });
     assert.notEqual(null, result2);
   });
-  
+
   it('meta-data from suite merged with testcase', () => {
     const result = parse({ type: 'junit', files: ['tests/data/junit/multiple-suites-properties.xml'] });
 
@@ -594,7 +594,7 @@ describe('Parser - JUnit', () => {
 
   it('include hostname in meta-data from suite and testcase', () => {
     const result = parse({ type: 'junit', files: ['tests/data/junit/playwright.xml'] });
-    
+
     assert.equal(result.suites[0].meta_data.get("hostname"), "chromium");
     assert.equal(result.suites[0].cases[0].meta_data.get("hostname"), "chromium");
     assert.equal(result.suites[0].cases[1].meta_data.get("hostname"), "chromium");
@@ -606,7 +606,7 @@ describe('Parser - JUnit', () => {
     assert.equal(result.suites[2].meta_data.get("hostname"), "webkit");
     assert.equal(result.suites[2].cases[0].meta_data.get("hostname"), "webkit");
     assert.equal(result.suites[2].cases[1].meta_data.get("hostname"), "webkit");
-    
+
   });
 
   it('parse system.out to locate attachments', () => {
@@ -626,6 +626,15 @@ describe('Parser - JUnit', () => {
 
     // test case with empty or malformed attachment output
     assert.equal(result.suites[0].cases[3].attachments.length, 0);
+  });
+
+  it('wdio - multiple files', () => {
+    const result = parse({ type: 'junit', files: [`${testDataPath}/wdio/*.xml`] });
+    assert.equal(result.total, 9);
+    assert.equal(result.passed, 9);
+    assert.equal(result.failed, 0);
+    assert.equal(result.duration, 157489);
+    assert.equal(result.status, 'PASS');
   });
 
 });

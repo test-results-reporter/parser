@@ -11,7 +11,7 @@ function getTestCase(rawCase, suite_meta) {
   test_case.duration = rawCase["@_time"] * 1000;
   test_case.meta_data = new Map(suite_meta);
   setAttachments(rawCase, test_case);
-  setMetaData(rawCase, test_case);  
+  setMetaData(rawCase, test_case);
   if (rawCase.failure && rawCase.failure.length > 0) {
     test_case.status = 'FAIL';
     test_case.setFailure(rawCase.failure[0]["@_message"]);
@@ -50,7 +50,7 @@ function getTestSuite(rawSuite) {
 
 /**
  * @param {import('./junit.result').JUnitTestSuite | import('./junit.result').JUnitTestCase} rawElement
- * @param {TestCase | TestSuite} test_element 
+ * @param {TestCase | TestSuite} test_element
  */
 function setMetaData(rawElement, test_element) {
   if (rawElement.properties && rawElement.properties.property.length > 0) {
@@ -88,7 +88,7 @@ function setAttachments(rawCase, test_element) {
 
       if (filePath.length > 0) {
         const attachment = new TestAttachment();
-        attachment.path = filePath;        
+        attachment.path = filePath;
         test_element.attachments.push(attachment);
       }
     }
@@ -96,7 +96,7 @@ function setAttachments(rawCase, test_element) {
 }
 
 /**
- * @param {TestResult} result 
+ * @param {TestResult} result
  */
 function setAggregateResults(result) {
   if (Number.isNaN(result.passed) || Number.isNaN(result.failed)) {
@@ -105,30 +105,32 @@ function setAggregateResults(result) {
     let failed = 0;
     let errors = 0;
     let skipped = 0;
-    let duration = 0;
     result.suites.forEach(_suite => {
       total = _suite.total + total;
       passed = _suite.passed + passed;
       failed = _suite.failed + failed;
       errors = _suite.errors + errors;
       skipped = _suite.skipped + skipped;
-      duration = _suite.duration + duration;
     });
     result.passed = passed;
     result.failed = failed;
     result.errors = errors;
     result.skipped = skipped;
     result.total = total;
-    if (Number.isNaN(result.duration)) {
-      result.duration = duration;
-    }
+  }
+  if (Number.isNaN(result.duration)) {
+    let duration = 0;
+    result.suites.forEach(_suite => {
+      duration = _suite.duration + duration;
+    });
+    result.duration = duration;
   }
 }
 
 /**
- * 
- * @param {import('./junit.result').JUnitResultJson} json 
- * @returns 
+ *
+ * @param {import('./junit.result').JUnitResultJson} json
+ * @returns
  */
 function getTestResult(json) {
   const result = new TestResult();
@@ -147,18 +149,21 @@ function getTestResult(json) {
   result.total = result.total - result.skipped;
   result.passed = result.total - result.failed - result.errors;
   result.duration = rawResult["@_time"] * 1000;
-  if (json["testsuites"]) { // top-level element is testsuites
+  // top-level element is testsuites
+  if (json["testsuites"]) {
     const rawSuites = rawResult["testsuite"];
-    if (!(typeof rawSuites === "undefined")) { // Don't filter if there are no testsuite objects
+    // Don't filter if there are no testsuite objects
+    if (!(typeof rawSuites === "undefined")) {
       const filteredSuites = rawSuites.filter(suite => suite.testcase);
       for (let i = 0; i < filteredSuites.length; i++) {
         result.suites.push(getTestSuite(filteredSuites[i]));
       }
     }
-  } else { // top level element is testsuite
+  } else {
+    // top level element is testsuite
     result.suites.push(getTestSuite(rawResult));
   }
-  
+
   setAggregateResults(result);
   result.status = result.total === result.passed ? 'PASS' : 'FAIL';
   return result;
