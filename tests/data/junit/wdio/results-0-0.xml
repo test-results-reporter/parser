@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites tests="4" failures="0" errors="0" skipped="0">
+  <testsuite name="X Source to Y Destination" timestamp="2024-04-08T14:48:58" time="108.995" tests="4" failures="0" errors="0" skipped="0">
+    <properties>
+      <property name="specId" value="0"/>
+      <property name="featureName" value="X Source to Y Destination"/>
+      <property name="capabilities" value="chrome.123_0_6312_59.windows"/>
+      <property name="featureFile" value="file://./src/features/controlplane-team/cloud-extract-source-warehouse-destination.feature"/>
+    </properties>
+    <testcase classname="CucumberJUnitReport-chrome.123_0_6312_59.windows.X Source to Y Destination" name="User creates an Amplitude X source" time="51.099">
+      <system-out><![CDATA[
+✅ Given I open the site "/login"✅ And I log in with "enterprise" account✅ And I visit the url "/directory"✅ When I add a source of type "Amplitude" with name "Src_Amp" with details✅ Then I expect to be in the "Src_Amp" page
+]]></system-out>
+    </testcase>
+    <testcase classname="CucumberJUnitReport-chrome.123_0_6312_59.windows.X Source to Y Destination" name="User creates a Snowflake warehouse destination" time="41.444">
+      <system-out><![CDATA[
+✅ And I visit the url "/directory"✅ When I add a destination of type "Snowflake" with name "Dst_SNFLK" with details✅ Then I expect to be in the "Dst_SNFLK" page
+]]></system-out>
+    </testcase>
+    <testcase classname="CucumberJUnitReport-chrome.123_0_6312_59.windows.X Source to Y Destination" name="User removes connection deletes warehouse destination" time="8.294">
+      <system-out><![CDATA[
+✅ Given I navigate to destination "Dst_SNFLK"✅ When I disconnect source "Src_Amp" from destination✅ And I delete the current destination✅ Then I expect to be in the "Destinations" page
+]]></system-out>
+    </testcase>
+    <testcase classname="CucumberJUnitReport-chrome.123_0_6312_59.windows.X Source to Y Destination" name="User deletes X source" time="7.642">
+      <system-out><![CDATA[
+✅ Given I navigate to source "Src_Amp"✅ When I delete the current source✅ Then I expect to be in the "Sources" page
+]]></system-out>
+    </testcase>
+  </testsuite>
+</testsuites>
