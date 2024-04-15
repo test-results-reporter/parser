@@ -637,4 +637,24 @@ describe('Parser - JUnit', () => {
     assert.equal(result.status, 'PASS');
   });
 
+  it('wdio - failures and errors', () => {
+    const result = parse({ type: 'junit', files: [`${testDataPath}/wdio-failures-errors.xml`] });
+    assert.equal(result.total, 4);
+    assert.equal(result.passed, 0);
+    assert.equal(result.failed, 2);
+    assert.equal(result.errors, 2);
+    assert.equal(result.duration, 91024);
+    assert.equal(result.status, 'FAIL');
+  });
+
+  it('wdio - failures and ignore errors', () => {
+    const result = parse({ type: 'junit', ignore_errors: true, files: [`${testDataPath}/wdio-failures-errors.xml`] });
+    assert.equal(result.total, 4);
+    assert.equal(result.passed, 2);
+    assert.equal(result.failed, 2);
+    assert.equal(result.errors, 0);
+    assert.equal(result.duration, 91024);
+    assert.equal(result.status, 'FAIL');
+  });
+
 });

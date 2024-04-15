@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites tests="4" failures="2" errors="2" skipped="0">
+  <testsuite name="CES to WD" timestamp="2024-04-15T09:12:29" time="91.024" tests="4" failures="2" errors="2" skipped="0">
+    <properties>
+      <property name="specId" value="0"/>
+      <property name="featureName" value="CES to WD"/>
+      <property name="capabilities" value="chrome.123_0_6312_59.windows"/>
+      <property name="featureFile" value="file://./src/features/ces.feature"/>
+    </properties>
+    <testcase classname="CucumberJUnitReport-chrome.123_0_6312_59.windows.CES to WD" name="User creates an Amplitude Cloud extract source" time="32.703">
+      <system-out><![CDATA[
+✅ Given I open the site "/login"✅ And I log in with "enterprise" account✅ And I visit the url "/directory"✅ When I add a source of type "Amplitude" with name "Src_Amp" with details✅ Then I expect to be in the "Src_Amp" page
+]]></system-out>
+    </testcase>
+    <testcase classname="CucumberJUnitReport-chrome.123_0_6312_59.windows.CES to WD" name="User creates a Snowflake warehouse destination" time="46.987">
+      <failure/>
+      <error message="Error: element (&quot;//button/span[text()='Continue']&quot;) still displayed after 20000ms"/>
+      <system-out><![CDATA[
+✅ And I visit the url "/directory"❗ When I add a destination of type "Snowflake" with name "Dst_SNFLK" with details⚠️ Then I expect to be in the "Dst_SNFLK" page
+]]></system-out>
+      <system-err><![CDATA[
+Error: element ("//button/span[text()='Continue']") still displayed after 20000ms
+    at file:///home/runner/work/rsct/node_modules/webdriverio/build/commands/browser/waitUntil.js:39:23
+    at async Element.wrapCommandFn (file:///home/runner/work/rsct/node_modules/@wdio/utils/build/shim.js:88:29)
+    at async Element.elementErrorHandlerCallbackFn (file:///home/runner/work/rsct/node_modules/webdriverio/build/middlewares.js:18:32)
+    at async Element.wrapCommandFn (file:///home/runner/work/rsct/node_modules/@wdio/utils/build/shim.js:88:29)
+    at async Element.wrapCommandFn (file:///home/runner/work/rsct/node_modules/@wdio/utils/build/shim.js:88:29)
+    at async Element.elementErrorHandlerCallbackFn (file:///home/runner/work/rsct/node_modules/webdriverio/build/middlewares.js:18:32)
+    at async Element.wrapCommandFn (file:///home/runner/work/rsct/node_modules/@wdio/utils/build/shim.js:88:29)
+    at async default (file:///home/runner/work/rsct/src/support/action/waitFor.ts:40:5)
+    at async configureSnowflake (file:///home/runner/work/rsct/src/pages/webapp/addDestination.ts:61:5)
+    at async World.addDestinationWithDetails (file:///home/runner/work/rsct/src/support/utils/webapp/addDestinationWithDetails.ts:15:13)
+]]></system-err>
+    </testcase>
+    <testcase classname="CucumberJUnitReport-chrome.123_0_6312_59.windows.CES to WD" name="User removes connection deletes warehouse destination" time="4.219">
+      <failure/>
+      <error message="Error: expect(received).toBeGreaterThanOrEqual(expected)"/>
+      <system-out><![CDATA[
+❗ Given I navigate to destination "Dst_SNFLK"⚠️ When I disconnect source "Src_Amp" from destination
+⚠️ And I delete the current destination
+⚠️ Then I expect to be in the "Destinations" page
+]]></system-out>
+      <system-err><![CDATA[
+Error: expect(received).toBeGreaterThanOrEqual(expected)
+Expected: >= 1
+Received:    0
+    at default (file:///home/runner/work/rsct/src/support/lib/checkIfElementExists.ts:25:37)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async default (file:///home/runner/work/rsct/src/support/action/clickElement.ts:19:5)
+    at async findDestination (file:///home/runner/work/rsct/src/pages/webapp/destinations.ts:13:5)
+    at async World.navigateToDestination (file:///home/runner/work/rsct/src/support/utils/webapp/navigateToDestination.ts:7:5)
+]]></system-err>
+    </testcase>
+    <testcase classname="CucumberJUnitReport-chrome.123_0_6312_59.windows.CES to WD" name="User deletes Cloud extract source" time="6.787">
+      <system-out><![CDATA[
+✅ Given I navigate to source "Src_Amp"✅ When I delete the current source✅ Then I expect to be in the "Ss" page
+]]></system-out>
+    </testcase>
+  </testsuite>
+</testsuites>

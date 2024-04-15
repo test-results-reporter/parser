@@ -9,7 +9,7 @@ const TestResult = require('../models/TestResult');
 const { getMatchingFilePaths } = require('../helpers/helper');
 
 /**
- * @param {import('../models/TestResult')[]} results 
+ * @param {import('../models/TestResult')[]} results
  */
 function merge(results) {
   const main_result = new TestResult();
@@ -53,7 +53,7 @@ function getParser(type) {
 }
 
 /**
- * @param {import('../index').ParseOptions} options 
+ * @param {import('../index').ParseOptions} options
  */
 function parse(options) {
   const parser = getParser(options.type);
@@ -62,7 +62,7 @@ function parse(options) {
     const matched_files = getMatchingFilePaths(options.files[i]);
     for (let j = 0; j < matched_files.length; j++) {
       const file = matched_files[j];
-      results.push(parser.parse(file));
+      results.push(parser.parse(file, options));
     }
   }
   return merge(results);

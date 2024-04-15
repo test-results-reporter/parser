@@ -2,6 +2,7 @@ import TestResult from "./models/TestResult";
 
 declare interface ParseOptions {
   type: string;
+  ignore_errors?: boolean;
   files: string[];
 }
 
