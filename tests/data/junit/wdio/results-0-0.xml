@@ -5,7 +5,7 @@
       <property name="specId" value="0"/>
       <property name="featureName" value="X Source to Y Destination"/>
       <property name="capabilities" value="chrome.123_0_6312_59.windows"/>
-      <property name="featureFile" value="file://./src/features/controlplane-team/cloud-extract-source-warehouse-destination.feature"/>
+      <property name="featureFile" value="file://./src/features/csd.feature"/>
     </properties>
     <testcase classname="CucumberJUnitReport-chrome.123_0_6312_59.windows.X Source to Y Destination" name="User creates an Amplitude X source" time="51.099">
       <system-out><![CDATA[

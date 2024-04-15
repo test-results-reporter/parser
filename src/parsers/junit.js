@@ -21,13 +21,19 @@ function getTestCase(rawCase, suite_meta) {
   return test_case;
 }
 
-function getTestSuite(rawSuite) {
+/**
+ *
+ * @param {object} rawSuite
+ * @param {import('..').ParseOptions} options
+ * @returns
+ */
+function getTestSuite(rawSuite, options) {
   const suite = new TestSuite();
   suite.name = rawSuite["@_name"];
   suite.total = rawSuite["@_tests"];
   suite.failed = rawSuite["@_failures"];
   const errors = rawSuite["@_errors"];
-  if (errors) {
+  if (!options.ignore_errors && errors) {
     suite.errors = errors;
   }
   const skipped = rawSuite["@_skipped"];
@@ -130,16 +136,17 @@ function setAggregateResults(result) {
 /**
  *
  * @param {import('./junit.result').JUnitResultJson} json
+ * @param {import('..').ParseOptions} options
  * @returns
  */
-function getTestResult(json) {
+function getTestResult(json, options) {
   const result = new TestResult();
   const rawResult = json["testsuites"] ? json["testsuites"][0] : json["testsuite"];
   result.name = rawResult["@_name"] || '';
   result.total = rawResult["@_tests"];
   result.failed = rawResult["@_failures"];
   const errors = rawResult["@_errors"];
-  if (errors) {
+  if (!options.ignore_errors && errors) {
     result.errors = errors;
   }
   const skipped = rawResult["@_skipped"];
@@ -156,12 +163,12 @@ function getTestResult(json) {
     if (!(typeof rawSuites === "undefined")) {
       const filteredSuites = rawSuites.filter(suite => suite.testcase);
       for (let i = 0; i < filteredSuites.length; i++) {
-        result.suites.push(getTestSuite(filteredSuites[i]));
+        result.suites.push(getTestSuite(filteredSuites[i], options));
       }
     }
   } else {
     // top level element is testsuite
-    result.suites.push(getTestSuite(rawResult));
+    result.suites.push(getTestSuite(rawResult, options));
   }
 
   setAggregateResults(result);
@@ -169,9 +176,15 @@ function getTestResult(json) {
   return result;
 }
 
-function parse(file) {
+/**
+ *
+ * @param {string} file
+ * @param {import('..').ParseOptions} options
+ * @returns
+ */
+function parse(file, options) {
   const json = getJsonFromXMLFile(file);
-  return getTestResult(json);
+  return getTestResult(json, options);
 }
 
 module.exports = {
