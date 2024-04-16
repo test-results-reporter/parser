@@ -3,9 +3,9 @@ const assert = require('assert');
 const path = require('path');
 
 describe('Parser - Cucumber Json', () => {
-  
+
   const testDataPath = "tests/data/cucumber"
-  
+
   it('single suite with single test', () => {
     const result = parse({ type: 'cucumber', files: [`${testDataPath}/single-suite-single-test.json`] });
     assert.deepEqual(result, {
@@ -102,12 +102,12 @@ describe('Parser - Cucumber Json', () => {
               duration: 2.56,
               errors: 0,
               failed: 0,
-              failure: "AssertionError [ERR_ASSERTION]: 13 == 14\n    + expected - actual\n\n    -13\n    +14\n\n    at CustomWorld.<anonymous> (D:\\workspace\\nodejs\\cc-tests\\features\\support\\steps.js:18:12)",
+              failure: "AssertionError [ERR_ASSERTION]: 13 == 14\n    + expected - actual\n\n    -13\n    +14\n\n",
               id: "",
               name: "Addition of two numbers",
               passed: 0,
               skipped: 0,
-              stack_trace: "",
+              stack_trace: "    at CustomWorld.<anonymous> (D:\\workspace\\nodejs\\cc-tests\\features\\support\\steps.js:18:12)",
               status: "FAIL",
               meta_data: new Map(),
               steps: [],

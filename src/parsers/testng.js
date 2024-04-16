@@ -163,7 +163,7 @@ function parse(file) {
     const suite = suites[0];
     result.name = suite['@_name'];
     result.duration = suite['@_duration-ms'];
-    console.log("No suites with tests found");
+    console.warn("No suites with tests found");
   }
   result.status = result.total === result.passed ? 'PASS' : 'FAIL';
   return result;

@@ -17,6 +17,8 @@ const FORCED_ARRAY_KEYS = [
   "testsuites.testsuite",
   "testsuites.testsuite.testcase",
   "testsuites.testsuite.testcase.failure",
+  "testsuites.testsuite.testcase.error",
+  "testsuites.testsuite.testcase.system-err",
   "testsuites.testsuite.testcase.properties.property",
   "assemblies",
   "assemblies.assembly",
@@ -43,7 +45,7 @@ const configured_parser = new XMLParser({
   isArray: (name, jpath, isLeafNode, isAttribute) => {
     if( FORCED_ARRAY_KEYS.indexOf(jpath) !== -1) {
       return true;
-    } 
+    }
     // handle nunit deep hierarchy
     else if (jpath.startsWith("test-results") || jpath.startsWith("test-run")) {
       let parts = jpath.split(".");
@@ -74,7 +76,7 @@ function getJsonFromXMLFile(filePath) {
 }
 
 /**
- * @param {string} file_path 
+ * @param {string} file_path
  */
 function getMatchingFilePaths(file_path) {
   if (file_path.includes('*')) {
