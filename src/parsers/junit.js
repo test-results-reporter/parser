@@ -15,6 +15,13 @@ function getTestCase(rawCase, suite_meta) {
   if (rawCase.failure && rawCase.failure.length > 0) {
     test_case.status = 'FAIL';
     test_case.setFailure(rawCase.failure[0]["@_message"]);
+    // wdio junit reporter
+    if (!test_case.failure && rawCase.error && rawCase.error.length > 0) {
+      test_case.setFailure(rawCase.error[0]["@_message"]);
+    }
+    if (rawCase['system-err'] && rawCase['system-err'].length > 0) {
+      test_case.stack_trace = rawCase['system-err'][0];
+    }
   } else {
     test_case.status = 'PASS';
   }

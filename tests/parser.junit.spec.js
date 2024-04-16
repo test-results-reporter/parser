@@ -655,6 +655,10 @@ describe('Parser - JUnit', () => {
     assert.equal(result.errors, 0);
     assert.equal(result.duration, 91024);
     assert.equal(result.status, 'FAIL');
+    assert.equal(result.suites[0].cases[1].failure, `Error: element ("//button/span[text()='Continue']") still displayed after 20000ms`);
+    assert.match(result.suites[0].cases[1].stack_trace, /at file/);
+    assert.match(result.suites[0].cases[1].stack_trace, /async Element.wrapCommandFn/);
+    assert.match(result.suites[0].cases[1].stack_trace, /middlewares.js:18:32/);
   });
 
 });

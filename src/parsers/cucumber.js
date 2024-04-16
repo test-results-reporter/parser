@@ -11,7 +11,7 @@ function getTestCase(rawCase) {
   setMetaData(rawCase, test_case);
   if (rawCase.state && rawCase.state === "failed") {
     test_case.status = 'FAIL';
-    test_case.setFailure(rawCase.errorStack);
+    set_error_and_stack_trace(test_case, rawCase.errorStack);
   }
   else {
     test_case.status = 'PASS';
@@ -20,9 +20,27 @@ function getTestCase(rawCase) {
 }
 
 /**
- * 
- * @param {import('./cucumber.result').CucumberElement} element 
- * @param {TestCase | TestSuite} test_element 
+ * @param {TestCase} test_case
+ * @param {string?} message
+ */
+function set_error_and_stack_trace(test_case, message) {
+  if (message) {
+    const stack_trace_start_index = message.indexOf('    at ');
+    if (stack_trace_start_index) {
+      const failure = message.slice(0, stack_trace_start_index);
+      const stack_trace = message.slice(stack_trace_start_index);
+      test_case.setFailure(failure);
+      test_case.stack_trace = stack_trace;
+    } else {
+      test_case.setFailure(message);
+    }
+  }
+}
+
+/**
+ *
+ * @param {import('./cucumber.result').CucumberElement} element
+ * @param {TestCase | TestSuite} test_element
  */
 function setMetaData(element, test_element) {
   const meta_tags = [];
@@ -62,7 +80,7 @@ function getTestSuite(rawSuite) {
 }
 
 /**
- * @param {import("./cucumber.result").CucumberJsonResult} json 
+ * @param {import("./cucumber.result").CucumberJsonResult} json
  */
 function getTestResult(json) {
   const result = new TestResult();
@@ -88,7 +106,7 @@ function getTestResult(json) {
 
 /**
  * Function to format the raw json report
- * @param {import("./cucumber.result").CucumberJsonResult} json 
+ * @param {import("./cucumber.result").CucumberJsonResult} json
  * @returns formatted json object
  */
 function preprocess(json) {
@@ -113,7 +131,7 @@ function preprocess(json) {
 
   formattedResult.stats.suites = formattedResult.suites.length;
   for (const statsType of ["tests", "passes", "failures", "errors", "duration"]) {
-    formattedResult.stats[statsType] = formattedResult.suites.map(testSuite => testSuite[statsType]).reduce((total, currVal) => total + currVal, 0) || 0;    
+    formattedResult.stats[statsType] = formattedResult.suites.map(testSuite => testSuite[statsType]).reduce((total, currVal) => total + currVal, 0) || 0;
   }
   return formattedResult;
 }
@@ -121,7 +139,7 @@ function preprocess(json) {
 function parse(file) {
   const json = require(resolveFilePath(file));
   return getTestResult(json);
-} 
+}
 
 module.exports = {
   parse
