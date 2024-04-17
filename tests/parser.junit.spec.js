@@ -558,7 +558,7 @@ describe('Parser - JUnit', () => {
   });
 
   it('wdio - failures and ignore errors', () => {
-    const result = parse({ type: 'junit', ignore_errors: true, files: [`${testDataPath}/wdio-failures-errors.xml`] });
+    const result = parse({ type: 'junit', ignore_error_count: true, files: [`${testDataPath}/wdio-failures-errors.xml`] });
     assert.equal(result.total, 4);
     assert.equal(result.passed, 2);
     assert.equal(result.failed, 2);
@@ -572,7 +572,7 @@ describe('Parser - JUnit', () => {
   });
 
   it('mocha - failures with stack trace', () => {
-    const result = parse({ type: 'junit', ignore_errors: true, files: [`${testDataPath}/mocha-failures-with-stack-trace.xml`] });
+    const result = parse({ type: 'junit', ignore_error_count: true, files: [`${testDataPath}/mocha-failures-with-stack-trace.xml`] });
     assert.equal(result.total, 51);
     assert.equal(result.passed, 49);
     assert.equal(result.failed, 2);

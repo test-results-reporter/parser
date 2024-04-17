@@ -49,7 +49,7 @@ function getTestSuite(rawSuite, options) {
   suite.total = rawSuite["@_tests"];
   suite.failed = rawSuite["@_failures"];
   const errors = rawSuite["@_errors"];
-  if (!options.ignore_errors && errors) {
+  if (!options.ignore_error_count && errors) {
     suite.errors = errors;
   }
   const skipped = rawSuite["@_skipped"];
@@ -162,7 +162,7 @@ function getTestResult(json, options) {
   result.total = rawResult["@_tests"];
   result.failed = rawResult["@_failures"];
   const errors = rawResult["@_errors"];
-  if (!options.ignore_errors && errors) {
+  if (!options.ignore_error_count && errors) {
     result.errors = errors;
   }
   const skipped = rawResult["@_skipped"];
