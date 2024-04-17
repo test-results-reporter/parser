@@ -14,18 +14,27 @@ function getTestCase(rawCase, suite_meta) {
   setMetaData(rawCase, test_case);
   if (rawCase.failure && rawCase.failure.length > 0) {
     test_case.status = 'FAIL';
-    test_case.setFailure(rawCase.failure[0]["@_message"]);
-    // wdio junit reporter
-    if (!test_case.failure && rawCase.error && rawCase.error.length > 0) {
-      test_case.setFailure(rawCase.error[0]["@_message"]);
-    }
-    if (rawCase['system-err'] && rawCase['system-err'].length > 0) {
-      test_case.stack_trace = rawCase['system-err'][0];
-    }
+    set_error_and_stack_trace(test_case, rawCase);
   } else {
     test_case.status = 'PASS';
   }
   return test_case;
+}
+
+function set_error_and_stack_trace(test_case, raw_case) {
+  test_case.setFailure(raw_case.failure[0]["@_message"]);
+  // wdio junit reporter
+  if (!test_case.failure && raw_case.error && raw_case.error.length > 0) {
+    test_case.setFailure(raw_case.error[0]["@_message"]);
+  }
+  if (raw_case['system-err'] && raw_case['system-err'].length > 0) {
+    test_case.stack_trace = raw_case['system-err'][0];
+  }
+  if (!test_case.stack_trace) {
+    if (raw_case.failure[0]["#text"]) {
+      test_case.stack_trace = raw_case.failure[0]["#text"];
+    }
+  }
 }
 
 /**
@@ -40,7 +49,7 @@ function getTestSuite(rawSuite, options) {
   suite.total = rawSuite["@_tests"];
   suite.failed = rawSuite["@_failures"];
   const errors = rawSuite["@_errors"];
-  if (!options.ignore_errors && errors) {
+  if (!options.ignore_error_count && errors) {
     suite.errors = errors;
   }
   const skipped = rawSuite["@_skipped"];
@@ -68,7 +77,7 @@ function getTestSuite(rawSuite, options) {
 function setMetaData(rawElement, test_element) {
   if (rawElement.properties && rawElement.properties.property.length > 0) {
     const raw_properties = rawElement.properties.property;
-    for  (const raw_property of raw_properties) {
+    for (const raw_property of raw_properties) {
       test_element.meta_data.set(raw_property["@_name"], raw_property["@_value"]);
     }
   }
@@ -153,7 +162,7 @@ function getTestResult(json, options) {
   result.total = rawResult["@_tests"];
   result.failed = rawResult["@_failures"];
   const errors = rawResult["@_errors"];
-  if (!options.ignore_errors && errors) {
+  if (!options.ignore_error_count && errors) {
     result.errors = errors;
   }
   const skipped = rawResult["@_skipped"];
