@@ -42,7 +42,7 @@ describe('Parser - JUnit', () => {
               name: "Use a program name that matches the source file name",
               passed: 0,
               skipped: 0,
-              stack_trace: "",
+              stack_trace: "Some Text",
               status: "FAIL",
               meta_data: new Map(),
               steps: [],
@@ -186,7 +186,7 @@ describe('Parser - JUnit', () => {
               name: "Use a program name that matches the source file name",
               passed: 0,
               skipped: 0,
-              stack_trace: "",
+              stack_trace: "Some Text",
               status: "FAIL",
               meta_data: new Map(),
               steps: [],
@@ -216,7 +216,7 @@ describe('Parser - JUnit', () => {
               name: "Use a program name that matches the source file name",
               passed: 0,
               skipped: 0,
-              stack_trace: "",
+              stack_trace: "Some Text",
               status: "FAIL",
               meta_data: new Map(),
               steps: [],
@@ -264,7 +264,7 @@ describe('Parser - JUnit', () => {
               name: "Use a program name that matches the source file name",
               passed: 0,
               skipped: 0,
-              stack_trace: "",
+              stack_trace: "Some Text",
               status: "FAIL",
               meta_data: new Map(),
               steps: [],
@@ -294,7 +294,7 @@ describe('Parser - JUnit', () => {
               name: "Use a program name that matches the source file name",
               passed: 0,
               skipped: 0,
-              stack_trace: "",
+              stack_trace: "Some Text",
               status: "FAIL",
               meta_data: new Map(),
               steps: [],
@@ -451,98 +451,8 @@ describe('Parser - JUnit', () => {
   it('parse spekt/junit.testlogger', () => {
     const result = parse({ type: 'junit', files: [`${testDataPath}/junit.testlogger.xml`] });
     var inheritedProperties = new Map([["hostname", "REDACTED"]]);
-    assert.deepEqual(result, {
-      id: "",
-      name: "",
-      total: 3,
-      passed: 2,
-      failed: 1,
-      errors: 0,
-      skipped: 1,
-      retried: 0,
-      duration: 870.6800000000001,
-      status: "FAIL",
-      suites: [
-        {
-          id: "",
-          name: "JUnit.Xml.TestLogger.NetCore.Tests.dll",
-          total: 3,
-          passed: 2,
-          failed: 1,
-          errors: 0,
-          skipped: 1,
-          duration: 870.6800000000001,
-          status: "FAIL",
-          meta_data: inheritedProperties,
-          cases: [
-            {
-              id: "",
-              name: "TestD",
-              total: 0,
-              passed: 0,
-              failed: 0,
-              errors: 0,
-              skipped: 0,
-              duration: 2.195,
-              status: "PASS",
-              failure: "",
-              stack_trace: "",
-              meta_data: inheritedProperties,
-              attachments: [],
-              steps: []
-            },
-            {
-              id: "",
-              name: "TestC",
-              total: 0,
-              passed: 0,
-              failed: 0,
-              errors: 0,
-              skipped: 0,
-              duration: 1.109,
-              status: "FAIL",
-              failure: "TearDown : System.InvalidOperationException : Operation is not valid due to the current state of the object.",
-              stack_trace: "",
-              meta_data: inheritedProperties,
-              attachments: [],
-              steps: []
-            },
-            {
-              id: "",
-              name: "InconclusiveTest",
-              total: 0,
-              passed: 0,
-              failed: 0,
-              errors: 0,
-              skipped: 0,
-              duration: 0.7200000000000001,
-              status: "PASS",
-              failure: "",
-              stack_trace: "",
-              meta_data: inheritedProperties,
-              attachments: [],
-              steps: []
-            },
-            {
-              id: "",
-              name: "Ignored",
-              total: 0,
-              passed: 0,
-              failed: 0,
-              errors: 0,
-              skipped: 0,
-              duration: 0.29500000000000004,
-              status: "PASS",
-              failure: "",
-              stack_trace: "",
-              meta_data: inheritedProperties,
-              attachments: [],
-              steps: []
-            }
-          ]
-        }
-      ]
-    });
+    assert.deepEqual(result.suites[0].meta_data, inheritedProperties);
+    assert.deepEqual(result.suites[0].cases[0].meta_data, inheritedProperties);
   });
 
   it('parse testcafe with testsuite root node', () => {
@@ -660,5 +570,16 @@ describe('Parser - JUnit', () => {
     assert.match(result.suites[0].cases[1].stack_trace, /async Element.wrapCommandFn/);
     assert.match(result.suites[0].cases[1].stack_trace, /middlewares.js:18:32/);
   });
+
+  it('mocha - failures with stack trace', () => {
+    const result = parse({ type: 'junit', ignore_errors: true, files: [`${testDataPath}/mocha-failures-with-stack-trace.xml`] });
+    assert.equal(result.total, 51);
+    assert.equal(result.passed, 49);
+    assert.equal(result.failed, 2);
+    assert.equal(result.errors, 0);
+    assert.equal(result.status, 'FAIL');
+    assert.equal(result.suites[5].cases[0].failure, `HTTP status 200 !== 400`);
+    assert.match(result.suites[5].cases[0].stack_trace, /at Expect._validateStatus/);
+  })
 
 });

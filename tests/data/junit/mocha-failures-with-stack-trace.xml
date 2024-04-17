@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="1.331" tests="58" failures="2" skipped="7">
+  <testsuite name="Root Suite" timestamp="2024-03-05T03:09:11" tests="0" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Health" timestamp="2024-03-05T03:09:11" tests="1" file="/Users/anudeep/Documents/repos/testbeats/beats-core-api/test/component/health.spec.js" time="0.009" failures="0">
+    <testcase name="Health should get status as ok" time="0.009" classname="should get status as ok">
+    </testcase>
+  </testsuite>
+  <testsuite name="Organization - should not create" timestamp="2024-03-05T03:09:11" tests="1" file="/Users/anudeep/Documents/repos/testbeats/beats-core-api/test/component/organizations.spec.js" time="0.004" failures="0">
+    <testcase name="Organization - should not create without body" time="0.001" classname="without body">
+    </testcase>
+  </testsuite>
+  <testsuite name="Swagger" timestamp="2024-03-05T03:09:11" tests="1" file="/Users/anudeep/Documents/repos/testbeats/beats-core-api/test/component/swagger.spec.js" time="0.001" failures="0">
+    <testcase name="Swagger should get the docs url" time="0.000" classname="should get the docs url">
+    </testcase>
+  </testsuite>
+  <testsuite name="Test Case Failure Analysis - should create" timestamp="2024-03-05T03:09:11" tests="2" file="/Users/anudeep/Documents/repos/testbeats/beats-core-api/test/component/test-case-failure-analysis.spec.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Test Case Failure Analysis - should not create" timestamp="2024-03-05T03:09:11" tests="1" file="/Users/anudeep/Documents/repos/testbeats/beats-core-api/test/component/test-case-failure-analysis.spec.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Test Case Failure Analysis - should update" timestamp="2024-03-05T03:09:11" tests="2" file="/Users/anudeep/Documents/repos/testbeats/beats-core-api/test/component/test-case-failure-analysis.spec.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Test Execution Metrics" timestamp="2024-03-05T03:09:11" tests="2" file="/Users/anudeep/Documents/repos/testbeats/beats-core-api/test/component/test-execution-metrics.spec.js" time="0.510" failures="0">
+    <testcase name="Test Execution Metrics get success test metrics" time="0.234" classname="get success test metrics">
+    </testcase>
+    <testcase name="Test Execution Metrics get skipped test metric due to new run" time="0.226" classname="get skipped test metric due to new run">
+    </testcase>
+  </testsuite>
+  <testsuite name="Test Runs - should fetch" timestamp="2024-03-05T03:09:11" tests="2" file="/Users/anudeep/Documents/repos/testbeats/beats-core-api/test/component/test-runs.get.spec.js" time="0.252" failures="0">
+    <testcase name="Test Runs - should fetch with default page and limit" time="0.011" classname="with default page and limit">
+    </testcase>
+    <testcase name="Test Runs - should fetch with project name and build name and run number" time="0.007" classname="with project name and build name and run number">
+    </testcase>
+  </testsuite>
+  <testsuite name="Test Runs - should not fetch" timestamp="2024-03-05T03:09:12" tests="2" file="/Users/anudeep/Documents/repos/testbeats/beats-core-api/test/component/test-runs.get.spec.js" time="0.037" failures="2">
+    <testcase name="Test Runs - should not fetch with page number greater than total" time="0.005" classname="with page number greater than total">
+      <failure message="HTTP status 200 !== 400" type="AssertionError"><![CDATA[AssertionError [ERR_ASSERTION]: HTTP status 200 !== 400
+    at Expect._validateStatus (node_modules/pactum/src/models/expect.js:105:14)
+    at Expect.validate (node_modules/pactum/src/models/expect.js:47:10)
+    at Tosser.validateResponse (node_modules/pactum/src/models/Tosser.js:240:23)
+    at Tosser.validate (node_modules/pactum/src/models/Tosser.js:207:18)
+    at Tosser.toss (node_modules/pactum/src/models/Tosser.js:44:18)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+
+      + expected - actual
+
+      -200
+      +400
+      ]]></failure>
+    </testcase>
+    <testcase name="Test Runs - should not fetch with invalid project name" time="0.003" classname="with invalid project name">
+      <failure message="HTTP status 200 !== 400" type="AssertionError"><![CDATA[AssertionError [ERR_ASSERTION]: HTTP status 200 !== 400
+    at Expect._validateStatus (node_modules/pactum/src/models/expect.js:105:14)
+    at Expect.validate (node_modules/pactum/src/models/expect.js:47:10)
+    at Tosser.validateResponse (node_modules/pactum/src/models/Tosser.js:240:23)
+    at Tosser.validate (node_modules/pactum/src/models/Tosser.js:207:18)
+    at Tosser.toss (node_modules/pactum/src/models/Tosser.js:44:18)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+
+      + expected - actual
+
+      -200
+      +400
+      ]]></failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="Test Runs - should create" timestamp="2024-03-05T03:09:12" tests="5" file="/Users/anudeep/Documents/repos/testbeats/beats-core-api/test/component/test-runs.spec.js" time="0.052" failures="0">
+    <testcase name="Test Runs - should create without suites" time="0.010" classname="without suites">
+    </testcase>
+    <testcase name="Test Runs - should create without skipped, errors, retried and duration" time="0.007" classname="without skipped, errors, retried and duration">
+    </testcase>
+    <testcase name="Test Runs - should create with suites" time="0.007" classname="with suites">
+    </testcase>
+    <testcase name="Test Runs - should create with cases" time="0.007" classname="with cases">
+    </testcase>
+    <testcase name="Test Runs - should create with steps" time="0.010" classname="with steps">
+    </testcase>
+  </testsuite>
+  <testsuite name="Test Runs - should not create" timestamp="2024-03-05T03:09:12" tests="10" file="/Users/anudeep/Documents/repos/testbeats/beats-core-api/test/component/test-runs.spec.js" time="0.031" failures="0">
+    <testcase name="Test Runs - should not create without body" time="0.003" classname="without body">
+    </testcase>
+    <testcase name="Test Runs - should not create with counts &lt; 0" time="0.002" classname="with counts &lt; 0">
+    </testcase>
+    <testcase name="Test Runs - should not create with invalid suites type" time="0.002" classname="with invalid suites type">
+    </testcase>
+    <testcase name="Test Runs - should not create with one empty suite" time="0.002" classname="with one empty suite">
+    </testcase>
+    <testcase name="Test Runs - should not create with invalid cases type" time="0.003" classname="with invalid cases type">
+    </testcase>
+    <testcase name="Test Runs - should not create with one empty case" time="0.002" classname="with one empty case">
+    </testcase>
+    <testcase name="Test Runs - should not create with invalid step type" time="0.002" classname="with invalid step type">
+    </testcase>
+    <testcase name="Test Runs - should not create with one empty step" time="0.001" classname="with one empty step">
+    </testcase>
+    <testcase name="Test Runs - should not create with invalid status" time="0.003" classname="with invalid status">
+    </testcase>
+    <testcase name="Test Runs - should not create with invalid start and end times" time="0.002" classname="with invalid start and end times">
+    </testcase>
+  </testsuite>
+  <testsuite name="Test Runs - should search" timestamp="2024-03-05T03:09:12" tests="15" file="/Users/anudeep/Documents/repos/testbeats/beats-core-api/test/component/test-runs.spec.js" time="0.308" failures="0">
+    <testcase name="Test Runs - should search with default page and limit" time="0.006" classname="with default page and limit">
+    </testcase>
+    <testcase name="Test Runs - should search with custom page and limit" time="0.005" classname="with custom page and limit">
+    </testcase>
+    <testcase name="Test Runs - should search first test run" time="0.003" classname="first test run">
+    </testcase>
+    <testcase name="Test Runs - should search last test run" time="0.004" classname="last test run">
+    </testcase>
+    <testcase name="Test Runs - should search empty values with page out of range" time="0.003" classname="empty values with page out of range">
+    </testcase>
+    <testcase name="Test Runs - should search with filter on &apos;name&apos; using &apos;=&apos; operator" time="0.004" classname="with filter on &apos;name&apos; using &apos;=&apos; operator">
+    </testcase>
+    <testcase name="Test Runs - should search with filter on &apos;name&apos; using &apos;!=&apos; operator" time="0.006" classname="with filter on &apos;name&apos; using &apos;!=&apos; operator">
+    </testcase>
+    <testcase name="Test Runs - should search with filter on &apos;name&apos; using &apos;~&apos; operator" time="0.006" classname="with filter on &apos;name&apos; using &apos;~&apos; operator">
+    </testcase>
+    <testcase name="Test Runs - should search with filter on &apos;total&apos; using &apos;&gt;&apos; operator" time="0.005" classname="with filter on &apos;total&apos; using &apos;&gt;&apos; operator">
+    </testcase>
+    <testcase name="Test Runs - should search with filter on &apos;created_at&apos; using &apos;&gt;&apos; operator" time="0.004" classname="with filter on &apos;created_at&apos; using &apos;&gt;&apos; operator">
+    </testcase>
+    <testcase name="Test Runs - should search with filter on &apos;passed&apos; using &apos;&lt;&apos; operator" time="0.003" classname="with filter on &apos;passed&apos; using &apos;&lt;&apos; operator">
+    </testcase>
+    <testcase name="Test Runs - should search with multiple filters on &apos;name&apos; and &apos;passed&apos;" time="0.005" classname="with multiple filters on &apos;name&apos; and &apos;passed&apos;">
+    </testcase>
+    <testcase name="Test Runs - should search empty values when no names equals the given name" time="0.003" classname="empty values when no names equals the given name">
+    </testcase>
+    <testcase name="Test Runs - should search empty values when no names matches the given name" time="0.002" classname="empty values when no names matches the given name">
+    </testcase>
+    <testcase name="Test Runs - should search empty values when created_at &gt; than today" time="0.004" classname="empty values when created_at &gt; than today">
+    </testcase>
+  </testsuite>
+  <testsuite name="Test Runs - should not search" timestamp="2024-03-05T03:09:12" tests="7" file="/Users/anudeep/Documents/repos/testbeats/beats-core-api/test/component/test-runs.spec.js" time="0.004" failures="0">
+    <testcase name="Test Runs - should not search with invalid limit and page" time="0.001" classname="with invalid limit and page">
+    </testcase>
+    <testcase name="Test Runs - should not search with invalid key in filters" time="0.001" classname="with invalid key in filters">
+    </testcase>
+    <testcase name="Test Runs - should not search with &apos;&gt;&apos; comparator and invalid number in filters" time="0.001" classname="with &apos;&gt;&apos; comparator and invalid number in filters">
+    </testcase>
+    <testcase name="Test Runs - should not search with &apos;&lt;&apos; comparator and invalid number in filters" time="0.000" classname="with &apos;&lt;&apos; comparator and invalid number in filters">
+    </testcase>
+    <testcase name="Test Runs - should not search with &apos;&gt;&apos; comparator and invalid date in filters" time="0.000" classname="with &apos;&gt;&apos; comparator and invalid date in filters">
+    </testcase>
+  </testsuite>
+  <testsuite name="Test Runs - should fetch by id" timestamp="2024-03-05T03:09:12" tests="1" file="/Users/anudeep/Documents/repos/testbeats/beats-core-api/test/component/test-runs.spec.js" time="0.021" failures="0">
+    <testcase name="Test Runs - should fetch by id with valid test run id" time="0.002" classname="with valid test run id">
+    </testcase>
+  </testsuite>
+  <testsuite name="Test Runs - should not fetch by id" timestamp="2024-03-05T03:09:12" tests="1" file="/Users/anudeep/Documents/repos/testbeats/beats-core-api/test/component/test-runs.spec.js" time="0.004" failures="0">
+    <testcase name="Test Runs - should not fetch by id with invalid test run id" time="0.003" classname="with invalid test run id">
+    </testcase>
+  </testsuite>
+  <testsuite name="Test Runs - should delete by id" timestamp="2024-03-05T03:09:12" tests="4" file="/Users/anudeep/Documents/repos/testbeats/beats-core-api/test/component/test-runs.spec.js" time="0.075" failures="0">
+    <testcase name="Test Runs - should delete by id a test run without suites" time="0.010" classname="a test run without suites">
+    </testcase>
+    <testcase name="Test Runs - should delete by id a test run with a suite" time="0.012" classname="a test run with a suite">
+    </testcase>
+    <testcase name="Test Runs - should delete by id a test run with a case" time="0.020" classname="a test run with a case">
+    </testcase>
+    <testcase name="Test Runs - should delete by id a test run with a step" time="0.014" classname="a test run with a step">
+    </testcase>
+  </testsuite>
+  <testsuite name="Test Runs - should not delete by id" timestamp="2024-03-05T03:09:12" tests="1" file="/Users/anudeep/Documents/repos/testbeats/beats-core-api/test/component/test-runs.spec.js" time="0.004" failures="0">
+    <testcase name="Test Runs - should not delete by id with invalid test run id" time="0.003" classname="with invalid test run id">
+    </testcase>
+  </testsuite>
+</testsuites>
