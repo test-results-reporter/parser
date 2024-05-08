@@ -33,7 +33,7 @@ function getTestSuite(rawSuite) {
   suite.passed = rawSuite["passes"].length;
   suite.failed = rawSuite["failures"].length;
   suite.duration = rawSuite["duration"];
-  suite.skipped = rawSuite["pending"].length;
+  suite.skipped = rawSuite["pending"].length + rawSuite["skipped"].length;
   suite.status = suite.total === (suite.passed + suite.skipped) ? 'PASS' : 'FAIL';
   setMetaData(suite);
   const raw_test_cases = rawSuite.tests;
