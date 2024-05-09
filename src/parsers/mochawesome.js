@@ -1,5 +1,5 @@
 /*
-*  Parser for Mocha Json report
+*  Parser for Mochawesome json report
 */
 const { resolveFilePath } = require('../helpers/helper');
 
@@ -33,7 +33,7 @@ function getTestSuite(rawSuite) {
   suite.passed = rawSuite["passes"].length;
   suite.failed = rawSuite["failures"].length;
   suite.duration = rawSuite["duration"];
-  suite.skipped = rawSuite["pending"].length;
+  suite.skipped = rawSuite["skipped"].length + rawSuite["pending"].length;
   suite.status = suite.total === (suite.passed + suite.skipped) ? 'PASS' : 'FAIL';
   setMetaData(suite);
   const raw_test_cases = rawSuite.tests;
@@ -65,7 +65,7 @@ function getTestResult(raw_json) {
   if (errors) {
     result.errors = errors;
   }
-  const skipped = stats["pending"];
+  const skipped = stats["skipped"] + stats["pending"];
   if (skipped) {
     result.skipped = skipped;
   }
@@ -98,7 +98,7 @@ function formatMochaJsonReport(raw_json) {
     test.duration = 0;
   });
 
-  const rawTests = [...raw_json.passes, ...raw_json.failures, ...raw_json.pending];
+  const rawTests = [...raw_json.passes, ...raw_json.failures, ...raw_json.pending, ...raw_json.skipped];
   const testSuites = [...new Set(rawTests.map(test => test.fullTitle.split(' ' + test.title)[0]))];
 
   for (const testSuite of testSuites) {
@@ -108,7 +108,7 @@ function formatMochaJsonReport(raw_json) {
     }
     suite.passes = suite.tests.filter(test => test.state === "passed");
     suite.failures = suite.tests.filter(test => test.state === "failed");
-    suite.pending = suite.tests.filter(test => test.state === "pending");
+    suite.pending = suite.tests.filter(test => test.state === "pending" || test.state === "skipped");
     suite.duration = suite.tests.map(test => test.duration).reduce((total, currVal) => total + currVal, 0);
     suite.fullFile = suite.tests[0].file || "";
     suites.push(suite);
