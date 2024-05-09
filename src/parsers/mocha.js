@@ -1,5 +1,5 @@
 /*
-*  Parser for both Mocha Json report and Mochawesome json
+*  Parser for Mocha Json report
 */
 const { resolveFilePath } = require('../helpers/helper');
 
