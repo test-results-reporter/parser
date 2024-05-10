@@ -48,8 +48,9 @@ function getTestSuite(rawSuite) {
 /**
  * Function to format the mocha raw json report
  * @param {import("./mocha.result").MochaJsonData} raw_json 
+ * @param {Boolean} skipped_tests_passed
  */
-function getTestResult(raw_json) {
+function getTestResult(raw_json, skipped_tests_passed) {
   const result = new TestResult();
   const { stats, results } = formatMochaJsonReport(raw_json);
 
@@ -70,6 +71,13 @@ function getTestResult(raw_json) {
     result.skipped = skipped;
   }
   result.duration = stats["duration"] || 0;
+  if (skipped_tests_passed) {
+    result.passed = stats["passes"] + result.skipped;
+    result.status = result.total === result.passed ? 'PASS' : 'FAIL';
+  } else {
+    result.passed = stats["passes"];
+    result.status = (result.total - result.skipped) === result.passed ? 'PASS' : 'FAIL';
+  }
 
   if (suites.length > 0) {
     for (let i = 0; i < suites.length; i++) {
@@ -169,9 +177,9 @@ function setMetaData(test_element) {
 }
 
 
-function parse(file) {
+function parse(file, options) {
   const json = require(resolveFilePath(file));
-  return getTestResult(json);
+  return getTestResult(json, options.skipped_tests_passed ? options.skipped_tests_passed : false);
 }
 
 module.exports = {
