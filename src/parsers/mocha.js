@@ -115,7 +115,7 @@ function formatMochaJsonReport(raw_json) {
     }
     suite.passes = suite.tests.filter(test => test.state === "passed");
     suite.failures = suite.tests.filter(test => test.state === "failed");
-    suite.pending = suite.tests.filter(test => test.state === "pending" || test.state === "skipped");
+    suite.pending = suite.tests.filter(test => test.state === "pending");
     suite.duration = suite.tests.map(test => test.duration).reduce((total, currVal) => total + currVal, 0);
     suite.fullFile = suite.tests[0].file || "";
     suites.push(suite);
