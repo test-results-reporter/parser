@@ -4,7 +4,6 @@ const nunit = require('./nunit');
 const mstest = require('./mstest');
 const xunit = require('./xunit');
 const mocha = require('./mocha');
-const mochawesome = require('./mochawesome');
 const cucumber = require('./cucumber');
 const TestResult = require('../models/TestResult');
 const { getMatchingFilePaths } = require('../helpers/helper');
@@ -48,8 +47,6 @@ function getParser(type) {
       return mocha;
     case 'cucumber':
       return cucumber;
-    case 'mochawesome':
-      return mochawesome;
     default:
       throw `UnSupported Result Type - ${options.type}`;
   }

@@ -1,5 +1,5 @@
 /*
-*  Parser for Mocha Json report
+*  Parser for both Mocha Json report and Mochawesome json
 */
 const { resolveFilePath } = require('../helpers/helper');
 
@@ -97,6 +97,13 @@ function formatMochaJsonReport(raw_json) {
     test.state = "pending";
     test.duration = 0;
   });
+  if (raw_json.hasOwnProperty('skipped')) {
+    raw_json.skipped.forEach(test => {
+      test.state = "pending";
+      test.duration = 0;
+    });
+    raw_json.pending.concat(raw_json.skipped);
+  }
 
   const rawTests = [...raw_json.passes, ...raw_json.failures, ...raw_json.pending];
   const testSuites = [...new Set(rawTests.map(test => test.fullTitle.split(' ' + test.title)[0]))];
@@ -108,7 +115,7 @@ function formatMochaJsonReport(raw_json) {
     }
     suite.passes = suite.tests.filter(test => test.state === "passed");
     suite.failures = suite.tests.filter(test => test.state === "failed");
-    suite.pending = suite.tests.filter(test => test.state === "pending");
+    suite.pending = suite.tests.filter(test => test.state === "pending" || test.state === "skipped");
     suite.duration = suite.tests.map(test => test.duration).reduce((total, currVal) => total + currVal, 0);
     suite.fullFile = suite.tests[0].file || "";
     suites.push(suite);
