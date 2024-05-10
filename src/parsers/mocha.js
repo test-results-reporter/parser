@@ -25,7 +25,7 @@ function getTestCase(rawCase) {
   return test_case;
 }
 
-function getTestSuite(rawSuite) {
+function getTestSuite(rawSuite, skipped_tests_passed) {
   flattenTestSuite(rawSuite);
   const suite = new TestSuite();
   suite.name = rawSuite["title"];
@@ -72,7 +72,7 @@ function getTestResult(raw_json, skipped_tests_passed) {
   }
   result.duration = stats["duration"] || 0;
   if (skipped_tests_passed) {
-    result.passed = stats["passes"] + result.skipped;
+    result.total -= result.skipped;
     result.status = result.total === result.passed ? 'PASS' : 'FAIL';
   } else {
     result.passed = stats["passes"];
@@ -81,7 +81,7 @@ function getTestResult(raw_json, skipped_tests_passed) {
 
   if (suites.length > 0) {
     for (let i = 0; i < suites.length; i++) {
-      result.suites.push(getTestSuite(suites[i]));
+      result.suites.push(getTestSuite(suites[i], skipped_tests_passed));
     }
   }
   result.status = (result.total - result.skipped) === result.passed ? 'PASS' : 'FAIL';
