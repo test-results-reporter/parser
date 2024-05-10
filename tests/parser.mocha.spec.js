@@ -333,7 +333,7 @@ describe('Parser - Mocha Awesome Json', () => {
     });
   });
   
-  it('suite with skipped tests', () => {
+  it('suite with pending tests', () => {
     const result = parse({ type: 'mocha', files: [`${testDataPath}/pending-tests.json`] });
     assert.deepEqual(result, {
       id: '',
