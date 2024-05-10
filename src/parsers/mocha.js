@@ -97,6 +97,13 @@ function formatMochaJsonReport(raw_json) {
     test.state = "pending";
     test.duration = 0;
   });
+  if (raw_json.hasOwnProperty('skipped')) {
+    raw_json.skipped.forEach(test => {
+      test.state = "pending";
+      test.duration = 0;
+    });
+    raw_json.pending.concat(raw_json.skipped);
+  }
 
   const rawTests = [...raw_json.passes, ...raw_json.failures, ...raw_json.pending];
   const testSuites = [...new Set(rawTests.map(test => test.fullTitle.split(' ' + test.title)[0]))];
