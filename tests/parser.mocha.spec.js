@@ -334,7 +334,7 @@ describe('Parser - Mocha Awesome Json', () => {
   });
   
   it('suite with skipped tests', () => {
-    const result = parse({ type: 'mocha', files: [`${testDataPath}/skipped-tests.json`] });
+    const result = parse({ type: 'mocha', files: [`${testDataPath}/pending-tests.json`] });
     assert.deepEqual(result, {
       id: '',
       name: '',
@@ -595,7 +595,7 @@ describe('Parser - Mocha Awesome Json', () => {
   });
 
   it('supports skipped tests', () => {
-    const result = parse({ type: 'mocha', files: [`${testDataPath}/skipped-pending-suites.json`] });
+    const result = parse({ type: 'mocha', files: [`${testDataPath}/skipped-tests.json`] });
     assert.deepEqual(result, {
       duration: 13998,
       errors: 0,

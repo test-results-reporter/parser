@@ -1,24 +1,24 @@
 {
   "stats": {
-    "suites": 1,
-    "tests": 2,
-    "passes": 1,
+    "suites": 2,
+    "tests": 3,
+    "passes": 2,
     "pending": 1,
     "failures": 0,
-    "start": "2022-06-11T08:23:09.912Z",
-    "end": "2022-06-11T08:23:09.915Z",
-    "duration": 3,
-    "testsRegistered": 2,
+    "start": "2024-05-07T11:20:22.939Z",
+    "end": "2024-05-07T11:20:36.937Z",
+    "duration": 13998,
+    "testsRegistered": 3,
     "passPercent": 100,
-    "pendingPercent": 50,
+    "pendingPercent": 33.33333333333333,
     "other": 0,
     "hasOther": false,
-    "skipped": 0,
-    "hasSkipped": false
+    "skipped": 1,
+    "hasSkipped": true
   },
   "results": [
     {
-      "uuid": "a3892a10-4d6a-4729-a479-4744cfb1f025",
+      "uuid": "d24cce19-085f-4624-a944-31df51760920",
       "title": "",
       "fullFile": "",
       "file": "",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "e450ecce-78d4-4013-8f88-5fa87007b564",
+          "uuid": "48b750c9-49b3-4de7-9394-60e708bb083e",
           "title": "Example Suite",
           "fullFile": "",
           "file": "",
@@ -35,10 +35,67 @@
           "afterHooks": [],
           "tests": [
             {
-              "title": "first sample test",
-              "fullTitle": "Example Suite first sample test",
-              "timedOut": false,
-              "duration": 1,
+              "title": "first skipped test",
+              "fullTitle": "Example Suite first skipped test",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "e41e7b19-b93e-474d-8002-2ed0e440ceb9",
+              "parentUUID": "48b750c9-49b3-4de7-9394-60e708bb083e",
+              "isHook": false,
+              "skipped": true
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [
+            "e41e7b19-b93e-474d-8002-2ed0e440ceb9"
+          ],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "14031a6a-ac0c-4f57-a78f-1a42fc515944",
+          "title": "Second Example Suite",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "first passed test",
+              "fullTitle": "Second Example Suite first passed test",
+              "timedOut": null,
+              "duration": 8912,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "4bcefde0-a72b-4e5b-be08-c18df00ec6fe",
+              "parentUUID": "14031a6a-ac0c-4f57-a78f-1a42fc515944",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "second passed test",
+              "fullTitle": "Second Example Suite second passed test",
+              "timedOut": null,
+              "duration": 4734,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -47,40 +104,21 @@
               "context": null,
               "code": "",
               "err": {},
-              "uuid": "5f4fc8ba-fbf0-4439-a084-4199ad46f812",
-              "parentUUID": "e450ecce-78d4-4013-8f88-5fa87007b564",
-              "isHook": false,
-              "skipped": false
-            },
-            {
-              "title": "second sample test",
-              "fullTitle": "Example Suite second sample test",
-              "timedOut": false,
-              "duration": 0,
-              "state": "pending",
-              "speed": null,
-              "pass": false,
-              "fail": false,
-              "pending": true,
-              "context": null,
-              "code": "",
-              "err": {},
-              "uuid": "9fc0d5f8-dc37-4139-b39f-9ca6e041aca3",
-              "parentUUID": "e450ecce-78d4-4013-8f88-5fa87007b564",
+              "uuid": "da1340b1-4494-4911-8225-7b44f75f7ae5",
+              "parentUUID": "14031a6a-ac0c-4f57-a78f-1a42fc515944",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "5f4fc8ba-fbf0-4439-a084-4199ad46f812"
+            "4bcefde0-a72b-4e5b-be08-c18df00ec6fe",
+            "da1340b1-4494-4911-8225-7b44f75f7ae5"
           ],
           "failures": [],
-          "pending": [
-            "9fc0d5f8-dc37-4139-b39f-9ca6e041aca3"
-          ],
+          "pending": [],
           "skipped": [],
-          "duration": 1,
+          "duration": 13646,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -98,7 +136,7 @@
   ],
   "meta": {
     "mocha": {
-      "version": "10.0.0"
+      "version": "7.0.1"
     },
     "mochawesome": {
       "options": {
