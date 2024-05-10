@@ -594,4 +594,97 @@ describe('Parser - Mocha Awesome Json', () => {
     assert.notEqual(null, result2);
   });
 
+  it('supports skipped tests', () => {
+    const result = parse({ type: 'mocha', files: [`${testDataPath}/skipped-pending-suites.json`] });
+    assert.deepEqual(result, {
+      duration: 13998,
+      errors: 0,
+      failed: 0,
+      id: "",
+      name: "",
+      passed: 2,
+      retried: 0,
+      skipped: 1,
+      status: "PASS",
+      total: 3,
+      suites: [
+        {
+          cases: [
+            {
+              attachments: [],
+              duration: 0,
+              errors: 0,
+              failed: 0,
+              failure: "",
+              id: "",
+              meta_data: new Map(),
+              name: "first skipped test",
+              passed: 0,
+              skipped: 0,
+              stack_trace: "",
+              status: "SKIP",
+              steps: [],
+              total: 0
+            }
+          ],
+          duration: 0,
+          errors: 0,
+          failed: 0,
+          id: "",
+          meta_data: new Map(),
+          name: "Example Suite",
+          passed: 0,
+          skipped: 0,
+          status: "FAIL",
+          total: 1
+        },
+        {
+          cases: [
+            {
+              attachments: [],
+              duration: 8912,
+              errors: 0,
+              failed: 0,
+              failure: "",
+              id: "",
+              meta_data: new Map(),
+              name: "first passed test",
+              passed: 0,
+              skipped: 0,
+              stack_trace: "",
+              status: "PASS",
+              steps: [],
+              total: 0
+            },
+            {
+              attachments: [],
+              duration: 4734,
+              errors: 0,
+              failed: 0,
+              failure: "",
+              id: "",
+              meta_data: new Map(),
+              name: "second passed test",
+              passed: 0,
+              skipped: 0,
+              stack_trace: "",
+              status: "PASS",
+              steps: [],
+              total: 0
+            }
+          ],
+          duration: 13646,
+          errors: 0,
+          failed: 0,
+          id: "",
+          meta_data: new Map(),
+          name: "Second Example Suite",
+          passed: 2,
+          skipped: 0,
+          status: "PASS",
+          total: 2
+        }
+      ],
+    });
+  });
 });
