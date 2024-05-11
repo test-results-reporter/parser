@@ -1,6 +1,6 @@
 {
   "name": "test-results-parser",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "description": "Parse test results from JUnit, TestNG, xUnit, cucumber and many more",
   "main": "src/index.js",
   "types": "./src/index.d.ts",
@@ -23,7 +23,8 @@
     "automation",
     "mocha",
     "cucumber",
-    "nUnit"
+    "nUnit",
+    "testbeats"
   ],
   "author": "Anudeep <asa.anudeep4@gmail.com>",
   "license": "MIT",
