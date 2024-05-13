@@ -698,8 +698,8 @@ describe('Parser - Mocha Awesome Json', () => {
           meta_data: new Map(),
           name: "Example Suite",
           passed: 0,
-          skipped: 0,
-          status: "FAIL",
+          skipped: 1,
+          status: "PASS",
           total: 1
         },
         {
