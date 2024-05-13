@@ -69,6 +69,9 @@ function getTestResult(raw_json, skipped_tests_passed) {
   if (errors) {
     result.errors = errors;
   }
+  //* Note: For some reason Mochawesome reports skipped tests twice in stats
+  //* If a suite has 1 skipped tests, you'll see pending=1 and skipped=1 in stats
+  //* So we should not set result.skipped to stats["pending"] + stats["skipped"] here, leave as-is
   const skipped = stats["pending"];
   if (skipped) {
     result.skipped = skipped;
