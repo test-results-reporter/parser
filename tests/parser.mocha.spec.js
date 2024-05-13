@@ -263,6 +263,70 @@ describe('Parser - Mocha Json', () => {
     let testcase = result.suites[0].cases[1];
     assert.equal(testcase.meta_data.has("tags"), false);
   });
+
+  it('supports skipped_tests_passed flag', () => {
+    const result = parse({type: 'mocha', files: [`${testDataPath}/skipped-tests-passed-flag.json`], skipped_tests_passed: true});
+    assert.deepEqual(result, {
+      id: '',
+      name: '',
+      total: 1,
+      passed: 1,
+      failed: 0,
+      errors: 0,
+      skipped: 1,
+      retried: 0,
+      duration: 3,
+      status: 'PASS',
+      suites: [
+        {
+          id: '',
+          name: 'Example Suite',
+          total: 2,
+          passed: 1,
+          failed: 0,
+          errors: 0,
+          skipped: 1,
+          duration: 1,
+          status: 'PASS',
+          meta_data: new Map(),
+          cases: [
+            {
+              attachments: [],
+              duration: 1,
+              errors: 0,
+              failed: 0,
+              failure: "",
+              id: "",
+              name: "first sample test",
+              passed: 0,
+              skipped: 0,
+              stack_trace: "",
+              status: "PASS",
+              meta_data: new Map(),
+              steps: [],
+              total: 0
+            },
+            {
+              attachments: [],
+              duration: 0,
+              errors: 0,
+              failed: 0,
+              failure: "",
+              id: "",
+              name: "second sample test",
+              passed: 0,
+              skipped: 0,
+              stack_trace: "",
+              status: "SKIP",
+              meta_data: new Map(),
+              steps: [],
+              total: 0
+            }
+          ]
+        }
+      ]
+    });
+  });
 });
 
 describe('Parser - Mocha Awesome Json', () => {
@@ -636,6 +700,100 @@ describe('Parser - Mocha Awesome Json', () => {
           passed: 0,
           skipped: 0,
           status: "FAIL",
+          total: 1
+        },
+        {
+          cases: [
+            {
+              attachments: [],
+              duration: 8912,
+              errors: 0,
+              failed: 0,
+              failure: "",
+              id: "",
+              meta_data: new Map(),
+              name: "first passed test",
+              passed: 0,
+              skipped: 0,
+              stack_trace: "",
+              status: "PASS",
+              steps: [],
+              total: 0
+            },
+            {
+              attachments: [],
+              duration: 4734,
+              errors: 0,
+              failed: 0,
+              failure: "",
+              id: "",
+              meta_data: new Map(),
+              name: "second passed test",
+              passed: 0,
+              skipped: 0,
+              stack_trace: "",
+              status: "PASS",
+              steps: [],
+              total: 0
+            }
+          ],
+          duration: 13646,
+          errors: 0,
+          failed: 0,
+          id: "",
+          meta_data: new Map(),
+          name: "Second Example Suite",
+          passed: 2,
+          skipped: 0,
+          status: "PASS",
+          total: 2
+        }
+      ],
+    });
+  });
+
+  it('supports skipped_tests_passed flag', () => {
+    const result = parse({type: 'mocha', files: [`${testDataPath}/skipped-tests-passed-flag.json`], skipped_tests_passed: true});
+    assert.deepEqual(result, {
+      duration: 13998,
+      errors: 0,
+      failed: 0,
+      id: "",
+      name: "",
+      passed: 2,
+      retried: 0,
+      skipped: 1,
+      status: "PASS",
+      total: 2,
+      suites: [
+        {
+          cases: [
+            {
+              attachments: [],
+              duration: 0,
+              errors: 0,
+              failed: 0,
+              failure: "",
+              id: "",
+              meta_data: new Map(),
+              name: "first skipped test",
+              passed: 0,
+              skipped: 0,
+              stack_trace: "",
+              status: "SKIP",
+              steps: [],
+              total: 0
+            }
+          ],
+          duration: 0,
+          errors: 0,
+          failed: 0,
+          id: "",
+          meta_data: new Map(),
+          name: "Example Suite",
+          passed: 0,
+          skipped: 1,
+          status: "PASS",
           total: 1
         },
         {
