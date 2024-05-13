@@ -48,7 +48,7 @@ function getParser(type) {
     case 'cucumber':
       return cucumber;
     default:
-      throw `UnSupported Result Type - ${options.type}`;
+      throw `UnSupported Result Type - ${type}`;
   }
 }
 
