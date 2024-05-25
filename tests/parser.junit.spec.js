@@ -580,6 +580,16 @@ describe('Parser - JUnit', () => {
     assert.equal(result.status, 'FAIL');
     assert.equal(result.suites[5].cases[0].failure, `HTTP status 200 !== 400`);
     assert.match(result.suites[5].cases[0].stack_trace, /at Expect._validateStatus/);
+  });
+
+  it('playwright failures', () => {
+    const result = parse({ type: 'junit', ignore_error_count: true, files: [`${testDataPath}/playwright-failures.xml`] });
+    assert.equal(result.total, 16);
+    assert.equal(result.passed, 14);
+    assert.equal(result.failed, 2);
+    assert.equal(result.status, 'FAIL');
+    assert.equal(result.suites[1].cases[1].attachments[0].name, `test-failed-1.png`);
+    assert.equal(result.suites[1].cases[1].attachments[0].path, `example-get-started-link-chromium/test-failed-1.png`);
   })
 
 });
