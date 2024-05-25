@@ -1,3 +1,4 @@
+const path = require('path');
 const { getJsonFromXMLFile } = require('../helpers/helper');
 
 const TestResult = require('../models/TestResult');
@@ -14,14 +15,14 @@ function getTestCase(rawCase, suite_meta) {
   setMetaData(rawCase, test_case);
   if (rawCase.failure && rawCase.failure.length > 0) {
     test_case.status = 'FAIL';
-    set_error_and_stack_trace(test_case, rawCase);
+    setErrorAndStackTrace(test_case, rawCase);
   } else {
     test_case.status = 'PASS';
   }
   return test_case;
 }
 
-function set_error_and_stack_trace(test_case, raw_case) {
+function setErrorAndStackTrace(test_case, raw_case) {
   test_case.setFailure(raw_case.failure[0]["@_message"]);
   // wdio junit reporter
   if (!test_case.failure && raw_case.error && raw_case.error.length > 0) {
@@ -94,8 +95,8 @@ function setMetaData(rawElement, test_element) {
  * @param {TestCase} test_element
  */
 function setAttachments(rawCase, test_element) {
-  if (rawCase['system.out']) {
-    const systemOut = rawCase['system.out'];
+  if (rawCase['system.out'] || rawCase['system-out']) {
+    const systemOut = rawCase['system.out'] || rawCase['system-out'];
 
     // junit attachments plug syntax is [[ATTACHMENT|/absolute/path/to/file.png]]
     const regex = new RegExp('\\[\\[ATTACHMENT\\|([^\\]]+)\\]\\]', 'g');
@@ -111,6 +112,7 @@ function setAttachments(rawCase, test_element) {
       if (filePath.length > 0) {
         const attachment = new TestAttachment();
         attachment.path = filePath;
+        attachment.name = path.parse(filePath).base;
         test_element.attachments.push(attachment);
       }
     }
