@@ -1,9 +1,12 @@
 {
   "name": "test-results-parser",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "description": "Parse test results from JUnit, TestNG, xUnit, cucumber and many more",
   "main": "src/index.js",
   "types": "./src/index.d.ts",
+  "files": [
+    "/src"
+  ],
   "scripts": {
     "test": "c8 mocha tests"
   },
