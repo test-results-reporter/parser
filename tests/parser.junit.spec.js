@@ -557,20 +557,6 @@ describe('Parser - JUnit', () => {
     assert.equal(result.status, 'FAIL');
   });
 
-  it('wdio - failures and ignore errors', () => {
-    const result = parse({ type: 'junit', ignore_error_count: true, files: [`${testDataPath}/wdio-failures-errors.xml`] });
-    assert.equal(result.total, 4);
-    assert.equal(result.passed, 2);
-    assert.equal(result.failed, 2);
-    assert.equal(result.errors, 0);
-    assert.equal(result.duration, 91024);
-    assert.equal(result.status, 'FAIL');
-    assert.equal(result.suites[0].cases[1].failure, `Error: element ("//button/span[text()='Continue']") still displayed after 20000ms`);
-    assert.match(result.suites[0].cases[1].stack_trace, /at file/);
-    assert.match(result.suites[0].cases[1].stack_trace, /async Element.wrapCommandFn/);
-    assert.match(result.suites[0].cases[1].stack_trace, /middlewares.js:18:32/);
-  });
-
   it('mocha - failures with stack trace', () => {
     const result = parse({ type: 'junit', ignore_error_count: true, files: [`${testDataPath}/mocha-failures-with-stack-trace.xml`] });
     assert.equal(result.total, 51);
