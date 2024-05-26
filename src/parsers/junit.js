@@ -44,13 +44,13 @@ function setErrorAndStackTrace(test_case, raw_case) {
  * @param {import('..').ParseOptions} options
  * @returns
  */
-function getTestSuite(rawSuite, options) {
+function getTestSuite(rawSuite) {
   const suite = new TestSuite();
   suite.name = rawSuite["@_name"];
   suite.total = rawSuite["@_tests"];
   suite.failed = rawSuite["@_failures"];
   const errors = rawSuite["@_errors"];
-  if (!options.ignore_error_count && errors) {
+  if (errors) {
     suite.errors = errors;
   }
   const skipped = rawSuite["@_skipped"];
@@ -164,7 +164,7 @@ function getTestResult(json, options) {
   result.total = rawResult["@_tests"];
   result.failed = rawResult["@_failures"];
   const errors = rawResult["@_errors"];
-  if (!options.ignore_error_count && errors) {
+  if (errors) {
     result.errors = errors;
   }
   const skipped = rawResult["@_skipped"];
