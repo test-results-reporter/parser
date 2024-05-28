@@ -127,7 +127,7 @@ function getTestCases(rawSuite, parent_meta) {
       let result = rawCase["@_result"]
       testCase.id = rawCase["@_id"] ?? "";
       testCase.name = rawCase["@_fullname"] ?? rawCase["@_name"];
-      testCase.duration = rawCase["@_time"] * 1000; // in milliseconds
+      testCase.duration = (rawCase["@_time"] ?? rawCase["@_duration"]) * 1000; // in milliseconds
       testCase.status = RESULT_MAP[result];
 
       // v2 : non-executed should be tests should be Ignored
@@ -177,7 +177,7 @@ function getTestSuites(rawSuites, assembly_meta) {
       let suite = new TestSuite();
       suite.id = rawSuite["@_id"] ?? '';
       suite.name = rawSuite["@_fullname"] ?? rawSuite["@_name"];
-      suite.duration = rawSuite["@_time"] * 1000; // in milliseconds
+      suite.duration = (rawSuite["@_time"] ?? rawSuite["@_duration"]) * 1000; // in milliseconds
       suite.status = RESULT_MAP[rawSuite["@_result"]];
 
       const meta_data = new Map();
@@ -212,7 +212,7 @@ function getTestResult(json) {
   const rawSuite = rawResult["test-suite"][0];
 
   result.name = rawResult["@_fullname"] ?? rawResult["@_name"];
-  result.duration = rawSuite["@_time"] * 1000; // in milliseconds
+  result.duration = (rawSuite["@_time"] ?? rawSuite["@_duration"]) * 1000; // in milliseconds
 
   result.suites.push(...getTestSuites([rawSuite], null));
 

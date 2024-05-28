@@ -113,7 +113,8 @@ describe('Parser - NUnit', () => {
       assert.equal(result.total, 19);
       assert.equal(result.passed, 13);
       assert.equal(result.failed, 2);
-      assert.equal(result.errors, 1); 
+      assert.equal(result.errors, 1);
+      assert.equal(result.skipped, 3);
 
       // compare sum of suite totals to testresult
       assert.equal( result.suites.reduce( (total, suite) => { return total + suite.total},0), result.total);
