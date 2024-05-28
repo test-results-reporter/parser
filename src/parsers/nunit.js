@@ -213,6 +213,7 @@ function getTestResult(json) {
 
   result.name = rawResult["@_fullname"] ?? rawResult["@_name"];
   result.duration = (rawSuite["@_time"] ?? rawSuite["@_duration"]) * 1000; // in milliseconds
+  result.status = RESULT_MAP[rawSuite["@_result"]];
 
   result.suites.push(...getTestSuites([rawSuite], null));
 

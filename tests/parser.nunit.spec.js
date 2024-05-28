@@ -240,6 +240,16 @@ describe('Parser - NUnit', () => {
       assert.equal(testCaseWithAttachments.attachments[0].name, "my description")
     });
 
+    it('Should report overall status as PASS if all tests pass', () => {
+      const result = parse({ type: 'nunit', files: [`${testDataPath}/nunit_v3_pass.xml`] });
+      assert.equal(result.status, "PASS");
+    });
+
+    it('Should report overall status as FAIL if any tests fail', () => {
+      const result = parse({ type: 'nunit', files: [`${testDataPath}/nunit_v3_fail.xml`] });
+      assert.equal(result.status, "FAIL");
+    });
+
   });
 
   function sumCases(result, predicate) {

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<test-run id="2" testcasecount="1" result="Failed" duration="0.154" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0" start-time="2024-05-28 17:06:00Z" end-time="2024-05-28 17:06:01Z">
+  <test-suite type="Assembly" id="1036" name="mock-assembly.dll" fullname="D:\Dev\NUnit\nunit-3.0\work\bin\vs2008\Debug\mock-assembly.dll" testcasecount="25" runstate="Runnable" result="Failed" duration="0.154" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <test-suite type="TestFixture" id="1000" name="MockTestFixture" fullname="NUnit.Tests.Assemblies.MockTestFixture" testcasecount="1" result="Failed" duration="0.119" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <test-case id="1001" name="MockTest1" fullname="NUnit.Tests.Assemblies.MockTestFixture.MockTest1" result="Failed" duration="0.000" asserts="0">
+        <properties>
+          <property name="Description" value="Mock Test #1" />
+        </properties>
+      </test-case>
+    </test-suite>
+  </test-suite>
+</test-run>
