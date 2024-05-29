@@ -27,6 +27,11 @@ describe('Parser - MSTest', () => {
     })
 
     it('Should map results correctly', () => {
+        assert.equal(result.status, "FAIL");
+
+        // assert suite results
+        assert.equal(result.suites[0].status, "FAIL")
+
         assert.equal(result.suites[0].cases[0].status, "FAIL");
         assert.equal(result.suites[0].cases[1].status, "SKIP"); // inconclusive
         assert.equal(result.suites[0].cases[2].status, "PASS");
@@ -37,7 +42,10 @@ describe('Parser - MSTest', () => {
         assert.equal(result.suites[0].cases[7].status, "FAIL"); // exception
         assert.equal(result.suites[0].cases[8].status, "PASS");
 
+        assert.equal(result.suites[1].status, "PASS")
         assert.equal(result.suites[1].cases[0].status, "PASS"); // datarow
+
+        assert.equal(result.suites[2].status, "PASS")
     });
 
     it('Should include fullnames for testsuites and testcases', () => {
@@ -75,6 +83,11 @@ describe('Parser - MSTest', () => {
         assert.equal(testSuiteWithAttachments.cases[1].attachments.length, 2);
         assert.equal(testSuiteWithAttachments.cases[1].attachments[0].path, expectedPath2)
         assert.equal(testSuiteWithAttachments.cases[1].attachments[1].path, expectedPath3)
+    });
+
+    it('Should report overall status as PASS if all tests pass', () => {
+        const result = parse({ type: 'mstest', files: [`${testDataPath}/testresults_pass.trx`] });
+        assert.equal(result.status, "PASS");    
     });
 
     function resolveExpectedResultFilePath(executionId, filePath) {
