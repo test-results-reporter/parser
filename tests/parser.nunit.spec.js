@@ -113,7 +113,8 @@ describe('Parser - NUnit', () => {
       assert.equal(result.total, 19);
       assert.equal(result.passed, 13);
       assert.equal(result.failed, 2);
-      assert.equal(result.errors, 1); 
+      assert.equal(result.errors, 1);
+      assert.equal(result.skipped, 3);
 
       // compare sum of suite totals to testresult
       assert.equal( result.suites.reduce( (total, suite) => { return total + suite.total},0), result.total);
@@ -237,6 +238,16 @@ describe('Parser - NUnit', () => {
       assert.equal(testCaseWithAttachments.attachments.length, 1);
       assert.equal(testCaseWithAttachments.attachments[0].path, "c:\\absolute\\filepath\\dummy.txt")
       assert.equal(testCaseWithAttachments.attachments[0].name, "my description")
+    });
+
+    it('Should report overall status as PASS if all tests pass', () => {
+      const result = parse({ type: 'nunit', files: [`${testDataPath}/nunit_v3_pass.xml`] });
+      assert.equal(result.status, "PASS");
+    });
+
+    it('Should report overall status as FAIL if any tests fail', () => {
+      const result = parse({ type: 'nunit', files: [`${testDataPath}/nunit_v3_fail.xml`] });
+      assert.equal(result.status, "FAIL");
     });
 
   });
