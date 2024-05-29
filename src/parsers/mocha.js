@@ -34,6 +34,9 @@ function getTestSuite(rawSuite) {
   suite.failed = rawSuite["failures"].length;
   suite.duration = rawSuite["duration"];
   suite.skipped = rawSuite["pending"].length;
+  if (rawSuite.hasOwnProperty('skipped')) {
+    suite.skipped += rawSuite["skipped"].length;
+  }
   suite.status = suite.total === (suite.passed + suite.skipped) ? 'PASS' : 'FAIL';
   setMetaData(suite);
   const raw_test_cases = rawSuite.tests;
@@ -48,8 +51,9 @@ function getTestSuite(rawSuite) {
 /**
  * Function to format the mocha raw json report
  * @param {import("./mocha.result").MochaJsonData} raw_json 
+ * @param {Boolean} skipped_tests_passed
  */
-function getTestResult(raw_json) {
+function getTestResult(raw_json, skipped_tests_passed) {
   const result = new TestResult();
   const { stats, results } = formatMochaJsonReport(raw_json);
 
@@ -65,18 +69,26 @@ function getTestResult(raw_json) {
   if (errors) {
     result.errors = errors;
   }
+  //* Note: For some reason Mochawesome reports skipped tests twice in stats
+  //* If a suite has 1 skipped tests, you'll see pending=1 and skipped=1 in stats
+  //* So we should not set result.skipped to stats["pending"] + stats["skipped"] here, leave as-is
   const skipped = stats["pending"];
   if (skipped) {
     result.skipped = skipped;
   }
   result.duration = stats["duration"] || 0;
+  if (skipped_tests_passed) {
+    result.total -= result.skipped;
+    result.status = result.total === result.passed ? 'PASS' : 'FAIL';
+  } else {
+    result.status = (result.total - result.skipped) === result.passed ? 'PASS' : 'FAIL';
+  }
 
   if (suites.length > 0) {
     for (let i = 0; i < suites.length; i++) {
       result.suites.push(getTestSuite(suites[i]));
     }
   }
-  result.status = (result.total - result.skipped) === result.passed ? 'PASS' : 'FAIL';
   return result;
 }
 
@@ -169,9 +181,9 @@ function setMetaData(test_element) {
 }
 
 
-function parse(file) {
+function parse(file, options) {
   const json = require(resolveFilePath(file));
-  return getTestResult(json);
+  return getTestResult(json, options.skipped_tests_passed ? options.skipped_tests_passed : false);
 }
 
 module.exports = {

@@ -1,0 +1,51 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 1,
+    "pending": 1,
+    "failures": 0,
+    "start": "2022-06-11T08:23:09.912Z",
+    "end": "2022-06-11T08:23:09.915Z",
+    "duration": 3
+  },
+  "tests": [
+    {
+      "title": "first sample test",
+      "fullTitle": "Example Suite first sample test",
+      "file": "D:\\git\\parser\\tests\\mocha.spec.js",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "second sample test",
+      "fullTitle": "Example Suite second sample test",
+      "file": "D:\\git\\parser\\tests\\mocha.spec.js",
+      "currentRetry": 0,
+      "err": {}
+    }
+  ],
+  "pending": [
+    {
+      "title": "second sample test",
+      "fullTitle": "Example Suite second sample test",
+      "file": "D:\\git\\parser\\tests\\mocha.spec.js",
+      "currentRetry": 0,
+      "err": {}
+    }
+  ],
+  "failures": [],
+  "passes": [
+    {
+      "title": "first sample test",
+      "fullTitle": "Example Suite first sample test",
+      "file": "D:\\git\\parser\\tests\\mocha.spec.js",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    }
+  ]
+}
