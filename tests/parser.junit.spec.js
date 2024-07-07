@@ -139,7 +139,7 @@ describe('Parser - JUnit', () => {
               passed: 0,
               skipped: 0,
               stack_trace: "",
-              status: "PASS",
+              status: "SKIP",
               meta_data: new Map(),
               steps: [],
               total: 0

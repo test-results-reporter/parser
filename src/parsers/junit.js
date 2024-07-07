@@ -16,6 +16,8 @@ function getTestCase(rawCase, suite_meta) {
   if (rawCase.failure && rawCase.failure.length > 0) {
     test_case.status = 'FAIL';
     setErrorAndStackTrace(test_case, rawCase);
+  } else if (rawCase.skipped != undefined) {
+    test_case.status = 'SKIP';
   } else {
     test_case.status = 'PASS';
   }
