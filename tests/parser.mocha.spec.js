@@ -20,7 +20,7 @@ describe('Parser - Mocha Json', () => {
       duration: 3,
       status: 'PASS',
       tags: [],
-      meta_data: {},
+      metadata: {},
       suites: [
         {
           id: '',
@@ -33,7 +33,7 @@ describe('Parser - Mocha Json', () => {
           duration: 1,
           status: 'PASS',
           tags: [],
-          meta_data: {},
+          metadata: {},
           cases: [
             {
               attachments: [],
@@ -48,7 +48,7 @@ describe('Parser - Mocha Json', () => {
               stack_trace: "",
               status: "PASS",
               tags: [],
-              meta_data: {},
+              metadata: {},
               steps: [],
               total: 0
             }
@@ -72,7 +72,7 @@ describe('Parser - Mocha Json', () => {
       duration: 0,
       status: 'PASS',
       tags: [],
-      meta_data: {},
+      metadata: {},
       suites: []
     });
   });
@@ -91,7 +91,7 @@ describe('Parser - Mocha Json', () => {
       duration: 3,
       status: 'PASS',
       tags: [],
-      meta_data: {},
+      metadata: {},
       suites: [
         {
           id: '',
@@ -104,7 +104,7 @@ describe('Parser - Mocha Json', () => {
           duration: 1,
           status: 'PASS',
           tags: [],
-          meta_data: {},
+          metadata: {},
           cases: [
             {
               attachments: [],
@@ -119,7 +119,7 @@ describe('Parser - Mocha Json', () => {
               stack_trace: "",
               status: "PASS",
               tags: [],
-              meta_data: {},
+              metadata: {},
               steps: [],
               total: 0
             },
@@ -136,7 +136,7 @@ describe('Parser - Mocha Json', () => {
               stack_trace: "",
               status: "SKIP",
               tags: [],
-              meta_data: {},
+              metadata: {},
               steps: [],
               total: 0
             }
@@ -159,7 +159,7 @@ describe('Parser - Mocha Json', () => {
       duration: 7,
       status: 'FAIL',
       tags: [],
-      meta_data: {},
+      metadata: {},
       suites: [
         {
           id: '',
@@ -172,7 +172,7 @@ describe('Parser - Mocha Json', () => {
           duration: 4,
           status: 'PASS',
           tags: [],
-          meta_data: {},
+          metadata: {},
           cases: [
             {
               attachments: [],
@@ -187,7 +187,7 @@ describe('Parser - Mocha Json', () => {
               stack_trace: "",
               status: "PASS",
               tags: [],
-              meta_data: {},
+              metadata: {},
               steps: [],
               total: 0
             },
@@ -204,7 +204,7 @@ describe('Parser - Mocha Json', () => {
               stack_trace: "",
               status: "PASS",
               tags: [],
-              meta_data: {},
+              metadata: {},
               steps: [],
               total: 0
             }
@@ -221,7 +221,7 @@ describe('Parser - Mocha Json', () => {
           duration: 1,
           status: 'FAIL',
           tags: [],
-          meta_data: {},
+          metadata: {},
           cases: [
             {
               attachments: [],
@@ -236,7 +236,7 @@ describe('Parser - Mocha Json', () => {
               stack_trace: "",
               status: "FAIL",
               tags: [],
-              meta_data: {},
+              metadata: {},
               steps: [],
               total: 0
             }
@@ -261,7 +261,7 @@ describe('Parser - Mocha Json', () => {
     let test_suite = result.suites[0];
     let test_case = result.suites[0].cases[0];
 
-    assert.deepEqual(test_suite.meta_data, { type: 'api' });
+    assert.deepEqual(test_suite.metadata, { type: 'api' });
     assert.deepEqual(test_case.tags, ['@fast', '#1255']);
   });
 
@@ -296,7 +296,7 @@ describe('Parser - Mocha Awesome Json', () => {
       duration: 3,
       status: 'PASS',
       tags: [],
-      meta_data: {},
+      metadata: {},
       suites: [
         {
           id: '',
@@ -309,7 +309,7 @@ describe('Parser - Mocha Awesome Json', () => {
           duration: 1,
           status: 'PASS',
           tags: [],
-          meta_data: {},
+          metadata: {},
           cases: [
             {
               attachments: [],
@@ -324,7 +324,7 @@ describe('Parser - Mocha Awesome Json', () => {
               stack_trace: "",
               status: "PASS",
               tags: [],
-              meta_data: {},
+              metadata: {},
               steps: [],
               total: 0
             }
@@ -348,7 +348,7 @@ describe('Parser - Mocha Awesome Json', () => {
       duration: 0,
       status: 'PASS',
       tags: [],
-      meta_data: {},
+      metadata: {},
       suites: []
     });
   });
@@ -367,7 +367,7 @@ describe('Parser - Mocha Awesome Json', () => {
       duration: 3,
       status: 'PASS',
       tags: [],
-      meta_data: {},
+      metadata: {},
       suites: [
         {
           id: '',
@@ -380,7 +380,7 @@ describe('Parser - Mocha Awesome Json', () => {
           duration: 1,
           status: 'PASS',
           tags: [],
-          meta_data: {},
+          metadata: {},
           cases: [
             {
               attachments: [],
@@ -395,7 +395,7 @@ describe('Parser - Mocha Awesome Json', () => {
               stack_trace: "",
               status: "PASS",
               tags: [],
-              meta_data: {},
+              metadata: {},
               steps: [],
               total: 0
             },
@@ -412,7 +412,7 @@ describe('Parser - Mocha Awesome Json', () => {
               stack_trace: "",
               status: "SKIP",
               tags: [],
-              meta_data: {},
+              metadata: {},
               steps: [],
               total: 0
             }
@@ -436,7 +436,7 @@ describe('Parser - Mocha Awesome Json', () => {
       duration: 7,
       status: 'FAIL',
       tags: [],
-      meta_data: {},
+      metadata: {},
       suites: [
         {
           id: '',
@@ -449,7 +449,7 @@ describe('Parser - Mocha Awesome Json', () => {
           duration: 4,
           status: 'PASS',
           tags: [],
-          meta_data: {},
+          metadata: {},
           cases: [
             {
               attachments: [],
@@ -464,7 +464,7 @@ describe('Parser - Mocha Awesome Json', () => {
               stack_trace: "",
               status: "PASS",
               tags: [],
-              meta_data: {},
+              metadata: {},
               steps: [],
               total: 0
             },
@@ -481,7 +481,7 @@ describe('Parser - Mocha Awesome Json', () => {
               stack_trace: "",
               status: "PASS",
               tags: [],
-              meta_data: {},
+              metadata: {},
               steps: [],
               total: 0
             }
@@ -498,7 +498,7 @@ describe('Parser - Mocha Awesome Json', () => {
           duration: 1,
           status: 'FAIL',
           tags: [],
-          meta_data: {},
+          metadata: {},
           cases: [
             {
               attachments: [],
@@ -513,7 +513,7 @@ describe('Parser - Mocha Awesome Json', () => {
               stack_trace: "",
               status: "FAIL",
               tags: [],
-              meta_data: {},
+              metadata: {},
               steps: [],
               total: 0
             }
@@ -537,7 +537,7 @@ describe('Parser - Mocha Awesome Json', () => {
       duration: 7,
       status: 'FAIL',
       tags: [],
-      meta_data: {},
+      metadata: {},
       suites: [
         {
           id: '',
@@ -550,7 +550,7 @@ describe('Parser - Mocha Awesome Json', () => {
           duration: 4,
           status: 'PASS',
           tags: [],
-          meta_data: {},
+          metadata: {},
           cases: [
             {
               attachments: [],
@@ -565,7 +565,7 @@ describe('Parser - Mocha Awesome Json', () => {
               stack_trace: "",
               status: "PASS",
               tags: [],
-              meta_data: {},
+              metadata: {},
               steps: [],
               total: 0
             },
@@ -582,7 +582,7 @@ describe('Parser - Mocha Awesome Json', () => {
               stack_trace: "",
               status: "PASS",
               tags: [],
-              meta_data: {},
+              metadata: {},
               steps: [],
               total: 0
             }
@@ -599,7 +599,7 @@ describe('Parser - Mocha Awesome Json', () => {
           duration: 1,
           status: 'FAIL',
           tags: [],
-          meta_data: {},
+          metadata: {},
           cases: [
             {
               attachments: [],
@@ -614,7 +614,7 @@ describe('Parser - Mocha Awesome Json', () => {
               stack_trace: "",
               status: "FAIL",
               tags: [],
-              meta_data: {},
+              metadata: {},
               steps: [],
               total: 0
             }
@@ -647,7 +647,7 @@ describe('Parser - Mocha Awesome Json', () => {
       status: "PASS",
       total: 3,
       tags: [],
-      meta_data: {},
+      metadata: {},
       suites: [
         {
           cases: [
@@ -659,7 +659,7 @@ describe('Parser - Mocha Awesome Json', () => {
               failure: "",
               id: "",
               tags: [],
-              meta_data: {},
+              metadata: {},
               name: "first skipped test",
               passed: 0,
               skipped: 0,
@@ -674,7 +674,7 @@ describe('Parser - Mocha Awesome Json', () => {
           failed: 0,
           id: "",
           tags: [],
-          meta_data: {},
+          metadata: {},
           name: "Example Suite",
           passed: 0,
           skipped: 0,
@@ -691,7 +691,7 @@ describe('Parser - Mocha Awesome Json', () => {
               failure: "",
               id: "",
               tags: [],
-              meta_data: {},
+              metadata: {},
               name: "first passed test",
               passed: 0,
               skipped: 0,
@@ -708,7 +708,7 @@ describe('Parser - Mocha Awesome Json', () => {
               failure: "",
               id: "",
               tags: [],
-              meta_data: {},
+              metadata: {},
               name: "second passed test",
               passed: 0,
               skipped: 0,
@@ -723,7 +723,7 @@ describe('Parser - Mocha Awesome Json', () => {
           failed: 0,
           id: "",
           tags: [],
-          meta_data: {},
+          metadata: {},
           name: "Second Example Suite",
           passed: 2,
           skipped: 0,

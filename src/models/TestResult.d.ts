@@ -11,7 +11,7 @@ declare class TestResult {
   duration: number;
   status: string;
   tags: string[];
-  meta_data: object;
+  metadata: object;
 
   suites: TestSuite[];
 }

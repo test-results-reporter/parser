@@ -18,7 +18,7 @@ describe('Parser - TestNG', () => {
       duration: 2000,
       status: 'PASS',
       tags: [],
-      meta_data: {},
+      metadata: {},
       suites: [
         {
           id: '',
@@ -31,7 +31,7 @@ describe('Parser - TestNG', () => {
           duration: 2000,
           status: 'PASS',
           tags: [],
-          meta_data: {},
+          metadata: {},
           cases: [
             {
               attachments: [],
@@ -47,7 +47,7 @@ describe('Parser - TestNG', () => {
               failure: '',
               stack_trace: '',
               tags: [],
-              meta_data: {},
+              metadata: {},
               steps: []
             },
             {
@@ -64,7 +64,7 @@ describe('Parser - TestNG', () => {
               failure: '',
               stack_trace: '',
               tags: [],
-              meta_data: {},
+              metadata: {},
               steps: []
             },
             {
@@ -81,7 +81,7 @@ describe('Parser - TestNG', () => {
               failure: '',
               stack_trace: '',
               tags: [],
-              meta_data: {},
+              metadata: {},
               steps: []
             },
             {
@@ -98,7 +98,7 @@ describe('Parser - TestNG', () => {
               failure: 'expected [true] but found [false]',
               stack_trace: '',
               tags: [],
-              meta_data: {},
+              metadata: {},
               steps: []
             }
           ]
@@ -121,7 +121,7 @@ describe('Parser - TestNG', () => {
       "duration": 1403931,
       "status": "FAIL",
       "tags": [],
-      "meta_data": {},
+      "metadata": {},
       "suites": [
         {
           "id": "",
@@ -134,7 +134,7 @@ describe('Parser - TestNG', () => {
           "duration": 202082,
           "status": "FAIL",
           "tags": [],
-          "meta_data": {},
+          "metadata": {},
           "cases": [
             {
               "attachments": [],
@@ -151,7 +151,7 @@ describe('Parser - TestNG', () => {
               "stack_trace": "",
               "tags": [],
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             },
             {
@@ -168,7 +168,7 @@ describe('Parser - TestNG', () => {
               "failure": "",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             },
             {
@@ -185,7 +185,7 @@ describe('Parser - TestNG', () => {
               "failure": "",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             },
             {
@@ -202,7 +202,7 @@ describe('Parser - TestNG', () => {
               "failure": "Expected condition failed: : <95ddbda01ea4b3dbcb049e681a6>",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             },
             {
@@ -219,7 +219,7 @@ describe('Parser - TestNG', () => {
               "failure": "element click intercepted:",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             }
           ]
@@ -235,7 +235,7 @@ describe('Parser - TestNG', () => {
           "duration": 545598,
           "status": "FAIL",
           "tags": [],
-          "meta_data": {},
+          "metadata": {},
           "cases": [
             {
               "attachments": [],
@@ -251,7 +251,7 @@ describe('Parser - TestNG', () => {
               "failure": "expected [A] but found [948474]",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             },
             {
@@ -268,7 +268,7 @@ describe('Parser - TestNG', () => {
               "failure": "",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             },
             {
@@ -285,7 +285,7 @@ describe('Parser - TestNG', () => {
               "failure": "",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             },
             {
@@ -302,7 +302,7 @@ describe('Parser - TestNG', () => {
               "failure": "Appium error: An unknown sr='Search...']}",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             },
             {
@@ -319,7 +319,7 @@ describe('Parser - TestNG', () => {
               "failure": "A script did not complete ",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             }
           ]
@@ -342,7 +342,7 @@ describe('Parser - TestNG', () => {
       "duration": 2000,
       "status": "PASS",
       "tags": [],
-      "meta_data": {},
+      "metadata": {},
       "suites": [
         {
           "id": "",
@@ -355,7 +355,7 @@ describe('Parser - TestNG', () => {
           "duration": 2000,
           "status": "PASS",
           "tags": [],
-          "meta_data": {},
+          "metadata": {},
           "cases": [
             {
               "attachments": [],
@@ -371,7 +371,7 @@ describe('Parser - TestNG', () => {
               "failure": "",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             },
             {
@@ -388,7 +388,7 @@ describe('Parser - TestNG', () => {
               "failure": "",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             },
             {
@@ -405,7 +405,7 @@ describe('Parser - TestNG', () => {
               "failure": "",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             },
             {
@@ -422,7 +422,7 @@ describe('Parser - TestNG', () => {
               "failure": "expected [true] but found [false]",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             }
           ]
@@ -445,7 +445,7 @@ describe('Parser - TestNG', () => {
       "duration": 4000,
       "status": "PASS",
       "tags": [],
-      "meta_data": {},
+      "metadata": {},
       "suites": [
         {
           "id": "",
@@ -458,7 +458,7 @@ describe('Parser - TestNG', () => {
           "duration": 2000,
           "status": "PASS",
           "tags": [],
-          "meta_data": {},
+          "metadata": {},
           "cases": [
             {
               "attachments": [],
@@ -474,7 +474,7 @@ describe('Parser - TestNG', () => {
               "failure": "",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             },
             {
@@ -491,7 +491,7 @@ describe('Parser - TestNG', () => {
               "failure": "",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             },
             {
@@ -508,7 +508,7 @@ describe('Parser - TestNG', () => {
               "failure": "",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             },
             {
@@ -525,7 +525,7 @@ describe('Parser - TestNG', () => {
               "failure": "expected [true] but found [false]",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             }
           ]
@@ -541,7 +541,7 @@ describe('Parser - TestNG', () => {
           "duration": 2000,
           "status": "PASS",
           "tags": [],
-          "meta_data": {},
+          "metadata": {},
           "cases": [
             {
               "attachments": [],
@@ -557,7 +557,7 @@ describe('Parser - TestNG', () => {
               "failure": "",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             },
             {
@@ -574,7 +574,7 @@ describe('Parser - TestNG', () => {
               "failure": "",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             },
             {
@@ -591,7 +591,7 @@ describe('Parser - TestNG', () => {
               "failure": "",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             },
             {
@@ -608,7 +608,7 @@ describe('Parser - TestNG', () => {
               "failure": "expected [true] but found [false]",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             }
           ]
@@ -631,7 +631,7 @@ describe('Parser - TestNG', () => {
       "duration": 1883597,
       "status": "FAIL",
       "tags": [],
-      "meta_data": {},
+      "metadata": {},
       "suites": [
         {
           "id": "",
@@ -644,7 +644,7 @@ describe('Parser - TestNG', () => {
           "duration": 1164451,
           "status": "FAIL",
           "tags": [],
-          "meta_data": {},
+          "metadata": {},
           "cases": [
             {
               "attachments": [],
@@ -660,7 +660,7 @@ describe('Parser - TestNG', () => {
               "failure": "",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             },
             {
@@ -677,7 +677,7 @@ describe('Parser - TestNG', () => {
               "failure": "failed",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             },
             {
@@ -694,7 +694,7 @@ describe('Parser - TestNG', () => {
               "failure": "failed",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             },
             {
@@ -711,7 +711,7 @@ describe('Parser - TestNG', () => {
               "failure": "",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             }
           ]
@@ -727,7 +727,7 @@ describe('Parser - TestNG', () => {
           "duration": 714100,
           "status": "FAIL",
           "tags": [],
-          "meta_data": {},
+          "metadata": {},
           "cases": [
             {
               "attachments": [],
@@ -743,7 +743,7 @@ describe('Parser - TestNG', () => {
               "failure": "",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             },
             {
@@ -760,7 +760,7 @@ describe('Parser - TestNG', () => {
               "failure": "failed",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             },
             {
@@ -777,7 +777,7 @@ describe('Parser - TestNG', () => {
               "failure": "failed",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             },
             {
@@ -794,7 +794,7 @@ describe('Parser - TestNG', () => {
               "failure": "",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             }
           ]
@@ -817,7 +817,7 @@ describe('Parser - TestNG', () => {
       "duration": 1405931,
       "status": "FAIL",
       "tags": [],
-      "meta_data": {},
+      "metadata": {},
       "suites": [
         {
           "id": "",
@@ -830,7 +830,7 @@ describe('Parser - TestNG', () => {
           "duration": 202082,
           "status": "FAIL",
           "tags": [],
-          "meta_data": {},
+          "metadata": {},
           "cases": [
             {
               "attachments": [],
@@ -846,7 +846,7 @@ describe('Parser - TestNG', () => {
               "failure": "expected [A] but found [948474]",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             },
             {
@@ -863,7 +863,7 @@ describe('Parser - TestNG', () => {
               "failure": "",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             },
             {
@@ -880,7 +880,7 @@ describe('Parser - TestNG', () => {
               "failure": "",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             },
             {
@@ -897,7 +897,7 @@ describe('Parser - TestNG', () => {
               "failure": "Expected condition failed: : <95ddbda01ea4b3dbcb049e681a6>",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             },
             {
@@ -914,7 +914,7 @@ describe('Parser - TestNG', () => {
               "failure": "element click intercepted:",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             }
           ]
@@ -930,7 +930,7 @@ describe('Parser - TestNG', () => {
           "duration": 545598,
           "status": "FAIL",
           "tags": [],
-          "meta_data": {},
+          "metadata": {},
           "cases": [
             {
               "attachments": [],
@@ -946,7 +946,7 @@ describe('Parser - TestNG', () => {
               "failure": "expected [A] but found [948474]",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             },
             {
@@ -963,7 +963,7 @@ describe('Parser - TestNG', () => {
               "failure": "",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             },
             {
@@ -980,7 +980,7 @@ describe('Parser - TestNG', () => {
               "failure": "",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             },
             {
@@ -997,7 +997,7 @@ describe('Parser - TestNG', () => {
               "failure": "Appium error: An unknown sr='Search...']}",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             },
             {
@@ -1014,7 +1014,7 @@ describe('Parser - TestNG', () => {
               "failure": "A script did not complete ",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             }
           ]
@@ -1030,7 +1030,7 @@ describe('Parser - TestNG', () => {
           "duration": 2000,
           "status": "PASS",
           "tags": [],
-          "meta_data": {},
+          "metadata": {},
           "cases": [
             {
               "attachments": [],
@@ -1046,7 +1046,7 @@ describe('Parser - TestNG', () => {
               "failure": "",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             },
             {
@@ -1063,7 +1063,7 @@ describe('Parser - TestNG', () => {
               "failure": "",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             },
             {
@@ -1080,7 +1080,7 @@ describe('Parser - TestNG', () => {
               "failure": "",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             },
             {
@@ -1097,7 +1097,7 @@ describe('Parser - TestNG', () => {
               "failure": "expected [true] but found [false]",
               "stack_trace": "",
               "tags": [],
-              "meta_data": {},
+              "metadata": {},
               "steps": []
             }
           ]
@@ -1120,7 +1120,7 @@ describe('Parser - TestNG', () => {
       duration: 0,
       status: 'PASS',
       tags: [],
-      meta_data: {},
+      metadata: {},
       suites: []
     });
   });

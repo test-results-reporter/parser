@@ -61,7 +61,7 @@ describe('Parser - MSTest', () => {
   it('Should include categories from suite', () => {
     const testCaseInheritedCategories = result.suites[0].cases[0];
     assert.deepEqual(testCaseInheritedCategories.tags, ['FixtureCategory']);
-    assert.deepEqual(testCaseInheritedCategories.meta_data, {
+    assert.deepEqual(testCaseInheritedCategories.metadata, {
       Categories: 'FixtureCategory'
     });
   })
@@ -69,7 +69,7 @@ describe('Parser - MSTest', () => {
   it('Should combine categories from suite and case', () => {
     const testCaseWithCategories = result.suites[0].cases[3];
     assert.deepEqual(testCaseWithCategories.tags, ['FixtureCategory', 'MockCategory']);
-    assert.deepEqual(testCaseWithCategories.meta_data, {
+    assert.deepEqual(testCaseWithCategories.metadata, {
       Categories: 'FixtureCategory,MockCategory'
     });
   });

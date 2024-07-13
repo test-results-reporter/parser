@@ -13,7 +13,7 @@ declare class TestCase {
   failure: string;
   stack_trace: string;
   tags: string[];
-  meta_data: object;
+  metadata: object;
 
   steps: TestStep[];
   attachments: TestAttachment[];

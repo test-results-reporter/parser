@@ -83,7 +83,7 @@ describe('Parser - NUnit', () => {
       let count = 0;
       result.suites[0].cases.forEach( c => {
         count++;
-        assert.equal(c.meta_data["Categories"].includes("FixtureCategory"), true);
+        assert.equal(c.metadata["Categories"].includes("FixtureCategory"), true);
       });
       assert.equal( count > 0, true);
     });
@@ -104,7 +104,7 @@ describe('Parser - NUnit', () => {
         failure: '',
         stack_trace: '',
         tags: [ 'MockCategory' ],
-        meta_data: { Categories: 'FixtureCategory,MockCategory', Severity: 'Critical' },
+        metadata: { Categories: 'FixtureCategory,MockCategory', Severity: 'Critical' },
         steps: [],
         attachments: []
       });
@@ -224,7 +224,7 @@ describe('Parser - NUnit', () => {
         failure: '',
         stack_trace: '',
         tags: [],
-        meta_data: {
+        metadata: {
           _APPDOMAIN: 'test-domain-mock-assembly.dll',
           _PID: 11928
         },
@@ -248,7 +248,7 @@ describe('Parser - NUnit', () => {
         failure: 'Intentional failure',
         stack_trace: "   at NUnit.Framework.Assert.Fail(String message, Object[] args) in D:\\Dev\\NUnit\\nunit-3.0\\work\\NUnitFramework\\src\\framework\\Assert.cs:line 142\n   at NUnit.Framework.Assert.Fail(String message) in D:\\Dev\\NUnit\\nunit-3.0\\work\\NUnitFramework\\src\\framework\\Assert.cs:line 152\n   at NUnit.Tests.Assemblies.MockTestFixture.FailingTest() in D:\\Dev\\NUnit\\nunit-3.0\\work\\NUnitFramework\\src\\mock-assembly\\MockAssembly.cs:line 121",
         tags: [],
-        meta_data: {
+        metadata: {
           Categories: "FixtureCategory",
           _APPDOMAIN: 'test-domain-mock-assembly.dll',
           _PID: 11928,
@@ -274,7 +274,7 @@ describe('Parser - NUnit', () => {
         failure: '',
         stack_trace: '',
         tags: [],
-        meta_data: {
+        metadata: {
           _PID: 11928,
           _APPDOMAIN: 'test-domain-mock-assembly.dll',
           Categories: 'FixtureCategory',
@@ -300,7 +300,7 @@ describe('Parser - NUnit', () => {
         failure: '',
         stack_trace: '',
         tags: [],
-        meta_data: {
+        metadata: {
           _PID: 11928,
           _APPDOMAIN: 'test-domain-mock-assembly.dll',
           Categories: 'FixtureCategory,MockCategory',

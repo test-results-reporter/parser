@@ -10,7 +10,7 @@ function getTestCase(rawCase, suite_meta) {
   const test_case = new TestCase();
   test_case.name = rawCase["@_name"];
   test_case.duration = rawCase["@_time"] * 1000;
-  test_case.meta_data = Object.assign({}, suite_meta);
+  test_case.metadata = Object.assign({}, suite_meta);
   setAttachments(rawCase, test_case);
   setMetaData(rawCase, test_case);
   if (rawCase.failure && rawCase.failure.length > 0) {
@@ -67,7 +67,7 @@ function getTestSuite(rawSuite) {
   const raw_test_cases = rawSuite.testcase;
   if (raw_test_cases) {
     for (let i = 0; i < raw_test_cases.length; i++) {
-      suite.cases.push(getTestCase(raw_test_cases[i], suite.meta_data));
+      suite.cases.push(getTestCase(raw_test_cases[i], suite.metadata));
     }
   }
   return suite;
@@ -81,13 +81,13 @@ function setMetaData(rawElement, test_element) {
   if (rawElement.properties && rawElement.properties.property.length > 0) {
     const raw_properties = rawElement.properties.property;
     for (const raw_property of raw_properties) {
-      test_element.meta_data[raw_property["@_name"]] = raw_property["@_value"];
+      test_element.metadata[raw_property["@_name"]] = raw_property["@_value"];
     }
   }
   // handle testsuite specific attributes
   if (test_element instanceof TestSuite) {
     if (rawElement["@_hostname"]) {
-      test_element.meta_data["hostname"] = rawElement["@_hostname"];
+      test_element.metadata["hostname"] = rawElement["@_hostname"];
     }
   }
 }

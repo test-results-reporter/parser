@@ -155,7 +155,7 @@ function setMetaData(test_element) {
       const rawTag = match[0];
       if (rawTag.includes("=")) {
         const [name, value] = rawTag.substring(1).split("=");
-        test_element.meta_data[name] = value;
+        test_element.metadata[name] = value;
       } else {
         test_element.tags.push(rawTag);
       }

@@ -20,7 +20,7 @@ describe('Parser - XUnit', () => {
       duration: 86006.5,
       status: 'FAIL',
       tags: [],
-      meta_data: {},
+      metadata: {},
       suites: [
         {
           id: '',
@@ -33,7 +33,7 @@ describe('Parser - XUnit', () => {
           duration: 86006.5,
           status: 'FAIL',
           tags: [],
-          meta_data: {},
+          metadata: {},
           cases: [
             {
               attachments: [],
@@ -48,7 +48,7 @@ describe('Parser - XUnit', () => {
               stack_trace: "",
               status: "FAIL",
               tags: [],
-              meta_data: { TestID: "ID", TestLevel: "Regression", TestProduct: "TestProductExample", TestSuite: "TestSuiteExample" },
+              metadata: { TestID: "ID", TestLevel: "Regression", TestProduct: "TestProductExample", TestSuite: "TestSuiteExample" },
               steps: [],
               total: 0
             }
@@ -72,7 +72,7 @@ describe('Parser - XUnit', () => {
       duration: 1,
       status: 'PASS',
       tags: [],
-      meta_data: {},
+      metadata: {},
       suites: [
         {
           id: '',
@@ -85,7 +85,7 @@ describe('Parser - XUnit', () => {
           duration: 1,
           status: 'PASS',
           tags: [],
-          meta_data: {},
+          metadata: {},
           cases: [
             {
               attachments: [],
@@ -100,7 +100,7 @@ describe('Parser - XUnit', () => {
               stack_trace: "",
               status: "SKIP",
               tags: [],
-              meta_data: { UnsupportedEnvirnoment: "uat" },
+              metadata: { UnsupportedEnvirnoment: "uat" },
               steps: [],
               total: 0
             }
@@ -124,7 +124,7 @@ describe('Parser - XUnit', () => {
       duration: 348807,
       status: 'FAIL',
       tags: [],
-      meta_data: {},
+      metadata: {},
       suites: [
         {
           id: '',
@@ -137,7 +137,7 @@ describe('Parser - XUnit', () => {
           duration: 92155,
           status: 'FAIL',
           tags: [],
-          meta_data: {},
+          metadata: {},
           cases: [
             {
               attachments: [],
@@ -152,7 +152,7 @@ describe('Parser - XUnit', () => {
               stack_trace: "",
               status: "FAIL",
               tags: [],
-              meta_data: { TestID: "RTA-21505", TestLevel: "Regression", TestProduct: "ExampleTestProduct", TestSuite: "ExampleTestSuite" },
+              metadata: { TestID: "RTA-21505", TestLevel: "Regression", TestProduct: "ExampleTestProduct", TestSuite: "ExampleTestSuite" },
               steps: [],
               total: 0
             },
@@ -169,7 +169,7 @@ describe('Parser - XUnit', () => {
               stack_trace: "",
               status: "PASS",
               tags: [],
-              meta_data: { TestID: "RTA-21510", TestLevel: "Regression", TestProduct: "ExampleTestProduct", TestSuite: "ExampleTestSuite" },
+              metadata: { TestID: "RTA-21510", TestLevel: "Regression", TestProduct: "ExampleTestProduct", TestSuite: "ExampleTestSuite" },
               steps: [],
               total: 0
             }
@@ -186,7 +186,7 @@ describe('Parser - XUnit', () => {
           duration: 85450,
           status: 'FAIL',
           tags: [],
-          meta_data: {},
+          metadata: {},
           cases: [
             {
               attachments: [],
@@ -201,7 +201,7 @@ describe('Parser - XUnit', () => {
               stack_trace: "",
               status: "FAIL",
               tags: [],
-              meta_data: { TestID: "RTA-21516", TestLevel: "Regression", TestProduct: "ExampleTestProduct", TestSuite: "ExampleTestSuite" },
+              metadata: { TestID: "RTA-21516", TestLevel: "Regression", TestProduct: "ExampleTestProduct", TestSuite: "ExampleTestSuite" },
               steps: [],
               total: 0
             },
@@ -218,7 +218,7 @@ describe('Parser - XUnit', () => {
               stack_trace: "",
               status: "PASS",
               tags: [],
-              meta_data: { TestID: "RTA-21513", TestLevel: "Regression", TestProduct: "ExampleTestProduct", TestSuite: "ExampleTestSuite" },
+              metadata: { TestID: "RTA-21513", TestLevel: "Regression", TestProduct: "ExampleTestProduct", TestSuite: "ExampleTestSuite" },
               steps: [],
               total: 0
             }
@@ -235,7 +235,7 @@ describe('Parser - XUnit', () => {
           duration: 84195,
           status: 'PASS',
           tags: [],
-          meta_data: {},
+          metadata: {},
           cases: [
             {
               attachments: [],
@@ -250,7 +250,7 @@ describe('Parser - XUnit', () => {
               stack_trace: "",
               status: "PASS",
               tags: [],
-              meta_data: { TestID: "RTA-21538", TestLevel: "Regression", TestProduct: "ExampleTestProduct", TestSuite: "ExampleTestSuite" },
+              metadata: { TestID: "RTA-21538", TestLevel: "Regression", TestProduct: "ExampleTestProduct", TestSuite: "ExampleTestSuite" },
               steps: [],
               total: 0
             }
@@ -267,7 +267,7 @@ describe('Parser - XUnit', () => {
           duration: 86007,
           status: 'FAIL',
           tags: [],
-          meta_data: {},
+          metadata: {},
           cases: [
             {
               attachments: [],
@@ -282,7 +282,7 @@ describe('Parser - XUnit', () => {
               stack_trace: "",
               status: "FAIL",
               tags: [],
-              meta_data: { TestID: "RTA-37684", TestLevel: "Regression", TestProduct: "ExampleTestProduct", TestSuite: "ExampleTestSuite" },
+              metadata: { TestID: "RTA-37684", TestLevel: "Regression", TestProduct: "ExampleTestProduct", TestSuite: "ExampleTestSuite" },
               steps: [],
               total: 0
             }
@@ -304,7 +304,7 @@ describe('Parser - XUnit', () => {
 
   it('meta-data from traits', () => {
     const result = parse({ type: 'xunit', files: ['tests/data/xunit/single-suite.xml'] });
-    assert.deepEqual(result.suites[0].cases[0].meta_data, {
+    assert.deepEqual(result.suites[0].cases[0].metadata, {
       TestID: 'ID',
       TestLevel: 'Regression',
       TestProduct: 'TestProductExample',
@@ -314,7 +314,7 @@ describe('Parser - XUnit', () => {
 
   it('no meta-data from empty traits', () => {
     const result = parse({ type: 'xunit', files: ['tests/data/xunit/no-traits-suite.xml'] });
-    assert.deepEqual(result.suites[0].cases[0].meta_data, {});
+    assert.deepEqual(result.suites[0].cases[0].metadata, {});
   });
 
 });

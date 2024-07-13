@@ -25,10 +25,10 @@ function populateMetaData(rawElement, test_element) {
       test_element.tags.push(categoryName);
 
       // create comma-delimited list of categories
-      if (test_element.meta_data["Categories"]) {
-        test_element.meta_data["Categories"] = test_element.meta_data["Categories"].concat(",", categoryName)
+      if (test_element.metadata["Categories"]) {
+        test_element.metadata["Categories"] = test_element.metadata["Categories"].concat(",", categoryName)
       } else {
-        test_element.meta_data["Categories"] = categoryName;
+        test_element.metadata["Categories"] = categoryName;
       }
     }
   }

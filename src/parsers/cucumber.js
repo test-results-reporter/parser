@@ -48,7 +48,7 @@ function setMetaData(element, test_element) {
     for (const tag of tags) {
       if (tag["name"].includes("=")) {
         const [name, value] = tag["name"].substring(1).split("=");
-        test_element.meta_data[name] = value;
+        test_element.metadata[name] = value;
       } else {
         test_element.tags.push(tag["name"]);
       }

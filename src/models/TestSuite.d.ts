@@ -10,7 +10,7 @@ declare class TestSuite {
   duration: number;
   status: string;
   tags: string[];
-  meta_data: object;
+  metadata: object;
 
   cases: TestCase[];
 }

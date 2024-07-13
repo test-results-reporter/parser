@@ -15,7 +15,7 @@ class TestCase {
       this.failure = '';
       this.stack_trace = '';
       this.tags = [];
-      this.meta_data = {};
+      this.metadata = {};
 
       this.steps = [];
       this.attachments = [];

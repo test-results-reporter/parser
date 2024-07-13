@@ -60,10 +60,10 @@ function populateMetaData(raw, test_element) {
       test_element.tags.push(categoryName);
 
       // create comma-delimited list of categories
-      if (test_element.meta_data["Categories"]) {
-        test_element.meta_data["Categories"] = test_element.meta_data["Categories"].concat(",", categoryName);
+      if (test_element.metadata["Categories"]) {
+        test_element.metadata["Categories"] = test_element.metadata["Categories"].concat(",", categoryName);
       } else {
-        test_element.meta_data["Categories"] = categoryName;
+        test_element.metadata["Categories"] = categoryName;
       }
     }
   }
@@ -79,14 +79,14 @@ function populateMetaData(raw, test_element) {
       // v3 treats 'Categories' as property "Category"
       if (propName == "Category") {
 
-        if (test_element.meta_data["Categories"]) {
-          test_element.meta_data["Categories"] = test_element.meta_data["Categories"].concat(",", propValue);
+        if (test_element.metadata["Categories"]) {
+          test_element.metadata["Categories"] = test_element.metadata["Categories"].concat(",", propValue);
         } else {
-          test_element.meta_data["Categories"] = propValue;
+          test_element.metadata["Categories"] = propValue;
         }
 
       } else {
-        test_element.meta_data[propName] = propValue;
+        test_element.metadata[propName] = propValue;
       }
     }
   }
@@ -152,7 +152,7 @@ function getTestCases(rawSuite, parent_meta) {
       // populate attachments
       populateAttachments(rawCase, testCase.attachments);
       // copy parent_meta data to test case
-      mergeMeta(parent_meta, testCase.meta_data);
+      mergeMeta(parent_meta, testCase.metadata);
       populateMetaData(rawCase, testCase);
 
       cases.push(testCase);
@@ -170,7 +170,7 @@ function getTestSuites(rawSuites, assembly_meta) {
 
     if (rawSuite["@_type"] == "Assembly") {
       assembly_meta = {};
-      populateMetaData(rawSuite, { tags: [], meta_data: assembly_meta });
+      populateMetaData(rawSuite, { tags: [], metadata: assembly_meta });
     }
 
     if (hasNestedSuite(rawSuite)) {
@@ -184,9 +184,9 @@ function getTestSuites(rawSuites, assembly_meta) {
       suite.duration = (rawSuite["@_time"] ?? rawSuite["@_duration"]) * 1000; // in milliseconds
       suite.status = RESULT_MAP[rawSuite["@_result"]];
 
-      mergeMeta(assembly_meta, suite.meta_data);
+      mergeMeta(assembly_meta, suite.metadata);
       populateMetaData(rawSuite, suite);
-      suite.cases.push(...getTestCases(rawSuite, suite.meta_data));
+      suite.cases.push(...getTestCases(rawSuite, suite.metadata));
 
       // calculate totals
       suite.total = suite.cases.length;

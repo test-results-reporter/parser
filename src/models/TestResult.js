@@ -12,7 +12,7 @@ class TestResult {
     this.duration = 0;
     this.status = 'NA';
     this.tags = [];
-    this.meta_data = {};
+    this.metadata = {};
 
     this.suites = [];
   }
