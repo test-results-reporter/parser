@@ -19,6 +19,8 @@ describe('Parser - Cucumber Json', () => {
       retried: 0,
       duration: 1.59,
       status: 'PASS',
+      tags: [],
+      meta_data: {},
       suites: [
         {
           id: '',
@@ -30,7 +32,8 @@ describe('Parser - Cucumber Json', () => {
           skipped: 0,
           duration: 1.59,
           status: 'PASS',
-          meta_data: newMap({ tags: "blue,slow", suite: "1234", tagsRaw: "@blue,@slow" }),
+          tags: ["@blue", "@slow"],
+          meta_data: { suite: "1234" },
           cases: [
             {
               attachments: [],
@@ -44,7 +47,8 @@ describe('Parser - Cucumber Json', () => {
               skipped: 0,
               stack_trace: "",
               status: "PASS",
-              meta_data: newMap({ tags: "green,fast", testCase: "1234", tagsRaw: "@green,@fast" }),
+              tags: ["@green", "@fast"],
+              meta_data: { testCase: "1234" },
               steps: [],
               total: 0
             }
@@ -67,6 +71,8 @@ describe('Parser - Cucumber Json', () => {
       retried: 0,
       duration: 0,
       status: 'PASS',
+      tags: [],
+      meta_data: {},
       suites: []
     });
   });
@@ -84,6 +90,8 @@ describe('Parser - Cucumber Json', () => {
       retried: 0,
       duration: 3.36,
       status: 'FAIL',
+      tags: [],
+      meta_data: {},
       suites: [
         {
           id: '',
@@ -95,7 +103,8 @@ describe('Parser - Cucumber Json', () => {
           skipped: 0,
           duration: 2.84,
           status: 'FAIL',
-          meta_data: new Map(),
+          tags: [],
+          meta_data: {},
           cases: [
             {
               attachments: [],
@@ -109,7 +118,8 @@ describe('Parser - Cucumber Json', () => {
               skipped: 0,
               stack_trace: "    at CustomWorld.<anonymous> (D:\\workspace\\nodejs\\cc-tests\\features\\support\\steps.js:18:12)",
               status: "FAIL",
-              meta_data: new Map(),
+              tags: [],
+              meta_data: {},
               steps: [],
               total: 0
             },
@@ -125,7 +135,8 @@ describe('Parser - Cucumber Json', () => {
               skipped: 0,
               stack_trace: "",
               status: "PASS",
-              meta_data: new Map(),
+              tags: [],
+              meta_data: {},
               steps: [],
               total: 0
             }
@@ -141,7 +152,8 @@ describe('Parser - Cucumber Json', () => {
           skipped: 0,
           duration: 0.52,
           status: 'PASS',
-          meta_data: new Map(),
+          tags: [],
+          meta_data: {},
           cases: [
             {
               attachments: [],
@@ -155,7 +167,8 @@ describe('Parser - Cucumber Json', () => {
               skipped: 0,
               stack_trace: "",
               status: "PASS",
-              meta_data: new Map(),
+              tags: [],
+              meta_data: {},
               steps: [],
               total: 0
             }

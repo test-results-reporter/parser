@@ -10,7 +10,9 @@ class TestSuite {
     this.skipped = 0;
     this.duration = 0;
     this.status = 'NA';
-    this.meta_data = new Map();
+    this.tags = [];
+    this.meta_data = {};
+
     this.cases = [];
   }
 

@@ -19,6 +19,8 @@ describe('Parser - JUnit', () => {
       retried: 0,
       duration: 10000,
       status: 'FAIL',
+      tags: [],
+      meta_data: {},
       suites: [
         {
           id: '',
@@ -30,7 +32,8 @@ describe('Parser - JUnit', () => {
           skipped: 0,
           duration: 10000,
           status: 'FAIL',
-          meta_data: new Map(),
+          tags: [],
+          meta_data: {},
           cases: [
             {
               attachments: [],
@@ -44,7 +47,8 @@ describe('Parser - JUnit', () => {
               skipped: 0,
               stack_trace: "Some Text",
               status: "FAIL",
-              meta_data: new Map(),
+              tags: [],
+              meta_data: {},
               steps: [],
               total: 0
             }
@@ -67,6 +71,8 @@ describe('Parser - JUnit', () => {
       retried: 0,
       duration: 10000,
       status: 'FAIL',
+      tags: [],
+      meta_data: {},
       suites: [
         {
           id: '',
@@ -78,7 +84,8 @@ describe('Parser - JUnit', () => {
           skipped: 0,
           duration: 10000,
           status: 'FAIL',
-          meta_data: new Map(),
+          tags: [],
+          meta_data: {},
           cases: [
             {
               attachments: [],
@@ -92,7 +99,8 @@ describe('Parser - JUnit', () => {
               skipped: 0,
               stack_trace: "",
               status: "PASS",
-              meta_data: new Map(),
+              tags: [],
+              meta_data: {},
               steps: [],
               total: 0
             }
@@ -115,6 +123,8 @@ describe('Parser - JUnit', () => {
       retried: 0,
       duration: 10000,
       status: 'PASS',
+      tags: [],
+      meta_data: {},
       suites: [
         {
           id: '',
@@ -126,7 +136,8 @@ describe('Parser - JUnit', () => {
           skipped: 0,
           duration: 10000,
           status: 'PASS',
-          meta_data: new Map(),
+          tags: [],
+          meta_data: {},
           cases: [
             {
               attachments: [],
@@ -140,7 +151,8 @@ describe('Parser - JUnit', () => {
               skipped: 0,
               stack_trace: "",
               status: "SKIP",
-              meta_data: new Map(),
+              tags: [],
+              meta_data: {},
               steps: [],
               total: 0
             }
@@ -163,6 +175,8 @@ describe('Parser - JUnit', () => {
       retried: 0,
       duration: 20000,
       status: 'FAIL',
+      tags: [],
+      meta_data: {},
       suites: [
         {
           id: '',
@@ -174,7 +188,8 @@ describe('Parser - JUnit', () => {
           skipped: 0,
           duration: 10000,
           status: 'FAIL',
-          meta_data: new Map(),
+          tags: [],
+          meta_data: {},
           cases: [
             {
               attachments: [],
@@ -188,7 +203,8 @@ describe('Parser - JUnit', () => {
               skipped: 0,
               stack_trace: "Some Text",
               status: "FAIL",
-              meta_data: new Map(),
+              tags: [],
+              meta_data: {},
               steps: [],
               total: 0
             }
@@ -204,7 +220,8 @@ describe('Parser - JUnit', () => {
           skipped: 0,
           duration: 10000,
           status: 'PASS',
-          meta_data: new Map(),
+          tags: [],
+          meta_data: {},
           cases: [
             {
               attachments: [],
@@ -218,7 +235,8 @@ describe('Parser - JUnit', () => {
               skipped: 0,
               stack_trace: "Some Text",
               status: "FAIL",
-              meta_data: new Map(),
+              tags: [],
+              meta_data: {},
               steps: [],
               total: 0
             }
@@ -241,6 +259,8 @@ describe('Parser - JUnit', () => {
       retried: 0,
       duration: 20000,
       status: 'FAIL',
+      tags: [],
+      meta_data: {},
       suites: [
         {
           id: '',
@@ -252,7 +272,8 @@ describe('Parser - JUnit', () => {
           skipped: 0,
           duration: 10000,
           status: 'FAIL',
-          meta_data: new Map(),
+          tags: [],
+          meta_data: {},
           cases: [
             {
               attachments: [],
@@ -266,7 +287,8 @@ describe('Parser - JUnit', () => {
               skipped: 0,
               stack_trace: "Some Text",
               status: "FAIL",
-              meta_data: new Map(),
+              tags: [],
+              meta_data: {},
               steps: [],
               total: 0
             }
@@ -282,7 +304,8 @@ describe('Parser - JUnit', () => {
           skipped: 0,
           duration: 10000,
           status: 'FAIL',
-          meta_data: new Map(),
+          tags: [],
+          meta_data: {},
           cases: [
             {
               attachments: [],
@@ -296,7 +319,8 @@ describe('Parser - JUnit', () => {
               skipped: 0,
               stack_trace: "Some Text",
               status: "FAIL",
-              meta_data: new Map(),
+              tags: [],
+              meta_data: {},
               steps: [],
               total: 0
             }
@@ -319,6 +343,8 @@ describe('Parser - JUnit', () => {
       retried: 0,
       duration: 32937,
       status: 'PASS',
+      tags: [],
+      meta_data: {},
       suites: [
         {
           id: '',
@@ -330,7 +356,8 @@ describe('Parser - JUnit', () => {
           skipped: 0,
           duration: 807,
           status: 'PASS',
-          meta_data: new Map(),
+          tags: [],
+          meta_data: {},
           cases: [
             {
               attachments: [],
@@ -344,7 +371,8 @@ describe('Parser - JUnit', () => {
               skipped: 0,
               stack_trace: "",
               status: "PASS",
-              meta_data: new Map(),
+              tags: [],
+              meta_data: {},
               steps: [],
               total: 0
             }
@@ -367,6 +395,8 @@ describe('Parser - JUnit', () => {
       retried: 0,
       duration: 37506,
       status: "FAIL",
+      tags: [],
+      meta_data: {},
       suites: [
         {
           id: "",
@@ -378,7 +408,8 @@ describe('Parser - JUnit', () => {
           skipped: 0,
           duration: 446,
           status: "FAIL",
-          meta_data: new Map(),
+          tags: [],
+          meta_data: {},
           cases: [
             {
               id: "",
@@ -392,7 +423,8 @@ describe('Parser - JUnit', () => {
               status: "FAIL",
               failure: "expected to include 'Residntial'",
               stack_trace: "",
-              meta_data: new Map(),
+              tags: [],
+              meta_data: {},
               attachments: [],
               steps: []
             },
@@ -408,7 +440,8 @@ describe('Parser - JUnit', () => {
               status: "PASS",
               failure: "",
               stack_trace: "",
-              meta_data: new Map(),
+              tags: [],
+              meta_data: {},
               attachments: [],
               steps: []
             }
@@ -424,7 +457,8 @@ describe('Parser - JUnit', () => {
           skipped: 0,
           duration: 634,
           status: "PASS",
-          meta_data: new Map(),
+          tags: [],
+          meta_data: {},
           cases: [
             {
               id: "",
@@ -438,7 +472,8 @@ describe('Parser - JUnit', () => {
               status: "PASS",
               failure: "",
               stack_trace: "",
-              meta_data: new Map(),
+              tags: [],
+              meta_data: {},
               attachments: [],
               steps: []
             }
@@ -450,12 +485,11 @@ describe('Parser - JUnit', () => {
 
   it('parse spekt/junit.testlogger', () => {
     const result = parse({ type: 'junit', files: [`${testDataPath}/junit.testlogger.xml`] });
-    var inheritedProperties = new Map([["hostname", "REDACTED"]]);
-    assert.deepEqual(result.suites[0].meta_data, inheritedProperties);
-    assert.deepEqual(result.suites[0].cases[0].meta_data, inheritedProperties);
+    assert.deepEqual(result.suites[0].meta_data, { "hostname": "REDACTED" });
+    assert.deepEqual(result.suites[0].cases[0].meta_data, { "hostname": "REDACTED" });
   });
 
-  it('parse testcafe with testsuite root node', () => {
+  it('parse testcafe with test suite root node', () => {
     const result = parse({ type: 'junit', files: [`${testDataPath}/testCafe.xml`] });
 
     assert.equal(result.suites.length, 1);
@@ -475,6 +509,8 @@ describe('Parser - JUnit', () => {
       retried: 0,
       duration: 0,
       status: 'PASS',
+      tags: [],
+      meta_data: {},
       suites: []
     });
   });
@@ -488,34 +524,26 @@ describe('Parser - JUnit', () => {
     assert.notEqual(null, result2);
   });
 
-  it('meta-data from suite merged with testcase', () => {
+  it('meta-data from suite merged with test case', () => {
     const result = parse({ type: 'junit', files: ['tests/data/junit/multiple-suites-properties.xml'] });
-
-    // confirm that suite level properties exist and are accurate
-    assert.equal(result.suites[0].meta_data.size, 2);
-    assert.equal(result.suites[0].meta_data.get("key1"), "value1");
-    assert.equal(result.suites[0].meta_data.get("key2"), "value2");
-
-    // confirm that the suite level properties were inherited into the test case and overridden if present
-    assert.equal(result.suites[0].cases[0].meta_data.size, 2);
-    assert.equal(result.suites[0].cases[0].meta_data.get("key1"), "override-value1"); // testcase value
-    assert.equal(result.suites[0].cases[0].meta_data.get("key2"), "value2"); // suite value
+    assert.deepEqual(result.suites[0].meta_data, { "key1": "value1", "key2": "value2" });
+    assert.deepEqual(result.suites[0].cases[0].meta_data, { "key1": "override-value1", "key2": "value2" });
   });
 
-  it('include hostname in meta-data from suite and testcase', () => {
+  it('include hostname in meta-data from suite and test case', () => {
     const result = parse({ type: 'junit', files: ['tests/data/junit/playwright.xml'] });
 
-    assert.equal(result.suites[0].meta_data.get("hostname"), "chromium");
-    assert.equal(result.suites[0].cases[0].meta_data.get("hostname"), "chromium");
-    assert.equal(result.suites[0].cases[1].meta_data.get("hostname"), "chromium");
+    assert.deepEqual(result.suites[0].meta_data, { "hostname": "chromium" });
+    assert.deepEqual(result.suites[0].cases[0].meta_data, { "hostname": "chromium" });
+    assert.deepEqual(result.suites[0].cases[1].meta_data, { "hostname": "chromium" });
 
-    assert.equal(result.suites[1].meta_data.get("hostname"), "firefox");
-    assert.equal(result.suites[1].cases[0].meta_data.get("hostname"), "firefox");
-    assert.equal(result.suites[1].cases[1].meta_data.get("hostname"), "firefox");
+    assert.deepEqual(result.suites[1].meta_data, { "hostname": "firefox" });
+    assert.deepEqual(result.suites[1].cases[0].meta_data, { "hostname": "firefox" });
+    assert.deepEqual(result.suites[1].cases[1].meta_data, { "hostname": "firefox" });
 
-    assert.equal(result.suites[2].meta_data.get("hostname"), "webkit");
-    assert.equal(result.suites[2].cases[0].meta_data.get("hostname"), "webkit");
-    assert.equal(result.suites[2].cases[1].meta_data.get("hostname"), "webkit");
+    assert.deepEqual(result.suites[2].meta_data, { "hostname": "webkit" });
+    assert.deepEqual(result.suites[2].cases[0].meta_data, { "hostname": "webkit" });
+    assert.deepEqual(result.suites[2].cases[1].meta_data, { "hostname": "webkit" });
 
   });
 
