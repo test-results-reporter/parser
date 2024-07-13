@@ -3,9 +3,9 @@ const assert = require('assert');
 const path = require('path');
 
 describe('Parser - Mocha Json', () => {
-  
+
   const testDataPath = "tests/data/mocha/json"
-  
+
   it('single suite with single test', () => {
     const result = parse({ type: 'mocha', files: [`${testDataPath}/single-suite-single-test.json`] });
     assert.deepEqual(result, {
@@ -19,6 +19,8 @@ describe('Parser - Mocha Json', () => {
       retried: 0,
       duration: 3,
       status: 'PASS',
+      tags: [],
+      metadata: {},
       suites: [
         {
           id: '',
@@ -30,7 +32,8 @@ describe('Parser - Mocha Json', () => {
           skipped: 0,
           duration: 1,
           status: 'PASS',
-          meta_data: new Map(),
+          tags: [],
+          metadata: {},
           cases: [
             {
               attachments: [],
@@ -44,7 +47,8 @@ describe('Parser - Mocha Json', () => {
               skipped: 0,
               stack_trace: "",
               status: "PASS",
-              meta_data: new Map(),
+              tags: [],
+              metadata: {},
               steps: [],
               total: 0
             }
@@ -53,7 +57,7 @@ describe('Parser - Mocha Json', () => {
       ]
     });
   });
-  
+
   it('empty suite report', () => {
     const result = parse({ type: 'mocha', files: [`${testDataPath}/empty-suite.json`] });
     assert.deepEqual(result, {
@@ -67,6 +71,8 @@ describe('Parser - Mocha Json', () => {
       retried: 0,
       duration: 0,
       status: 'PASS',
+      tags: [],
+      metadata: {},
       suites: []
     });
   });
@@ -84,6 +90,8 @@ describe('Parser - Mocha Json', () => {
       retried: 0,
       duration: 3,
       status: 'PASS',
+      tags: [],
+      metadata: {},
       suites: [
         {
           id: '',
@@ -95,7 +103,8 @@ describe('Parser - Mocha Json', () => {
           skipped: 1,
           duration: 1,
           status: 'PASS',
-          meta_data: new Map(),
+          tags: [],
+          metadata: {},
           cases: [
             {
               attachments: [],
@@ -109,7 +118,8 @@ describe('Parser - Mocha Json', () => {
               skipped: 0,
               stack_trace: "",
               status: "PASS",
-              meta_data: new Map(),
+              tags: [],
+              metadata: {},
               steps: [],
               total: 0
             },
@@ -125,7 +135,8 @@ describe('Parser - Mocha Json', () => {
               skipped: 0,
               stack_trace: "",
               status: "SKIP",
-              meta_data: new Map(),
+              tags: [],
+              metadata: {},
               steps: [],
               total: 0
             }
@@ -147,6 +158,8 @@ describe('Parser - Mocha Json', () => {
       retried: 0,
       duration: 7,
       status: 'FAIL',
+      tags: [],
+      metadata: {},
       suites: [
         {
           id: '',
@@ -158,7 +171,8 @@ describe('Parser - Mocha Json', () => {
           skipped: 0,
           duration: 4,
           status: 'PASS',
-          meta_data: new Map(),
+          tags: [],
+          metadata: {},
           cases: [
             {
               attachments: [],
@@ -172,7 +186,8 @@ describe('Parser - Mocha Json', () => {
               skipped: 0,
               stack_trace: "",
               status: "PASS",
-              meta_data: new Map(),
+              tags: [],
+              metadata: {},
               steps: [],
               total: 0
             },
@@ -188,7 +203,8 @@ describe('Parser - Mocha Json', () => {
               skipped: 0,
               stack_trace: "",
               status: "PASS",
-              meta_data: new Map(),
+              tags: [],
+              metadata: {},
               steps: [],
               total: 0
             }
@@ -204,7 +220,8 @@ describe('Parser - Mocha Json', () => {
           skipped: 0,
           duration: 1,
           status: 'FAIL',
-          meta_data: new Map(),
+          tags: [],
+          metadata: {},
           cases: [
             {
               attachments: [],
@@ -218,7 +235,8 @@ describe('Parser - Mocha Json', () => {
               skipped: 0,
               stack_trace: "",
               status: "FAIL",
-              meta_data: new Map(),
+              tags: [],
+              metadata: {},
               steps: [],
               total: 0
             }
@@ -233,35 +251,31 @@ describe('Parser - Mocha Json', () => {
     let absolutePath = path.resolve(relativePath);
     const result1 = parse({ type: 'mocha', files: [absolutePath] });
     assert.notEqual(null, result1);
-    const result2 = parse({ type: 'mocha', files: [relativePath]});
+    const result2 = parse({ type: 'mocha', files: [relativePath] });
     assert.notEqual(null, result2);
   });
 
   it('has multiple tags', () => {
     const result = parse({ type: 'mocha', files: [`${testDataPath}/multiple-suites-multiple-tests-tags.json`] });
+
     let test_suite = result.suites[0];
     let test_case = result.suites[0].cases[0];
-    assert.equal(test_suite.meta_data.has("tags"), true);
-    assert.equal(test_suite.meta_data.get("tags"), "");
-    assert.equal(test_suite.meta_data.get("tagsRaw"), "");
-    assert.equal(test_suite.meta_data.get("type"), "api");
-    assert.equal(test_case.meta_data.has("tags"), true);
-    assert.equal(test_case.meta_data.get("tags"), "fast,1255");
-    assert.equal(test_case.meta_data.get("tagsRaw"), "@fast,#1255");
+
+    assert.deepEqual(test_suite.metadata, { type: 'api' });
+    assert.deepEqual(test_case.tags, ['@fast', '#1255']);
   });
 
   it('has single tag', () => {
     const result = parse({ type: 'mocha', files: [`${testDataPath}/multiple-suites-multiple-tests-tags.json`] });
     let test_case = result.suites[1].cases[0];
-    assert.equal(test_case.meta_data.has("tags"), true);
-    assert.equal(test_case.meta_data.get("tags"), "1234");
-    assert.equal(test_case.meta_data.get("tagsRaw"), "#1234");
+
+    assert.deepEqual(test_case.tags, ['#1234']);
   });
 
-  it('does not include tags meta if no tags are present', () =>{
+  it('does not include tags meta if no tags are present', () => {
     const result = parse({ type: 'mocha', files: [`${testDataPath}/multiple-suites-multiple-tests-tags.json`] });
-    let testcase = result.suites[0].cases[1];
-    assert.equal(testcase.meta_data.has("tags"), false);
+    let test_case = result.suites[0].cases[1];
+    assert.deepEqual(test_case.tags, []);
   });
 });
 
@@ -281,6 +295,8 @@ describe('Parser - Mocha Awesome Json', () => {
       retried: 0,
       duration: 3,
       status: 'PASS',
+      tags: [],
+      metadata: {},
       suites: [
         {
           id: '',
@@ -292,7 +308,8 @@ describe('Parser - Mocha Awesome Json', () => {
           skipped: 0,
           duration: 1,
           status: 'PASS',
-          meta_data: new Map(),
+          tags: [],
+          metadata: {},
           cases: [
             {
               attachments: [],
@@ -306,7 +323,8 @@ describe('Parser - Mocha Awesome Json', () => {
               skipped: 0,
               stack_trace: "",
               status: "PASS",
-              meta_data: new Map(),
+              tags: [],
+              metadata: {},
               steps: [],
               total: 0
             }
@@ -329,10 +347,12 @@ describe('Parser - Mocha Awesome Json', () => {
       retried: 0,
       duration: 0,
       status: 'PASS',
+      tags: [],
+      metadata: {},
       suites: []
     });
   });
-  
+
   it('suite with pending tests', () => {
     const result = parse({ type: 'mocha', files: [`${testDataPath}/pending-tests.json`] });
     assert.deepEqual(result, {
@@ -346,6 +366,8 @@ describe('Parser - Mocha Awesome Json', () => {
       retried: 0,
       duration: 3,
       status: 'PASS',
+      tags: [],
+      metadata: {},
       suites: [
         {
           id: '',
@@ -357,7 +379,8 @@ describe('Parser - Mocha Awesome Json', () => {
           skipped: 1,
           duration: 1,
           status: 'PASS',
-          meta_data: new Map(),
+          tags: [],
+          metadata: {},
           cases: [
             {
               attachments: [],
@@ -371,7 +394,8 @@ describe('Parser - Mocha Awesome Json', () => {
               skipped: 0,
               stack_trace: "",
               status: "PASS",
-              meta_data: new Map(),
+              tags: [],
+              metadata: {},
               steps: [],
               total: 0
             },
@@ -387,7 +411,8 @@ describe('Parser - Mocha Awesome Json', () => {
               skipped: 0,
               stack_trace: "",
               status: "SKIP",
-              meta_data: new Map(),
+              tags: [],
+              metadata: {},
               steps: [],
               total: 0
             }
@@ -410,6 +435,8 @@ describe('Parser - Mocha Awesome Json', () => {
       retried: 0,
       duration: 7,
       status: 'FAIL',
+      tags: [],
+      metadata: {},
       suites: [
         {
           id: '',
@@ -421,7 +448,8 @@ describe('Parser - Mocha Awesome Json', () => {
           skipped: 0,
           duration: 4,
           status: 'PASS',
-          meta_data: new Map(),
+          tags: [],
+          metadata: {},
           cases: [
             {
               attachments: [],
@@ -435,7 +463,8 @@ describe('Parser - Mocha Awesome Json', () => {
               skipped: 0,
               stack_trace: "",
               status: "PASS",
-              meta_data: new Map(),
+              tags: [],
+              metadata: {},
               steps: [],
               total: 0
             },
@@ -451,7 +480,8 @@ describe('Parser - Mocha Awesome Json', () => {
               skipped: 0,
               stack_trace: "",
               status: "PASS",
-              meta_data: new Map(),
+              tags: [],
+              metadata: {},
               steps: [],
               total: 0
             }
@@ -467,7 +497,8 @@ describe('Parser - Mocha Awesome Json', () => {
           skipped: 0,
           duration: 1,
           status: 'FAIL',
-          meta_data: new Map(),
+          tags: [],
+          metadata: {},
           cases: [
             {
               attachments: [],
@@ -481,7 +512,8 @@ describe('Parser - Mocha Awesome Json', () => {
               skipped: 0,
               stack_trace: "",
               status: "FAIL",
-              meta_data: new Map(),
+              tags: [],
+              metadata: {},
               steps: [],
               total: 0
             }
@@ -504,6 +536,8 @@ describe('Parser - Mocha Awesome Json', () => {
       retried: 0,
       duration: 7,
       status: 'FAIL',
+      tags: [],
+      metadata: {},
       suites: [
         {
           id: '',
@@ -515,7 +549,8 @@ describe('Parser - Mocha Awesome Json', () => {
           skipped: 0,
           duration: 4,
           status: 'PASS',
-          meta_data: new Map(),
+          tags: [],
+          metadata: {},
           cases: [
             {
               attachments: [],
@@ -529,7 +564,8 @@ describe('Parser - Mocha Awesome Json', () => {
               skipped: 0,
               stack_trace: "",
               status: "PASS",
-              meta_data: new Map(),
+              tags: [],
+              metadata: {},
               steps: [],
               total: 0
             },
@@ -545,7 +581,8 @@ describe('Parser - Mocha Awesome Json', () => {
               skipped: 0,
               stack_trace: "",
               status: "PASS",
-              meta_data: new Map(),
+              tags: [],
+              metadata: {},
               steps: [],
               total: 0
             }
@@ -561,7 +598,8 @@ describe('Parser - Mocha Awesome Json', () => {
           skipped: 0,
           duration: 1,
           status: 'FAIL',
-          meta_data: new Map(),
+          tags: [],
+          metadata: {},
           cases: [
             {
               attachments: [],
@@ -575,7 +613,8 @@ describe('Parser - Mocha Awesome Json', () => {
               skipped: 0,
               stack_trace: "",
               status: "FAIL",
-              meta_data: new Map(),
+              tags: [],
+              metadata: {},
               steps: [],
               total: 0
             }
@@ -590,7 +629,7 @@ describe('Parser - Mocha Awesome Json', () => {
     let absolutePath = path.resolve(relativePath);
     const result1 = parse({ type: 'mocha', files: [absolutePath] });
     assert.notEqual(null, result1);
-    const result2 = parse({ type: 'mocha', files: [relativePath]});
+    const result2 = parse({ type: 'mocha', files: [relativePath] });
     assert.notEqual(null, result2);
   });
 
@@ -607,6 +646,8 @@ describe('Parser - Mocha Awesome Json', () => {
       skipped: 1,
       status: "PASS",
       total: 3,
+      tags: [],
+      metadata: {},
       suites: [
         {
           cases: [
@@ -617,7 +658,8 @@ describe('Parser - Mocha Awesome Json', () => {
               failed: 0,
               failure: "",
               id: "",
-              meta_data: new Map(),
+              tags: [],
+              metadata: {},
               name: "first skipped test",
               passed: 0,
               skipped: 0,
@@ -631,7 +673,8 @@ describe('Parser - Mocha Awesome Json', () => {
           errors: 0,
           failed: 0,
           id: "",
-          meta_data: new Map(),
+          tags: [],
+          metadata: {},
           name: "Example Suite",
           passed: 0,
           skipped: 0,
@@ -647,7 +690,8 @@ describe('Parser - Mocha Awesome Json', () => {
               failed: 0,
               failure: "",
               id: "",
-              meta_data: new Map(),
+              tags: [],
+              metadata: {},
               name: "first passed test",
               passed: 0,
               skipped: 0,
@@ -663,7 +707,8 @@ describe('Parser - Mocha Awesome Json', () => {
               failed: 0,
               failure: "",
               id: "",
-              meta_data: new Map(),
+              tags: [],
+              metadata: {},
               name: "second passed test",
               passed: 0,
               skipped: 0,
@@ -677,7 +722,8 @@ describe('Parser - Mocha Awesome Json', () => {
           errors: 0,
           failed: 0,
           id: "",
-          meta_data: new Map(),
+          tags: [],
+          metadata: {},
           name: "Second Example Suite",
           passed: 2,
           skipped: 0,

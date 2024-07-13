@@ -1,5 +1,5 @@
-import * as TestStep from './TestStep';
 import * as TestAttachment from './TestAttachment';
+import * as TestStep from './TestStep';
 
 declare class TestCase {
   name: string;
@@ -12,10 +12,12 @@ declare class TestCase {
   status: string;
   failure: string;
   stack_trace: string;
+  tags: string[];
+  metadata: object;
+
   steps: TestStep[];
   attachments: TestAttachment[];
-  meta_data: Map<string,string>;
-  
+
   setFailure: SetFailureFunction
 }
 export type SetFailureFunction = (value: string) => string;

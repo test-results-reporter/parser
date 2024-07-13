@@ -14,15 +14,17 @@ class TestCase {
       this.status = 'NA';
       this.failure = '';
       this.stack_trace = '';
+      this.tags = [];
+      this.metadata = {};
+
       this.steps = [];
       this.attachments = [];
-      this.meta_data = new Map();
     }
 
     setFailure(value) {
       this.failure = value ? unescape(value) : value;
     }
-  
+
   }
-  
+
   module.exports = TestCase;

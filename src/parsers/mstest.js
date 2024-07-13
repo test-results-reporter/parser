@@ -12,18 +12,23 @@ const RESULT_MAP = {
   NotExecuted: "SKIP",
 }
 
-function populateMetaData(rawElement, map) {
+/**
+ *
+ * @param {*} rawElement
+ * @param {TestCase | TestSuite} test_element
+ */
+function populateMetaData(rawElement, test_element) {
   if (rawElement.TestCategory && rawElement.TestCategory.TestCategoryItem) {
     let rawCategories = rawElement.TestCategory.TestCategoryItem;
     for (let i = 0; i < rawCategories.length; i++) {
       let categoryName = rawCategories[i]["@_TestCategory"];
-      map.set(categoryName, "");
+      test_element.tags.push(categoryName);
 
       // create comma-delimited list of categories
-      if (map.has("Categories")) {
-        map.set("Categories", map.get("Categories").concat(",", categoryName));
+      if (test_element.metadata["Categories"]) {
+        test_element.metadata["Categories"] = test_element.metadata["Categories"].concat(",", categoryName)
       } else {
-        map.set("Categories", categoryName);
+        test_element.metadata["Categories"] = categoryName;
       }
     }
   }
@@ -36,7 +41,7 @@ function populateMetaData(rawElement, map) {
     for (let i = 0; i < rawProperties.length; i++) {
       let key = rawProperties[i].Key ?? "not-set";
       let val = rawProperties[i].Value ?? "";
-      map.set(key, val);
+      map[key] = val;
     }
   }
 }
@@ -120,7 +125,7 @@ function getTestCase(rawTestResult, definitionMap, testRunName) {
     // populate attachments
     populateAttachments(rawTestResult, testCase.attachments, testRunName);
     // populate meta
-    populateMetaData(rawDefinition, testCase.meta_data);
+    populateMetaData(rawDefinition, testCase);
 
     return testCase;
   } else {

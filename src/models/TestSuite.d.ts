@@ -9,7 +9,9 @@ declare class TestSuite {
   skipped: number;
   duration: number;
   status: string;
-  meta_data: Map<string,string>;
+  tags: string[];
+  metadata: object;
+
   cases: TestCase[];
 }
 

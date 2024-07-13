@@ -39,10 +39,7 @@ function getTestCase(rawCase, testCaseToGroupMap) {
   const key = getFullTestName(rawCase);
   if (testCaseToGroupMap.has(key)) {
     let groups = testCaseToGroupMap.get(key);
-    test_case.meta_data.set("groups", groups.join(","));
-    groups.forEach(group => {
-      test_case.meta_data.set(group, "");
-    })
+    test_case.tags = groups;
   }
   if (rawCase.exception) {
     test_case.setFailure(rawCase.exception[0].message);

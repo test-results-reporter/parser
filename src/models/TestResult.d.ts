@@ -10,6 +10,9 @@ declare class TestResult {
   retried: number;
   duration: number;
   status: string;
+  tags: string[];
+  metadata: object;
+
   suites: TestSuite[];
 }
 

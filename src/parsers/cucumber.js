@@ -11,7 +11,7 @@ function getTestCase(rawCase) {
   setMetaData(rawCase, test_case);
   if (rawCase.state && rawCase.state === "failed") {
     test_case.status = 'FAIL';
-    set_error_and_stack_trace(test_case, rawCase.errorStack);
+    setErrorAndStackTrace(test_case, rawCase.errorStack);
   }
   else {
     test_case.status = 'PASS';
@@ -23,7 +23,7 @@ function getTestCase(rawCase) {
  * @param {TestCase} test_case
  * @param {string?} message
  */
-function set_error_and_stack_trace(test_case, message) {
+function setErrorAndStackTrace(test_case, message) {
   if (message) {
     const stack_trace_start_index = message.indexOf('    at ');
     if (stack_trace_start_index) {
@@ -43,21 +43,16 @@ function set_error_and_stack_trace(test_case, message) {
  * @param {TestCase | TestSuite} test_element
  */
 function setMetaData(element, test_element) {
-  const meta_tags = [];
-  const meta_raw_tags = [];
   const tags = element.tags;
   if (tags && tags.length > 0) {
     for (const tag of tags) {
-      const [name, value] = tag["name"].substring(1).split("=");
-      if (value) {
-        test_element.meta_data.set(name, value);
+      if (tag["name"].includes("=")) {
+        const [name, value] = tag["name"].substring(1).split("=");
+        test_element.metadata[name] = value;
       } else {
-        meta_tags.push(name);
-        meta_raw_tags.push(tag["name"]);
+        test_element.tags.push(tag["name"]);
       }
     }
-    test_element.meta_data.set("tags", meta_tags.join(","));
-    test_element.meta_data.set("tagsRaw", meta_raw_tags.join(","));
   }
 }
 

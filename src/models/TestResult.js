@@ -11,6 +11,9 @@ class TestResult {
     this.retried = 0;
     this.duration = 0;
     this.status = 'NA';
+    this.tags = [];
+    this.metadata = {};
+
     this.suites = [];
   }
 }

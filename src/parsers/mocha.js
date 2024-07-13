@@ -47,7 +47,7 @@ function getTestSuite(rawSuite) {
 
 /**
  * Function to format the mocha raw json report
- * @param {import("./mocha.result").MochaJsonData} raw_json 
+ * @param {import("./mocha.result").MochaJsonData} raw_json
  */
 function getTestResult(raw_json) {
   const result = new TestResult();
@@ -82,7 +82,7 @@ function getTestResult(raw_json) {
 
 /**
  * Function to format the mocha raw json report
- * @param {import("./mocha.result").MochaJsonData} raw_json 
+ * @param {import("./mocha.result").MochaJsonData} raw_json
  * @returns formatted json object
  */
 function formatMochaJsonReport(raw_json) {
@@ -125,8 +125,8 @@ function formatMochaJsonReport(raw_json) {
 }
 
 /**
- * 
- * @param {import("./mocha.result").MochaSuite} suite 
+ *
+ * @param {import("./mocha.result").MochaSuite} suite
  */
 function flattenTestSuite(suite) {
   if (!suite.suites) {
@@ -144,27 +144,22 @@ function flattenTestSuite(suite) {
 }
 
 /**
- * 
- * @param {TestCase | TestSuite} test_element 
+ *
+ * @param {TestCase | TestSuite} test_element
  */
 function setMetaData(test_element) {
   const regexp = /([\@\#][^\s]*)/gm; // match @tag or #tag
   const matches = [...test_element.name.matchAll(regexp)];
   if (matches.length > 0) {
-    const meta_tags = [];
-    const meta_raw_tags = [];
     for (const match of matches) {
       const rawTag = match[0];
-      const [name, value] = rawTag.substring(1).split("=");
-      if (value) {
-        test_element.meta_data.set(name, value);
+      if (rawTag.includes("=")) {
+        const [name, value] = rawTag.substring(1).split("=");
+        test_element.metadata[name] = value;
       } else {
-        meta_tags.push(name);
-        meta_raw_tags.push(rawTag);
+        test_element.tags.push(rawTag);
       }
     }
-    test_element.meta_data.set("tags", meta_tags.join(","));
-    test_element.meta_data.set("tagsRaw", meta_raw_tags.join(","));
   }
 }
 
