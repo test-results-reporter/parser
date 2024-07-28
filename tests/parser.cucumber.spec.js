@@ -52,7 +52,7 @@ describe('Parser - Cucumber Json', () => {
               steps: [
                 {
                   "id": "",
-                  "name": "I have number 6 in calculator",
+                  "name": "Given I have number 6 in calculator",
                   "duration": 1.21,
                   "status": "PASS",
                   "failure": "",
@@ -60,7 +60,7 @@ describe('Parser - Cucumber Json', () => {
                 },
                 {
                   "id": "",
-                  "name": "I entered number 7",
+                  "name": "When I entered number 7",
                   "duration": 0.14,
                   "status": "PASS",
                   "failure": "",
@@ -68,7 +68,7 @@ describe('Parser - Cucumber Json', () => {
                 },
                 {
                   "id": "",
-                  "name": "I should see result 13",
+                  "name": "Then I should see result 13",
                   "duration": 0.24,
                   "status": "PASS",
                   "failure": "",
@@ -148,7 +148,7 @@ describe('Parser - Cucumber Json', () => {
               steps: [
                 {
                   id: "",
-                  name: "I have number 6 in calculator",
+                  name: "Given I have number 6 in calculator",
                   duration: 1.1,
                   status: "PASS",
                   failure: "",
@@ -156,7 +156,7 @@ describe('Parser - Cucumber Json', () => {
                 },
                 {
                   id: "",
-                  name: "I add number 7",
+                  name: "When I add number 7",
                   duration: 0.13,
                   status: "PASS",
                   failure: "",
@@ -164,7 +164,7 @@ describe('Parser - Cucumber Json', () => {
                 },
                 {
                   id: "",
-                  name: "I should see result 14",
+                  name: "Then I should see result 14",
                   duration: 1.33,
                   status: "FAIL",
                   failure: "AssertionError [ERR_ASSERTION]: 13 == 14\n    + expected - actual\n\n    -13\n    +14\n\n",
@@ -190,7 +190,7 @@ describe('Parser - Cucumber Json', () => {
               steps: [
                 {
                   id: "",
-                  name: "I have number 6 in calculator",
+                  name: "Given I have number 6 in calculator",
                   duration: 0.11,
                   status: "PASS",
                   failure: "",
@@ -198,7 +198,7 @@ describe('Parser - Cucumber Json', () => {
                 },
                 {
                   id: "",
-                  name: "I add number 7",
+                  name: "When I add number 7",
                   duration: 0.1,
                   status: "PASS",
                   failure: "",
@@ -206,7 +206,7 @@ describe('Parser - Cucumber Json', () => {
                 },
                 {
                   id: "",
-                  name: "I should see result 13",
+                  name: "Then I should see result 13",
                   duration: 0.08,
                   status: "PASS",
                   failure: "",
@@ -247,7 +247,7 @@ describe('Parser - Cucumber Json', () => {
               steps: [
                 {
                   id: "",
-                  name: "I have number 10 in calculator",
+                  name: "Given I have number 10 in calculator",
                   duration: 0.08,
                   status: "PASS",
                   failure: "",
@@ -255,7 +255,7 @@ describe('Parser - Cucumber Json', () => {
                 },
                 {
                   id: "",
-                  name: "I subtract number 7",
+                  name: "When I subtract number 7",
                   duration: 0.13,
                   status: "PASS",
                   failure: "",
@@ -263,7 +263,7 @@ describe('Parser - Cucumber Json', () => {
                 },
                 {
                   id: "",
-                  name: "I should see result 3",
+                  name: "Then I should see result 3",
                   duration: 0.31,
                   status: "PASS",
                   failure: "",
@@ -285,6 +285,99 @@ describe('Parser - Cucumber Json', () => {
     assert.notEqual(null, result1);
     const result2 = parse({ type: 'cucumber', files: [relativePath] });
     assert.notEqual(null, result2);
+  });
+
+  it('test with before and after', () => {
+    const result = parse({ type: 'cucumber', files: [`${testDataPath}/test-with-before-and-after.json`] });
+    assert.deepEqual(result, {
+      id: '',
+      name: '',
+      total: 1,
+      passed: 1,
+      failed: 0,
+      errors: 0,
+      skipped: 0,
+      retried: 0,
+      duration: 1.75,
+      status: 'PASS',
+      tags: [],
+      metadata: {},
+      suites: [
+        {
+          id: '',
+          name: 'Addition',
+          total: 1,
+          passed: 1,
+          failed: 0,
+          errors: 0,
+          skipped: 0,
+          duration: 1.75,
+          status: 'PASS',
+          tags: ["@blue", "@slow"],
+          metadata: { suite: "1234" },
+          cases: [
+            {
+              attachments: [],
+              duration: 1.75,
+              errors: 0,
+              failed: 0,
+              failure: "",
+              id: "",
+              name: "Addition of two numbers",
+              passed: 5,
+              skipped: 0,
+              stack_trace: "",
+              status: "PASS",
+              tags: ["@green", "@fast", "@blue", "@slow"],
+              metadata: { "suite": "1234", testCase: "1234" },
+              steps: [
+                {
+                  "id": "",
+                  "name": "Before ",
+                  "duration": 0.06,
+                  "status": "PASS",
+                  "failure": "",
+                  "stack_trace": ""
+                },
+                {
+                  "id": "",
+                  "name": "Given I have number 6 in calculator",
+                  "duration": 1.21,
+                  "status": "PASS",
+                  "failure": "",
+                  "stack_trace": ""
+                },
+                {
+                  "id": "",
+                  "name": "When I entered number 7",
+                  "duration": 0.14,
+                  "status": "PASS",
+                  "failure": "",
+                  "stack_trace": ""
+                },
+                {
+                  "id": "",
+                  "name": "Then I should see result 13",
+                  "duration": 0.24,
+                  "status": "PASS",
+                  "failure": "",
+                  "stack_trace": ""
+                },
+                {
+                  "id": "",
+                  "name": "After ",
+                  "duration": 0.1,
+                  "status": "PASS",
+                  "failure": "",
+                  "stack_trace": ""
+                },
+              ],
+              total: 5
+            }
+          ]
+        }
+      ]
+    });
   });
 
 });
