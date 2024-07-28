@@ -34,6 +34,7 @@ class CucumberParser extends BaseParser {
     this.result.passed = this.result.suites.reduce((total, suite) => total + suite.passed, 0);
     this.result.failed = this.result.suites.reduce((total, suite) => total + suite.failed, 0);
     this.result.duration = this.result.suites.reduce((total, suite) => total + suite.duration, 0);
+    this.result.duration = parseFloat(this.result.duration.toFixed(2));
   }
 
   #setTestSuites() {
@@ -48,6 +49,7 @@ class CucumberParser extends BaseParser {
       test_suite.passed = test_suite.cases.filter(_ => _.status === "PASS").length;
       test_suite.failed = test_suite.cases.filter(_ => _.status === "FAIL").length;
       test_suite.duration = test_suite.cases.reduce((total, _) => total + _.duration, 0);
+      test_suite.duration = parseFloat(test_suite.duration.toFixed(2));
       test_suite.status = test_suite.total === test_suite.passed ? 'PASS' : 'FAIL';
       const { tags, metadata } = this.#getTagsAndMetadata(feature.tags);
       test_suite.tags = tags;
@@ -75,6 +77,7 @@ class CucumberParser extends BaseParser {
     test_case.passed = test_case.steps.filter(step => step.status === "PASS").length;
     test_case.failed = test_case.steps.filter(step => step.status === "FAIL").length;
     test_case.duration = test_case.steps.reduce((total, _) => total + _.duration, 0);
+    test_case.duration = parseFloat((test_case.duration).toFixed(2));
     test_case.status = test_case.total === test_case.passed ? 'PASS' : 'FAIL';
     if (test_case.status === "FAIL") {
       const failed_step = test_case.steps.find(step => step.status === "FAIL");

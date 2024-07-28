@@ -181,7 +181,7 @@ describe('Parser - Cucumber Json', () => {
               failed: 0,
               errors: 0,
               skipped: 0,
-              duration: 0.29000000000000004,
+              duration: 0.29,
               status: "PASS",
               failure: "",
               stack_trace: "",
