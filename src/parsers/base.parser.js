@@ -4,6 +4,24 @@ const { unescape } = require('html-escaper');
 class BaseParser {
 
   /**
+   *
+   * @param {string} value
+   * @returns
+   */
+  parseStatus(value) {
+    if (value === 'passed') {
+      return 'PASS';
+    }
+    if (value === 'failed') {
+      return 'FAIL';
+    }
+    if (value === 'skipped') {
+      return 'SKIP';
+    }
+    return 'FAIL';
+  }
+
+  /**
    * @param {string} value
    * @returns
    */

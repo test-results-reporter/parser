@@ -79,6 +79,7 @@ class CucumberParser extends BaseParser {
     test_case.total = test_case.steps.length;
     test_case.passed = test_case.steps.filter(step => step.status === "PASS").length;
     test_case.failed = test_case.steps.filter(step => step.status === "FAIL").length;
+    test_case.skipped = test_case.steps.filter(step => step.status === "SKIP").length;
     test_case.duration = test_case.steps.reduce((total, _) => total + _.duration, 0);
     test_case.duration = parseFloat((test_case.duration).toFixed(2));
     test_case.status = test_case.total === test_case.passed ? 'PASS' : 'FAIL';
@@ -103,7 +104,7 @@ class CucumberParser extends BaseParser {
     }
     const test_step = new TestStep();
     test_step.name = step.keyword.endsWith(' ') ? step.keyword + (step.name || '') : step.keyword + ' ' + (step.name || '');
-    test_step.status = step.result.status === "passed" ? "PASS" : "FAIL";
+    test_step.status = this.parseStatus(step.result.status);
     test_step.duration = step.result.duration ? parseFloat((step.result.duration / 1000000).toFixed(2)) : 0;
     if (test_step.status === "FAIL") {
       const { failure, stack_trace } = this.#getFailureAndStackTrace(step.result.error_message);

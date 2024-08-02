@@ -1,0 +1,103 @@
+[
+  {
+    "description": "Verify calculator functionalities",
+    "elements": [
+      {
+        "description": "",
+        "id": "addition;addition-of-two-numbers",
+        "keyword": "Scenario",
+        "line": 5,
+        "name": "Addition of two numbers",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 6,
+            "name": "I have number 6 in calculator",
+            "match": {
+              "location": "features\\support\\steps.js:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1211400
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 7,
+            "name": "I entered number 7",
+            "match": {
+              "location": "features\\support\\steps.js:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 136500
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 8,
+            "name": "I should see result 13",
+            "match": {
+              "location": "features\\support\\steps.js:13"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 1330499,
+              "error_message": "AssertionError [ERR_ASSERTION]: 13 == 14\n    + expected - actual\n\n    -13\n    +14\n\n    at CustomWorld.<anonymous> (D:\\workspace\\nodejs\\cc-tests\\features\\support\\steps.js:18:12)"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 49,
+            "name": "I close the test",
+            "match": {
+              "location": "features\\support\\steps.js:14"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@green",
+            "line": 4
+          },
+          {
+            "name": "@fast",
+            "line": 4
+          },
+          {
+            "name": "@testCase=1234",
+            "line": 4
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "addition",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Addition",
+    "tags": [
+      {
+        "name": "@blue",
+        "line": 4
+      },
+      {
+        "name": "@slow",
+        "line": 4
+      },
+      {
+        "name": "@suite=1234",
+        "line": 4
+      }
+    ],
+    "uri": "features\\sample.feature"
+  }
+]
