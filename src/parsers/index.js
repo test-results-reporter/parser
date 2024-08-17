@@ -68,6 +68,29 @@ function parse(options) {
   return merge(results);
 }
 
+function parseV2(options) {
+  const parser = getParser(options.type);
+  const results = [];
+  const errors = [];
+  for (let i = 0; i < options.files.length; i++) {
+    const matched_files = getMatchingFilePaths(options.files[i]);
+    for (let j = 0; j < matched_files.length; j++) {
+      const file = matched_files[j];
+      try {
+        results.push(parser.parse(file, options));
+      } catch (error) {
+        errors.push(error.toString());
+        console.error(error);
+      }
+    }
+  }
+  if (results.length > 0) {
+    return { result: merge(results), errors: errors };
+  }
+  return { result: null, errors: errors };
+}
+
 module.exports = {
-  parse
+  parse,
+  parseV2
 }

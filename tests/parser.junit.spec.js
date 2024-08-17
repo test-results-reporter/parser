@@ -604,6 +604,6 @@ describe('Parser - JUnit', () => {
     assert.equal(result.status, 'FAIL');
     assert.equal(result.suites[1].cases[1].attachments[0].name, `test-failed-1.png`);
     assert.equal(result.suites[1].cases[1].attachments[0].path, `example-get-started-link-chromium/test-failed-1.png`);
-  })
+  });
 
 });
