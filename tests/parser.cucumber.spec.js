@@ -465,4 +465,200 @@ describe('Parser - Cucumber Json', () => {
     });
   });
 
+  it('test with metadata', () => {
+    const result = parse({ type: 'cucumber', files: [`${testDataPath}/suites-with-metadata.json`] });
+    assert.deepEqual(result, {
+      "id": "",
+      "name": "",
+      "total": 2,
+      "passed": 2,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "retried": 0,
+      "duration": 3.18,
+      "status": "PASS",
+      "tags": [],
+      "metadata": {},
+      "suites": [
+        {
+          "id": "",
+          "name": "Addition",
+          "total": 1,
+          "passed": 1,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0,
+          "duration": 1.59,
+          "status": "PASS",
+          "tags": [
+            "@blue",
+            "@slow"
+          ],
+          "metadata": {
+            "suite": "1234",
+            "browser": {
+              "name": "firefox",
+              "version": "129.0"
+            },
+            "device": "Desktop",
+            "platform": {
+              "name": "Windows",
+              "version": "11"
+            }
+          },
+          "cases": [
+            {
+              "id": "",
+              "name": "Addition of two numbers",
+              "total": 3,
+              "passed": 3,
+              "failed": 0,
+              "errors": 0,
+              "skipped": 0,
+              "duration": 1.59,
+              "status": "PASS",
+              "failure": "",
+              "stack_trace": "",
+              "tags": [
+                "@green",
+                "@fast",
+                "@blue",
+                "@slow"
+              ],
+              "metadata": {
+                "testCase": "1234",
+                "suite": "1234",
+                "browser": {
+                  "name": "firefox",
+                  "version": "129.0"
+                },
+                "device": "Desktop",
+                "platform": {
+                  "name": "Windows",
+                  "version": "11"
+                }
+              },
+              "steps": [
+                {
+                  "id": "",
+                  "name": "Given I have number 6 in calculator",
+                  "duration": 1.21,
+                  "status": "PASS",
+                  "failure": "",
+                  "stack_trace": ""
+                },
+                {
+                  "id": "",
+                  "name": "When I entered number 7",
+                  "duration": 0.14,
+                  "status": "PASS",
+                  "failure": "",
+                  "stack_trace": ""
+                },
+                {
+                  "id": "",
+                  "name": "Then I should see result 13",
+                  "duration": 0.24,
+                  "status": "PASS",
+                  "failure": "",
+                  "stack_trace": ""
+                }
+              ],
+              "attachments": []
+            }
+          ]
+        },
+        {
+          "id": "",
+          "name": "Addition",
+          "total": 1,
+          "passed": 1,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0,
+          "duration": 1.59,
+          "status": "PASS",
+          "tags": [
+            "@blue",
+            "@slow"
+          ],
+          "metadata": {
+            "suite": "1234",
+            "browser": {
+              "name": "chrome",
+              "version": "129.0"
+            },
+            "device": "Desktop",
+            "platform": {
+              "name": "Windows",
+              "version": "11"
+            }
+          },
+          "cases": [
+            {
+              "id": "",
+              "name": "Addition of two numbers",
+              "total": 3,
+              "passed": 3,
+              "failed": 0,
+              "errors": 0,
+              "skipped": 0,
+              "duration": 1.59,
+              "status": "PASS",
+              "failure": "",
+              "stack_trace": "",
+              "tags": [
+                "@green",
+                "@fast",
+                "@blue",
+                "@slow"
+              ],
+              "metadata": {
+                "testCase": "1234",
+                "suite": "1234",
+                "browser": {
+                  "name": "chrome",
+                  "version": "129.0"
+                },
+                "device": "Desktop",
+                "platform": {
+                  "name": "Windows",
+                  "version": "11"
+                }
+              },
+              "steps": [
+                {
+                  "id": "",
+                  "name": "Given I have number 6 in calculator",
+                  "duration": 1.21,
+                  "status": "PASS",
+                  "failure": "",
+                  "stack_trace": ""
+                },
+                {
+                  "id": "",
+                  "name": "When I entered number 7",
+                  "duration": 0.14,
+                  "status": "PASS",
+                  "failure": "",
+                  "stack_trace": ""
+                },
+                {
+                  "id": "",
+                  "name": "Then I should see result 13",
+                  "duration": 0.24,
+                  "status": "PASS",
+                  "failure": "",
+                  "stack_trace": ""
+                }
+              ],
+              "attachments": []
+            }
+          ]
+        }
+      ]
+    });
+  });
+
 });

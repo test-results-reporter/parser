@@ -51,7 +51,7 @@ class CucumberParser extends BaseParser {
       test_suite.duration = test_suite.cases.reduce((total, _) => total + _.duration, 0);
       test_suite.duration = parseFloat(test_suite.duration.toFixed(2));
       test_suite.status = test_suite.total === test_suite.passed ? 'PASS' : 'FAIL';
-      const { tags, metadata } = this.#getTagsAndMetadata(feature.tags);
+      const { tags, metadata } = this.#getTagsAndMetadata(feature);
       test_suite.tags = tags;
       test_suite.metadata = metadata;
       for (const test_case of test_suite.cases) {
@@ -88,7 +88,7 @@ class CucumberParser extends BaseParser {
       test_case.failure = failed_step.failure;
       test_case.stack_trace = failed_step.stack_trace
     }
-    const { tags, metadata } = this.#getTagsAndMetadata(scenario.tags);
+    const { tags, metadata } = this.#getTagsAndMetadata(scenario);
     test_case.tags = tags;
     test_case.metadata = metadata;
     return test_case;
@@ -134,9 +134,10 @@ class CucumberParser extends BaseParser {
 
   /**
    *
-   * @param {import('./cucumber.result').CucumberTag[]} cucumber_tags
+   * @param {import('./cucumber.result').CucumberFeature | import('./cucumber.result').CucumberElement} feature
    */
-  #getTagsAndMetadata(cucumber_tags) {
+  #getTagsAndMetadata(feature) {
+    const cucumber_tags = feature.tags || [];
     const metadata = {};
     const tags = [];
     if (cucumber_tags) {
@@ -149,6 +150,10 @@ class CucumberParser extends BaseParser {
         }
       }
     }
+    if (feature.metadata) {
+      Object.assign(metadata, feature.metadata);
+    }
+
     return { tags, metadata };
   }
 
