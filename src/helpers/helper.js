@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const parser = require('fast-xml-parser');
 const { totalist } = require('totalist/sync');
 const globrex = require('globrex');
 const { XMLParser } = require("fast-xml-parser");
@@ -94,8 +93,103 @@ function getMatchingFilePaths(file_path) {
   return [file_path];
 }
 
+/**
+ *
+ * @param {string} value
+ */
+function decodeIfEncoded(value) {
+  if (!value) {
+    return value;
+  }
+  try {
+    if (value.length % 4 !== 0) {
+      return value;
+    }
+    const base64Regex = /^[A-Za-z0-9+/]+={0,2}$/;
+    if (!base64Regex.test(value)) {
+      return value;
+    }
+    return atob(value);
+  } catch (error) {
+    return value;
+  }
+}
+
+/**
+ *
+ * @param {string} value
+ * @returns
+ */
+function isEncoded(value) {
+  if (!value) {
+    return false;
+  }
+  try {
+    if (value.length % 4 !== 0) {
+      return false;
+    }
+    const base64Regex = /^[A-Za-z0-9+/]+={0,2}$/;
+    if (!base64Regex.test(value)) {
+      return false;
+    }
+    atob(value);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
+/**
+ *
+ * @param {string} value
+ */
+function isFilePath(value) {
+  try {
+    fs.statSync(value);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+/**
+  *
+  * @param {string} file_name
+  * @param {string} file_data
+  * @param {string} file_type
+  */
+function saveAttachmentToDisk(file_name, file_data, file_type) {
+  const folder_path = path.join(process.cwd(), '.testbeats', 'attachments');
+  fs.mkdirSync(folder_path, { recursive: true });
+  let data = file_data;
+  if (isEncoded(file_data)) {
+    data = Buffer.from(file_data, 'base64');
+  } else {
+    return '';
+  }
+
+  const file_path = path.join(folder_path, file_name);
+  let relative_file_path = path.relative(process.cwd(), file_path);
+  if (file_type.includes('png')) {
+    relative_file_path = `${relative_file_path}.png`;
+    fs.writeFileSync(relative_file_path, data);
+  } else if (file_type.includes('jpeg')) {
+    relative_file_path = `${relative_file_path}.jpeg`;
+    fs.writeFileSync(relative_file_path, data);
+  } else if (file_type.includes('json')) {
+    relative_file_path = `${relative_file_path}.json`;
+    fs.writeFileSync(relative_file_path, data);
+  } else {
+    return '';
+  }
+  return relative_file_path;
+}
+
 module.exports = {
   getJsonFromXMLFile,
   getMatchingFilePaths,
-  resolveFilePath
+  resolveFilePath,
+  decodeIfEncoded,
+  isFilePath,
+  saveAttachmentToDisk
 }

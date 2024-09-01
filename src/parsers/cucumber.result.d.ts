@@ -23,7 +23,13 @@ export type CucumberStep = {
   name: string;
   match: CucumberMatch;
   result: CucumberResult;
+  embeddings?: CucumberEmbedding[];
 };
+
+export type CucumberEmbedding = {
+  data: string;
+  mime_type: string;
+}
 
 export type CucumberTag = {
   name: string;

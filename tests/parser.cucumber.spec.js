@@ -661,4 +661,105 @@ describe('Parser - Cucumber Json', () => {
     });
   });
 
+  it('test with attachments', () => {
+    const result = parse({ type: 'cucumber', files: [`${testDataPath}/test-with-attachments.json`] });
+    assert.equal(result.suites[0].cases[0].attachments.length, 3);
+    assert.equal(result.suites[0].cases[0].attachments[0].name, 'screenshot.png');
+    assert.equal(result.suites[0].cases[0].attachments[0].path, 'tests/data/attachments/screenshot.png');
+    assert.match(result.suites[0].cases[0].attachments[1].name, /I_should_see_result_13-\d+.png/);
+    assert.match(result.suites[0].cases[0].attachments[1].path, /\.testbeats\/attachments\/I_should_see_result_13-\d+.png/);
+    assert.match(result.suites[0].cases[0].attachments[2].name, /I_should_see_result_13-\d+.json/);
+    assert.match(result.suites[0].cases[0].attachments[2].path, /\.testbeats\/attachments\/I_should_see_result_13-\d+.json/);
+  });
+
+  it('test with invalid attachments', () => {
+    const result = parse({ type: 'cucumber', files: [`${testDataPath}/test-with-invalid-attachments.json`] });
+    assert.deepEqual(result, {
+      id: '',
+      name: '',
+      total: 1,
+      passed: 0,
+      failed: 1,
+      errors: 0,
+      skipped: 0,
+      retried: 0,
+      duration: 2.68,
+      status: 'FAIL',
+      tags: [],
+      metadata: {},
+      suites: [
+        {
+          id: '',
+          name: 'Addition',
+          total: 1,
+          passed: 0,
+          failed: 1,
+          errors: 0,
+          skipped: 0,
+          duration: 2.68,
+          status: 'FAIL',
+          tags: ["@blue", "@slow"],
+          metadata: { suite: "1234" },
+          cases: [
+            {
+              attachments: [
+                {
+                  name: 'screenshot.png',
+                  path: 'tests/data/attachments/screenshot.png'
+                }
+              ],
+              duration: 2.68,
+              errors: 0,
+              failed: 1,
+              failure: "AssertionError [ERR_ASSERTION]: 13 == 14\n    + expected - actual\n\n    -13\n    +14\n\n",
+              id: "",
+              name: "Addition of two numbers",
+              passed: 2,
+              skipped: 1,
+              stack_trace: "    at CustomWorld.<anonymous> (D:\\workspace\\nodejs\\cc-tests\\features\\support\\steps.js:18:12)",
+              status: "FAIL",
+              tags: ["@green", "@fast", "@blue", "@slow"],
+              metadata: { "suite": "1234", testCase: "1234" },
+              steps: [
+                {
+                  "id": "",
+                  "name": "Given I have number 6 in calculator",
+                  "duration": 1.21,
+                  "status": "PASS",
+                  "failure": "",
+                  "stack_trace": ""
+                },
+                {
+                  "id": "",
+                  "name": "When I entered number 7",
+                  "duration": 0.14,
+                  "status": "PASS",
+                  "failure": "",
+                  "stack_trace": ""
+                },
+                {
+                  "id": "",
+                  "name": "Then I should see result 13",
+                  "duration": 1.33,
+                  "status": "FAIL",
+                  "failure": "AssertionError [ERR_ASSERTION]: 13 == 14\n    + expected - actual\n\n    -13\n    +14\n\n",
+                  "stack_trace": "    at CustomWorld.<anonymous> (D:\\workspace\\nodejs\\cc-tests\\features\\support\\steps.js:18:12)"
+                },
+                {
+                  "duration": 0,
+                  "failure": "",
+                  "id": "",
+                  "name": "And I close the test",
+                  "stack_trace": "",
+                  "status": "SKIP"
+                }
+              ],
+              total: 4
+            }
+          ]
+        }
+      ]
+    });
+  });
+
 });
