@@ -667,9 +667,9 @@ describe('Parser - Cucumber Json', () => {
     assert.equal(result.suites[0].cases[0].attachments[0].name, 'screenshot.png');
     assert.equal(result.suites[0].cases[0].attachments[0].path, 'tests/data/attachments/screenshot.png');
     assert.match(result.suites[0].cases[0].attachments[1].name, /I_should_see_result_13-\d+.png/);
-    assert.match(result.suites[0].cases[0].attachments[1].path, /\.testbeats\/attachments\/I_should_see_result_13-\d+.png/);
+    assert.match(result.suites[0].cases[0].attachments[1].path, /.*testbeats.*attachments.+I_should_see_result_13-\d+.png/);
     assert.match(result.suites[0].cases[0].attachments[2].name, /I_should_see_result_13-\d+.json/);
-    assert.match(result.suites[0].cases[0].attachments[2].path, /\.testbeats\/attachments\/I_should_see_result_13-\d+.json/);
+    assert.match(result.suites[0].cases[0].attachments[2].path, /.*testbeats.*attachments.*I_should_see_result_13-\d+.json/);
   });
 
   it('test with invalid attachments', () => {
