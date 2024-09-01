@@ -1,10 +1,13 @@
-const { resolveFilePath } = require('../helpers/helper');
+const path = require('path');
+const fs = require('fs');
+const { resolveFilePath, decodeIfEncoded, isFilePath, saveAttachmentToDisk } = require('../helpers/helper');
 
 const TestResult = require('../models/TestResult');
 const TestSuite = require('../models/TestSuite');
 const TestCase = require('../models/TestCase');
 const TestStep = require('../models/TestStep');
 const { BaseParser } = require('./base.parser');
+const TestAttachment = require('../models/TestAttachment');
 
 class CucumberParser extends BaseParser {
 
@@ -91,6 +94,7 @@ class CucumberParser extends BaseParser {
     const { tags, metadata } = this.#getTagsAndMetadata(scenario);
     test_case.tags = tags;
     test_case.metadata = metadata;
+    test_case.attachments = this.#getAttachments(scenario.steps);
     return test_case;
   }
 
@@ -155,6 +159,55 @@ class CucumberParser extends BaseParser {
     }
 
     return { tags, metadata };
+  }
+
+  /**
+   *
+   * @param {import('./cucumber.result').CucumberStep[]} steps
+   */
+  #getAttachments(steps) {
+    const attachments = [];
+    const failed_steps = steps.filter(_ => this.parseStatus(_.result.status) === 'FAIL' && _.embeddings && _.embeddings.length > 0);
+
+    for (const step of failed_steps) {
+      for (const embedding of step.embeddings) {
+        const attachment = this.#getAttachment(step, embedding);
+        if (attachment) {
+          attachments.push(attachment);
+        }
+      }
+    }
+    return attachments;
+  }
+
+  /**
+   *
+   * @param {import('./cucumber.result').CucumberStep} step
+   * @param {import('./cucumber.result').CucumberEmbedding} embedding
+   */
+  #getAttachment(step, embedding) {
+    try {
+      const decoded = decodeIfEncoded(embedding.data);
+      const is_file_path = isFilePath(decoded);
+      if (is_file_path) {
+        const attachment = new TestAttachment();
+        attachment.name = path.parse(decoded).base;
+        attachment.path = decoded;
+        return attachment;
+      } else {
+        const file_name = step.name.replace(/[^a-zA-Z0-9]/g, '_') + '-' + Date.now();
+        const file_path = saveAttachmentToDisk(file_name, embedding.data, embedding.mime_type);
+        if (!file_path) {
+          return null;
+        }
+        const attachment = new TestAttachment();
+        attachment.name = path.parse(file_path).base;
+        attachment.path = file_path;
+        return attachment;
+      }
+    } catch (e) {
+      return null;
+    }
   }
 
 }

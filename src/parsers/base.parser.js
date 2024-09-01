@@ -9,13 +9,13 @@ class BaseParser {
    * @returns
    */
   parseStatus(value) {
-    if (value === 'passed') {
+    if (value === 'passed' || value === 'PASSED') {
       return 'PASS';
     }
-    if (value === 'failed') {
+    if (value === 'failed' || value === 'FAILED') {
       return 'FAIL';
     }
-    if (value === 'skipped') {
+    if (value === 'skipped' || value === 'SKIPPED') {
       return 'SKIP';
     }
     return 'FAIL';
