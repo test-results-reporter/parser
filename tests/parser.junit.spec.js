@@ -566,6 +566,34 @@ describe('Parser - JUnit', () => {
     assert.equal(result.suites[0].cases[3].attachments.length, 0);
   });
 
+  it('parse system.out to locate properties (testcase)', () => {
+    const result = parse({ type: 'junit', ignore_error_count: true, files: [`${testDataPath}/inline-properties.xml`] });
+
+    assert.deepEqual(result.suites[0].cases[0].metadata, {
+      author: 'Adrian',
+      language: 'english',
+      'browser-log': 'Log line #1\nLog line #2\nLog line #3'
+    });
+  });
+
+  it('parse system.out to locate properties (suite)', () => {
+    const result = parse({ type: 'junit', files: [`${testDataPath}/inline-properties-suite-level.xml`] });
+
+    // verify properties were set at the suite level
+    assert.deepEqual(result.suites[0].metadata, {
+      author: 'Adrian',
+      language: 'english',
+      'browser-log': 'Log line #1\nLog line #2\nLog line #3'
+    });
+
+    // verify properties were inherited at the test case level
+    assert.deepEqual(result.suites[0].cases[0].metadata, {
+      author: 'Adrian',
+      language: 'english',
+      'browser-log': 'Log line #1\nLog line #2\nLog line #3'
+    });
+  });
+
   it('wdio - multiple files', () => {
     const result = parse({ type: 'junit', files: [`${testDataPath}/wdio/*.xml`] });
     assert.equal(result.total, 9);
@@ -605,5 +633,7 @@ describe('Parser - JUnit', () => {
     assert.equal(result.suites[1].cases[1].attachments[0].name, `test-failed-1.png`);
     assert.equal(result.suites[1].cases[1].attachments[0].path, `example-get-started-link-chromium/test-failed-1.png`);
   });
+
+
 
 });

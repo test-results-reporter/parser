@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<testsuites id="id" name="result name" tests="1" failures="1" errors="" time="10">
+  <testsuite name="Inline Properties Suite Level" tests="1" failures="0" errors="0" skipped="0">
+    <system-out>
+Output line #1
+Output line #2
+
+[[PROPERTY|author=Adrian]]
+[[PROPERTY|language=english]]
+
+[[PROPERTY|browser-log]]
+Log line #1
+Log line #2
+Log line #3
+[[/PROPERTY]]
+    </system-out>
+    <testcase name="testCaseWithNoInlineProperties" classname="Tests.Registration" time="3.441"/>
+  </testsuite>
+</testsuites>

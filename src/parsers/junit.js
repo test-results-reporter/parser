@@ -78,16 +78,46 @@ function getTestSuite(rawSuite) {
  * @param {TestCase | TestSuite} test_element
  */
 function setMetaData(rawElement, test_element) {
+
+  // Read properties from test suite or test case
   if (rawElement.properties && rawElement.properties.property.length > 0) {
     const raw_properties = rawElement.properties.property;
     for (const raw_property of raw_properties) {
       test_element.metadata[raw_property["@_name"]] = raw_property["@_value"];
     }
   }
-  // handle testsuite specific attributes
+
+  // Read inline properties from system.out
+  setInlineMetadata(rawElement, test_element);
+
+  // Handle testsuite specific attributes
   if (test_element instanceof TestSuite) {
     if (rawElement["@_hostname"]) {
       test_element.metadata["hostname"] = rawElement["@_hostname"];
+    }
+  }
+}
+
+function setInlineMetadata(rawElement, test_element) {
+  // Scan system.out for PROPERTY attributes
+  if (rawElement['system.out'] || rawElement['system-out']) {
+    const systemOut = rawElement['system.out'] || rawElement['system-out'];
+
+    // Regex for single-line properties: [[PROPERTY|key=value]]
+    const singleLineRegex = /\[\[PROPERTY\|([^=]+)=([^\]]+)\]\]/g;
+    let match;
+    while ((match = singleLineRegex.exec(systemOut)) !== null) {
+      const key = match[1].trim();
+      const value = match[2].trim();
+      test_element.metadata[key] = value;
+    }
+
+    // Regex for multi-line properties: [[PROPERTY|key]]value\nvalue\n[[/PROPERTY]]
+    const multiLineRegex = /\[\[PROPERTY\|([^\]=]+)\]\]([\s\S]*?)\[\[\/PROPERTY\]\]/g;
+    while ((match = multiLineRegex.exec(systemOut)) !== null) {
+      const key = match[1].trim();
+      const value = match[2].trim();
+      test_element.metadata[key] = value;
     }
   }
 }
