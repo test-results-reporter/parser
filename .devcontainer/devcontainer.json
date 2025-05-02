@@ -1,0 +1,10 @@
+{
+  "name": "testparser project",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:18",
+  "customizations": {
+    "vscode": {
+      "extensions": ["hbenl.vscode-mocha-test-adapter"]
+    }
+  },
+  "postCreateCommand": "npm install"
+}
