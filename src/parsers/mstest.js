@@ -69,8 +69,19 @@ function populateAttachments(rawResultElement, attachments, testRunName) {
 
 function getTestResultDuration(rawTestResult) {
   // durations are represented in a timeformat with 7 digit microsecond precision
-  // TODO: introduce d3-time-format after https://github.com/test-results-reporter/parser/issues/42 is fixed.
-  return 0;
+  const durationString = rawTestResult["@_duration"];
+  if (!durationString) return 0;
+
+  // Split the duration into hours, minutes, seconds, and microseconds
+  const [hours, minutes, seconds] = durationString.split(':');
+
+  // Convert everything to milliseconds
+  const totalMilliseconds =
+    parseInt(hours) * 3600000 + // hours to ms
+    parseInt(minutes) * 60000 + // minutes to ms
+    parseFloat(seconds) * 1000; // seconds to ms
+
+  return totalMilliseconds.toFixed(4);
 }
 
 function getTestCaseName(rawDefinition) {

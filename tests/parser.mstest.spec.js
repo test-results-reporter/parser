@@ -22,8 +22,24 @@ describe('Parser - MSTest', () => {
   })
 
   it('Should express durations in milliseconds', () => {
-    //trx represents timestamps with microseconds
-    //assert.equal(result.suites[0].cases[0].duration, 259.239); // TODO: Fix
+    //trx represents timestamps with microseconds 00:00:00.1234567
+    const testDataPath = "tests/data/mstest/testresults.trx";
+    const result = parse({ type: 'mstest', files: [testDataPath] });
+
+    const failingTest = result.suites[0].cases.find(test => test.name === 'MSTestSample.MockTestFixture.FailingTest');
+    assert.equal(failingTest.duration, 25.9239);
+
+    const inconclusiveTest = result.suites[0].cases.find(test => test.name === 'MSTestSample.MockTestFixture.InconclusiveTest');
+    assert.equal(inconclusiveTest.duration, 0.6505);
+
+    const mockTest1 = result.suites[0].cases.find(test => test.name === 'MSTestSample.MockTestFixture.MockTest1');
+    assert.equal(mockTest1.duration, 0.0387);
+
+    const mockTest2 = result.suites[0].cases.find(test => test.name === 'MSTestSample.MockTestFixture.MockTest2');
+    assert.equal(mockTest2.duration, 0.0219);
+
+    const mockTest3 = result.suites[0].cases.find(test => test.name === 'MSTestSample.MockTestFixture.MockTest3');
+    assert.equal(mockTest3.duration, 0.0196);
   })
 
   it('Should map results correctly', () => {
