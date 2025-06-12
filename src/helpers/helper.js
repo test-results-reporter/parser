@@ -83,7 +83,7 @@ function getMatchingFilePaths(file_path) {
     const result = globrex(file_path);
     const dir_name = path.dirname(file_path.substring(0, file_path.indexOf('*') + 1));
     totalist(dir_name, (name) => {
-      const current_file_path = `${dir_name}/${name}`;
+      const current_file_path = path.join(dir_name, name);
       if (result.regex.test(current_file_path)) {
         file_paths.push(current_file_path);
       }
