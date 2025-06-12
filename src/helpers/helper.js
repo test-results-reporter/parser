@@ -80,7 +80,7 @@ function getJsonFromXMLFile(filePath) {
 function getMatchingFilePaths(file_path) {
   if (file_path.includes('*')) {
     const file_paths = [];
-    file_path = file_path.replace(/\//g, path.sep); // convert assumed linux to platform path
+    file_path = file_path.replace(/\/|\\/g, path.sep); // convert path separators to current OS's separator
     const result = globrex(file_path);
     const dir_name = path.dirname(file_path.substring(0, file_path.indexOf('*') + 1));
     totalist(dir_name, (name) => {
