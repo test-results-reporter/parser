@@ -603,6 +603,12 @@ describe('Parser - JUnit', () => {
     assert.equal(result.status, 'PASS');
   });
 
+  it('wido - should match when file paths are windows or linux', () => {
+    const result1 = parse({ type: 'junit', files: [`${testDataPath}/wdio/*.xml`] });
+    const result2 = parse({ type: 'junit', files: [`${testDataPath}\\wdio\\*.xml`]});
+    assert.equal(result1.total, result2.total);
+  });
+
   it('wdio - failures and errors', () => {
     const result = parse({ type: 'junit', files: [`${testDataPath}/wdio-failures-errors.xml`] });
     assert.equal(result.total, 4);
