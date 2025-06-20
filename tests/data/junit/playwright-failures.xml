@@ -17,8 +17,7 @@
 <testcase name="has title" classname="example.spec.ts" time="0.475">
 </testcase>
 <testcase name="get started link" classname="example.spec.ts" time="5.433">
-<failure message="example.spec.ts:10:5 get started link" type="FAILURE">
-<![CDATA[  [chromium] › example.spec.ts:10:5 › get started link ─────────────────────────────────────────────
+<failure message="example.spec.ts:10:5 get started link" type="FAILURE"><![CDATA[  [chromium] › example.spec.ts:10:5 › get started link ─────────────────────────────────────────────
 
     Error: Timed out 5000ms waiting for expect(locator).toBeVisible()
 
@@ -42,8 +41,7 @@
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
     test-results/example-get-started-link-chromium/test-failed-1.png
     ────────────────────────────────────────────────────────────────────────────────────────────────
-]]>
-</failure>
+]]></failure>
 <system-out>
 <![CDATA[
 [[ATTACHMENT|example-get-started-link-chromium/test-failed-1.png]]
