@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.SampleTests" time="0.122" tests="1" errors="0" skipped="0" failures="1">
+  <testcase name="failingTest" classname="com.example.SampleTests" time="0.021">
+    <failure message="This test failed intentially" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: This test failed intentially
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
+	at com.example.SampleTests.failingTest(SampleTests.java:19)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+]]></failure>
+  </testcase>
+</testsuite>
