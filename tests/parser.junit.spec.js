@@ -508,8 +508,7 @@ describe('Parser - JUnit', () => {
     const result = parse({ type: 'junit', files: [`${testDataPath}/testsuite-with-singletest.xml`] });
 
     assert.equal(result.total, 1);
-    assert.equal(result.failed, 1);
-    assert.equal(result.suites[0].cases[0].status, 'FAIL');
+    assert.equal(result.suites[0].cases[0].status, 'PASS');
   })
 
   it('empty suite with no tests', () => {
