@@ -496,6 +496,21 @@ describe('Parser - JUnit', () => {
     assert.equal(result.suites[0].cases.length, 2);
   });
 
+  it('can detect failures with testsuite root node', () => {
+    const result = parse({ type: 'junit', files: [`${testDataPath}/testsuite-with-error.xml`] });
+
+    assert.equal(result.total, 2);
+    assert.equal(result.failed, 1);
+    assert.equal(result.suites[0].cases[0].status, 'FAIL');
+  })
+
+  it('can detect single suite and single test case', () => {
+    const result = parse({ type: 'junit', files: [`${testDataPath}/testsuite-with-singletest.xml`] });
+
+    assert.equal(result.total, 1);
+    assert.equal(result.suites[0].cases[0].status, 'PASS');
+  })
+
   it('empty suite with no tests', () => {
     const result = parse({ type: 'junit', files: [`${testDataPath}/no-suites.xml`] });
     assert.deepEqual(result, {
@@ -638,6 +653,7 @@ describe('Parser - JUnit', () => {
     assert.equal(result.status, 'FAIL');
     assert.equal(result.suites[1].cases[1].attachments[0].name, `test-failed-1.png`);
     assert.equal(result.suites[1].cases[1].attachments[0].path, `example-get-started-link-chromium/test-failed-1.png`);
+    assert.equal(result.suites[1].cases[1].status, 'FAIL');
   });
 
 
