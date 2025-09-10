@@ -133,6 +133,7 @@ function setAttachments(rawCase, test_element) {
     // junit attachments plug syntax is [[ATTACHMENT|/absolute/path/to/file.png]]
     const regex = new RegExp('\\[\\[ATTACHMENT\\|([^\\]]+)\\]\\]', 'g');
 
+    let m;
     while ((m = regex.exec(systemOut)) !== null) {
       // avoid infinite loops with zero-width matches
       if (m.index === regex.lastIndex) {
