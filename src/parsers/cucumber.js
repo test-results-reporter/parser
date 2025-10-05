@@ -88,8 +88,8 @@ class CucumberParser extends BaseParser {
     test_case.status = test_case.total === test_case.passed ? 'PASS' : 'FAIL';
     if (test_case.status === "FAIL") {
       const failed_step = test_case.steps.find(step => step.status === "FAIL");
-      test_case.failure = failed_step.failure;
-      test_case.stack_trace = failed_step.stack_trace
+      test_case.failure = failed_step?.failure ?? '';
+      test_case.stack_trace = failed_step?.stack_trace ?? '';
     }
     const { tags, metadata } = this.#getTagsAndMetadata(scenario);
     test_case.tags = tags;
