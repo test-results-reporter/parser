@@ -329,6 +329,16 @@ describe('Parser - NUnit', () => {
       assert.equal(result.status, "FAIL");
     });
 
+    it('Should handle test results with no test cases', () => {
+      const result = parse({ type: 'nunit', files: [`${testDataPath}/empty-results.xml`] });
+      assert.equal(result.total, 0);
+      assert.equal(result.passed, 0);
+      assert.equal(result.failed, 0);
+      assert.equal(result.skipped, 0);
+      assert.equal(result.suites.length, 0);
+      assert.equal(result.status, "PASS");
+    });
+
   });
 
   function sumCases(result, predicate) {

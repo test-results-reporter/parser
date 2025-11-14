@@ -212,7 +212,7 @@ function getTestResult(json) {
 
   const result = new TestResult();
   const rawResult = json["test-results"] ?? json["test-run"];
-  const rawSuite = rawResult["test-suite"][0];
+  const rawSuite = (rawResult["test-suite"] !== undefined) ? rawResult["test-suite"][0] : { "@_time": 0, "@_result": "Passed"};
 
   result.name = rawResult["@_fullname"] ?? rawResult["@_name"];
   result.duration = (rawSuite["@_time"] ?? rawSuite["@_duration"]) * 1000; // in milliseconds
