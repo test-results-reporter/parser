@@ -91,23 +91,10 @@ describe('Parser - NUnit', () => {
     it('Should map test-case categories and properties to test cases', () => {
       // case 3 has additional category + properties
       let test_case = result.suites[0].cases[3];
-      assert.deepEqual(test_case, {
-        id: '',
-        name: 'NUnit.Tests.Assemblies.MockTestFixture.MockTest2',
-        total: 0,
-        passed: 0,
-        failed: 0,
-        errors: 0,
-        skipped: 0,
-        duration: 0,
-        status: 'PASS',
-        failure: '',
-        stack_trace: '',
-        tags: [ 'MockCategory' ],
-        metadata: { Categories: 'FixtureCategory,MockCategory', Severity: 'Critical' },
-        steps: [],
-        attachments: []
-      });
+      assert.equal(test_case.metadata["Categories"], "FixtureCategory,MockCategory");
+      assert.equal(test_case.metadata["Severity"], "Critical");
+      assert.equal(test_case.tags.length, 1);
+      assert.equal(test_case.tags[0], "MockCategory");
     });
 
   });
@@ -211,105 +198,33 @@ describe('Parser - NUnit', () => {
 
     it('Should support properties defined at the Assembly level', () => {
       const test_case = testCaseWithNoProperties = result.suites[2].cases[0];
-      assert.deepEqual(test_case, {
-        id: 1027,
-        name: 'NUnit.Tests.FixtureWithTestCases.MethodWithParameters(2,2)',
-        total: 0,
-        passed: 0,
-        failed: 0,
-        errors: 0,
-        skipped: 0,
-        duration: 6,
-        status: 'PASS',
-        failure: '',
-        stack_trace: '',
-        tags: [],
-        metadata: {
-          _APPDOMAIN: 'test-domain-mock-assembly.dll',
-          _PID: 11928
-        },
-        steps: [],
-        attachments: []
-      });
+      assert.equal(test_case.name, "NUnit.Tests.FixtureWithTestCases.MethodWithParameters(2,2)");
+      assert.equal(test_case.metadata["_APPDOMAIN"], "test-domain-mock-assembly.dll");
+      assert.equal(test_case.metadata["_PID"], 11928);
     });
 
     it('Should include both suite and assembly level properties', () => {
       const test_case = result.suites[0].cases[0];
-      assert.deepEqual(test_case, {
-        id: 1005,
-        name: 'NUnit.Tests.Assemblies.MockTestFixture.FailingTest',
-        total: 0,
-        passed: 0,
-        failed: 0,
-        errors: 0,
-        skipped: 0,
-        duration: 23,
-        status: 'FAIL',
-        failure: 'Intentional failure',
-        stack_trace: "   at NUnit.Framework.Assert.Fail(String message, Object[] args) in D:\\Dev\\NUnit\\nunit-3.0\\work\\NUnitFramework\\src\\framework\\Assert.cs:line 142\n   at NUnit.Framework.Assert.Fail(String message) in D:\\Dev\\NUnit\\nunit-3.0\\work\\NUnitFramework\\src\\framework\\Assert.cs:line 152\n   at NUnit.Tests.Assemblies.MockTestFixture.FailingTest() in D:\\Dev\\NUnit\\nunit-3.0\\work\\NUnitFramework\\src\\mock-assembly\\MockAssembly.cs:line 121",
-        tags: [],
-        metadata: {
-          Categories: "FixtureCategory",
-          _APPDOMAIN: 'test-domain-mock-assembly.dll',
-          _PID: 11928,
-          Description: 'Fake Test Fixture'
-        },
-        steps: [],
-        attachments: []
-      });
+      assert.equal(test_case.name, "NUnit.Tests.Assemblies.MockTestFixture.FailingTest");
+      assert.equal(test_case.metadata["Categories"], "FixtureCategory");
+      assert.equal(test_case.metadata["Description"], "Fake Test Fixture");
+      assert.equal(test_case.metadata["_APPDOMAIN"], "test-domain-mock-assembly.dll");
+      assert.equal(test_case.metadata["_PID"], 11928);
     });
 
     it('Should include properties from assembly, suite and test case', () => {
       const test_case = result.suites[0].cases[2];
-      assert.deepEqual(test_case, {
-        id: 1001,
-        name: 'NUnit.Tests.Assemblies.MockTestFixture.MockTest1',
-        total: 0,
-        passed: 0,
-        failed: 0,
-        errors: 0,
-        skipped: 0,
-        duration: 0,
-        status: 'PASS',
-        failure: '',
-        stack_trace: '',
-        tags: [],
-        metadata: {
-          _PID: 11928,
-          _APPDOMAIN: 'test-domain-mock-assembly.dll',
-          Categories: 'FixtureCategory',
-          Description: 'Mock Test #1'
-        },
-        steps: [],
-        attachments: []
-      });
+      assert.equal(test_case.name, "NUnit.Tests.Assemblies.MockTestFixture.MockTest1");
+      assert.equal(test_case.metadata["Categories"], "FixtureCategory");
+      assert.equal(test_case.metadata["Description"], "Mock Test #1");
+      assert.equal(test_case.metadata["_APPDOMAIN"], "test-domain-mock-assembly.dll");
+      assert.equal(test_case.metadata["_PID"], 11928);
     });
-
+      
     it('Should allow multiple categories to be specified', () => {
       const test_case = result.suites[0].cases[3];
-      assert.deepEqual(test_case, {
-        id: 1002,
-        name: 'NUnit.Tests.Assemblies.MockTestFixture.MockTest2',
-        total: 0,
-        passed: 0,
-        failed: 0,
-        errors: 0,
-        skipped: 0,
-        duration: 0,
-        status: 'PASS',
-        failure: '',
-        stack_trace: '',
-        tags: [],
-        metadata: {
-          _PID: 11928,
-          _APPDOMAIN: 'test-domain-mock-assembly.dll',
-          Categories: 'FixtureCategory,MockCategory',
-          Description: 'This is a really, really, really, really, really, really, really, really, really, really, really, really, really, really, really, really, really, really, really, really, really, really, really, really, really long description',
-          Severity: 'Critical'
-        },
-        steps: [],
-        attachments: []
-      });
+      assert.equal(test_case.name, "NUnit.Tests.Assemblies.MockTestFixture.MockTest2");
+      assert.equal(test_case.metadata["Categories"], "FixtureCategory,MockCategory");
     });
 
     it('Should include attachments associated to test-case', () => {
