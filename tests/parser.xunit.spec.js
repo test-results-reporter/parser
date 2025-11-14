@@ -317,4 +317,14 @@ describe('Parser - XUnit', () => {
     assert.deepEqual(result.suites[0].cases[0].metadata, {});
   });
 
+  it('Should hanlde test results with no test cases', () => {
+    const result = parse({ type: 'xunit', files: [`${testDataPath}/empty-results.xml`] });
+    assert.equal(result.total, 0);
+    assert.equal(result.passed, 0);
+    assert.equal(result.failed, 0);
+    assert.equal(result.skipped, 0);
+    assert.equal(result.suites.length, 0);
+    assert.equal(result.status, "PASS");
+  });
+
 });
