@@ -109,6 +109,16 @@ describe('Parser - MSTest', () => {
     assert.equal(result.status, "PASS");
   });
 
+  it('Should handle test results with no test cases', () => {
+    const result = parse({ type: 'mstest', files: [`${testDataPath}/empty-results.trx`] });
+    assert.equal(result.total, 0);
+    assert.equal(result.passed, 0);
+    assert.equal(result.failed, 0);
+    assert.equal(result.skipped, 0);
+    assert.equal(result.suites.length, 0);
+    assert.equal(result.status, "PASS");
+  })
+
   function resolveExpectedResultFilePath(executionId, filePath) {
     return path.join(
       "bryan.b.cook_MYCOMPUTER_2023-11-12_19_21_51",

@@ -148,7 +148,7 @@ function getTestDefinitionsMap(rawTestDefinitions) {
   let map = new Map();
 
   // assume all definitions are 'UnitTest' elements
-  if (rawTestDefinitions.UnitTest) {
+  if (rawTestDefinitions && rawTestDefinitions.UnitTest) {
     let rawUnitTests = rawTestDefinitions.UnitTest;
     for (let i = 0; i < rawUnitTests.length; i++) {
       let rawUnitTest = rawUnitTests[i];
@@ -166,7 +166,7 @@ function getTestResults(rawTestResults) {
   let results = [];
 
   // assume all results are UnitTestResult elements
-  if (rawTestResults.UnitTestResult) {
+  if (rawTestResults && rawTestResults.UnitTestResult) {
     let unitTests = rawTestResults.UnitTestResult;
     for (let i = 0; i < unitTests.length; i++) {
       results.push(unitTests[i]);

@@ -48,14 +48,22 @@ function getTestSuite(rawSuite) {
   return suite;
 }
 
+function getTestAssembly(json) {
+  const defaultResult = {};
+  const assemblies = json["assemblies"];
+  const assemblyArray = assemblies && assemblies[0] && assemblies[0]["assembly"];
+  const rawResult = Array.isArray(assemblyArray) && assemblyArray.length > 0 ? assemblyArray[0] : defaultResult;
+  return rawResult;
+}
+
 function getTestResult(json) {
   const result = new TestResult();
-  const rawResult = json["assemblies"][0]["assembly"][0];
+  const rawResult = getTestAssembly(json);
 
-  result.name = rawResult["@_name"];
-  result.total = rawResult["@_total"];
-  result.passed = rawResult["@_passed"];
-  result.failed = rawResult["@_failed"];
+  result.name = rawResult["@_name"] ?? "not specified";
+  result.total = rawResult["@_total"] ?? 0;
+  result.passed = rawResult["@_passed"] ?? 0;
+  result.failed = rawResult["@_failed"] ?? 0;
   const errors = rawResult["@_errors"];
   if (errors) {
     result.errors = errors;
@@ -64,14 +72,14 @@ function getTestResult(json) {
   if (skipped) {
     result.skipped = skipped;
   }
-  result.duration = rawResult["@_time"] * 1000;
-  const rawSuites = rawResult["collection"];
-
+  result.duration = (rawResult["@_time"] ?? 0) * 1000;
+  const rawSuites = rawResult["collection"] ?? [];
 
   for (let i = 0; i < rawSuites.length; i++) {
     result.suites.push(getTestSuite(rawSuites[i]));
   }
-  result.status = (result.total - result.skipped) === result.passed ? 'PASS' : 'FAIL';
+
+  result.status = (result.failed + result.errors) > 0 ? "FAIL" : "PASS";
   return result;
 }
 
