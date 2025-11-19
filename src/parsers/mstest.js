@@ -67,6 +67,11 @@ function populateAttachments(rawResultElement, attachments, testRunName) {
   }
 }
 
+function getDate(rawDate) {
+  if (!rawDate) return null;
+  return new Date(rawDate);
+}
+
 function getTestResultDuration(rawTestResult) {
   // durations are represented in a timeformat with 7 digit microsecond precision
   const durationString = rawTestResult["@_duration"];
@@ -127,6 +132,8 @@ function getTestCase(rawTestResult, definitionMap, testRunName) {
     testCase.name = getTestCaseName(rawDefinition);
     testCase.status = RESULT_MAP[rawTestResult["@_outcome"]];
     testCase.duration = getTestResultDuration(rawTestResult);
+    testCase.started = getDate(rawTestResult["@_startTime"]);
+    testCase.completed = getDate(rawTestResult["@_endTime"]);
 
     // collect error messages
     if (rawTestResult.Output && rawTestResult.Output.ErrorInfo) {

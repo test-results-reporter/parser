@@ -42,6 +42,16 @@ describe('Parser - MSTest', () => {
     assert.equal(mockTest3.duration, 0.0196);
   })
 
+  it('Should include started and completed timestamps on tests', () => {
+    const testDataPath = "tests/data/mstest/testresults_pass.trx";
+    const result = parse({ type: 'mstest', files: [testDataPath] });
+    assert.equal(result.total, 1);
+    result.suites[0].cases.forEach(test => {
+      assert.ok(test.started instanceof Date);
+      assert.ok(test.completed instanceof Date);
+    });
+  });
+
   it('Should map results correctly', () => {
     assert.equal(result.status, "FAIL");
 
