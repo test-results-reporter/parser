@@ -106,11 +106,11 @@ describe('Parser - NUnit', () => {
 
     it('Should calculate totals', () => {
       // totals on the testresult
-      assert.equal(result.total, 19);
+      assert.equal(result.total, 23);
       assert.equal(result.passed, 13);
       assert.equal(result.failed, 2);
       assert.equal(result.errors, 1);
-      assert.equal(result.skipped, 3);
+      assert.equal(result.skipped, 7);
 
       // compare sum of suite totals to testresult
       assert.equal( result.suites.reduce( (total, suite) => { return total + suite.total},0), result.total);
@@ -151,7 +151,7 @@ describe('Parser - NUnit', () => {
       assert.equal(result.suites[0].cases[9].status, "PASS");
 
       // badfixture
-      assert.equal(result.suites[1].cases.length, 0); // invalid test cases
+      assert.equal(result.suites[1].cases.length, 1); // invalid test cases
       assert.equal(result.suites[1].status, "SKIP"); // v3 treats these as skipped
 
       // fixturewithTestCases
@@ -160,7 +160,7 @@ describe('Parser - NUnit', () => {
       assert.equal(result.suites[4].cases[1].status, "PASS");
 
       // ignoredfixture
-      assert.equal(result.suites[3].cases.length, 0); // invalid test cases
+      assert.equal(result.suites[3].cases.length, 3); // invalid test cases
       assert.equal(result.suites[3].status, "SKIP"); // v3 treats these as skipped
 
       // parameterizedfixture(42)
@@ -171,17 +171,28 @@ describe('Parser - NUnit', () => {
 
       // parameterizedfixture(5)
       assert.equal(result.suites[5].status, "PASS");
+      assert.equal(result.suites[5].cases.length, 2);
       assert.equal(result.suites[5].cases[0].name, "NUnit.Tests.ParameterizedFixture(5).Test1");
       assert.equal(result.suites[5].cases[0].status, "PASS");
       assert.equal(result.suites[5].cases[1].status, "PASS");
 
-      // onetestcase
+      // nunit.tests.singletons.onetestcase
       assert.equal(result.suites[6].status, "PASS");
+      assert.equal(result.suites[6].cases.length, 1);
+      assert.equal(result.suites[6].cases[0].name, "NUnit.Tests.Singletons.OneTestCase.TestCase");
       assert.equal(result.suites[6].cases[0].status, "PASS");
 
-      // testassembly.mocktestfixture
+      // nunit.tests.testassembly.attachmentsfixture
       assert.equal(result.suites[7].status, "PASS");
+      assert.equal(result.suites[7].cases[0].name, "NUnit.Tests.TestAssembly.AttachmentsFixture.TestOneAttachment");
+      assert.equal(result.suites[7].cases.length, 1);
       assert.equal(result.suites[7].cases[0].status, "PASS");
+
+      // nunit.tests.testassembly.mocktestfixture
+      assert.equal(result.suites[8].status, "PASS");
+      assert.equal(result.suites[8].cases.length, 1);
+      assert.equal(result.suites[8].cases[0].name, "NUnit.Tests.TestAssembly.MockTestFixture.MyTest");
+      assert.equal(result.suites[8].cases[0].status, "PASS");
     });
 
     it('Should include reason for invalid tests', () => {
@@ -192,15 +203,15 @@ describe('Parser - NUnit', () => {
 
     it('Should include stack trace for failed tests.', () => {
       const testcase = result.suites[0].cases[8];
-      assert.equal(testcase.failure, "System.ApplicationException : Intentional Exception");
+      assert.equal(testcase.failure, "System.NotImplementedException : The method or operation is not implemented.");
       assert.notEqual(testcase.stack_trace, '');
     });
 
     it('Should support properties defined at the Assembly level', () => {
       const test_case = testCaseWithNoProperties = result.suites[2].cases[0];
       assert.equal(test_case.name, "NUnit.Tests.FixtureWithTestCases.MethodWithParameters(2,2)");
-      assert.equal(test_case.metadata["_APPDOMAIN"], "test-domain-mock-assembly.dll");
-      assert.equal(test_case.metadata["_PID"], 11928);
+      assert.equal(test_case.metadata["_APPDOMAIN"], "nunit-agent");
+      assert.equal(test_case.metadata["_PID"], 127016);
     });
 
     it('Should include both suite and assembly level properties', () => {
@@ -208,8 +219,8 @@ describe('Parser - NUnit', () => {
       assert.equal(test_case.name, "NUnit.Tests.Assemblies.MockTestFixture.FailingTest");
       assert.equal(test_case.metadata["Categories"], "FixtureCategory");
       assert.equal(test_case.metadata["Description"], "Fake Test Fixture");
-      assert.equal(test_case.metadata["_APPDOMAIN"], "test-domain-mock-assembly.dll");
-      assert.equal(test_case.metadata["_PID"], 11928);
+      assert.equal(test_case.metadata["_APPDOMAIN"], "nunit-agent");
+      assert.equal(test_case.metadata["_PID"], 127016);
     });
 
     it('Should include properties from assembly, suite and test case', () => {
@@ -217,8 +228,8 @@ describe('Parser - NUnit', () => {
       assert.equal(test_case.name, "NUnit.Tests.Assemblies.MockTestFixture.MockTest1");
       assert.equal(test_case.metadata["Categories"], "FixtureCategory");
       assert.equal(test_case.metadata["Description"], "Mock Test #1");
-      assert.equal(test_case.metadata["_APPDOMAIN"], "test-domain-mock-assembly.dll");
-      assert.equal(test_case.metadata["_PID"], 11928);
+      assert.equal(test_case.metadata["_APPDOMAIN"], "nunit-agent");
+      assert.equal(test_case.metadata["_PID"], 127016);
     });
       
     it('Should allow multiple categories to be specified', () => {
@@ -228,9 +239,9 @@ describe('Parser - NUnit', () => {
     });
 
     it('Should include attachments associated to test-case', () => {
-      const testCaseWithAttachments = result.suites[8].cases[0];
+      const testCaseWithAttachments = result.suites[7].cases[0];
       assert.equal(testCaseWithAttachments.attachments.length, 1);
-      assert.equal(testCaseWithAttachments.attachments[0].path, "c:\\absolute\\filepath\\dummy.txt")
+      assert.equal(testCaseWithAttachments.attachments[0].path, "c:\\dev\\code\\_Experiments\\NUnitSample\\NUnitSample\\dummy.txt")
       assert.equal(testCaseWithAttachments.attachments[0].name, "my description")
     });
 

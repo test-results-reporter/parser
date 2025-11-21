@@ -142,6 +142,9 @@ function getTestCases(rawSuite, parent_meta) {
       if (rawCase["@_label"] == "Error") {
         testCase.status = "ERROR";
       }
+      if (rawCase["@_label"] == "Invalid") {
+        testCase.status = "SKIP"; // treat invalid tests as skipped
+      }
       let errorDetails = rawCase.reason ?? rawCase.failure;
       if (errorDetails !== undefined) {
         testCase.setFailure(errorDetails.message);
@@ -183,6 +186,9 @@ function getTestSuites(rawSuites, assembly_meta) {
       suite.name = rawSuite["@_fullname"] ?? rawSuite["@_name"];
       suite.duration = (rawSuite["@_time"] ?? rawSuite["@_duration"]) * 1000; // in milliseconds
       suite.status = RESULT_MAP[rawSuite["@_result"]];
+      if (rawSuite["@_label"] == "Invalid") {
+        suite.status = "SKIP"; // treat invalid suites as skipped
+      }
 
       mergeMeta(assembly_meta, suite.metadata);
       populateMetaData(rawSuite, suite);
