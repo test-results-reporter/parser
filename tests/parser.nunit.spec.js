@@ -245,6 +245,15 @@ describe('Parser - NUnit', () => {
       assert.equal(testCaseWithAttachments.attachments[0].name, "my description")
     });
 
+    it('Should include start and completed timestamps for test-cases', () => {
+      const testCase = result.suites[0].cases[0];
+      assert.notEqual(testCase.started, null);
+      assert.notEqual(testCase.completed, null);
+      assert.ok(testCase.started instanceof Date);
+      assert.ok(testCase.completed instanceof Date);
+      assert.equal(testCase.completed > testCase.started, true);
+    });
+
     it('Should report overall status as PASS if all tests pass', () => {
       const result = parse({ type: 'nunit', files: [`${testDataPath}/nunit_v3_pass.xml`] });
       assert.equal(result.status, "PASS");
