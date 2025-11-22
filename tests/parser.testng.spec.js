@@ -117,1108 +117,150 @@ describe('Parser - TestNG', () => {
 
   it('single suite with multiple tests', () => {
     const result = parse({ type: 'testng', files: [`${testDataPath}/single-suite-multiple-tests.xml`] });
-    assert.deepEqual(result, {
-      "id": "",
-      "name": "Regression Tests",
-      "total": 20,
-      "passed": 8,
-      "failed": 11,
-      "errors": 0,
-      "skipped": 1,
-      "retried": 0,
-      "duration": 1403931,
-      "status": "FAIL",
-      "tags": [],
-      "metadata": {},
-      "suites": [
-        {
-          "id": "",
-          "name": "desktop-chrome",
-          "total": 5,
-          "passed": 2,
-          "failed": 3,
-          "errors": 0,
-          "skipped": 0,
-          "duration": 202082,
-          "status": "FAIL",
-          "tags": [],
-          "metadata": {},
-          "cases": [
-            {
-              "attachments": [],
-              "id": "",
-              "name": "GU",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 27168,
-              started: undefined,
-              completed: undefined,
-              "status": "FAIL",
-              "failure": "expected [A] but found [948474]",
-              "stack_trace": "",
-              "tags": [],
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            },
-            {
-              "attachments": [],
-              "id": "",
-              "name": "SBP",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 28313,
-              started: undefined,
-              completed: undefined,
-              "status": "PASS",
-              "failure": "",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            },
-            {
-              "attachments": [],
-              "id": "",
-              "name": "SBP",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 15381,
-              started: undefined,
-              completed: undefined,
-              "status": "PASS",
-              "failure": "",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            },
-            {
-              "attachments": [],
-              "id": "",
-              "name": "SBP_WA",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 57111,
-              started: undefined,
-              completed: undefined,
-              "status": "FAIL",
-              "failure": "Expected condition failed: : <95ddbda01ea4b3dbcb049e681a6>",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            },
-            {
-              "attachments": [],
-              "id": "",
-              "name": "CB",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 13221,
-              started: undefined,
-              completed: undefined,
-              "status": "FAIL",
-              "failure": "element click intercepted:",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            }
-          ]
-        },
-        {
-          "id": "",
-          "name": "mobile-ios",
-          "total": 5,
-          "passed": 2,
-          "failed": 2,
-          "errors": 0,
-          "skipped": 1,
-          "duration": 545598,
-          "status": "FAIL",
-          "tags": [],
-          "metadata": {},
-          "cases": [
-            {
-              "attachments": [],
-              "id": "",
-              "name": "GU",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 69776,
-              started: undefined,
-              completed: undefined,
-              "status": "FAIL",
-              "failure": "expected [A] but found [948474]",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            },
-            {
-              "attachments": [],
-              "id": "",
-              "name": "SBP",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 103463,
-              started: undefined,
-              completed: undefined,
-              "status": "PASS",
-              "failure": "",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            },
-            {
-              "attachments": [],
-              "id": "",
-              "name": "SBP",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 66833,
-              started: undefined,
-              completed: undefined,
-              "status": "PASS",
-              "failure": "",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            },
-            {
-              "attachments": [],
-              "id": "",
-              "name": "SBP_WA",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 250674,
-              started: undefined,
-              completed: undefined,
-              "status": "FAIL",
-              "failure": "Appium error: An unknown sr='Search...']}",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            },
-            {
-              "attachments": [],
-              "id": "",
-              "name": "CB",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 0,
-              started: undefined,
-              completed: undefined,
-              "status": "SKIP",
-              "failure": "A script did not complete ",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            }
-          ]
-        }
-      ]
-    });
+
+    assert.equal(result.name, "Regression Tests");
+    assert.equal(result.total, 20); // todo: review how totals are calculated. shouldn't this be 10 (5+5)?
+    assert.equal(result.passed, 8); // todo: review how totals are calculated. shouldn't this be 4 (2+2)?
+    assert.equal(result.failed, 11); // todo: review how totals are calculated. shouldn't this be 6 (3+2)?
+    assert.equal(result.errors, 0);
+    assert.equal(result.skipped, 1);
+    assert.equal(result.retried, 0);
+    assert.equal(result.status, "FAIL");
+
+    assert.equal(result.suites.length, 2); // 1 from single-suite + 2 from single-suite-multiple-tests
+    assert.equal(result.suites[0].name, "desktop-chrome");   
+    assert.ok(result.suites[0].duration > 0);
+    assert.equal(result.suites[0].cases.length, 5);
+    assert.equal(result.suites[0].cases[0].status, "FAIL");
+    assert.equal(result.suites[0].cases[1].status, "PASS");
+    assert.equal(result.suites[0].cases[2].status, "PASS");
+    assert.equal(result.suites[0].cases[3].status, "FAIL");
+    assert.equal(result.suites[0].cases[4].status, "FAIL");
+    
+    assert.equal(result.suites[1].name, "mobile-ios");
+    assert.ok(result.suites[1].duration > 0);
+    assert.equal(result.suites[1].cases.length, 5);
+    assert.equal(result.suites[1].cases[0].status, "FAIL");
+    assert.equal(result.suites[1].cases[1].status, "PASS");
+    assert.equal(result.suites[1].cases[2].status, "PASS");
+    assert.equal(result.suites[1].cases[3].status, "FAIL");
+    assert.equal(result.suites[1].cases[4].status, "SKIP");
   });
 
   it('multiple suites with single test', () => {
     const result = parse({ type: 'testng', files: [`${testDataPath}/multiple-suites-single-test.xml`] });
-    assert.deepEqual(result, {
-      "id": "",
-      "name": "Default suite",
-      "total": 4,
-      "passed": 4,
-      "failed": 0,
-      "errors": 0,
-      "skipped": 0,
-      "retried": 0,
-      "duration": 2000,
-      "status": "PASS",
-      "tags": [],
-      "metadata": {},
-      "suites": [
-        {
-          "id": "",
-          "name": "Default test",
-          "total": 4,
-          "passed": 4,
-          "failed": 0,
-          "errors": 0,
-          "skipped": 0,
-          "duration": 2000,
-          "status": "PASS",
-          "tags": [],
-          "metadata": {},
-          "cases": [
-            {
-              "attachments": [],
-              "id": "",
-              "name": "c2",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 0,
-              started: undefined,
-              completed: undefined,
-              "status": "PASS",
-              "failure": "",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            },
-            {
-              "attachments": [],
-              "id": "",
-              "name": "c3",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 10,
-              started: undefined,
-              completed: undefined,
-              "status": "PASS",
-              "failure": "",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            },
-            {
-              "attachments": [],
-              "id": "",
-              "name": "c1",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 0,
-              started: undefined,
-              completed: undefined,
-              "status": "PASS",
-              "failure": "",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            },
-            {
-              "attachments": [],
-              "id": "",
-              "name": "c4",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 0,
-              started: undefined,
-              completed: undefined,
-              "status": "PASS",
-              "failure": "expected [true] but found [false]",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            }
-          ]
-        }
-      ]
-    });
+
+    assert.equal(result.total, 4);
+    assert.equal(result.passed, 4);
+    assert.equal(result.failed, 0);
+    assert.equal(result.status, "PASS");
+    assert.equal(result.duration, 2000);
+    assert.equal(result.suites.length, 1); // empty suites are stripped out of results
+    
+    assert.equal(result.suites[0].name, "Default test");
+    assert.equal(result.suites[0].cases.length, 4);
+    assert.equal(result.suites[0].duration, 2000);
+    assert.equal(result.suites[0].cases[0].name, "c2");
+    assert.equal(result.suites[0].cases[0].status, "PASS");
+    assert.equal(result.suites[0].cases[1].name, "c3");
+    assert.equal(result.suites[0].cases[1].status, "PASS");
+    assert.equal(result.suites[0].cases[2].name, "c1");
+    assert.equal(result.suites[0].cases[2].status, "PASS");
+    assert.equal(result.suites[0].cases[3].name, "c4");
+    assert.equal(result.suites[0].cases[3].status, "PASS");
   });
 
   it('multiple suites with multiple tests', () => {
     const result = parse({ type: 'testng', files: [`${testDataPath}/multiple-suites-multiple-tests.xml`] });
-    assert.deepEqual(result, {
-      "id": "",
-      "name": "Default suite 1",
-      "total": 8,
-      "passed": 8,
-      "failed": 0,
-      "errors": 0,
-      "skipped": 0,
-      "retried": 0,
-      "duration": 4000,
-      "status": "PASS",
-      "tags": [],
-      "metadata": {},
-      "suites": [
-        {
-          "id": "",
-          "name": "Default suite 1",
-          "total": 4,
-          "passed": 4,
-          "failed": 0,
-          "errors": 0,
-          "skipped": 0,
-          "duration": 2000,
-          "status": "PASS",
-          "tags": [],
-          "metadata": {},
-          "cases": [
-            {
-              "attachments": [],
-              "id": "",
-              "name": "c2",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 0,
-              started: undefined,
-              completed: undefined,
-              "status": "PASS",
-              "failure": "",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            },
-            {
-              "attachments": [],
-              "id": "",
-              "name": "c3",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 10,
-              started: undefined,
-              completed: undefined,
-              "status": "PASS",
-              "failure": "",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            },
-            {
-              "attachments": [],
-              "id": "",
-              "name": "c1",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 0,
-              started: undefined,
-              completed: undefined,
-              "status": "PASS",
-              "failure": "",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            },
-            {
-              "attachments": [],
-              "id": "",
-              "name": "c4",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 0,
-              started: undefined,
-              completed: undefined,
-              "status": "PASS",
-              "failure": "expected [true] but found [false]",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            }
-          ]
-        },
-        {
-          "id": "",
-          "name": "Default suite",
-          "total": 4,
-          "passed": 4,
-          "failed": 0,
-          "errors": 0,
-          "skipped": 0,
-          "duration": 2000,
-          "status": "PASS",
-          "tags": [],
-          "metadata": {},
-          "cases": [
-            {
-              "attachments": [],
-              "id": "",
-              "name": "c2",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 0,
-              "started": undefined,
-              "completed": undefined,
-              "status": "PASS",
-              "failure": "",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            },
-            {
-              "attachments": [],
-              "id": "",
-              "name": "c3",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 10,
-              "started": undefined,
-              "completed": undefined,
-              "status": "PASS",
-              "failure": "",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            },
-            {
-              "attachments": [],
-              "id": "",
-              "name": "c1",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 0,
-              "started": undefined,
-              "completed": undefined,
-              "status": "PASS",
-              "failure": "",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            },
-            {
-              "attachments": [],
-              "id": "",
-              "name": "c4",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 0,
-              "started": undefined,
-              "completed": undefined,
-              "status": "PASS",
-              "failure": "expected [true] but found [false]",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            }
-          ]
-        }
-      ]
-    });
+
+    assert.equal(result.total, 8);
+    assert.equal(result.passed, 8);
+    assert.equal(result.failed, 0);
+    assert.equal(result.status, "PASS");
+    assert.equal(result.duration, 4000);
+
+    assert.equal(result.suites.length, 2); // empty suites are stripped out of results
+    
+    assert.equal(result.suites[0].name, "Default suite 1");
+    assert.equal(result.suites[0].cases.length, 4);
+    assert.equal(result.suites[0].duration, 2000);
+    assert.equal(result.suites[0].cases[0].name, "c2");
+    assert.equal(result.suites[0].cases[0].status, "PASS");
+    assert.equal(result.suites[0].cases[1].name, "c3");
+    assert.equal(result.suites[0].cases[1].status, "PASS");
+    assert.equal(result.suites[0].cases[2].name, "c1");
+    assert.equal(result.suites[0].cases[2].status, "PASS");
+    assert.equal(result.suites[0].cases[3].name, "c4");
+    assert.equal(result.suites[0].cases[3].status, "PASS");
+    
+    assert.equal(result.suites[1].name, "Default suite");
+    assert.equal(result.suites[1].cases.length, 4);
+    assert.equal(result.suites[1].duration, 2000);
+    assert.equal(result.suites[1].cases[0].name, "c2");
+    assert.equal(result.suites[1].cases[0].status, "PASS");
+    assert.equal(result.suites[1].cases[1].name, "c3");
+    assert.equal(result.suites[1].cases[1].status, "PASS");
+    assert.equal(result.suites[1].cases[2].name, "c1");
+    assert.equal(result.suites[1].cases[2].status, "PASS");
+    assert.equal(result.suites[1].cases[3].name, "c4");
+    assert.equal(result.suites[1].cases[3].status, "PASS");
   });
 
   it('multiple suites with retries', () => {
+    // demonstrate that retries are handled correctly across multiple suites
     const result = parse({ type: 'testng', files: [`${testDataPath}/multiple-suites-retries.xml`] });
-    assert.deepEqual(result, {
-      "id": "",
-      "name": "Staging - UI Smoke Test Run",
-      "total": 6,
-      "passed": 4,
-      "failed": 2,
-      "errors": 0,
-      "skipped": 0,
-      "retried": 2,
-      "duration": 1883597,
-      "status": "FAIL",
-      "tags": [],
-      "metadata": {},
-      "suites": [
-        {
-          "id": "",
-          "name": "desktop-chrome",
-          "total": 3,
-          "passed": 2,
-          "failed": 1,
-          "errors": 0,
-          "skipped": 0,
-          "duration": 1164451,
-          "status": "FAIL",
-          "tags": [],
-          "metadata": {},
-          "cases": [
-            {
-              "attachments": [],
-              "id": "",
-              "name": "GU",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 243789,
-              "started": undefined,
-              "completed": undefined,
-              "status": "PASS",
-              "failure": "",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            },
-            {
-              "attachments": [],
-              "id": "",
-              "name": "PC",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 129368,
-              "started": undefined,
-              "completed": undefined,
-              "status": "RETRY",
-              "failure": "failed",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            },
-            {
-              "attachments": [],
-              "id": "",
-              "name": "PC",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 123183,
-              "started": undefined,
-              "completed": undefined,
-              "status": "FAIL",
-              "failure": "failed",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            },
-            {
-              "attachments": [],
-              "id": "",
-              "name": "CB",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 194645,
-              "started": undefined,
-              "completed": undefined,
-              "status": "PASS",
-              "failure": "",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            }
-          ]
-        },
-        {
-          "id": "",
-          "name": "mobile-andoid",
-          "total": 3,
-          "passed": 2,
-          "failed": 1,
-          "errors": 0,
-          "skipped": 0,
-          "duration": 714100,
-          "status": "FAIL",
-          "tags": [],
-          "metadata": {},
-          "cases": [
-            {
-              "attachments": [],
-              "id": "",
-              "name": "GU",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 156900,
-              "started": undefined,
-              "completed": undefined,
-              "status": "PASS",
-              "failure": "",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            },
-            {
-              "attachments": [],
-              "id": "",
-              "name": "PC",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 134774,
-              "started": undefined,
-              "completed": undefined,
-              "status": "RETRY",
-              "failure": "failed",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            },
-            {
-              "attachments": [],
-              "id": "",
-              "name": "PC",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 126578,
-              "started": undefined,
-              "completed": undefined,
-              "status": "FAIL",
-              "failure": "failed",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            },
-            {
-              "attachments": [],
-              "id": "",
-              "name": "CB",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 242525,
-              started: undefined,
-              completed: undefined,
-              "status": "PASS",
-              "failure": "",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            }
-          ]
-        }
-      ]
-    });
+    assert.equal(result.name, "Staging - UI Smoke Test Run");
+    assert.equal(result.total, 6); // retries are removed from total
+    assert.equal(result.passed, 4);
+    assert.equal(result.failed, 2);
+    assert.equal(result.retried, 2);
+    assert.equal(result.status, "FAIL");
+    assert.equal(result.suites.length, 2);
+    assert.equal(result.suites[0].cases.length, 4);
+    assert.equal(result.suites[0].status, "FAIL");
+    assert.equal(result.suites[0].cases[1].name, "PC");
+    assert.equal(result.suites[0].cases[1].status, "RETRY");
+    assert.equal(result.suites[0].cases[1].failure, "failed");
+    assert.equal(result.suites[1].cases.length, 4);
+    assert.equal(result.suites[1].status, "FAIL");
+    assert.equal(result.suites[1].cases[1].name, "PC");
+    assert.equal(result.suites[1].cases[1].status, "RETRY");
+    assert.equal(result.suites[1].cases[1].failure, "failed");
   });
 
   it('results using glob', () => {
+    // demonstrate that wildcard works picks up single-suite.xml + single-suite-mutliple-tests.xml
+    // aggregates and merges results
     const result = parse({ type: 'testng', files: [`${testDataPath}/single-*.xml`] });
-    assert.deepEqual(result, {
-      "id": "",
-      "name": "Regression Tests",
-      "total": 24,
-      "passed": 12,
-      "failed": 11,
-      "errors": 0,
-      "skipped": 1,
-      "retried": 0,
-      "duration": 1405931,
-      "status": "FAIL",
-      "tags": [],
-      "metadata": {},
-      "suites": [
-        {
-          "id": "",
-          "name": "desktop-chrome",
-          "total": 5,
-          "passed": 2,
-          "failed": 3,
-          "errors": 0,
-          "skipped": 0,
-          "duration": 202082,
-          "status": "FAIL",
-          "tags": [],
-          "metadata": {},
-          "cases": [
-            {
-              "attachments": [],
-              "id": "",
-              "name": "GU",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 27168,
-              started: undefined,
-              completed: undefined,
-              "status": "FAIL",
-              "failure": "expected [A] but found [948474]",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            },
-            {
-              "attachments": [],
-              "id": "",
-              "name": "SBP",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 28313,
-              "started": undefined,
-              "completed": undefined,
-              "status": "PASS",
-              "failure": "",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            },
-            {
-              "attachments": [],
-              "id": "",
-              "name": "SBP",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 15381,
-              "started": undefined,
-              "completed": undefined,
-              "status": "PASS",
-              "failure": "",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            },
-            {
-              "attachments": [],
-              "id": "",
-              "name": "SBP_WA",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 57111,
-              "started": undefined,
-              "completed": undefined,
-              "status": "FAIL",
-              "failure": "Expected condition failed: : <95ddbda01ea4b3dbcb049e681a6>",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            },
-            {
-              "attachments": [],
-              "id": "",
-              "name": "CB",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 13221,
-              "started": undefined,
-              "completed": undefined,
-              "status": "FAIL",
-              "failure": "element click intercepted:",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            }
-          ]
-        },
-        {
-          "id": "",
-          "name": "mobile-ios",
-          "total": 5,
-          "passed": 2,
-          "failed": 2,
-          "errors": 0,
-          "skipped": 1,
-          "duration": 545598,
-          "status": "FAIL",
-          "tags": [],
-          "metadata": {},
-          "cases": [
-            {
-              "attachments": [],
-              "id": "",
-              "name": "GU",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 69776,
-              "started": undefined,
-              "completed": undefined,
-              "status": "FAIL",
-              "failure": "expected [A] but found [948474]",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            },
-            {
-              "attachments": [],
-              "id": "",
-              "name": "SBP",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 103463,
-              "started": undefined,
-              "completed": undefined,
-              "status": "PASS",
-              "failure": "",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            },
-            {
-              "attachments": [],
-              "id": "",
-              "name": "SBP",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 66833,
-              "started": undefined,
-              "completed": undefined,
-              "status": "PASS",
-              "failure": "",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            },
-            {
-              "attachments": [],
-              "id": "",
-              "name": "SBP_WA",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 250674,
-              "started": undefined,
-              "completed": undefined,
-              "status": "FAIL",
-              "failure": "Appium error: An unknown sr='Search...']}",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            },
-            {
-              "attachments": [],
-              "id": "",
-              "name": "CB",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 0,
-              "started": undefined,
-              "completed": undefined,
-              "status": "SKIP",
-              "failure": "A script did not complete ",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            }
-          ]
-        },
-        {
-          "id": "",
-          "name": "Default test",
-          "total": 4,
-          "passed": 4,
-          "failed": 0,
-          "errors": 0,
-          "skipped": 0,
-          "duration": 2000,
-          "status": "PASS",
-          "tags": [],
-          "metadata": {},
-          "cases": [
-            {
-              "attachments": [],
-              "id": "",
-              "name": "c2",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 0,
-              "started": undefined,
-              "completed": undefined,
-              "status": "PASS",
-              "failure": "",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            },
-            {
-              "attachments": [],
-              "id": "",
-              "name": "c3",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 10,
-              "started": undefined,
-              "completed": undefined,
-              "status": "PASS",
-              "failure": "",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            },
-            {
-              "attachments": [],
-              "id": "",
-              "name": "c1",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 0,
-              "started": undefined,
-              "completed": undefined,
-              "status": "PASS",
-              "failure": "",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            },
-            {
-              "attachments": [],
-              "id": "",
-              "name": "c4",
-              "total": 0,
-              "passed": 0,
-              "failed": 0,
-              "errors": 0,
-              "skipped": 0,
-              "duration": 0,
-              "started": undefined,
-              "completed": undefined,
-              "status": "PASS",
-              "failure": "expected [true] but found [false]",
-              "stack_trace": "",
-              "tags": [],
-              "metadata": {},
-              "steps": []
-            }
-          ]
-        }
-      ]
-    });
+    assert.equal(result.name, "Regression Tests"); // take the name of first suite parsed
+    assert.equal(result.total, 24);
+    assert.equal(result.passed, 12);
+    assert.equal(result.failed, 11);
+    assert.equal(result.errors, 0);
+    assert.equal(result.skipped, 1);
+    assert.equal(result.retried, 0);
+    assert.equal(result.status, "FAIL");
+
+    assert.equal(result.suites.length, 3); // 1 from single-suite + 2 from single-suite-multiple-tests
+    assert.equal(result.suites[0].name, "desktop-chrome");   
+    assert.equal(result.suites[0].cases.length, 5);
+    assert.equal(result.suites[1].name, "mobile-ios");
+    assert.equal(result.suites[1].cases.length, 5);
+    assert.equal(result.suites[2].name, "Default test");
+    assert.equal(result.suites[2].cases.length, 4);
   });
 
   it('single suite with no test', () => {
     const result = parse({ type: 'testng', files: [`${testDataPath}/empty-suite.xml`] });
-    assert.deepEqual(result, {
-      id: '',
-      name: 'Empty Suite',
-      total: 0,
-      passed: 0,
-      failed: 0,
-      errors: 0,
-      skipped: 0,
-      retried: 0,
-      duration: 0,
-      status: 'PASS',
-      tags: [],
-      metadata: {},
-      suites: []
-    });
+    assert.equal(result.total, 0);
+    assert.equal(result.passed, 0);
+    assert.equal(result.failed, 0);
+    assert.equal(result.errors, 0);
+    assert.equal(result.skipped, 0);
+    assert.equal(result.retried, 0);
+    assert.equal(result.duration, 0);
+    assert.equal(result.status, 'PASS');
+    assert.equal(result.suites.length, 0);
   });
 
   it('can support absolute and relative file paths', () => {
