@@ -43,8 +43,8 @@ describe('Parser - TestNG', () => {
               errors: 0,
               skipped: 0,
               duration: 0,
-              started: undefined,
-              completed: undefined,
+              started: new Date('2015-03-10T11:41:58.000Z'),
+              completed: new Date('2015-03-10T11:41:58.000Z'),
               status: 'PASS',
               failure: '',
               stack_trace: '',
@@ -62,8 +62,8 @@ describe('Parser - TestNG', () => {
               errors: 0,
               skipped: 0,
               duration: 10,
-              started: undefined,
-              completed: undefined,
+              started: new Date('2015-03-10T11:41:58.000Z'),
+              completed: new Date('2015-03-10T11:41:58.000Z'),
               status: 'PASS',
               failure: '',
               stack_trace: '',
@@ -81,8 +81,8 @@ describe('Parser - TestNG', () => {
               errors: 0,
               skipped: 0,
               duration: 0,
-              started: undefined,
-              completed: undefined,
+              started: new Date('2015-03-10T11:41:58.000Z'),
+              completed: new Date('2015-03-10T11:41:58.000Z'),
               status: 'PASS',
               failure: '',
               stack_trace: '',
@@ -100,8 +100,8 @@ describe('Parser - TestNG', () => {
               errors: 0,
               skipped: 0,
               duration: 0,
-              started: undefined,
-              completed: undefined,
+              started: new Date('2015-03-10T11:41:58.000Z'),
+              completed: new Date('2015-03-10T11:41:58.000Z'),
               status: 'PASS',
               failure: 'expected [true] but found [false]',
               stack_trace: '',
@@ -146,6 +146,35 @@ describe('Parser - TestNG', () => {
     assert.equal(result.suites[1].cases[3].status, "FAIL");
     assert.equal(result.suites[1].cases[4].status, "SKIP");
   });
+
+  it('capture test started and completed timestamps (standard ISO-8601 format)', () => {
+    // assume dateformat is default: yyyy-MM-dd’T’HH:mm:ss’Z' (ISO-8601/RFC-3339)
+    const result = parse({ type: 'testng', files: [`${testDataPath}/single-suite.xml`] });
+    const testCase = result.suites[0].cases[1];
+    assert.notEqual(testCase.started, undefined);
+    assert.notEqual(testCase.completed, undefined);
+    assert.ok(testCase.started instanceof Date);
+    assert.ok(testCase.completed instanceof Date);
+    assert.equal(testCase.completed >= testCase.started, true);
+  });
+
+  it('capture test started and completed timestamps (treat Java format with abmigious timezone as local)', () => {
+    // assume dateformat is default: yyyy-MM-dd’T’HH:mm:ss’Z' (ISO-8601/RFC-3339)
+    const result = parse({ type: 'testng', files: [`${testDataPath}/single-suite-multiple-tests.xml`] });
+    const testCase = result.suites[0].cases[1];
+    assert.notEqual(testCase.started, undefined);
+    assert.notEqual(testCase.completed, undefined);
+    assert.ok(testCase.started instanceof Date);
+    assert.ok(testCase.completed instanceof Date);
+    assert.equal(testCase.completed >= testCase.started, true);
+  });
+
+  // todo: review totals when there are failures in setup or teardown
+  // it('failures before test', () => {
+  //   const result = parse({ type: 'testng', files: [`${testDataPath}/failures-setup.teardown.xml`] });
+  //   // it looks like suite setup, test before/after methods are included in the totals, but not in the testcases
+  //   // though failures before the test result in skipped test cases?
+  // });
 
   it('multiple suites with single test', () => {
     const result = parse({ type: 'testng', files: [`${testDataPath}/multiple-suites-single-test.xml`] });

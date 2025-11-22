@@ -9,6 +9,15 @@ function getFullTestName(raw) {
   return "".concat(raw["@_class"], ".", raw["@_name"]);
 }
 
+function getDate(rawDate) {
+  if (!rawDate) return null;
+  const timezoneIndex = rawDate.lastIndexOf(' ');
+  if (timezoneIndex > 0) {
+    rawDate = rawDate.substring(0, timezoneIndex); // remove ambigious timezone, treat as local
+  }
+  return new Date(rawDate);
+}
+
 // create a mapping between fully qualified test name and and group
 function getSuiteGroups(rawSuite) {
   let testCaseToGroupMap = new Map();
@@ -36,6 +45,8 @@ function getTestCase(rawCase, testCaseToGroupMap) {
   test_case.name = rawCase["@_name"];
   test_case.duration = rawCase["@_duration-ms"];
   test_case.status = rawCase["@_status"];
+  test_case.started = getDate(rawCase["@_started-at"]);
+  test_case.completed = getDate(rawCase["@_finished-at"]);
   const key = getFullTestName(rawCase);
   if (testCaseToGroupMap.has(key)) {
     let groups = testCaseToGroupMap.get(key);
