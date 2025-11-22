@@ -159,7 +159,10 @@ describe('Parser - TestNG', () => {
   });
 
   it('capture test started and completed timestamps (treat Java format with abmigious timezone as local)', () => {
-    // assume dateformat is default: yyyy-MM-dd’T’HH:mm:ss’Z' (ISO-8601/RFC-3339)
+    // dateformat with "2021-10-21T15:00:41 IST" is not ISO-8601 compliant and creates ambigious timezones
+    // eg: IST could be India Standard Time (UTC+5:30) or Irish Standard Time (UTC+1)
+    //     EST could be Eastern Standard Time (UTC-5) or Australia Eastern Standard Time (UTC+10)
+    // best to assume these are local times and strip off the timezone designator
     const result = parse({ type: 'testng', files: [`${testDataPath}/single-suite-multiple-tests.xml`] });
     const testCase = result.suites[0].cases[1];
     assert.notEqual(testCase.started, undefined);
