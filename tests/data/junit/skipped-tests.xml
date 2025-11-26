@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
-<testsuites id="id" name="result name" tests="2" failures="0" errors="" skipped="1" time="10">
-    <testsuite id="codereview.cobol.analysisProvider" name="suite name" tests="1" failures="0" time="10">
+<testsuites id="id" name="result name" tests="1" failures="0" errors="" skipped="1" time="10">
+    <testsuite id="codereview.cobol.analysisProvider" name="suite name" tests="1" skipped="1" failures="0" time="10">
         <testcase id="codereview.cobol.rules.ProgramIdRule" name="Use a program name that matches the source file name" time="10">
             <skipped/>
         </testcase>
