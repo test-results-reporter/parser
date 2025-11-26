@@ -137,8 +137,8 @@ function getTestCases(rawSuite, parent_meta) {
       testCase.id = rawCase["@_id"] ?? "";
       testCase.name = rawCase["@_fullname"] ?? rawCase["@_name"];
       testCase.duration = (rawCase["@_time"] ?? rawCase["@_duration"]) * 1000; // in milliseconds
-      testCase.started = getDate(rawCase["@_start-time"]);
-      testCase.completed = getDate(rawCase["@_end-time"]);
+      testCase.startTime = getDate(rawCase["@_start-time"]);
+      testCase.endTime = getDate(rawCase["@_end-time"]);
       testCase.status = RESULT_MAP[result];
 
       // v2 : non-executed should be tests should be Ignored

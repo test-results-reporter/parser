@@ -45,8 +45,8 @@ function getTestCase(rawCase, testCaseToGroupMap) {
   test_case.name = rawCase["@_name"];
   test_case.duration = rawCase["@_duration-ms"];
   test_case.status = rawCase["@_status"];
-  test_case.started = getDate(rawCase["@_started-at"]);
-  test_case.completed = getDate(rawCase["@_finished-at"]);
+  test_case.startTime = getDate(rawCase["@_started-at"]);
+  test_case.endTime = getDate(rawCase["@_finished-at"]);
   const key = getFullTestName(rawCase);
   if (testCaseToGroupMap.has(key)) {
     let groups = testCaseToGroupMap.get(key);

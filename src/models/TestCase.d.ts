@@ -9,8 +9,8 @@ declare class TestCase {
   errors: number;
   skipped: number;
   duration: number;
-  started: Date | undefined;
-  completed: Date | undefined;
+  startTime: Date | undefined;
+  endTime: Date | undefined;
   status: string;
   failure: string;
   stack_trace: string;

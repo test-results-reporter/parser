@@ -247,11 +247,11 @@ describe('Parser - NUnit', () => {
 
     it('Should include start and completed timestamps for test-cases', () => {
       const testCase = result.suites[0].cases[0];
-      assert.notEqual(testCase.started, null);
-      assert.notEqual(testCase.completed, null);
-      assert.ok(testCase.started instanceof Date);
-      assert.ok(testCase.completed instanceof Date);
-      assert.equal(testCase.completed > testCase.started, true);
+      assert.notEqual(testCase.startTime, null);
+      assert.notEqual(testCase.endTime, null);
+      assert.ok(testCase.startTime instanceof Date);
+      assert.ok(testCase.endTime instanceof Date);
+      assert.equal(testCase.endTime > testCase.startTime, true);
     });
 
     it('Should report overall status as PASS if all tests pass', () => {

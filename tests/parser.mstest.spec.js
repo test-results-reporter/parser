@@ -47,8 +47,9 @@ describe('Parser - MSTest', () => {
     const result = parse({ type: 'mstest', files: [testDataPath] });
     assert.equal(result.total, 1);
     result.suites[0].cases.forEach(test => {
-      assert.ok(test.started instanceof Date);
-      assert.ok(test.completed instanceof Date);
+      assert.ok(test.startTime instanceof Date);
+      assert.ok(test.endTime instanceof Date);
+      assert.equal(test.endTime >= test.startTime, true);
     });
   });
 

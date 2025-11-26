@@ -132,8 +132,8 @@ function getTestCase(rawTestResult, definitionMap, testRunName) {
     testCase.name = getTestCaseName(rawDefinition);
     testCase.status = RESULT_MAP[rawTestResult["@_outcome"]];
     testCase.duration = getTestResultDuration(rawTestResult);
-    testCase.started = getDate(rawTestResult["@_startTime"]);
-    testCase.completed = getDate(rawTestResult["@_endTime"]);
+    testCase.startTime = getDate(rawTestResult["@_startTime"]);
+    testCase.endTime = getDate(rawTestResult["@_endTime"]);
 
     // collect error messages
     if (rawTestResult.Output && rawTestResult.Output.ErrorInfo) {
