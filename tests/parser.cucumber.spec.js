@@ -255,6 +255,18 @@ describe('Parser - Cucumber Json', () => {
     assert.equal(result.suites[0].cases[0].steps[3].status, 'SKIP'); // skipped due to prior failure
   });
 
+  it('handles skipped scenarios', () => {
+    // demonstrates that skipped scenarios are handled correctly
+    const result = parse({ type: 'cucumber', files: [`${testDataPath}/skipped-scenario.json`] });
+    assert.equal(result.total, 1);
+    assert.equal(result.passed, 0);
+    assert.equal(result.failed, 0);
+    assert.equal(result.skipped, 1);
+    assert.equal(result.suites[0].failed, 0);
+    assert.equal(result.suites[0].skipped, 1);
+    assert.equal(result.suites[0].cases[0].status, 'SKIP');
+  });
+
   it('test with metadata', () => {
     // demonstrates that metadata at suite and case level is captured correctly
     const result = parse({ type: 'cucumber', files: [`${testDataPath}/suites-with-metadata.json`] });

@@ -36,6 +36,7 @@ class CucumberParser extends BaseParser {
     this.result.total = this.result.suites.reduce((total, suite) => total + suite.total, 0);
     this.result.passed = this.result.suites.reduce((total, suite) => total + suite.passed, 0);
     this.result.failed = this.result.suites.reduce((total, suite) => total + suite.failed, 0);
+    this.result.skipped = this.result.suites.reduce((total, suite) => total + suite.skipped, 0);
     this.result.duration = this.result.suites.reduce((total, suite) => total + suite.duration, 0);
     this.result.duration = parseFloat(this.result.duration.toFixed(2));
   }
@@ -51,9 +52,10 @@ class CucumberParser extends BaseParser {
       test_suite.total = test_suite.cases.length;
       test_suite.passed = test_suite.cases.filter(_ => _.status === "PASS").length;
       test_suite.failed = test_suite.cases.filter(_ => _.status === "FAIL").length;
+      test_suite.skipped = test_suite.cases.filter(_ => _.status === "SKIP").length;
       test_suite.duration = test_suite.cases.reduce((total, _) => total + _.duration, 0);
       test_suite.duration = parseFloat(test_suite.duration.toFixed(2));
-      test_suite.status = test_suite.total === test_suite.passed ? 'PASS' : 'FAIL';
+      test_suite.status = test_suite.failed == 0 ? 'PASS' : 'FAIL';
       const { tags, metadata } = this.#getTagsAndMetadata(feature);
       test_suite.tags = tags;
       test_suite.metadata = metadata;
@@ -85,7 +87,7 @@ class CucumberParser extends BaseParser {
     test_case.skipped = test_case.steps.filter(step => step.status === "SKIP").length;
     test_case.duration = test_case.steps.reduce((total, _) => total + _.duration, 0);
     test_case.duration = parseFloat((test_case.duration).toFixed(2));
-    test_case.status = test_case.total === test_case.passed ? 'PASS' : 'FAIL';
+    test_case.status = this.#getTestCaseStatus(test_case.steps);
     if (test_case.status === "FAIL") {
       const failed_step = test_case.steps.find(step => step.status === "FAIL");
       test_case.failure = failed_step?.failure ?? '';
@@ -116,6 +118,21 @@ class CucumberParser extends BaseParser {
       test_step.stack_trace = stack_trace;
     }
     return test_step;
+  }
+
+  /**
+   * 
+   * @param {TestCase[]} steps
+   */
+  #getTestCaseStatus(steps) {
+    // loop through steps to determine overall status
+    for (const step of steps) {
+      // return early on first SKIP or FAIL
+      if (step.status === 'SKIP' || step.status === 'FAIL') {
+        return step.status;
+      }
+    }
+    return 'PASS';
   }
 
   /**
