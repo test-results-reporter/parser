@@ -86,7 +86,7 @@ describe('Parser - Mocha Json', () => {
     assert.equal(result.suites[1].cases[0].name, 'Suite2 test case');
     assert.equal(result.suites[1].cases[0].status, 'FAIL');
     assert.equal(result.suites[1].cases[0].failure, 'Dummy reason');
-    //assert.equal(result.suites[1].cases[0].stack_trace.startsWith('AssertionError [ERR_ASSERTION]: Dummy reason'), true);
+    assert.equal(result.suites[1].cases[0].stack_trace.startsWith('AssertionError [ERR_ASSERTION]: Dummy reason'), true);
   });
 
   it('can support absolute and relative file paths', () => {
@@ -248,5 +248,17 @@ describe('Parser - Mocha Awesome Json', () => {
     assert.equal(result.suites[1].cases[0].status, 'PASS');
     assert.equal(result.suites[1].cases[1].name, 'second passed test');
     assert.equal(result.suites[1].cases[1].status, 'PASS');
+  });
+
+  it('suite with failures', () => {
+    // demonstrates capturing failed tests in mocha/awesome format
+    const result = parse({ type: 'mocha', files: [`${testDataPath}/multiple-suites-multiple-tests.json`] });
+
+    assert.equal(result.total, 3);
+    assert.equal(result.failed, 1);
+    assert.equal(result.suites[1].cases[0].name, 'sample test case');
+    assert.equal(result.suites[1].cases[0].status, 'FAIL');
+    assert.equal(result.suites[1].cases[0].failure, 'Dummy reason');
+    assert.ok(result.suites[1].cases[0].stack_trace.startsWith('AssertionError [ERR_ASSERTION]: Dummy reason'));
   });
 });

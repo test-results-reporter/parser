@@ -7,6 +7,12 @@ const TestResult = require('../models/TestResult');
 const TestSuite = require('../models/TestSuite');
 const TestCase = require('../models/TestCase');
 
+function setFailure(test_case, rawCase) {
+  test_case.status = 'FAIL';
+  test_case.setFailure(rawCase.err["message"]);
+  test_case.stack_trace = rawCase.err["stack"] || rawCase.err["estack"] || '';
+}
+
 function getTestCase(rawCase) {
   const test_case = new TestCase();
   test_case.name = rawCase["title"];
@@ -16,8 +22,7 @@ function getTestCase(rawCase) {
     test_case.status = 'SKIP';
   }
   else if (rawCase.state && rawCase.state === "failed") {
-    test_case.status = 'FAIL';
-    test_case.setFailure(rawCase.err["message"]);
+    setFailure(test_case, rawCase);
   }
   else {
     test_case.status = 'PASS';
@@ -34,7 +39,7 @@ function getTestSuite(rawSuite) {
   suite.failed = rawSuite["failures"].length;
   suite.duration = rawSuite["duration"];
   suite.skipped = rawSuite["pending"].length;
-  suite.status = suite.total === (suite.passed + suite.skipped) ? 'PASS' : 'FAIL';
+  suite.status = suite.failed == 0 ? 'PASS' : 'FAIL';
   setMetaData(suite);
   const raw_test_cases = rawSuite.tests;
   if (raw_test_cases) {
