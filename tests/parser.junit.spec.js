@@ -372,6 +372,20 @@ describe('Parser - JUnit', () => {
     assert.equal(result.suites[1].cases[1].status, 'FAIL');
   });
 
+  it('can capture suite start and end time', () => {
+    // demonstrates that suites that have timestamps will have startTime and endTime captured
+    const result = parse({ type: 'junit', files: [`${testDataPath}/newman.xml`] });
+    assert.equal(result.suites[0].startTime.toISOString(), '2022-09-20T16:49:56.147Z');
+    assert.equal(result.suites[0].duration, 807);
+    assert.equal(result.suites[0].endTime.toISOString(), '2022-09-20T16:49:56.954Z');
+  });
 
+  it('can capture overall start and end time for all suites', () => {
+    // demonstrates that the overall result will have startTime and endTime based on the earliest and latest suite times
+    const result = parse({ type: 'junit', files: [`${testDataPath}/mocha-failures-with-stack-trace.xml`] });
 
+    assert.ok(result.startTime instanceof Date);
+    assert.ok(result.endTime instanceof Date);
+    assert.ok(result.endTime > result.startTime);
+  });
 });

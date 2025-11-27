@@ -9,6 +9,8 @@ declare class TestResult {
   skipped: number;
   retried: number;
   duration: number;
+  startTime: Date | undefined;
+  endTime: Date | undefined;
   status: string;
   tags: string[];
   metadata: object;

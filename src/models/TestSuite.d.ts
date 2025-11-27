@@ -8,6 +8,8 @@ declare class TestSuite {
   errors: number;
   skipped: number;
   duration: number;
+  startTime: Date | undefined;
+  endTime: Date | undefined;
   status: string;
   tags: string[];
   metadata: object;

@@ -6,6 +6,11 @@ const TestSuite = require('../models/TestSuite');
 const TestCase = require('../models/TestCase');
 const TestAttachment = require('../models/TestAttachment');
 
+function getDate(rawDate) {
+  if (!rawDate) return null;
+  return new Date(rawDate);
+}
+
 function getTestCase(rawCase, suite_meta) {
   const test_case = new TestCase();
   test_case.name = rawCase["@_name"];
@@ -62,6 +67,10 @@ function getTestSuite(rawSuite) {
   suite.total = suite.total - suite.skipped;
   suite.passed = suite.total - suite.failed - suite.errors;
   suite.duration = rawSuite["@_time"] * 1000;
+  suite.startTime = getDate(rawSuite["@_timestamp"]);
+  if (suite.startTime && suite.duration) {
+    suite.endTime = new Date(suite.startTime.getTime() + suite.duration);
+  }
   suite.status = suite.total === suite.passed ? 'PASS' : 'FAIL';
   setMetaData(rawSuite, suite);
   const raw_test_cases = rawSuite.testcase;
@@ -182,6 +191,23 @@ function setAggregateResults(result) {
     });
     result.duration = duration;
   }
+  // find earliest start time and latest end time
+  let startTime = null;
+  let endTime = null;
+  result.suites.forEach(_suite => {
+    if (_suite.startTime) {
+      if (!startTime || _suite.startTime < startTime) {
+        startTime = _suite.startTime;
+      }
+    }
+    if (_suite.endTime) {
+      if (!endTime || _suite.endTime > endTime) {
+        endTime = _suite.endTime;
+      }
+    }
+  });
+  result.startTime = startTime;
+  result.endTime = endTime;
 }
 
 /**

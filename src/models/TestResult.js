@@ -10,6 +10,8 @@ class TestResult {
     this.skipped = 0;
     this.retried = 0;
     this.duration = 0;
+    this.startTime = undefined;
+    this.endTime = undefined;
     this.status = 'NA';
     this.tags = [];
     this.metadata = {};

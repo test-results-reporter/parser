@@ -13,6 +13,8 @@ const { getMatchingFilePaths } = require('../helpers/helper');
  */
 function merge(results) {
   const main_result = new TestResult();
+  let startTime = null;
+  let endTime = null;
   for (let i = 0; i < results.length; i++) {
     const current_result = results[i];
     if (!main_result.name) {
@@ -26,8 +28,20 @@ function merge(results) {
     main_result.retried = main_result.retried + current_result.retried;
     main_result.duration = main_result.duration + current_result.duration;
     main_result.suites = main_result.suites.concat(...current_result.suites);
+    if (current_result.startTime) {
+      if (!startTime || current_result.startTime < startTime) {
+        startTime = current_result.startTime;
+      }
+    }
+    if (current_result.endTime) {
+      if (!endTime || current_result.endTime > endTime) {
+        endTime = current_result.endTime;
+      }
+    }  
   }
   main_result.status = results.every(_result => _result.status === 'PASS') ? 'PASS' : 'FAIL';
+  main_result.startTime = startTime;
+  main_result.endTime = endTime;
   return main_result;
 }
 
