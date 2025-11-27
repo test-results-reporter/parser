@@ -122,7 +122,7 @@ class CucumberParser extends BaseParser {
 
   /**
    * 
-   * @param {TestCase[]} steps
+   * @param {TestStep[]} steps
    */
   #getTestCaseStatus(steps) {
     // loop through steps to determine overall status
