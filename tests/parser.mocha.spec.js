@@ -120,6 +120,14 @@ describe('Parser - Mocha Json', () => {
     let test_case = result.suites[0].cases[1];
     assert.deepEqual(test_case.tags, []);
   });
+
+  it('captures startTime and endTime for overall result', () => {
+    // demonstrates how overall startTime and endTime is extracted from 'stats'
+    const result = parse({ type: 'mocha', files: [`${testDataPath}/single-suite-single-test.json`] });
+
+    assert.equal(result.startTime.toISOString(), '2022-06-11T05:24:09.223Z');
+    assert.equal(result.endTime.toISOString(), '2022-06-11T05:24:09.226Z');
+  });
 });
 
 describe('Parser - Mocha Awesome Json', () => {
@@ -260,5 +268,13 @@ describe('Parser - Mocha Awesome Json', () => {
     assert.equal(result.suites[1].cases[0].status, 'FAIL');
     assert.equal(result.suites[1].cases[0].failure, 'Dummy reason');
     assert.ok(result.suites[1].cases[0].stack_trace.startsWith('AssertionError [ERR_ASSERTION]: Dummy reason'));
+  });
+
+  it('captures startTime and endTime for overall result', () => {
+    // demonstrates how overall startTime and endTime is extracted from 'stats'
+    const result = parse({ type: 'mocha', files: [`${testDataPath}/single-suite-single-test.json`] });
+
+    assert.equal(result.startTime.toISOString(), '2022-06-11T05:24:09.223Z');
+    assert.equal(result.endTime.toISOString(), '2022-06-11T05:24:09.226Z');
   });
 });

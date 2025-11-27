@@ -7,6 +7,11 @@ const TestResult = require('../models/TestResult');
 const TestSuite = require('../models/TestSuite');
 const TestCase = require('../models/TestCase');
 
+function getDate(rawDate) {
+  if (!rawDate) return null;
+  return new Date(rawDate);
+}
+
 function setFailure(test_case, rawCase) {
   test_case.status = 'FAIL';
   test_case.setFailure(rawCase.err["message"]);
@@ -66,6 +71,8 @@ function getTestResult(raw_json) {
   result.total = stats["tests"];
   result.passed = stats["passes"];
   result.failed = stats["failures"];
+  result.startTime = getDate(stats["start"]);
+  result.endTime = getDate(stats["end"]);
   const errors = formattedResult["errors"];
   if (errors) {
     result.errors = errors;
