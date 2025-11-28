@@ -1,0 +1,76 @@
+[
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "demonstrate-skipping;this-scenario-is-intentionally-skipped",
+        "keyword": "Scenario",
+        "line": 5,
+        "name": "This scenario is intentionally skipped",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "skipped",
+              "duration": 1824399
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 6,
+            "name": "I start the scenario",
+            "match": {
+              "location": "features\\step_definitions\\steps.js:3"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 7,
+            "name": "I continue the scenario",
+            "match": {
+              "location": "features\\step_definitions\\steps.js:4"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 8,
+            "name": "I finish the scenario",
+            "match": {
+              "location": "features\\step_definitions\\steps.js:5"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@ignore",
+            "line": 4
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "demonstrate-skipping",
+    "line": 2,
+    "keyword": "Feature",
+    "name": "Demonstrate skipping",
+    "tags": [],
+    "uri": "features\\example.feature"
+  }
+]
