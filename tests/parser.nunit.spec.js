@@ -97,6 +97,17 @@ describe('Parser - NUnit', () => {
       assert.equal(test_case.tags[0], "MockCategory");
     });
 
+    it('Should compute start and completed timestamp for test run', () => {
+      assert.notEqual(result.startTime, null);
+      assert.notEqual(result.endTime, null);
+      assert.ok(result.startTime instanceof Date);
+      assert.ok(result.endTime instanceof Date);
+      assert.equal(result.endTime > result.startTime, true);
+      assert.equal(result.startTime.toISOString(), "2010-10-18T13:23:35.000Z");
+      assert.equal(result.endTime.toISOString(), "2010-10-18T13:23:35.824Z");
+      assert.equal(result.duration, 824);
+    });
+
   });
 
   context('NUnit V3', () => {
@@ -252,6 +263,23 @@ describe('Parser - NUnit', () => {
       assert.ok(testCase.startTime instanceof Date);
       assert.ok(testCase.endTime instanceof Date);
       assert.equal(testCase.endTime > testCase.startTime, true);
+    });
+
+    it('Should include start and completed timestamps for test-suites', () => {
+      const testSuite = result.suites[0];
+      assert.notEqual(testSuite.startTime, null);
+      assert.notEqual(testSuite.endTime, null);
+      assert.ok(testSuite.startTime instanceof Date);
+      assert.ok(testSuite.endTime instanceof Date);
+      assert.equal(testSuite.endTime > testSuite.startTime, true);
+    });
+
+    it('Should include start and completed timestamps for test-result', () => {
+      assert.notEqual(result.startTime, null);
+      assert.notEqual(result.endTime, null);
+      assert.ok(result.startTime instanceof Date);
+      assert.ok(result.endTime instanceof Date);
+      assert.equal(result.endTime > result.startTime, true);
     });
 
     it('Should report overall status as PASS if all tests pass', () => {
