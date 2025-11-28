@@ -11,6 +11,8 @@ class TestCase {
       this.errors = 0;
       this.skipped = 0;
       this.duration = 0;
+      this.startTime = undefined;
+      this.endTime = undefined;
       this.status = 'NA';
       this.failure = '';
       this.stack_trace = '';

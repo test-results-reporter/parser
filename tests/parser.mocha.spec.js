@@ -38,6 +38,8 @@ describe('Parser - Mocha Json', () => {
             {
               attachments: [],
               duration: 1,
+              startTime: undefined,
+              endTime: undefined,
               errors: 0,
               failed: 0,
               failure: "",
@@ -109,6 +111,8 @@ describe('Parser - Mocha Json', () => {
             {
               attachments: [],
               duration: 1,
+              startTime: undefined,
+              endTime: undefined,
               errors: 0,
               failed: 0,
               failure: "",
@@ -126,6 +130,8 @@ describe('Parser - Mocha Json', () => {
             {
               attachments: [],
               duration: 0,
+              startTime: undefined,
+              endTime: undefined,
               errors: 0,
               failed: 0,
               failure: "",
@@ -145,6 +151,7 @@ describe('Parser - Mocha Json', () => {
       ]
     });
   });
+
   it('multiple suites', () => {
     const result = parse({ type: 'mocha', files: [`${testDataPath}/multiple-suites-multiple-tests.json`] });
     assert.deepEqual(result, {
@@ -177,6 +184,8 @@ describe('Parser - Mocha Json', () => {
             {
               attachments: [],
               duration: 3,
+              startTime: undefined,
+              endTime: undefined,
               errors: 0,
               failed: 0,
               failure: "",
@@ -194,6 +203,8 @@ describe('Parser - Mocha Json', () => {
             {
               attachments: [],
               duration: 1,
+              startTime: undefined,
+              endTime: undefined,
               errors: 0,
               failed: 0,
               failure: "",
@@ -226,6 +237,8 @@ describe('Parser - Mocha Json', () => {
             {
               attachments: [],
               duration: 1,
+              startTime: undefined,
+              endTime: undefined,
               errors: 0,
               failed: 0,
               failure: "Dummy reason",
@@ -314,6 +327,8 @@ describe('Parser - Mocha Awesome Json', () => {
             {
               attachments: [],
               duration: 1,
+              startTime: undefined,
+              endTime: undefined,
               errors: 0,
               failed: 0,
               failure: "",
@@ -385,6 +400,8 @@ describe('Parser - Mocha Awesome Json', () => {
             {
               attachments: [],
               duration: 1,
+              startTime: undefined, 
+              endTime: undefined,
               errors: 0,
               failed: 0,
               failure: "",
@@ -402,6 +419,8 @@ describe('Parser - Mocha Awesome Json', () => {
             {
               attachments: [],
               duration: 0,
+              startTime: undefined,
+              endTime: undefined,
               errors: 0,
               failed: 0,
               failure: "",
@@ -454,6 +473,8 @@ describe('Parser - Mocha Awesome Json', () => {
             {
               attachments: [],
               duration: 3,
+              startTime: undefined,
+              endTime: undefined,
               errors: 0,
               failed: 0,
               failure: "",
@@ -471,6 +492,8 @@ describe('Parser - Mocha Awesome Json', () => {
             {
               attachments: [],
               duration: 1,
+              startTime: undefined,
+              endTime: undefined,
               errors: 0,
               failed: 0,
               failure: "",
@@ -503,6 +526,8 @@ describe('Parser - Mocha Awesome Json', () => {
             {
               attachments: [],
               duration: 1,
+              startTime: undefined,
+              endTime: undefined,
               errors: 0,
               failed: 0,
               failure: "Dummy reason",
@@ -555,6 +580,8 @@ describe('Parser - Mocha Awesome Json', () => {
             {
               attachments: [],
               duration: 3,
+              startTime: undefined,
+              endTime: undefined,
               errors: 0,
               failed: 0,
               failure: "",
@@ -572,6 +599,8 @@ describe('Parser - Mocha Awesome Json', () => {
             {
               attachments: [],
               duration: 1,
+              startTime: undefined,
+              endTime: undefined,
               errors: 0,
               failed: 0,
               failure: "",
@@ -604,6 +633,8 @@ describe('Parser - Mocha Awesome Json', () => {
             {
               attachments: [],
               duration: 1,
+              startTime: undefined,
+              endTime: undefined,
               errors: 0,
               failed: 0,
               failure: "Dummy reason",
@@ -654,6 +685,8 @@ describe('Parser - Mocha Awesome Json', () => {
             {
               attachments: [],
               duration: 0,
+              startTime: undefined,
+              endTime: undefined,
               errors: 0,
               failed: 0,
               failure: "",
@@ -686,6 +719,8 @@ describe('Parser - Mocha Awesome Json', () => {
             {
               attachments: [],
               duration: 8912,
+              startTime: undefined,
+              endTime: undefined,
               errors: 0,
               failed: 0,
               failure: "",
@@ -703,6 +738,8 @@ describe('Parser - Mocha Awesome Json', () => {
             {
               attachments: [],
               duration: 4734,
+              startTime: undefined,
+              endTime: undefined,
               errors: 0,
               failed: 0,
               failure: "",

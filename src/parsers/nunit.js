@@ -45,6 +45,11 @@ function mergeMeta(map1, map2) {
   }
 }
 
+function getDate(rawDate) {
+  if (!rawDate) return null;
+  return new Date(rawDate);
+}
+
 /**
  *
  * @param {*} raw
@@ -132,6 +137,8 @@ function getTestCases(rawSuite, parent_meta) {
       testCase.id = rawCase["@_id"] ?? "";
       testCase.name = rawCase["@_fullname"] ?? rawCase["@_name"];
       testCase.duration = (rawCase["@_time"] ?? rawCase["@_duration"]) * 1000; // in milliseconds
+      testCase.startTime = getDate(rawCase["@_start-time"]);
+      testCase.endTime = getDate(rawCase["@_end-time"]);
       testCase.status = RESULT_MAP[result];
 
       // v2 : non-executed should be tests should be Ignored
@@ -141,6 +148,9 @@ function getTestCases(rawSuite, parent_meta) {
       // v3 : failed tests with error label should be Error
       if (rawCase["@_label"] == "Error") {
         testCase.status = "ERROR";
+      }
+      if (rawCase["@_label"] == "Invalid") {
+        testCase.status = "SKIP"; // treat invalid tests as skipped
       }
       let errorDetails = rawCase.reason ?? rawCase.failure;
       if (errorDetails !== undefined) {
@@ -183,6 +193,9 @@ function getTestSuites(rawSuites, assembly_meta) {
       suite.name = rawSuite["@_fullname"] ?? rawSuite["@_name"];
       suite.duration = (rawSuite["@_time"] ?? rawSuite["@_duration"]) * 1000; // in milliseconds
       suite.status = RESULT_MAP[rawSuite["@_result"]];
+      if (rawSuite["@_label"] == "Invalid") {
+        suite.status = "SKIP"; // treat invalid suites as skipped
+      }
 
       mergeMeta(assembly_meta, suite.metadata);
       populateMetaData(rawSuite, suite);

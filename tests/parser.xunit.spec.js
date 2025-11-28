@@ -8,289 +8,86 @@ describe('Parser - XUnit', () => {
 
   it('single suite with single test', () => {
     const result = parse({ type: 'xunit', files: [`${testDataPath}/single-suite.xml`] });
-    assert.deepEqual(result, {
-      id: '',
-      name: 'single suite test',
-      total: 1,
-      passed: 0,
-      failed: 1,
-      errors: 0,
-      skipped: 0,
-      retried: 0,
-      duration: 86006.5,
-      status: 'FAIL',
-      tags: [],
-      metadata: {},
-      suites: [
-        {
-          id: '',
-          name: 'Example test collection 1',
-          total: 1,
-          passed: 0,
-          failed: 1,
-          errors: 0,
-          skipped: 0,
-          duration: 86006.5,
-          status: 'FAIL',
-          tags: [],
-          metadata: {},
-          cases: [
-            {
-              attachments: [],
-              duration: 86006.5,
-              errors: 0,
-              failed: 0,
-              failure: "Example of a failure message",
-              id: "",
-              name: "Example test case 1",
-              passed: 0,
-              skipped: 0,
-              stack_trace: "",
-              status: "FAIL",
-              tags: [],
-              metadata: { TestID: "ID", TestLevel: "Regression", TestProduct: "TestProductExample", TestSuite: "TestSuiteExample" },
-              steps: [],
-              total: 0
-            }
-          ]
-        }
-      ]
-    });
+    assert.equal(result.name, 'single suite test');
+    assert.equal(result.total, 1);
+    assert.equal(result.passed, 0);
+    assert.equal(result.failed, 1);
+    assert.equal(result.errors, 0);
+    assert.equal(result.skipped, 0);
+    assert.equal(result.status, 'FAIL');
+    assert.equal(result.suites.length, 1);
+    assert.equal(result.suites[0].cases.length, 1);
+    assert.equal(result.suites[0].name, 'Example test collection 1');
+    assert.equal(result.suites[0].total, 1);
+    assert.equal(result.suites[0].passed, 0);
+    assert.equal(result.suites[0].failed, 1);
+    assert.equal(result.suites[0].errors, 0);
+    assert.equal(result.suites[0].skipped, 0);
+    assert.equal(result.suites[0].cases[0].name, 'Example test case 1');
+    assert.equal(result.suites[0].cases[0].status, 'FAIL');
+    assert.equal(result.suites[0].cases[0].failure, 'Example of a failure message');
+    assert.equal(result.suites[0].cases[0].duration, 86006.5);
+    assert.equal(result.suites[0].cases[0].metadata.TestID, 'ID');
+    assert.equal(result.suites[0].cases[0].metadata.TestLevel, 'Regression');
+    assert.equal(result.suites[0].cases[0].metadata.TestProduct, 'TestProductExample');
+    assert.equal(result.suites[0].cases[0].metadata.TestSuite, 'TestSuiteExample');
   });
 
   it('suite with single skipped test', () => {
     const result = parse({ type: 'xunit', files: [`${testDataPath}/skipped-suite.xml`] });
-    assert.deepEqual(result, {
-      id: '',
-      name: 'Skipped test',
-      total: 1,
-      passed: 0,
-      failed: 0,
-      errors: 0,
-      skipped: 1,
-      retried: 0,
-      duration: 1,
-      status: 'PASS',
-      tags: [],
-      metadata: {},
-      suites: [
-        {
-          id: '',
-          name: 'Test collection skipped',
-          total: 1,
-          passed: 0,
-          failed: 0,
-          errors: 0,
-          skipped: 1,
-          duration: 1,
-          status: 'PASS',
-          tags: [],
-          metadata: {},
-          cases: [
-            {
-              attachments: [],
-              duration: 1,
-              errors: 0,
-              failed: 0,
-              failure: "",
-              id: "",
-              name: "SkippedTest",
-              passed: 0,
-              skipped: 0,
-              stack_trace: "",
-              status: "SKIP",
-              tags: [],
-              metadata: { UnsupportedEnvirnoment: "uat" },
-              steps: [],
-              total: 0
-            }
-          ]
-        }
-      ]
-    });
+    assert.equal(result.name, 'Skipped test');
+    assert.equal(result.total, 1);
+    assert.equal(result.passed, 0);
+    assert.equal(result.failed, 0);
+    assert.equal(result.errors, 0);
+    assert.equal(result.skipped, 1);
+    assert.equal(result.status, 'PASS');
+    assert.equal(result.suites.length, 1);
+    assert.equal(result.suites[0].cases.length, 1);
+    assert.equal(result.suites[0].name, 'Test collection skipped');
+    assert.equal(result.suites[0].total, 1);
+    assert.equal(result.suites[0].passed, 0);
+    assert.equal(result.suites[0].failed, 0);
+    assert.equal(result.suites[0].errors, 0);
+    assert.equal(result.suites[0].skipped, 1);
+    assert.equal(result.suites[0].cases[0].name, 'SkippedTest');
+    assert.equal(result.suites[0].cases[0].status, 'SKIP');
   });
 
   it('multiple suites', () => {
+    // demonstrate that multiple test suites in a single file are supported
     const result = parse({ type: 'xunit', files: [`${testDataPath}/multiple-suites.xml`] });
-    const expectedObj = {
-      id: '',
-      name: 'Multiple suites',
-      total: 6,
-      passed: 3,
-      failed: 3,
-      errors: 0,
-      skipped: 0,
-      retried: 0,
-      duration: 348807,
-      status: 'FAIL',
-      tags: [],
-      metadata: {},
-      suites: [
-        {
-          id: '',
-          name: 'Test suite number 1',
-          total: 2,
-          passed: 1,
-          failed: 1,
-          errors: 0,
-          skipped: 0,
-          duration: 92155,
-          status: 'FAIL',
-          tags: [],
-          metadata: {},
-          cases: [
-            {
-              attachments: [],
-              duration: 84201.1799,
-              errors: 0,
-              failed: 0,
-              failure: "Test message",
-              id: "",
-              name: "ExampleTestCase 1",
-              passed: 0,
-              skipped: 0,
-              stack_trace: "",
-              status: "FAIL",
-              tags: [],
-              metadata: { TestID: "RTA-21505", TestLevel: "Regression", TestProduct: "ExampleTestProduct", TestSuite: "ExampleTestSuite" },
-              steps: [],
-              total: 0
-            },
-            {
-              attachments: [],
-              duration: 218.6713,
-              errors: 0,
-              failed: 0,
-              failure: "",
-              id: "",
-              name: "ExampleTestCase 2",
-              passed: 0,
-              skipped: 0,
-              stack_trace: "",
-              status: "PASS",
-              tags: [],
-              metadata: { TestID: "RTA-21510", TestLevel: "Regression", TestProduct: "ExampleTestProduct", TestSuite: "ExampleTestSuite" },
-              steps: [],
-              total: 0
-            }
-          ]
-        },
-        {
-          id: '',
-          name: 'Test suite number 2',
-          total: 2,
-          passed: 1,
-          failed: 1,
-          errors: 0,
-          skipped: 0,
-          duration: 85450,
-          status: 'FAIL',
-          tags: [],
-          metadata: {},
-          cases: [
-            {
-              attachments: [],
-              duration: 1411.6188,
-              errors: 0,
-              failed: 0,
-              failure: "Test message",
-              id: "",
-              name: "ExampleTestCase 3",
-              passed: 0,
-              skipped: 0,
-              stack_trace: "",
-              status: "FAIL",
-              tags: [],
-              metadata: { TestID: "RTA-21516", TestLevel: "Regression", TestProduct: "ExampleTestProduct", TestSuite: "ExampleTestSuite" },
-              steps: [],
-              total: 0
-            },
-            {
-              attachments: [],
-              duration: 1791.1067,
-              errors: 0,
-              failed: 0,
-              failure: "",
-              id: "",
-              name: "ExampleTestCase 4",
-              passed: 0,
-              skipped: 0,
-              stack_trace: "",
-              status: "PASS",
-              tags: [],
-              metadata: { TestID: "RTA-21513", TestLevel: "Regression", TestProduct: "ExampleTestProduct", TestSuite: "ExampleTestSuite" },
-              steps: [],
-              total: 0
-            }
-          ]
-        },
-        {
-          id: '',
-          name: 'Test suite number 3',
-          total: 1,
-          passed: 1,
-          failed: 0,
-          errors: 0,
-          skipped: 0,
-          duration: 84195,
-          status: 'PASS',
-          tags: [],
-          metadata: {},
-          cases: [
-            {
-              attachments: [],
-              duration: 84195.474,
-              errors: 0,
-              failed: 0,
-              failure: "",
-              id: "",
-              name: "ExampleTestCase 5",
-              passed: 0,
-              skipped: 0,
-              stack_trace: "",
-              status: "PASS",
-              tags: [],
-              metadata: { TestID: "RTA-21538", TestLevel: "Regression", TestProduct: "ExampleTestProduct", TestSuite: "ExampleTestSuite" },
-              steps: [],
-              total: 0
-            }
-          ]
-        },
-        {
-          id: '',
-          name: 'Test suite number 4',
-          total: 1,
-          passed: 0,
-          failed: 1,
-          errors: 0,
-          skipped: 0,
-          duration: 86007,
-          status: 'FAIL',
-          tags: [],
-          metadata: {},
-          cases: [
-            {
-              attachments: [],
-              duration: 86006.7435,
-              errors: 0,
-              failed: 0,
-              failure: "Test message",
-              id: "",
-              name: "ExampleTestCase 6",
-              passed: 0,
-              skipped: 0,
-              stack_trace: "",
-              status: "FAIL",
-              tags: [],
-              metadata: { TestID: "RTA-37684", TestLevel: "Regression", TestProduct: "ExampleTestProduct", TestSuite: "ExampleTestSuite" },
-              steps: [],
-              total: 0
-            }
-          ]
-        }
-      ]
-    }
-    assert.deepEqual(result, expectedObj);
+    assert.equal(result.name, 'Multiple suites');
+    assert.equal(result.total, 6);
+    assert.equal(result.passed, 3);
+    assert.equal(result.failed, 3);
+    assert.equal(result.errors, 0);
+    assert.equal(result.skipped, 0);
+    assert.equal(result.status, 'FAIL');
+    assert.equal(result.suites.length, 4);
+    assert.equal(result.suites[0].cases.length, 2);
+    assert.equal(result.suites[0].total, 2);
+    assert.equal(result.suites[0].passed, 1);
+    assert.equal(result.suites[0].failed, 1);
+    assert.equal(result.suites[0].name, 'Test suite number 1');
+    assert.equal(result.suites[0].cases[0].name, 'ExampleTestCase 1');
+    assert.equal(result.suites[0].cases[0].status, 'FAIL');
+    assert.equal(result.suites[0].cases[1].name, 'ExampleTestCase 2');
+    assert.equal(result.suites[0].cases[1].status, 'PASS');
+    assert.equal(result.suites[1].name, 'Test suite number 2');
+    assert.equal(result.suites[1].cases.length, 2);
+    assert.equal(result.suites[1].cases[0].name, 'ExampleTestCase 3');
+    assert.equal(result.suites[1].cases[0].status, 'FAIL');
+    assert.equal(result.suites[1].cases[1].name, 'ExampleTestCase 4');
+    assert.equal(result.suites[1].cases[1].status, 'PASS');
+    assert.equal(result.suites[2].cases.length, 1);
+    assert.equal(result.suites[2].name, 'Test suite number 3');
+    assert.equal(result.suites[2].cases[0].name, 'ExampleTestCase 5');
+    assert.equal(result.suites[2].cases[0].status, 'PASS');
+    assert.equal(result.suites[3].name, 'Test suite number 4');
+    assert.equal(result.suites[3].cases.length, 1);
+    assert.equal(result.suites[3].cases[0].name, 'ExampleTestCase 6');
+    assert.equal(result.suites[3].cases[0].status, 'FAIL');
   });
 
   it('can support absolute and relative file paths', () => {

@@ -38,6 +38,8 @@ describe('Parser - JUnit', () => {
             {
               attachments: [],
               duration: 10000,
+              startTime: undefined,
+              endTime: undefined,
               errors: 0,
               failed: 0,
               failure: "PROGRAM.cbl:2 Use a program name that matches the source file name",
@@ -90,6 +92,8 @@ describe('Parser - JUnit', () => {
             {
               attachments: [],
               duration: 10000,
+              startTime: undefined,
+              endTime: undefined,
               errors: 0,
               failed: 0,
               failure: "",
@@ -142,6 +146,8 @@ describe('Parser - JUnit', () => {
             {
               attachments: [],
               duration: 10000,
+              startTime: undefined,
+              endTime: undefined,
               errors: 0,
               failed: 0,
               failure: "",
@@ -194,6 +200,8 @@ describe('Parser - JUnit', () => {
             {
               attachments: [],
               duration: 10000,
+              startTime: undefined,
+              endTime: undefined,
               errors: 0,
               failed: 0,
               failure: "PROGRAM.cbl:2 Use a program name that matches the source file name",
@@ -226,6 +234,8 @@ describe('Parser - JUnit', () => {
             {
               attachments: [],
               duration: 10000,
+              startTime: undefined,
+              endTime: undefined,
               errors: 0,
               failed: 0,
               failure: "PROGRAM.cbl:2 Use a program name that matches the source file name",
@@ -278,6 +288,8 @@ describe('Parser - JUnit', () => {
             {
               attachments: [],
               duration: 10000,
+              startTime: undefined,
+              endTime: undefined,
               errors: 0,
               failed: 0,
               failure: "PROGRAM.cbl:2 Use a program name that matches the source file name",
@@ -310,6 +322,8 @@ describe('Parser - JUnit', () => {
             {
               attachments: [],
               duration: 10000,
+              startTime: undefined,
+              endTime: undefined,
               errors: 0,
               failed: 0,
               failure: "PROGRAM.cbl:2 Use a program name that matches the source file name",
@@ -362,6 +376,8 @@ describe('Parser - JUnit', () => {
             {
               attachments: [],
               duration: 807,
+              startTime: undefined,
+              endTime: undefined,
               errors: 0,
               failed: 0,
               failure: "",
@@ -420,6 +436,8 @@ describe('Parser - JUnit', () => {
               errors: 0,
               skipped: 0,
               duration: 446,
+              startTime: undefined,
+              endTime: undefined,
               status: "FAIL",
               failure: "expected to include 'Residntial'",
               stack_trace: "",
@@ -437,6 +455,8 @@ describe('Parser - JUnit', () => {
               errors: 0,
               skipped: 0,
               duration: 446,
+              startTime: undefined,
+              endTime: undefined,
               status: "PASS",
               failure: "",
               stack_trace: "",
@@ -469,6 +489,8 @@ describe('Parser - JUnit', () => {
               errors: 0,
               skipped: 0,
               duration: 634,
+              startTime: undefined,
+              endTime: undefined,
               status: "PASS",
               failure: "",
               stack_trace: "",
