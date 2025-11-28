@@ -2,15 +2,11 @@
 *  Parser for both Mocha Json report and Mochawesome json
 */
 const { resolveFilePath } = require('../helpers/helper');
+const { getDate } = require('./base.helpers');
 
 const TestResult = require('../models/TestResult');
 const TestSuite = require('../models/TestSuite');
 const TestCase = require('../models/TestCase');
-
-function getDate(rawDate) {
-  if (!rawDate) return null;
-  return new Date(rawDate);
-}
 
 function setFailure(test_case, rawCase) {
   test_case.status = 'FAIL';

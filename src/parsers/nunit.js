@@ -1,4 +1,5 @@
 const { getJsonFromXMLFile } = require('../helpers/helper');
+const { getDate } = require('./base.helpers');
 
 const TestResult = require('../models/TestResult');
 const TestSuite = require('../models/TestSuite');
@@ -43,11 +44,6 @@ function mergeMeta(map1, map2) {
   for (let kvp of Object.entries(map1)) {
     map2[kvp[0]] = kvp[1];
   }
-}
-
-function getDate(rawDate) {
-  if (!rawDate) return null;
-  return new Date(rawDate);
 }
 
 /**

@@ -1,15 +1,11 @@
 const path = require('path');
+const { getStartAndEndTime, getDate } = require('./base.helpers');
 const { getJsonFromXMLFile } = require('../helpers/helper');
 
 const TestResult = require('../models/TestResult');
 const TestSuite = require('../models/TestSuite');
 const TestCase = require('../models/TestCase');
 const TestAttachment = require('../models/TestAttachment');
-
-function getDate(rawDate) {
-  if (!rawDate) return null;
-  return new Date(rawDate);
-}
 
 function getTestCase(rawCase, suite_meta) {
   const test_case = new TestCase();
@@ -192,20 +188,7 @@ function setAggregateResults(result) {
     result.duration = duration;
   }
   // find earliest start time and latest end time
-  let startTime = null;
-  let endTime = null;
-  result.suites.forEach(_suite => {
-    if (_suite.startTime) {
-      if (!startTime || _suite.startTime < startTime) {
-        startTime = _suite.startTime;
-      }
-    }
-    if (_suite.endTime) {
-      if (!endTime || _suite.endTime > endTime) {
-        endTime = _suite.endTime;
-      }
-    }
-  });
+  const { startTime, endTime } = getStartAndEndTime(result.suites);
   result.startTime = startTime;
   result.endTime = endTime;
 }
