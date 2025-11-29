@@ -132,4 +132,63 @@ describe('Parser - XUnit', () => {
     assert.equal(result.endTime.toISOString(), '2021-07-21T12:27:56.006Z');
     assert.equal(result.duration, 86006.5);
   });
+
+  context('V3 schema', () => {
+    it('should include fullname for test cases', () => {
+      const result = parse({ type: 'xunit', files: [`${testDataPath}/xunit3.xml`] });
+      assert.equal(result.suites[0].cases[0].name, 'XUnit3Example.UnitTest1.Test1');
+    });
+
+    it('should express durations in milliseconds', () => {
+      const result = parse({ type: 'xunit', files: [`${testDataPath}/xunit3.xml`] });
+      assert.equal(result.suites[0].cases[0].duration, 12.5588);
+    });
+
+    it('should map passed tests correctly', () => {
+      const result = parse({ type: 'xunit', files: [`${testDataPath}/xunit3.xml`] });
+      assert.equal(result.total, 1);
+      assert.equal(result.passed, 1);
+      assert.equal(result.status, "PASS");
+      assert.equal(result.suites[0].cases[0].status, "PASS");
+    });
+
+    it('should map failed tests correctly', () => {
+      const result = parse({ type: 'xunit', files: [`${testDataPath}/xunit3_fail.xml`] });
+      assert.equal(result.total, 1);
+      assert.equal(result.failed, 1);
+      assert.equal(result.status, "FAIL");
+      assert.equal(result.suites[0].cases[0].status, "FAIL");
+      assert.match(result.suites[0].cases[0].failure, /Assert\.True\(\) Failure/);
+      assert.match(result.suites[0].cases[0].stack_trace, /at XUnit3Example2\.UnitTest2\.FailingTest/);
+    });
+
+    it('should map skipped tests correctly', () => {
+      const result = parse({ type: 'xunit', files: [`${testDataPath}/xunit3_skipped.xml`] });
+      assert.equal(result.total, 2);
+      assert.equal(result.skipped, 2);
+      assert.equal(result.status, "PASS");
+      assert.equal(result.suites[0].cases[0].status, "SKIP");
+      assert.equal(result.suites[0].cases[1].status, "SKIP");
+    });
+
+    it('should include started and completed timestamps on overall result', () => {
+      const result = parse({ type: 'xunit', files: [`${testDataPath}/xunit3.xml`] });
+
+      assert.equal(result.startTime.toISOString(), '2025-11-29T00:10:25.822Z');
+      assert.equal(result.endTime.toISOString(), '2025-11-29T00:10:25.903Z');
+    });
+
+    it('should include started and completed timestamps on suites', () => {
+      const result = parse({ type: 'xunit', files: [`${testDataPath}/xunit3.xml`] });
+      assert.equal(result.suites[0].startTime.toISOString(), '2025-11-29T00:10:25.883Z');
+      assert.equal(result.suites[0].endTime.toISOString(), '2025-11-29T00:10:25.903Z');
+    });
+
+    it('should include started and completed timestamps on tests', () => {
+      const result = parse({ type: 'xunit', files: [`${testDataPath}/xunit3.xml`] });
+      assert.equal(result.suites[0].cases[0].startTime.toISOString(), '2025-11-29T00:10:25.883Z');
+      assert.equal(result.suites[0].cases[0].endTime.toISOString(), '2025-11-29T00:10:25.903Z');
+    });
+  })
+
 });

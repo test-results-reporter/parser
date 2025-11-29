@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<assemblies schema-version="3" id="ea6a6a1a-80b2-4dc4-8a52-763fdc8d1809" computer="REDACTED" user="bryan.b.cook" start-rtf="2025-11-29T12:55:11.6027425-05:00" finish-rtf="2025-11-29T17:55:12.1964676+00:00" timestamp="11/29/2025 12:55:12">
+    <assembly environment="64-bit (x64) .NET 9.0.5 [collection-per-class, parallel (8 threads)]" id="cbedf6bb-f5a9-4b70-a3c5-1d23d310ba60" name="C:\dev\code\_Experiments\NUnitSample\XUnit3Example2\bin\Debug\net9.0\XUnit3Example2.dll" run-date="2025-11-29" run-time="12:55:11" start-rtf="2025-11-29T12:55:11.6027425-05:00" test-framework="xUnit.net v3 3.2.1+a9cfb80929" target-framework=".NETCoreApp,Version=v9.0" errors="0" failed="1" finish-rtf="2025-11-29T12:55:12.2215179-05:00" not-run="0" passed="0" skipped="0" time="0.620" time-rtf="00:00:00.6196909" total="1">
+        <collection name="Test collection for XUnit3Example2.UnitTest2 (id: e2a89a2854a1ef75dbb666d7cf7140e6291ed596e1d5d7fd8e7692dec1f50b58)" id="f4997702-e4cb-4f89-8cc8-07d5af449f0f" failed="1" not-run="0" passed="0" skipped="0" time="0.403" time-rtf="00:00:00.4027142" total="1">
+            <test id="da8a12e7-1d37-4aed-859c-8b71802bbfe2" name="XUnit3Example2.UnitTest2.FailingTest" result="Fail" time="0.4027142" time-rtf="00:00:00.4027142" start-rtf="2025-11-29T17:55:11.7313132+00:00" finish-rtf="2025-11-29T17:55:12.1964676+00:00" type="XUnit3Example2.UnitTest2" method="FailingTest" source-file="C:\dev\code\_Experiments\NUnitSample\XUnit3Example2\UnitTest2.cs" source-line="5">
+                <failure exception-type="Xunit.Sdk.TrueException">
+                    <message>
+                        <![CDATA[Assert.True() Failure
+Expected: True
+Actual:   False]]>
+                    </message>
+                    <stack-trace>
+                        <![CDATA[   at XUnit3Example2.UnitTest2.FailingTest() in C:\dev\code\_Experiments\NUnitSample\XUnit3Example2\UnitTest1.cs:line 8
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)]]>
+                    </stack-trace>
+                </failure>
+            </test>
+        </collection>
+    </assembly>
+</assemblies>

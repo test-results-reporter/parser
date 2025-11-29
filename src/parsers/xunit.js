@@ -1,6 +1,6 @@
 const { getJsonFromXMLFile } = require('../helpers/helper');
 const { BaseParser } = require('./base.parser');
-const { getDate } = require('./base.helpers');
+const { getDate, getStartAndEndTime } = require('./base.helpers');
 
 const TestResult = require('../models/TestResult');
 const TestSuite = require('../models/TestSuite');
@@ -68,6 +68,9 @@ class XUnitParser extends BaseParser {
         suite.cases.push(this.#getTestCase(raw_test_cases[i]));
       }
     }
+    const { startTime, endTime } = getStartAndEndTime(suite.cases);
+    suite.startTime = startTime;
+    suite.endTime = endTime;
     return suite;
   }
 
@@ -75,9 +78,9 @@ class XUnitParser extends BaseParser {
     const test_case = new TestCase();
     test_case.name = rawCase["@_name"];
     test_case.duration = rawCase["@_time"] * 1000;
-    // // v3 schema supports rtf
-    // test_case.startTime = getDate(rawCase["@_start-rtf"]);
-    // test_case.endTime = getDate(rawCase["@_finish-rtf"]);
+    // v3 schema supports rtf
+    test_case.startTime = getDate(rawCase["@_start-rtf"]);
+    test_case.endTime = getDate(rawCase["@_finish-rtf"]);
     if(rawCase["@_result"] == "Skip")
     {
       test_case.status = 'SKIP';
@@ -103,18 +106,18 @@ class XUnitParser extends BaseParser {
   #setResultStartEndTimes() {
     const assemblies = this.raw_result["assemblies"];
     if (assemblies) {
-      // if (assemblies["@_schema-version"] === 3) {
-      //   // use round-trippable format date strings
-      //   this.result.startTime = getDate(assemblies["@_start-rtf"]);
-      //   this.result.endTime = getDate(assemblies["@_finish-rtf"]);
-      // }
-      // else {
+      if (assemblies["@_schema-version"] === 3) {
+        // use round-trippable format date strings
+        this.result.startTime = getDate(assemblies["@_start-rtf"]);
+        this.result.endTime = getDate(assemblies["@_finish-rtf"]);
+      }
+      else {
         // compute from duration
         const startTime = getDate(assemblies["@_timestamp"]);
         const endTime = new Date(startTime.getTime() + (this.result.duration || 0));
         this.result.startTime = startTime;
         this.result.endTime = endTime;
-     // }
+     }
     }
   }
   
