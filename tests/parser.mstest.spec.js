@@ -23,8 +23,7 @@ describe('Parser - MSTest', () => {
 
   it('Should express durations in milliseconds', () => {
     //trx represents timestamps with microseconds 00:00:00.1234567
-    const testDataPath = "tests/data/mstest/testresults.trx";
-    const result = parse({ type: 'mstest', files: [testDataPath] });
+    const result = parse({ type: 'mstest', files: [`${testDataPath}/testresults.trx`] });
 
     const failingTest = result.suites[0].cases.find(test => test.name === 'MSTestSample.MockTestFixture.FailingTest');
     assert.equal(failingTest.duration, 25.9239);
@@ -43,14 +42,27 @@ describe('Parser - MSTest', () => {
   })
 
   it('Should include started and completed timestamps on tests', () => {
-    const testDataPath = "tests/data/mstest/testresults_pass.trx";
-    const result = parse({ type: 'mstest', files: [testDataPath] });
+    const result = parse({ type: 'mstest', files: [`${testDataPath}/testresults_pass.trx`] });
     assert.equal(result.total, 1);
     result.suites[0].cases.forEach(test => {
       assert.ok(test.startTime instanceof Date);
       assert.ok(test.endTime instanceof Date);
-      assert.equal(test.endTime >= test.startTime, true);
+      assert.ok(test.endTime >= test.startTime);
     });
+  });
+
+  it('Should include started and completed timestamps on suites', () => {
+    const result = parse({ type: 'mstest', files: [`${testDataPath}/testresults_pass.trx`] });
+    assert.ok(result.suites[0].startTime instanceof Date);
+    assert.ok(result.suites[0].endTime instanceof Date);
+    assert.ok(result.suites[0].endTime >= result.suites[0].startTime);
+  });
+
+  it('Should include started and completed timestamps on overall result', () => {
+    const result = parse({ type: 'mstest', files: [`${testDataPath}/testresults_pass.trx`] });
+    assert.ok(result.startTime instanceof Date);
+    assert.ok(result.endTime instanceof Date);
+    assert.ok(result.endTime >= result.startTime);
   });
 
   it('Should map results correctly', () => {

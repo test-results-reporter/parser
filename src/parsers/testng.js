@@ -1,4 +1,5 @@
 const { getJsonFromXMLFile } = require('../helpers/helper');
+const { getStartAndEndTime } = require('./base.helpers');
 
 const TestResult = require('../models/TestResult');
 const TestSuite = require('../models/TestSuite');
@@ -65,6 +66,8 @@ function getTestSuiteFromTest(rawTest, testCaseToGroupMap) {
   const suite = new TestSuite();
   suite.name = rawTest['@_name'];
   suite.duration = rawTest['@_duration-ms'];
+  suite.startTime = getDate(rawTest['@_started-at']);
+  suite.endTime = getDate(rawTest['@_finished-at']);
   const rawTestMethods = [];
   const rawClasses = rawTest.class;
   for (let i = 0; i < rawClasses.length; i++) {
@@ -94,6 +97,8 @@ function getTestSuite(rawSuite) {
   const suite = new TestSuite();
   suite.name = rawSuite['@_name'];
   suite.duration = rawSuite['@_duration-ms'];
+  suite.startTime = getDate(rawSuite['@_started-at']);
+  suite.endTime = getDate(rawSuite['@_finished-at']);
   const rawTests = rawSuite.test;
   const rawTestMethods = [];
   const testCaseToGroupMap = getSuiteGroups(rawSuite);
@@ -149,7 +154,7 @@ function parse(file) {
   const suitesWithTests = suites.filter(suite => suite.test && suite['@_duration-ms'] > 0);
 
   if (suitesWithTests.length > 1) {
-    for (let i = 0; i < suitesWithTests.length; i++) {
+    for (let i = 0; i < suitesWithTests.length; i++) {     
       const _suite = getTestSuite(suitesWithTests[i]);
       result.suites.push(_suite);
       result.duration += _suite.duration;
@@ -174,6 +179,9 @@ function parse(file) {
     console.warn("No suites with tests found");
   }
   result.status = result.total === result.passed ? 'PASS' : 'FAIL';
+  const { startTime, endTime } = getStartAndEndTime(result.suites);
+  result.startTime = startTime;
+  result.endTime = endTime;
   return result;
 }
 

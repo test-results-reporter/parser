@@ -5,6 +5,7 @@ const path = require('path');
 describe('Parser - TestNG', () => {
   const testDataPath = "tests/data/testng"
   it('single suite with single test', () => {
+    // TODO: verify timestamp differences between suites + tests
     const result = parse({ type: 'testng', files: [`${testDataPath}/single-suite.xml`] });
     assert.deepEqual(result, {
       id: '',
@@ -16,6 +17,8 @@ describe('Parser - TestNG', () => {
       skipped: 0,
       retried: 0,
       duration: 2000,
+      startTime: new Date('2015-03-10T06:11:58.000Z'),
+      endTime: new Date('2015-03-10T06:11:58.000Z'),
       status: 'PASS',
       tags: [],
       metadata: {},
@@ -29,6 +32,8 @@ describe('Parser - TestNG', () => {
           errors: 0,
           skipped: 0,
           duration: 2000,
+          startTime: new Date('2015-03-10T06:11:58.000Z'),
+          endTime: new Date('2015-03-10T06:11:58.000Z'),
           status: 'PASS',
           tags: [],
           metadata: {},
@@ -170,6 +175,41 @@ describe('Parser - TestNG', () => {
     assert.ok(testCase.startTime instanceof Date);
     assert.ok(testCase.endTime instanceof Date);
     assert.equal(testCase.endTime >= testCase.startTime, true);
+  });
+
+  it('captures suite started and complete timestamps', () => {
+    const result = parse({ type: 'testng', files: [`${testDataPath}/single-suite.xml`] });
+    const suite = result.suites[0];
+    assert.notEqual(suite.startTime, undefined);
+    assert.notEqual(suite.endTime, undefined);
+    assert.ok(suite.startTime instanceof Date);
+    assert.ok(suite.endTime instanceof Date);
+    assert.equal(suite.endTime >= suite.startTime, true);
+  });
+
+  it('captures overall test run started and complete timestamps', () => {
+    const result = parse({ type: 'testng', files: [`${testDataPath}/single-suite.xml`] });
+    assert.notEqual(result.startTime, undefined);
+    assert.notEqual(result.endTime, undefined);
+    assert.ok(result.startTime instanceof Date);
+    assert.ok(result.endTime instanceof Date);
+    assert.equal(result.endTime >= result.startTime, true);
+  });
+
+  it('captures started and completed across multiple suites', () => {
+    // TODO: verify timestamp differences between suites + tests
+    const result = parse({ type: 'testng', files: [`${testDataPath}/multiple-suites-multiple-tests.xml`] });
+    // inspect result
+    assert.ok(result.startTime instanceof Date);
+    assert.ok(result.endTime instanceof Date);
+    assert.equal(result.endTime >= result.startTime, true);
+
+    assert.ok(result.suites.length > 1);
+    result.suites.forEach(suite => {
+      assert.ok(suite.startTime instanceof Date);
+      assert.ok(suite.endTime instanceof Date);
+      assert.equal(suite.endTime >= suite.startTime, true);
+    });
   });
 
   // todo: review totals when there are failures in setup or teardown

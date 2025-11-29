@@ -1,4 +1,5 @@
 const path = require('path');
+const { getStartAndEndTime, getDate } = require('./base.helpers');
 const { getJsonFromXMLFile } = require('../helpers/helper');
 
 const TestResult = require('../models/TestResult');
@@ -62,6 +63,10 @@ function getTestSuite(rawSuite) {
   suite.total = suite.total - suite.skipped;
   suite.passed = suite.total - suite.failed - suite.errors;
   suite.duration = rawSuite["@_time"] * 1000;
+  suite.startTime = getDate(rawSuite["@_timestamp"]);
+  if (suite.startTime && suite.duration) {
+    suite.endTime = new Date(suite.startTime.getTime() + suite.duration);
+  }
   suite.status = suite.total === suite.passed ? 'PASS' : 'FAIL';
   setMetaData(rawSuite, suite);
   const raw_test_cases = rawSuite.testcase;
@@ -182,6 +187,10 @@ function setAggregateResults(result) {
     });
     result.duration = duration;
   }
+  // find earliest start time and latest end time
+  const { startTime, endTime } = getStartAndEndTime(result.suites);
+  result.startTime = startTime;
+  result.endTime = endTime;
 }
 
 /**

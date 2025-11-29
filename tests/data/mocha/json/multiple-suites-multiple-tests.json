@@ -47,8 +47,8 @@
   "pending": [],
   "failures": [
     {
-      "title": "sample test case",
-      "fullTitle": "Example Suite 2 sample test case",
+      "title": "Suite2 test case",
+      "fullTitle": "Example Suite 2 Suite2 test case",
       "file": "",
       "duration": 1,
       "currentRetry": 0,

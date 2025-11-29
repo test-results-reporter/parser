@@ -1,4 +1,5 @@
 const { getJsonFromXMLFile } = require('../helpers/helper');
+const { getDate } = require('./base.helpers');
 
 const TestResult = require('../models/TestResult');
 const TestSuite = require('../models/TestSuite');
@@ -43,11 +44,6 @@ function mergeMeta(map1, map2) {
   for (let kvp of Object.entries(map1)) {
     map2[kvp[0]] = kvp[1];
   }
-}
-
-function getDate(rawDate) {
-  if (!rawDate) return null;
-  return new Date(rawDate);
 }
 
 /**
@@ -192,6 +188,8 @@ function getTestSuites(rawSuites, assembly_meta) {
       suite.id = rawSuite["@_id"] ?? '';
       suite.name = rawSuite["@_fullname"] ?? rawSuite["@_name"];
       suite.duration = (rawSuite["@_time"] ?? rawSuite["@_duration"]) * 1000; // in milliseconds
+      suite.startTime = getDate(rawSuite["@_start-time"]);
+      suite.endTime = getDate(rawSuite["@_end-time"]);
       suite.status = RESULT_MAP[rawSuite["@_result"]];
       if (rawSuite["@_label"] == "Invalid") {
         suite.status = "SKIP"; // treat invalid suites as skipped
@@ -238,6 +236,22 @@ function getTestResult(json) {
   result.failed = result.suites.reduce((total, suite) => { return total + suite.failed }, 0);
   result.skipped = result.suites.reduce((total, suite) => { return total + suite.skipped }, 0);
   result.errors = result.suites.reduce((total, suite) => { return total + suite.errors }, 0);
+
+  // nunit v2 has date + time and duration from test cases  
+  if (nunitVersion == "v2") {
+    let date = rawResult["@_date"];
+    let time = rawResult["@_time"];
+    if (date && time) {
+      let startTime = getDate(`${date}T${time}Z`); // always assume UTC
+      result.startTime = startTime;
+      result.endTime = new Date(startTime.getTime() + result.duration);
+    }
+  }
+  // nunit v3 includes start and end times at the test run level
+  if (nunitVersion == "v3") {
+    result.startTime = getDate(rawResult["@_start-time"]);
+    result.endTime = getDate(rawResult["@_end-time"]);
+  }
 
   return result;
 }

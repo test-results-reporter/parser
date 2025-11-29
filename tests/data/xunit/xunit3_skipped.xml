@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<assemblies schema-version="3" id="84797388-42dd-4397-9c9f-15ef1d0d97dd" computer="REDACTED" user="bryan.b.cook" start-rtf="2025-11-29T14:04:06.8794470-05:00" finish-rtf="2025-11-29T19:04:07.4105202+00:00" timestamp="11/29/2025 14:04:07">
+    <assembly environment="64-bit (x64) .NET 9.0.5 [collection-per-class, parallel (8 threads)]" id="0a6fc902-468f-4fab-8b63-b346afae891d" name="C:\dev\code\_Experiments\NUnitSample\XUnit3Example3\bin\Debug\net9.0\XUnit3Example3.dll" run-date="2025-11-29" run-time="14:04:06" start-rtf="2025-11-29T14:04:06.8794470-05:00" test-framework="xUnit.net v3 3.2.1+a9cfb80929" target-framework=".NETCoreApp,Version=v9.0" errors="0" failed="0" finish-rtf="2025-11-29T14:04:07.4215968-05:00" not-run="0" passed="0" skipped="2" time="0.543" time-rtf="00:00:00.5433141" total="2">
+        <collection name="Test collection for XUnit3Example3.UnitTest3 (id: 1b6e8853d470ca4c9afbf95b777890c583759ffce308bdb8741a06a721f016c2)" id="83b6a838-637f-4c07-934b-654c64fcc4c0" failed="0" not-run="0" passed="0" skipped="2" time="0.399" time-rtf="00:00:00.3985355" total="2">
+            <test id="ce2b8ccf-93ad-4db9-b5d0-4fe2267a933c" name="XUnit3Example3.UnitTest3.Ignored2" result="Skip" time="0" time-rtf="00:00:00.0000000" start-rtf="2025-11-29T19:04:06.9985425+00:00" finish-rtf="2025-11-29T19:04:07.4045453+00:00" type="XUnit3Example3.UnitTest3" method="Ignored2" source-file="C:\dev\code\_Experiments\NUnitSample\XUnit3Example3\UnitTest3.cs" source-line="10">
+                <reason><![CDATA[Skipped in test]]></reason>
+            </test>
+            <test id="c21549f3-5f4a-4d4b-89dc-bfcd786e32e6" name="XUnit3Example3.UnitTest3.Ignored1" result="Skip" time="0" time-rtf="00:00:00.0000000" start-rtf="2025-11-29T19:04:07.4104730+00:00" finish-rtf="2025-11-29T19:04:07.4105202+00:00" type="XUnit3Example3.UnitTest3" method="Ignored1" source-file="C:\dev\code\_Experiments\NUnitSample\XUnit3Example3\UnitTest3.cs" source-line="5">
+                <reason><![CDATA[Skipped in attribute]]></reason>
+            </test>
+        </collection>
+    </assembly>
+</assemblies>
