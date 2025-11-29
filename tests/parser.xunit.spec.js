@@ -125,4 +125,11 @@ describe('Parser - XUnit', () => {
     assert.equal(result.status, "PASS");
   });
 
+  it('Should compute started and completed timestamps on overall result', () => {
+    const result = parse({ type: 'xunit', files: [`${testDataPath}/single-suite.xml`] });
+
+    assert.equal(result.startTime.toISOString(), '2021-07-21T12:26:30.000Z');
+    assert.equal(result.endTime.toISOString(), '2021-07-21T12:27:56.006Z');
+    assert.equal(result.duration, 86006.5);
+  });
 });

@@ -12,6 +12,7 @@ const { XMLParser } = require("fast-xml-parser");
  * @type {string[]}
  */
 const FORCED_ARRAY_KEYS = [
+  // junit
   "testsuites",
   "testsuites.testsuite",
   "testsuites.testsuite.testcase",
@@ -24,12 +25,13 @@ const FORCED_ARRAY_KEYS = [
   "testsuite.testcase.error",
   "testsuite.testcase.system-err",
   "testsuite.testcase.properties.property",
-  "assemblies",
+  // xunit
   "assemblies.assembly",
   "assemblies.assembly.collection",
   "assemblies.assembly.collection.test",
   "assemblies.assembly.collection.test.failure",
   "assemblies.assembly.collection.test.traits.trait",
+  // testng
   "testng-results",
   "testng-results.suite",
   "testng-results.suite.groups.group",
@@ -38,6 +40,7 @@ const FORCED_ARRAY_KEYS = [
   "testng-results.suite.test.class",
   "testng-results.suite.test.class.test-method",
   "testng-results.suite.test.class.test-method.exception",
+  // mstest
   "TestRun.Results.UnitTestResult",
   "TestRun.Results.UnitTestResult.ResultFiles.ResultFile",
   "TestRun.TestDefinitions.UnitTest",
