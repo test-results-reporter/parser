@@ -128,8 +128,12 @@ describe('Parser - XUnit', () => {
   it('Should compute started and completed timestamps on overall result', () => {
     const result = parse({ type: 'xunit', files: [`${testDataPath}/single-suite.xml`] });
 
-    assert.equal(result.startTime.toISOString(), '2021-07-21T12:26:30.000Z');
-    assert.equal(result.endTime.toISOString(), '2021-07-21T12:27:56.006Z');
+    // timestamp represented in this file are expressed in local presentational format without timezone info
+    // so it assumes the timezone of the local machine running the test
+    assert.ok(result.startTime instanceof Date);
+    assert.ok(result.endTime instanceof Date);
+    let milliseconds = result.endTime - result.startTime;
+    assert.equal(milliseconds, 86006);
     assert.equal(result.duration, 86006.5);
   });
 
