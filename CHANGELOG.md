@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.4.0](https://github.com/test-results-reporter/parser/compare/test-results-parser-v0.3.0...test-results-parser-v0.4.0) (2025-11-28)
+
+
+### Features
+
+* Add startTime+endTime timestamps to test case results ([#108](https://github.com/test-results-reporter/parser/issues/108)) ([753dbaa](https://github.com/test-results-reporter/parser/commit/753dbaab12d4e8f5f3913fdcc96a88865be58808))
+
+
+### Bug Fixes
+
+* handle skipped cucumber scenarios ([#109](https://github.com/test-results-reporter/parser/issues/109)) ([0917655](https://github.com/test-results-reporter/parser/commit/0917655d7b3088442fa9815979aff777bc933d4d))
+
 ## [0.3.0](https://github.com/test-results-reporter/parser/compare/test-results-parser-v0.2.9...test-results-parser-v0.3.0) (2025-11-16)
 
 
