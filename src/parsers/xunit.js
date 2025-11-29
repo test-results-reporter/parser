@@ -15,6 +15,7 @@ function getTestCase(rawCase) {
   else if (rawCase.failure && rawCase.failure.length > 0) {
     test_case.status = 'FAIL';
     test_case.setFailure(rawCase.failure[0]["message"]);
+    test_case.stack_trace = rawCase.failure[0]["stack-trace"];
   }
   else {
     test_case.status = 'PASS';

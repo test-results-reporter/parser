@@ -26,6 +26,7 @@ describe('Parser - XUnit', () => {
     assert.equal(result.suites[0].cases[0].name, 'Example test case 1');
     assert.equal(result.suites[0].cases[0].status, 'FAIL');
     assert.equal(result.suites[0].cases[0].failure, 'Example of a failure message');
+    assert.match(result.suites[0].cases[0].stack_trace, /Long string with failure/);
     assert.equal(result.suites[0].cases[0].duration, 86006.5);
     assert.equal(result.suites[0].cases[0].metadata.TestID, 'ID');
     assert.equal(result.suites[0].cases[0].metadata.TestLevel, 'Regression');
