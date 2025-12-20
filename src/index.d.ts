@@ -36,6 +36,8 @@ export interface ITestCase {
   errors: number;
   skipped: number;
   duration: number;
+  startTime: Date | undefined;
+  endTime: Date | undefined;
   status: string;
   failure: string;
   stack_trace: string;
