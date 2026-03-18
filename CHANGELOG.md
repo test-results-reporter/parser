@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.3](https://github.com/test-results-reporter/parser/compare/v0.4.2...v0.4.3) (2026-03-18)
+
+
+### Miscellaneous
+
+* rename release-please.yml to publish.yaml and add id-token: write permission ([#118](https://github.com/test-results-reporter/parser/issues/118)) ([398be63](https://github.com/test-results-reporter/parser/commit/398be6301e2d59c92cd44fc51cee4fb6eca46981))
+
 ## [0.4.2](https://github.com/test-results-reporter/parser/compare/v0.4.1...v0.4.2) (2026-03-18)
 
 
