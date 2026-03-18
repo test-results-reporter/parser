@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.1](https://github.com/test-results-reporter/parser/compare/test-results-parser-v0.4.0...test-results-parser-v0.4.1) (2026-03-18)
+
+
+### Bug Fixes
+
+* release-please failure and add PR title linting ([#115](https://github.com/test-results-reporter/parser/issues/115)) ([a2ba5f6](https://github.com/test-results-reporter/parser/commit/a2ba5f635ed9a60ad9379718fba10b380212bea8))
+
 ## [0.4.0](https://github.com/test-results-reporter/parser/compare/test-results-parser-v0.3.0...test-results-parser-v0.4.0) (2025-11-28)
 
 
