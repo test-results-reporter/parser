@@ -46,9 +46,13 @@
   },
   "devDependencies": {
     "c8": "^11.0.0",
-    "mocha": "^11.7.5"
+    "mocha": "^11.3.0"
   },
   "mocha": {
     "spec": "tests/**/*.spec.js"
+  },
+  "overrides": {
+    "diff": "^8.0.3",
+    "serialize-javascript": "^7.0.4"
   }
 }
