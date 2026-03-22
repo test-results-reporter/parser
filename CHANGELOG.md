@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.4.4](https://github.com/test-results-reporter/parser/compare/v0.4.3...v0.4.4) (2026-03-22)
+
+
+### Bug Fixes
+
+* update npm packages to address security vulnerabilities ([#122](https://github.com/test-results-reporter/parser/issues/122)) ([0eb6f82](https://github.com/test-results-reporter/parser/commit/0eb6f828e331ebbe10d0c85e19749e67490cd71c))
+
+
+### Miscellaneous
+
+* Add AGENTS.md for AI coding agent guidance ([#120](https://github.com/test-results-reporter/parser/issues/120)) ([b0c75f3](https://github.com/test-results-reporter/parser/commit/b0c75f3e28e73d684077e184c35380ff0a0b02d2))
+
 ## [0.4.3](https://github.com/test-results-reporter/parser/compare/v0.4.2...v0.4.3) (2026-03-18)
 
 
