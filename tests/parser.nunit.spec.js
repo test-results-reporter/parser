@@ -299,7 +299,7 @@ describe('Parser - NUnit', () => {
       assert.equal(result.failed, 0);
       assert.equal(result.skipped, 0);
       assert.equal(result.suites.length, 0);
-      assert.equal(result.status, "PASS");
+      assert.equal(result.status, "SKIP");
     });
 
   });

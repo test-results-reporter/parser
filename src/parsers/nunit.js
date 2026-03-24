@@ -1,5 +1,5 @@
 const { getJsonFromXMLFile } = require('../helpers/helper');
-const { getDate } = require('./base.helpers');
+const { getDate, resolveStatus } = require('./base.helpers');
 
 const TestResult = require('../models/TestResult');
 const TestSuite = require('../models/TestSuite');
@@ -205,6 +205,7 @@ function getTestSuites(rawSuites, assembly_meta) {
       suite.failed = suite.cases.filter(i => i.status == "FAIL").length;
       suite.errors = suite.cases.filter(i => i.status == "ERROR").length;
       suite.skipped = suite.cases.filter(i => i.status == "SKIP").length;
+      suite.status = resolveStatus(suite.passed, suite.failed, suite.skipped, suite.errors);
 
       suites.push(suite);
     }
@@ -231,11 +232,12 @@ function getTestResult(json) {
 
   result.suites.push(...getTestSuites([rawSuite], null));
 
-  result.total = result.suites.reduce((total, suite) => { return total + suite.cases.length }, 0);
+  result.total = result.suites.reduce((total, suite) => { return total + suite.total }, 0);
   result.passed = result.suites.reduce((total, suite) => { return total + suite.passed }, 0);
   result.failed = result.suites.reduce((total, suite) => { return total + suite.failed }, 0);
   result.skipped = result.suites.reduce((total, suite) => { return total + suite.skipped }, 0);
   result.errors = result.suites.reduce((total, suite) => { return total + suite.errors }, 0);
+  result.status = resolveStatus(result.passed, result.failed, result.skipped, result.errors);
 
   // nunit v2 has date + time and duration from test cases  
   if (nunitVersion == "v2") {

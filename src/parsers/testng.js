@@ -1,5 +1,5 @@
 const { getJsonFromXMLFile } = require('../helpers/helper');
-const { getStartAndEndTime } = require('./base.helpers');
+const { getStartAndEndTime, resolveStatus } = require('./base.helpers');
 
 const TestResult = require('../models/TestResult');
 const TestSuite = require('../models/TestSuite');
@@ -86,7 +86,7 @@ function getTestSuiteFromTest(rawTest, testCaseToGroupMap) {
     suite.total = suite.total - retried;
     suite.skipped = suite.skipped - retried;
   }
-  suite.status = suite.total === suite.passed ? 'PASS' : 'FAIL';
+  suite.status = resolveStatus(suite.passed, suite.failed, suite.skipped);
   for (let i = 0; i < rawTestMethods.length; i++) {
     suite.cases.push(getTestCase(rawTestMethods[i], testCaseToGroupMap));
   }
@@ -122,7 +122,7 @@ function getTestSuite(rawSuite) {
     suite.total = suite.total - retried;
     suite.skipped = suite.skipped - retried;
   }
-  suite.status = suite.total === suite.passed ? 'PASS' : 'FAIL';
+  suite.status = resolveStatus(suite.passed, suite.failed, suite.skipped);
   for (let i = 0; i < rawTestMethods.length; i++) {
     suite.cases.push(getTestCase(rawTestMethods[i], testCaseToGroupMap));
   }
@@ -178,7 +178,7 @@ function parse(file) {
     result.duration = suite['@_duration-ms'];
     console.warn("No suites with tests found");
   }
-  result.status = result.total === result.passed ? 'PASS' : 'FAIL';
+  result.status = resolveStatus(result.passed, result.failed, result.skipped);
   const { startTime, endTime } = getStartAndEndTime(result.suites);
   result.startTime = startTime;
   result.endTime = endTime;

@@ -1,6 +1,6 @@
 const { getJsonFromXMLFile } = require('../helpers/helper');
 const { BaseParser } = require('./base.parser');
-const { getDate, getStartAndEndTime } = require('./base.helpers');
+const { getDate, getStartAndEndTime, resolveStatus } = require('./base.helpers');
 
 const TestResult = require('../models/TestResult');
 const TestSuite = require('../models/TestSuite');
@@ -47,7 +47,7 @@ class XUnitParser extends BaseParser {
       result.suites.push(this.#getTestSuite(rawSuites[i]));
     }
 
-    result.status = (result.failed + result.errors) > 0 ? "FAIL" : "PASS";
+    result.status = resolveStatus(result.passed, result.failed, result.skipped, result.errors);
     return result;
   }
 
@@ -60,8 +60,7 @@ class XUnitParser extends BaseParser {
     suite.duration = rawSuite["@_time"]  * 1000;
     // suites do not have enough information for rtf dates, compute from cases
     suite.skipped = rawSuite["@_skipped"];
-    suite.status = suite.total === suite.passed ? 'PASS' : 'FAIL';
-    suite.status = suite.skipped == suite.total ? 'PASS' : suite.status;
+    suite.status = resolveStatus(suite.passed, suite.failed, suite.skipped);
     const raw_test_cases = rawSuite.test;
     if (raw_test_cases) {
       for(let i = 0; i < raw_test_cases.length; i++) {

@@ -57,13 +57,13 @@ describe('Parser - JUnit', () => {
     assert.equal(result.failed, 0);
     assert.equal(result.skipped, 1);
     assert.equal(result.duration, 10000);
-    assert.equal(result.status, 'PASS');
+    assert.equal(result.status, 'SKIP');
     assert.equal(result.suites.length, 1);
     assert.equal(result.suites[0].name, 'suite name');
     assert.equal(result.suites[0].total, 0);
     assert.equal(result.suites[0].skipped, 1);
     assert.equal(result.suites[0].duration, 10000);
-    assert.equal(result.suites[0].status, 'PASS');
+    assert.equal(result.suites[0].status, 'SKIP');
     assert.equal(result.suites[0].cases.length, 1);
     assert.equal(result.suites[0].cases[0].status, 'SKIP');
   });
@@ -242,7 +242,7 @@ describe('Parser - JUnit', () => {
     assert.equal(result.passed, 0);
     assert.equal(result.failed, 0);
     assert.equal(result.duration, 0);
-    assert.equal(result.status, 'PASS');
+    assert.equal(result.status, 'SKIP');
     assert.equal(result.suites.length, 0);
   });
 

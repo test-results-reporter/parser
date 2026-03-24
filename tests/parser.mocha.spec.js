@@ -41,7 +41,7 @@ describe('Parser - Mocha Json', () => {
     assert.equal(result.errors, 0);
     assert.equal(result.skipped, 0);
     assert.equal(result.duration, 0);
-    assert.equal(result.status, 'PASS');
+    assert.equal(result.status, 'SKIP');
     assert.equal(result.suites.length, 0);
   });
 
@@ -168,7 +168,7 @@ describe('Parser - Mocha Awesome Json', () => {
     assert.equal(result.errors, 0);
     assert.equal(result.skipped, 0);
     assert.equal(result.duration, 0);
-    assert.equal(result.status, 'PASS');
+    assert.equal(result.status, 'SKIP');
     assert.equal(result.suites.length, 0);
   });
 
@@ -249,7 +249,7 @@ describe('Parser - Mocha Awesome Json', () => {
     assert.equal(result.skipped, 1);
     assert.equal(result.status, 'PASS');
     assert.equal(result.suites.length, 2);
-    assert.equal(result.suites[0].status, 'PASS');
+    assert.equal(result.suites[0].status, 'SKIP');
     assert.equal(result.suites[0].cases[0].name, 'first skipped test');
     assert.equal(result.suites[0].cases[0].status, 'SKIP');
     assert.equal(result.suites[1].cases[0].name, 'first passed test');

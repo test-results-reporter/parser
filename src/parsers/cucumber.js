@@ -1,6 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 const { resolveFilePath, decodeIfEncoded, isFilePath, saveAttachmentToDisk } = require('../helpers/helper');
+const { resolveStatus } = require('./base.helpers');
 
 const TestResult = require('../models/TestResult');
 const TestSuite = require('../models/TestSuite');
@@ -32,11 +33,11 @@ class CucumberParser extends BaseParser {
   #setTestResults() {
     this.result.name = '';
     this.#setTestSuites();
-    this.result.status = this.result.suites.every(suite => suite.status === "PASS") ? "PASS" : "FAIL";
     this.result.total = this.result.suites.reduce((total, suite) => total + suite.total, 0);
     this.result.passed = this.result.suites.reduce((total, suite) => total + suite.passed, 0);
     this.result.failed = this.result.suites.reduce((total, suite) => total + suite.failed, 0);
     this.result.skipped = this.result.suites.reduce((total, suite) => total + suite.skipped, 0);
+    this.result.status = resolveStatus(this.result.passed, this.result.failed, this.result.skipped, this.result.errors);
     this.result.duration = this.result.suites.reduce((total, suite) => total + suite.duration, 0);
     this.result.duration = parseFloat(this.result.duration.toFixed(2));
   }
@@ -55,7 +56,7 @@ class CucumberParser extends BaseParser {
       test_suite.skipped = test_suite.cases.filter(_ => _.status === "SKIP").length;
       test_suite.duration = test_suite.cases.reduce((total, _) => total + _.duration, 0);
       test_suite.duration = parseFloat(test_suite.duration.toFixed(2));
-      test_suite.status = test_suite.failed == 0 ? 'PASS' : 'FAIL';
+      test_suite.status = resolveStatus(test_suite.passed, test_suite.failed, test_suite.skipped);
       const { tags, metadata } = this.#getTagsAndMetadata(feature);
       test_suite.tags = tags;
       test_suite.metadata = metadata;

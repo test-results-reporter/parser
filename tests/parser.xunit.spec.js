@@ -42,7 +42,7 @@ describe('Parser - XUnit', () => {
     assert.equal(result.failed, 0);
     assert.equal(result.errors, 0);
     assert.equal(result.skipped, 1);
-    assert.equal(result.status, 'PASS');
+    assert.equal(result.status, 'SKIP');
     assert.equal(result.suites.length, 1);
     assert.equal(result.suites[0].cases.length, 1);
     assert.equal(result.suites[0].name, 'Test collection skipped');
@@ -51,6 +51,7 @@ describe('Parser - XUnit', () => {
     assert.equal(result.suites[0].failed, 0);
     assert.equal(result.suites[0].errors, 0);
     assert.equal(result.suites[0].skipped, 1);
+    assert.equal(result.suites[0].status, 'SKIP');
     assert.equal(result.suites[0].cases[0].name, 'SkippedTest');
     assert.equal(result.suites[0].cases[0].status, 'SKIP');
   });
@@ -122,7 +123,7 @@ describe('Parser - XUnit', () => {
     assert.equal(result.failed, 0);
     assert.equal(result.skipped, 0);
     assert.equal(result.suites.length, 0);
-    assert.equal(result.status, "PASS");
+    assert.equal(result.status, "SKIP");
   });
 
   it('Should compute started and completed timestamps on overall result', () => {
@@ -170,7 +171,7 @@ describe('Parser - XUnit', () => {
       const result = parse({ type: 'xunit', files: [`${testDataPath}/xunit3_skipped.xml`] });
       assert.equal(result.total, 2);
       assert.equal(result.skipped, 2);
-      assert.equal(result.status, "PASS");
+      assert.equal(result.status, "SKIP");
       assert.equal(result.suites[0].cases[0].status, "SKIP");
       assert.equal(result.suites[0].cases[1].status, "SKIP");
     });
