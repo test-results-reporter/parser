@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.5](https://github.com/test-results-reporter/parser/compare/v0.4.4...v0.4.5) (2026-03-24)
+
+
+### Bug Fixes
+
+* mark suites and results as SKIP if all tests are skipped ([#123](https://github.com/test-results-reporter/parser/issues/123)) ([4076b79](https://github.com/test-results-reporter/parser/commit/4076b7987385de116a8ccf48b48b3b016b712dd0))
+
 ## [0.4.4](https://github.com/test-results-reporter/parser/compare/v0.4.3...v0.4.4) (2026-03-22)
 
 
