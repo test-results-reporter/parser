@@ -1,5 +1,5 @@
 const { getJsonFromXMLFile } = require('../helpers/helper');
-const { getStartAndEndTime, getDate } = require('./base.helpers');
+const { getStartAndEndTime, getDate, resolveStatus } = require('./base.helpers');
 const path = require('path');
 
 const TestResult = require('../models/TestResult');
@@ -212,7 +212,7 @@ function getTestSuites(rawTestRun) {
     suite.skipped = suite.cases.filter(i => i.status == "SKIP").length;
     suite.errors = suite.cases.filter(i => i.status == "ERROR").length;
     suite.duration = suite.cases.reduce((total, test) => { return total + test.duration }, 0);
-    suite.status = (suite.failed + suite.errors) > 0 ? "FAIL" : "PASS";
+    suite.status = resolveStatus(suite.passed, suite.failed, suite.skipped, suite.errors);
     const { startTime, endTime } = getStartAndEndTime(suite.cases);
     suite.startTime = startTime;
     suite.endTime = endTime;
@@ -239,7 +239,7 @@ function getTestResult(json) {
   const { startTime, endTime } = getStartAndEndTime(result.suites);
   result.startTime = startTime;
   result.endTime = endTime;
-  result.status = (result.failed + result.errors) > 0 ? "FAIL" : "PASS";
+  result.status = resolveStatus(result.passed, result.failed, result.skipped, result.errors);
 
   return result;
 }

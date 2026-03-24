@@ -2,7 +2,7 @@
 *  Parser for both Mocha Json report and Mochawesome json
 */
 const { resolveFilePath } = require('../helpers/helper');
-const { getDate } = require('./base.helpers');
+const { getDate, resolveStatus } = require('./base.helpers');
 
 const TestResult = require('../models/TestResult');
 const TestSuite = require('../models/TestSuite');
@@ -40,7 +40,7 @@ function getTestSuite(rawSuite) {
   suite.failed = rawSuite["failures"].length;
   suite.duration = rawSuite["duration"];
   suite.skipped = rawSuite["pending"].length;
-  suite.status = suite.failed == 0 ? 'PASS' : 'FAIL';
+  suite.status = resolveStatus(suite.passed, suite.failed, suite.skipped);
   setMetaData(suite);
   const raw_test_cases = rawSuite.tests;
   if (raw_test_cases) {
@@ -84,7 +84,7 @@ function getTestResult(raw_json) {
       result.suites.push(getTestSuite(suites[i]));
     }
   }
-  result.status = (result.total - result.skipped) === result.passed ? 'PASS' : 'FAIL';
+  result.status = resolveStatus(result.passed, result.failed, result.skipped, result.errors);
   return result;
 }
 

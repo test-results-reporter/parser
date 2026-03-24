@@ -61,6 +61,7 @@ class BaseParser {
       }
     }
   }
+
 }
 
 module.exports = { BaseParser }

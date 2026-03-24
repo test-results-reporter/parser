@@ -331,7 +331,7 @@ describe('Parser - TestNG', () => {
     assert.equal(result.skipped, 0);
     assert.equal(result.retried, 0);
     assert.equal(result.duration, 0);
-    assert.equal(result.status, 'PASS');
+    assert.equal(result.status, 'SKIP');
     assert.equal(result.suites.length, 0);
   });
 

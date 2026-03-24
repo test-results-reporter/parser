@@ -7,6 +7,7 @@ const mocha = require('./mocha');
 const cucumber = require('./cucumber');
 const TestResult = require('../models/TestResult');
 const { getMatchingFilePaths } = require('../helpers/helper');
+const { resolveStatus } = require('./base.helpers');
 
 /**
  * @param {import('../models/TestResult')[]} results
@@ -39,7 +40,7 @@ function merge(results) {
       }
     }  
   }
-  main_result.status = results.every(_result => _result.status === 'PASS') ? 'PASS' : 'FAIL';
+  main_result.status = resolveStatus(main_result.passed, main_result.failed, main_result.skipped, main_result.errors);
   main_result.startTime = startTime;
   main_result.endTime = endTime;
   return main_result;

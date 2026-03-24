@@ -28,4 +28,22 @@ function getDate(rawDate) {
   return new Date(rawDate);
 }
 
-module.exports = { getStartAndEndTime, getDate }
+/**
+ *
+ * @param {number} passed
+ * @param {number} failed
+ * @param {number} skipped
+ * @param {number} errors
+ * @returns {'PASS' | 'FAIL' | 'SKIP'}
+ */
+function resolveStatus(passed, failed, skipped, errors) {
+  if (failed > 0 || errors > 0) {
+    return 'FAIL';
+  }
+  if (passed > 0) {
+    return 'PASS';
+  }
+  return 'SKIP';
+}
+
+module.exports = { getStartAndEndTime, getDate, resolveStatus }
