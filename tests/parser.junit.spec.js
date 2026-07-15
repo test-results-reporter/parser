@@ -372,6 +372,22 @@ describe('Parser - JUnit', () => {
     assert.equal(result.suites[1].cases[1].status, 'FAIL');
   });
 
+  it('playwright errors (timeouts emitted as <error>, not <failure>)', () => {
+    // Playwright emits <error> (not <failure>) for thrown errors and timeouts.
+    // Such test cases must be reported as FAIL with the error message/stack,
+    // not silently pass.
+    const result = parse({ type: 'junit', files: [`${testDataPath}/playwright-errors.xml`] });
+    assert.equal(result.total, 3);
+    assert.equal(result.status, 'FAIL');
+    const cases = result.suites[0].cases;
+    assert.equal(cases[0].status, 'PASS');
+    assert.equal(cases[1].status, 'FAIL');
+    assert.equal(cases[1].failure, 'locator.click: Timeout 5000ms exceeded.');
+    assert.match(cases[1].stack_trace, /waiting for getByRole/);
+    assert.equal(cases[2].status, 'FAIL');
+    assert.equal(cases[2].failure, 'Timeout 10000ms exceeded while waiting on the predicate');
+  });
+
   it('can capture suite start and end time', () => {
     // demonstrates that suites that have timestamps will have startTime and endTime captured
     const result = parse({ type: 'junit', files: [`${testDataPath}/newman.xml`] });

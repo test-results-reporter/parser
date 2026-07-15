@@ -14,7 +14,14 @@ function getTestCase(rawCase, suite_meta) {
   test_case.metadata = Object.assign({}, suite_meta);
   setAttachments(rawCase, test_case);
   setMetaData(rawCase, test_case);
-  if (rawCase.failure && rawCase.failure.length > 0) {
+  if (
+    (rawCase.failure && rawCase.failure.length > 0) ||
+    (rawCase.error && rawCase.error.length > 0)
+  ) {
+    // A test case is failed when it carries a <failure> OR an <error> child.
+    // Some reporters (e.g. Playwright) emit <error> for thrown errors and
+    // timeouts and <failure> only for assertion mismatches, so an <error>-only
+    // case must still be marked FAIL rather than falling through to PASS.
     test_case.status = 'FAIL';
     setErrorAndStackTrace(test_case, rawCase);
   } else if (rawCase.skipped != undefined) {
@@ -26,8 +33,12 @@ function getTestCase(rawCase, suite_meta) {
 }
 
 function setErrorAndStackTrace(test_case, raw_case) {
-  test_case.setFailure(raw_case.failure[0]["@_message"]);
-  // wdio junit reporter
+  if (raw_case.failure && raw_case.failure.length > 0) {
+    test_case.setFailure(raw_case.failure[0]["@_message"]);
+  }
+  // wdio junit reporter emits an empty <failure/> paired with <error>, and
+  // reporters like Playwright emit <error> with no <failure> at all — fall back
+  // to the error message in both cases.
   if (!test_case.failure && raw_case.error && raw_case.error.length > 0) {
     test_case.setFailure(raw_case.error[0]["@_message"]);
   }
@@ -35,8 +46,10 @@ function setErrorAndStackTrace(test_case, raw_case) {
     test_case.stack_trace = raw_case['system-err'][0];
   }
   if (!test_case.stack_trace) {
-    if (raw_case.failure[0]["#text"]) {
+    if (raw_case.failure && raw_case.failure[0]["#text"]) {
       test_case.stack_trace = raw_case.failure[0]["#text"];
+    } else if (raw_case.error && raw_case.error[0]["#text"]) {
+      test_case.stack_trace = raw_case.error[0]["#text"];
     }
   }
 }

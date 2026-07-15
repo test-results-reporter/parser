@@ -1,0 +1,17 @@
+<testsuites id="" name="" tests="3" failures="0" skipped="0" errors="2" time="17.5">
+<testsuite name="example.spec.ts" timestamp="2024-01-01T00:00:00.000Z" hostname="chromium" tests="3" failures="0" skipped="0" time="17.5" errors="2">
+<testcase name="renders the page" classname="example.spec.ts" time="2.1">
+</testcase>
+<testcase name="opens the menu" classname="example.spec.ts" time="10.0">
+<error message="locator.click: Timeout 5000ms exceeded." type="TimeoutError"><![CDATA[locator.click: Timeout 5000ms exceeded.
+Call log:
+  - waiting for getByRole('button', { name: 'Menu' })
+]]></error>
+</testcase>
+<testcase name="saves the form" classname="example.spec.ts" time="5.4">
+<error message="Timeout 10000ms exceeded while waiting on the predicate" type="Error"><![CDATA[Error: Timeout 10000ms exceeded while waiting on the predicate
+    at example.spec.ts:42:18
+]]></error>
+</testcase>
+</testsuite>
+</testsuites>
