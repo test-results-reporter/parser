@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.6](https://github.com/test-results-reporter/parser/compare/v0.4.5...v0.4.6) (2026-07-15)
+
+
+### Bug Fixes
+
+* **junit:** report &lt;error&gt;-only test cases as failed ([#126](https://github.com/test-results-reporter/parser/issues/126)) ([037c757](https://github.com/test-results-reporter/parser/commit/037c7571b540206d2a85de137838746a92f03d62))
+
 ## [0.4.5](https://github.com/test-results-reporter/parser/compare/v0.4.4...v0.4.5) (2026-06-10)
 
 
