@@ -142,7 +142,7 @@ describe('Parser - MSTest', () => {
     assert.equal(result.status, "SKIP");
   })
 
-  it('Should resolve meta-data', () => {
+  it('Should resolve properties in trx into meta-data', () => {
     const result = parse({ type: 'mstest', files: [`${testDataPath}/testresults_properties.trx`] });
     assert.equal(result.suites[0].cases[0].metadata['tc:12345'], '');
     assert.equal(result.suites[0].cases[0].metadata['story:12345'], '');
