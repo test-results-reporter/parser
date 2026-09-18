@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.4.7](https://github.com/test-results-reporter/parser/compare/v0.4.6...v0.4.7) (2026-09-18)
+
+
+### Bug Fixes
+
+* mstest property support ([#131](https://github.com/test-results-reporter/parser/issues/131)) ([403f6f1](https://github.com/test-results-reporter/parser/commit/403f6f12c4d361de5eeeeb95263ced522796a77b))
+* update npm packages to address security vulnerabilities ([#132](https://github.com/test-results-reporter/parser/issues/132)) ([5f7f337](https://github.com/test-results-reporter/parser/commit/5f7f337e78419b071625638416e99a43f05e5dfd))
+
+
+### Miscellaneous
+
+* update nuget-packages (fast-xml-parser) ([#128](https://github.com/test-results-reporter/parser/issues/128)) ([391be95](https://github.com/test-results-reporter/parser/commit/391be95c5d3bac6a2a543acfd9287ae731db7e42))
+
 ## [0.4.6](https://github.com/test-results-reporter/parser/compare/v0.4.5...v0.4.6) (2026-07-15)
 
 
