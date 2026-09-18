@@ -42,7 +42,7 @@ function populateMetaData(rawElement, test_element) {
     for (let i = 0; i < rawProperties.length; i++) {
       let key = rawProperties[i].Key ?? "not-set";
       let val = rawProperties[i].Value ?? "";
-      map[key] = val;
+      test_element.metadata[key] = val;
     }
   }
 }
